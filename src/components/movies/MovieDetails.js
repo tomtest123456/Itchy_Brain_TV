@@ -1,153 +1,108 @@
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
+import "../../assets/styles/MovieDetails.css";
 
-const MovieDetails = () => {
-  const { id } = useParams(); // Get the movie ID from the URL
+function MovieDetails() {
+  const { id } = useParams();
   const [movie, setMovie] = useState(null);
-  const [cast, setCast] = useState([]); // Store cast members
+  const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+  const [visibleActors, setVisibleActors] = useState(10); // Show first 10 actors
+
+  const apiKey = process.env.REACT_APP_TMDB_API_KEY;
 
   useEffect(() => {
+    if (!apiKey) {
+      console.error("API Key is missing! Check your .env file.");
+      setError("API Key is missing. Check your setup.");
+      setLoading(false);
+      return;
+    }
+
     const fetchMovieDetails = async () => {
       try {
-        // Fetch movie details
-        const movieResponse = await fetch(
-          `https://api.themoviedb.org/3/movie/${id}?api_key=${process.env.REACT_APP_TMDB_API_KEY}&language=en-US`
-        );
-        if (!movieResponse.ok) throw new Error("Failed to fetch movie details");
-        const movieData = await movieResponse.json();
-        setMovie(movieData);
+        const url = `https://api.themoviedb.org/3/movie/${id}?api_key=${apiKey}&append_to_response=credits,videos`;
+        const response = await fetch(url);
 
-        // Fetch movie cast
-        const castResponse = await fetch(
-          `https://api.themoviedb.org/3/movie/${id}/credits?api_key=${process.env.REACT_APP_TMDB_API_KEY}&language=en-US`
-        );
-        if (!castResponse.ok) throw new Error("Failed to fetch cast details");
-        const castData = await castResponse.json();
-        setCast(castData.cast.slice(0, 10)); // Limit to top 10 cast members
+        if (!response.ok) {
+          throw new Error(`Failed to fetch movie details: ${response.status} ${response.statusText}`);
+        }
+
+        const data = await response.json();
+        setMovie(data);
       } catch (error) {
+        console.error("Error fetching movie details:", error);
         setError(error.message);
+      } finally {
+        setLoading(false);
       }
     };
 
     fetchMovieDetails();
-  }, [id]);
+  }, [id, apiKey]);
 
-  if (error) return <p style={{ color: "red" }}>Error: {error}</p>;
-  if (!movie) return <p>Loading...</p>;
+  if (loading) return <p>Loading...</p>;
+  if (error) return <p>Error: {error}</p>;
+  if (!movie) return <p>No movie found.</p>;
+
+  const director = movie.credits?.crew?.find((member) => member.job === "Director");
+  const trailer = movie.videos?.results.find((video) => video.type === "Trailer")?.key || null;
 
   return (
-    <div style={containerStyle}>
-      <h1 style={titleStyle}>{movie.title}</h1>
-      {movie.poster_path ? (
+    <div id="movie-details-page">
+      <div className="movie-placeholder">PLACEHOLDER FOR FUTURE ADDITION</div>
+
+      {/* Movie Header */}
+      <div className="movie-header">
         <img
           src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`}
           alt={movie.title}
-          style={imageStyle}
+          className="movie-poster"
         />
-      ) : (
-        <div style={noImageStyle}>No Image</div>
-      )}
-      <p>
-        <span role="img" aria-label="calendar">📅</span> {movie.release_date || "Unknown Release Date"}
-      </p>
-      <p><strong>Overview:</strong> {movie.overview || "No overview available."}</p>
-      <p>
-        <strong>Rating:</strong>
-        <span role="img" aria-label="star">⭐</span> {movie.vote_average}/10
-      </p>
 
-      {/* Display Cast Section */}
-      <h2 style={subtitleStyle}>Cast</h2>
-      <div style={castContainerStyle}>
-        {cast.length > 0 ? (
-          cast.map((actor) => (
-            <div key={actor.id} style={castCardStyle}>
-              {actor.profile_path ? (
+        <div className="movie-info">
+          <h1 className="movie-title">{movie.title} ({new Date(movie.release_date).getFullYear()})</h1>
+
+          {/* Cast Section - Positioned Next to Poster */}
+          <div className="cast-container">
+            {movie.credits?.cast?.slice(0, visibleActors).map((actor) => (
+              <div key={actor.id} className="cast-card">
                 <img
-                  src={`https://image.tmdb.org/t/p/w185${actor.profile_path}`}
+                  src={actor.profile_path ? `https://image.tmdb.org/t/p/w185${actor.profile_path}` : "https://via.placeholder.com/80"}
                   alt={actor.name}
-                  style={castImageStyle}
                 />
-              ) : (
-                <div style={noImageStyle}>No Image</div>
-              )}
-              <p style={castNameStyle}>{actor.name}</p>
-              <p style={castCharacterStyle}>as {actor.character}</p>
-            </div>
-          ))
-        ) : (
-          <p>No cast information available.</p>
+                <div className="cast-details">
+                  <p className="cast-name">{actor.name}</p>
+                  <p className="cast-character">{actor.character}</p>
+                </div>
+              </div>
+            ))}
+          </div>
+
+          {/* Show More Button */}
+          {visibleActors < movie.credits?.cast?.length && (
+            <button className="show-more-button" onClick={() => setVisibleActors(visibleActors + 10)}>
+              Show More
+            </button>
+          )}
+        </div>
+      </div>
+
+      {/* Bio Box Below Poster */}
+      <div className="movie-meta-container">
+        <p className="movie-meta">
+          {new Date(movie.release_date).toLocaleDateString()} • {movie.genres.map((genre) => genre.name).join(", ")} • {Math.floor(movie.runtime / 60)}h {movie.runtime % 60}m
+        </p>
+        {trailer && (
+          <a href={`https://www.youtube.com/watch?v=${trailer}`} target="_blank" rel="noopener noreferrer" className="play-trailer">
+            ▶ Play Trailer
+          </a>
         )}
+        <p className="movie-overview">{movie.overview}</p>
+        {director && <p className="director">Directed by: {director.name}</p>}
       </div>
     </div>
   );
-};
-
-// Styles
-const containerStyle = {
-  padding: "20px",
-  color: "#fff",
-  backgroundColor: "#1a1a1a",
-  minHeight: "100vh",
-  textAlign: "center",
-};
-
-const titleStyle = {
-  color: "#00bcd4",
-};
-
-const subtitleStyle = {
-  marginTop: "20px",
-  color: "#ffcc00",
-};
-
-const imageStyle = {
-  width: "300px",
-  borderRadius: "10px",
-  marginBottom: "20px",
-};
-
-const noImageStyle = {
-  width: "300px",
-  height: "450px",
-  backgroundColor: "#333",
-  color: "#ccc",
-  display: "flex",
-  alignItems: "center",
-  justifyContent: "center",
-  borderRadius: "10px",
-};
-
-const castContainerStyle = {
-  display: "flex",
-  flexWrap: "wrap",
-  justifyContent: "center",
-  gap: "15px",
-  marginTop: "10px",
-};
-
-const castCardStyle = {
-  width: "150px",
-  textAlign: "center",
-  backgroundColor: "#222",
-  padding: "10px",
-  borderRadius: "10px",
-};
-
-const castImageStyle = {
-  width: "100%",
-  borderRadius: "8px",
-};
-
-const castNameStyle = {
-  fontWeight: "bold",
-  marginTop: "5px",
-};
-
-const castCharacterStyle = {
-  fontSize: "14px",
-  color: "#ccc",
-};
+}
 
 export default MovieDetails;

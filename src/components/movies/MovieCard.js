@@ -17,9 +17,7 @@ function MovieCard({ movie }) {
           <div className="no-image">No Image</div>
         )}
         <h3 className="movie-title">{movie.title}</h3>
-        <p className="movie-date">
-          {formatReleaseDate(movie.release_date)}
-        </p>
+        <p className="movie-date">{formatReleaseDate(movie.release_date)}</p>
       </div>
     </Link>
   );
