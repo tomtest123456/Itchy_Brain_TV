@@ -2,9 +2,9 @@ import React from "react";
 
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import { useState } from "react";
-import SearchBar from "./components/SearchBar";
-import MovieList from "./components/MovieList";
-import MovieDetails from "./pages/MovieDetails";
+import SearchBar from "./components/search/SearchBar";
+import MovieList from "./components/movies/MovieList";
+import MovieDetails from "./components/movies/MovieDetails";
 
 function App() {
   const [movies, setMovies] = useState([]);

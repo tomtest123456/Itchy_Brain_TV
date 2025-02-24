@@ -1,6 +1,8 @@
 import React from "react";
 
 import { Link } from "react-router-dom";
+import { formatReleaseDate } from '../../utils/helpers';
+
 
 function MovieCard({ movie }) {
   return (
@@ -16,9 +18,7 @@ function MovieCard({ movie }) {
           <div style={noImageStyle}>No Image</div>
         )}
         <h3 style={titleStyle}>{movie.title}</h3>
-        <p>
-          <span role="img" aria-label="calendar">📅</span> {movie.release_date || "Unknown Release Date"}
-        </p>
+        <p>📅 {formatReleaseDate(movie.release_date)}</p>
       </div>
     </Link>
   );
