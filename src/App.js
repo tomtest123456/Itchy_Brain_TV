@@ -1,60 +1,41 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
+import SearchBar from "./components/SearchBar";
+import MovieList from "./components/MovieList";
 
 function App() {
-  const [movie, setMovie] = useState(null);
-  const [loading, setLoading] = useState(true);
+  const [movies, setMovies] = useState([]);
+  const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
 
-  useEffect(() => {
-    const fetchMovie = async () => {
-      const apiKey = process.env.REACT_APP_TMDB_API_KEY;
+  const apiKey = process.env.REACT_APP_TMDB_API_KEY;
 
-      if (!apiKey) {
-        setError("API key is missing!");
-        setLoading(false);
-        return;
-      }
+  const searchMovies = async (query) => {
+    if (query.trim() === "") return;
 
-      const url = `https://api.themoviedb.org/3/movie/550?api_key=${apiKey}`;
+    setLoading(true);
+    setError(null);
 
-      try {
-        setLoading(true);
-        const response = await fetch(url);
-        if (!response.ok) throw new Error(`HTTP Error! Status: ${response.status}`);
-        const data = await response.json();
-        setMovie(data);
-      } catch (err) {
-        setError(err.message);
-      } finally {
-        setLoading(false);
-      }
-    };
+    const url = `https://api.themoviedb.org/3/search/movie?api_key=${apiKey}&query=${query}`;
 
-    fetchMovie();
-  }, []);
+    try {
+      const response = await fetch(url);
+      if (!response.ok) throw new Error(`HTTP Error! Status: ${response.status}`);
+      const data = await response.json();
+      setMovies(data.results);
+    } catch (err) {
+      setError(err.message);
+    } finally {
+      setLoading(false);
+    }
+  };
 
   return (
-    <div>
-      <h1>TMDB API Test</h1>
-
-      {loading ? (
-        <p>Loading...</p> // Placeholder for a spinner (we can replace it later)
-      ) : error ? (
-        <p style={{ color: "red" }}>Error: {error}</p>
-      ) : movie ? (
-        <div>
-          <h2 style={{ color: "darkblue", textDecoration: "underline" }}>
-            {movie.title}
-          </h2>
-          <img
-            src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`}
-            alt={movie.title}
-            style={{ width: "300px", borderRadius: "10px" }}
-          />
-          <p>{movie.overview}</p>
-          <p>Release Date: {movie.release_date}</p>
-        </div>
-      ) : null}
+    <div style={{ textAlign: "center", padding: "20px" }}>
+      <h1>Movie Search</h1>
+      <SearchBar onSearch={searchMovies} />
+      {loading && <p>Loading...</p>}
+      {error && <p style={{ color: "red" }}>Error: {error}</p>}
+      <MovieList movies={movies} />
     </div>
   );
 }
