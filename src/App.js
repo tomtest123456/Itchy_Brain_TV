@@ -1,6 +1,10 @@
+import React from "react";
+
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import { useState } from "react";
 import SearchBar from "./components/SearchBar";
 import MovieList from "./components/MovieList";
+import MovieDetails from "./pages/MovieDetails";
 
 function App() {
   const [movies, setMovies] = useState([]);
@@ -30,13 +34,23 @@ function App() {
   };
 
   return (
-    <div style={{ textAlign: "center", padding: "20px" }}>
-      <h1>Movie Search</h1>
-      <SearchBar onSearch={searchMovies} />
-      {loading && <p>Loading...</p>}
-      {error && <p style={{ color: "red" }}>Error: {error}</p>}
-      <MovieList movies={movies} />
-    </div>
+    <Router>
+      <Routes>
+        <Route
+          path="/"
+          element={
+            <div style={{ textAlign: "center", padding: "20px" }}>
+              <h1>Movie Search</h1>
+              <SearchBar onSearch={searchMovies} />
+              {loading && <p>Loading...</p>}
+              {error && <p style={{ color: "red" }}>Error: {error}</p>}
+              <MovieList movies={movies} />
+            </div>
+          }
+        />
+        <Route path="/movie/:id" element={<MovieDetails />} />
+      </Routes>
+    </Router>
   );
 }
 

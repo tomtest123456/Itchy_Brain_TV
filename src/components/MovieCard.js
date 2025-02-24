@@ -1,5 +1,10 @@
+import React from "react";
+
+import { Link } from "react-router-dom";
+
 function MovieCard({ movie }) {
-    return (
+  return (
+    <Link to={`/movie/${movie.id}`} style={linkStyle}>
       <div style={cardStyle}>
         {movie.poster_path ? (
           <img
@@ -11,45 +16,60 @@ function MovieCard({ movie }) {
           <div style={noImageStyle}>No Image</div>
         )}
         <h3 style={titleStyle}>{movie.title}</h3>
-        <p>📅 {movie.release_date || "Unknown Release Date"}</p>
+        <p>
+          <span role="img" aria-label="calendar">📅</span> {movie.release_date || "Unknown Release Date"}
+        </p>
       </div>
-    );
-  }
-  
-  const cardStyle = {
-    backgroundColor: "#1a1a1a",
-    color: "#fff",
-    borderRadius: "10px",
-    padding: "10px",
-    textAlign: "center",
-    boxShadow: "0 4px 8px rgba(255, 255, 255, 0.2)",
-    transition: "transform 0.2s",
-    cursor: "pointer",
-    maxWidth: "200px", // Prevents cards from getting too large
-    margin: "auto", // Centers the card in its grid cell
-  };
-  
-  const imageStyle = {
-    width: "100%",
-    borderRadius: "8px",
-  };
-  
-  const titleStyle = {
-    fontSize: "14px", // Smaller text for better mobile fit
-    marginTop: "10px",
-    color: "#00bcd4",
-  };
-  
-  const noImageStyle = {
-    width: "100%",
-    height: "200px",
-    display: "flex",
-    alignItems: "center",
-    justifyContent: "center",
-    backgroundColor: "#333",
-    borderRadius: "8px",
-    color: "#ccc",
-  };
-  
-  export default MovieCard;
-  
+    </Link>
+  );
+}
+
+const linkStyle = {
+  textDecoration: "none",
+  color: "inherit",
+};
+
+const cardStyle = {
+  backgroundColor: "#1a1a1a",
+  color: "#fff",
+  borderRadius: "10px",
+  padding: "10px",
+  textAlign: "center",
+  boxShadow: "0 4px 8px rgba(255, 255, 255, 0.2)",
+  transition: "transform 0.2s",
+  cursor: "pointer",
+  maxWidth: "200px",
+  height: "350px",
+  display: "flex",
+  flexDirection: "column",
+  justifyContent: "space-between",
+  alignItems: "center",
+};
+
+const imageStyle = {
+  width: "100%",
+  height: "250px",
+  objectFit: "cover",
+  borderRadius: "8px",
+};
+
+const titleStyle = {
+  fontSize: "14px",
+  marginTop: "10px",
+  color: "#00bcd4",
+  textAlign: "center",
+};
+
+const noImageStyle = {
+  width: "100%",
+  height: "250px",
+  display: "flex",
+  alignItems: "center",
+  justifyContent: "center",
+  backgroundColor: "#333",
+  borderRadius: "8px",
+  color: "#ccc",
+  fontSize: "14px",
+};
+
+export default MovieCard;
