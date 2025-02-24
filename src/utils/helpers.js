@@ -4,7 +4,7 @@
 export const formatReleaseDate = (dateString) => {
     if (!dateString) return 'Unknown'; // Handle cases where date might be missing
     return new Date(dateString).toLocaleDateString('en-US', {
-      month: 'short',
+      // month: 'short',
       year: 'numeric',
     });
   };
