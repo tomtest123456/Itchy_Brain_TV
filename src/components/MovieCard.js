@@ -25,6 +25,8 @@ function MovieCard({ movie }) {
     boxShadow: "0 4px 8px rgba(255, 255, 255, 0.2)",
     transition: "transform 0.2s",
     cursor: "pointer",
+    maxWidth: "200px", // Prevents cards from getting too large
+    margin: "auto", // Centers the card in its grid cell
   };
   
   const imageStyle = {
@@ -33,7 +35,7 @@ function MovieCard({ movie }) {
   };
   
   const titleStyle = {
-    fontSize: "16px",
+    fontSize: "14px", // Smaller text for better mobile fit
     marginTop: "10px",
     color: "#00bcd4",
   };

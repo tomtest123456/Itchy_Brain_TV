@@ -14,10 +14,10 @@ function MovieList({ movies }) {
 
 const gridContainerStyle = {
   display: "grid",
-  gridTemplateColumns: "repeat(auto-fit, minmax(200px, 1fr))",
-  gap: "20px",
+  gridTemplateColumns: "repeat(auto-fit, minmax(150px, 1fr))", // Dynamic columns
+  gap: "16px",
   justifyContent: "center",
-  padding: "20px",
+  padding: "16px",
 };
 
 export default MovieList;
