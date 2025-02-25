@@ -1,6 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { formatReleaseDate } from "../../utils/helpers";
+import { formatDate  } from "../../utils/helpers";
 import "../../assets/styles/MovieCard.css";
 
 function MovieCard({ movie }) {
@@ -17,7 +17,7 @@ function MovieCard({ movie }) {
           <div className="no-image">No Image</div>
         )}
         <h3 className="movie-title">{movie.title}</h3>
-        <p className="movie-date">{formatReleaseDate(movie.release_date)}</p>
+        <p className="movie-date">{formatDate(movie.release_date)}</p>
       </div>
     </Link>
   );
