@@ -1,6 +1,5 @@
-// src/components/actor/ActorDetails.js
 import React, { useState, useEffect } from "react";
-import { useParams } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 import { fetchPersonDetails } from "../../services/tmdb";
 import { formatDate, calculateAge } from "../../utils/helpers";
 
@@ -10,6 +9,7 @@ const ActorDetails = () => {
 	const [loading, setLoading] = useState(true);
 	const [error, setError] = useState(null);
 	const [currentImageIndex, setCurrentImageIndex] = useState(0);
+	const navigate = useNavigate();
 
 	useEffect(() => {
 		const loadActorDetails = async () => {
@@ -51,6 +51,13 @@ const ActorDetails = () => {
 		<div style={{ padding: "20px" }}>
 			<h1>{actor.name}</h1>
 
+			{/* Ensure actor exists before rendering button */}
+			{actor && (
+				<button onClick={() => navigate(`/actor-connections/${actorId}`)}>
+					View Actor Connections
+				</button>
+			)}
+
 			<div style={{ display: "flex", alignItems: "center", gap: "10px" }}>
 				<button onClick={prevImage} disabled={!hasImages}>&lt;</button>
 
@@ -59,8 +66,8 @@ const ActorDetails = () => {
 						hasImages
 							? `https://image.tmdb.org/t/p/w500${images[currentImageIndex].file_path}`
 							: actor.profile_path
-							? `https://image.tmdb.org/t/p/w500${actor.profile_path}`
-							: "https://via.placeholder.com/500x750?text=No+Image"
+								? `https://image.tmdb.org/t/p/w500${actor.profile_path}`
+								: "https://via.placeholder.com/500x750?text=No+Image"
 					}
 					alt={actor.name}
 					style={{ width: "300px", height: "auto", objectFit: "cover" }}
@@ -92,41 +99,72 @@ const ActorDetails = () => {
 			<h2>Known For</h2>
 			{actor.movie_credits?.cast?.length > 0 ? (
 				<div className="known-for-container">
-					{actor.movie_credits.cast
-						.filter(movie => movie.poster_path) // Only show movies with posters
-						.sort((a, b) => b.popularity - a.popularity) // Sort by popularity
-						.slice(0, 10) // Limit to 10 movies
-						.map(movie => (
-							<div key={movie.id} className="known-for-item">
-								<img
-									src={`https://image.tmdb.org/t/p/w185${movie.poster_path}`}
-									alt={movie.title}
-									className="known-for-poster"
-								/>
-								<p>{movie.title}</p>
-							</div>
-						))}
+					{Object.values(
+						actor.movie_credits.cast
+							.filter(movie => movie.poster_path) // Ensure the movie has a poster
+							.sort((a, b) => b.popularity - a.popularity) // Sort by popularity
+							.slice(0, 10) // Limit to 10 movies
+							.reduce((acc, movie) => {
+								if (!acc[movie.id]) {
+									acc[movie.id] = {
+										...movie,
+										characters: [] // Create a new array to store all characters
+									};
+								}
+								acc[movie.id].characters.push(movie.character); // Collect all character names
+								return acc;
+							}, {})
+					).map(movie => (
+						<div key={movie.id} className="known-for-item">
+							<img
+								src={`https://image.tmdb.org/t/p/w185${movie.poster_path}`}
+								alt={movie.title}
+								className="known-for-poster"
+							/>
+							<p><strong>{movie.title}</strong> ({new Date(movie.release_date).getFullYear()})</p>
+							<p><strong>Characters:</strong> {movie.characters.join(", ")}</p>
+						</div>
+					))}
 				</div>
 			) : (
 				<p>No known movies available.</p>
 			)}
 
+
 			<h3>TV Shows</h3>
 			{actor.tv_credits?.cast?.length > 0 ? (
 				<ul>
-					{actor.tv_credits.cast
-						.filter(show => show.first_air_date)
-						.sort((a, b) => new Date(b.first_air_date) - new Date(a.first_air_date))
-						.map(show => (
-							<li key={show.id}>
-								<strong>{show.name}</strong> ({new Date(show.first_air_date).getFullYear()}) - Role:{" "}
-								{show.character || "Unknown"}
-							</li>
-						))}
+					{Object.values(
+						actor.tv_credits.cast
+							.filter(show => show.first_air_date) // Ensure the TV show has a valid release date
+							.sort((a, b) => new Date(b.first_air_date) - new Date(a.first_air_date)) // Sort by release date
+							.slice(0, 10) // Limit to 10 TV shows
+							.reduce((acc, show) => {
+								if (!acc[show.id]) {
+									acc[show.id] = {
+										...show,
+										characters: [] // Create an array for character names
+									};
+								}
+								acc[show.id].characters.push(show.character);
+								return acc;
+							}, {})
+					).map(show => (
+						<li key={show.id}>
+							<img
+								src={`https://image.tmdb.org/t/p/w185${show.poster_path}`}
+								alt={show.name}
+								className="known-for-poster"
+							/>
+							<p><strong>{show.name}</strong> ({new Date(show.first_air_date).getFullYear()})</p>
+							<p><strong>Characters:</strong> {show.characters.join(", ")}</p>
+						</li>
+					))}
 				</ul>
 			) : (
 				<p>No TV show credits available.</p>
 			)}
+
 		</div>
 	);
 };
