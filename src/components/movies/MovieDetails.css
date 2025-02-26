@@ -1,122 +1,198 @@
 /* ========================================
-   MOVIE DETAILS PAGE BACKGROUND
+   ROOT VARIABLES FOR EASY CUSTOMIZATION
+   ======================================== */
+   :root {
+    --page-bg-color: #000000;
+    --grid-line-color: rgba(255, 255, 255, 0.346);
+    /* Grid Background */
+    --grid-gap: 5em;
+    --grid-line: 1px;
+
+    /* Font Colors */
+    --title-color: #ff0000;
+    --release-year-color: #d1ff02;
+    --text-color: white;
+    --rating-text-color: white;
+
+    /* Font Sizes */
+    --title-size: 32px;
+    --release-year-size: 24px;
+    --rating-text-size: 1.2rem;
+
+    /* Poster & Content Widths */
+    --poster-width: 50%;
+    --poster-max-width: 560px;
+    --poster-min-width: 300px;
+
+    /* Spacing */
+    --page-padding-top: 110px;
+    --title-spacing: 1px;
+    --rating-gap: 10px;
+    --actor-list-margin-left: 50px;
+
+
+}
+
+/* ========================================
+   GENERAL PAGE STYLING
    ======================================== */
 
-/* Ensures content starts below the fixed navbar */
 .movie-details-page {
-    padding-top: 100px; /* Prevents overlap with navbar */
-    background: linear-gradient(135deg, #0a1931 0%, #1f4068 50%, #2e86de 100%); /* Dark-to-light blue gradient */
-    min-height: 100vh; /* Ensures full-screen height */
+    padding-top: var(--page-padding-top);
+    background: var(--page-bg-color);
+    
+    background-image: linear-gradient(
+        -90deg,
+        transparent calc(var(--grid-gap) - var(--grid-line)),
+        var(--grid-line-color) calc(var(--grid-gap) - var(--grid-line) + 1px),
+        var(--grid-line-color) var(--grid-gap)
+    ),
+    linear-gradient(
+        0deg,
+        transparent calc(var(--grid-gap) - var(--grid-line)),
+        var(--grid-line-color) calc(var(--grid-gap) - var(--grid-line) + 1px),
+        var(--grid-line-color) var(--grid-gap)
+    );
+    
+    background-size: var(--grid-gap) var(--grid-gap);
+    min-height: 100vh;
     display: flex;
     flex-direction: column;
-    align-items: flex-start; /* Aligns content to the left */
-    color: white; /* Ensures text is readable on dark background */
+    align-items: flex-start;
+    color: var(--text-color);
 }
 
 /* Restricts content width for better readability */
 .movie-details-page > * {
-    max-width: 800px; /* Limits width for readability */
-    width: 100%; /* Ensures content spans full width within max-width */
+    max-width: 800px;
+    width: 100%;
 }
-
 
 /* ========================================
    MOVIE HEADER (POSTER + TITLE LAYOUT)
    ======================================== */
 
-/* Creates a flexible container to align the movie poster and title */
 .movie-header {
-    display: flex; /* Enables horizontal alignment */
-    align-items: flex-start; /* Aligns both elements at the top */
-    gap: 20px; /* Adds spacing between the poster and title */
-    margin-bottom: 20px; /* Creates spacing below the header */
+    display: flex;
+    align-items: flex-start;
+    gap: 20px;
+    margin-bottom: 20px;
 }
 
-/* Ensures the title aligns with the top of the poster */
 .movie-info {
-    flex-grow: 1; /* Allows the title section to take up remaining space */
+    flex-grow: 1;
     display: flex;
     flex-direction: column;
-    justify-content: flex-start; /* Aligns content to the top */
+    justify-content: flex-start;
 }
-
-/* Responsive Adjustments */
-@media (max-width: 768px) {
-    .movie-header {
-        flex-direction: column; /* Stacks the poster and title vertically */
-        align-items: center; /* Centers content on small screens */
-        text-align: center;
-    }
-}
-
 
 /* ========================================
    MOVIE TITLE STYLING
    ======================================== */
 
-/* General Styling for a Clean, Professional Look */
 .modern-title {
-    color: #fff700 !important; /* Ensures the title color is applied */
-    letter-spacing: 1px; /* Adds subtle spacing for readability */
-    line-height: 1.2; /* Ensures proper vertical spacing */
-    display: inline-flex; /* Ensures title and release year remain on the same line */
-    align-items: baseline; /* Ensures correct vertical alignment */
-    text-align: left; /* Keeps text aligned properly */
-    max-width: 100%; /* Prevents content from exceeding the container width */
-    flex-wrap: nowrap; /* Prevents wrapping unless absolutely necessary */
-    white-space: nowrap; /* Keeps title on one line unless screen size forces a wrap */
-    overflow: hidden; /* Prevents overflow */
-    text-overflow: ellipsis; /* Adds "..." if text overflows */
+    font-size: var(--title-size);
+    color: var(--title-color) !important;
+    letter-spacing: var(--title-spacing);
+    line-height: 1.2;
+    display: inline-flex;
+    align-items: baseline;
+    text-align: left;
+    max-width: 100%;
+    flex-wrap: nowrap;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 
-/* Styling for Release Year */
 .release-year {
-    font-size: inherit; /* Ensures same font size as title */
-    margin-left: 10px; /* Adds space between title and year */
-    opacity: 0.8; /* Slightly reduced opacity for subtle contrast */
-    color: inherit; /* Inherits the color of the movie title */
+    font-size: var(--release-year-size);
+    margin-left: 10px;
+    opacity: 0.8;
+    color: var(--release-year-color);
 }
 
-/* RESPONSIVE: Allows wrapping **only when necessary** */
+/* RESPONSIVE: Allows wrapping only when necessary */
 @media (max-width: 1200px) {
     .modern-title {
-        flex-wrap: wrap; /* Enables wrapping only when needed */
-        white-space: normal; /* Ensures normal wrapping on smaller screens */
-        overflow: visible; /* Prevents text from getting cut off */
+        flex-wrap: wrap;
+        white-space: normal;
+        overflow: visible;
     }
 }
-
 
 /* ========================================
    MOVIE POSTER STYLING
    ======================================== */
 
-/* Ensures the poster image is responsive and properly positioned */
 .movie-poster {
-    width: 50%; /* Increases size while keeping responsiveness */
-    max-width: 560px; /* Ensures it does not get too large */
-    min-width: 300px; /* Prevents it from getting too small */
-    border-radius: 12px; /* Keeps modern rounded corners */
-    margin-left: 40px; /* Adds spacing from the left side */
-    display: block; /* Prevents inline spacing issues */
+    width: var(--poster-width);
+    max-width: var(--poster-max-width);
+    min-width: var(--poster-min-width);
+    border-radius: 12px;
+    margin-left: var(--actor-list-margin-left);
+    display: block;
 }
 
 /* Responsive Adjustments for Small Screens */
 @media (max-width: 768px) {
     .movie-header {
-        flex-direction: column; /* Stacks the poster and title vertically */
-        align-items: center; /* Centers content on mobile screens */
+        flex-direction: column;
+        align-items: center;
         text-align: center;
     }
 
     .movie-poster {
-        width: 80%; /* Increases poster size on smaller screens */
-        max-width: 400px; /* Limits size on mobile */
+        width: 80%;
+        max-width: 400px;
     }
 
     .modern-title {
-        flex-wrap: wrap; /* Allows wrapping only on small screens */
-        white-space: normal; /* Allows normal wrapping on smaller screens */
+        flex-wrap: wrap;
+        white-space: normal;
         text-align: center;
     }
+}
+
+/* ========================================
+   RATING STYLING
+   ======================================== */
+
+.rating-container {
+    display: flex;
+    align-items: center;
+    gap: var(--rating-gap);
+    width: 200px;
+    margin-top: 10px;
+}
+
+.rating-text {
+    font-size: var(--rating-text-size);
+    font-weight: bold;
+    color: var(--rating-text-color);
+    min-width: 40px;
+    text-align: right;
+}
+
+.rating-bar {
+    flex-grow: 1;
+}
+
+/* ========================================
+   ACTOR LIST STYLING (Aligns with Movie Title)
+   ======================================== */
+
+.actor-list-container {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    margin-top: 20px;
+    margin-left: var(--actor-list-margin-left);
+    width: 100%;
+}
+
+.actor-list {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
 }

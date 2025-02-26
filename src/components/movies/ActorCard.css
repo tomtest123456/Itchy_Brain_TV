@@ -1,0 +1,169 @@
+/* ========================================
+   ROOT VARIABLES FOR EASY CUSTOMIZATION
+   ======================================== */
+   :root {
+    --actor-card-bg: #D9D9D9;
+    --actor-image-placeholder: url("https://dummyimage.com/185x278/aaa/fff.png&text=No+Image");
+    
+    /* Font Colors */
+    --actor-name-color: #000000;
+    --actor-character-color: #000000;
+    --actor-movies-color: #000000;
+    --actor-movies-subtext-color: #000000;
+    --divider-color: #000000;
+
+    /* Font Sizes */
+    --actor-name-size: 24px;
+    --actor-character-size: 18px;
+    --actor-movies-size: 16px;
+    --actor-movies-subtext-size: 14px;
+
+    /* Border Radius */
+    --actor-card-radius: 25px;
+    --actor-image-radius: 12px;
+}
+
+/* ========================================
+   ACTOR CARD STYLING
+   ======================================== */
+
+.actor-card-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 20px 0;
+}
+
+.actor-card {
+    font-family: 'Inter', sans-serif; /* Applied to everything inside */
+    position: relative;
+    width: 425px;
+    background: var(--actor-card-bg);
+    border-radius: var(--actor-card-radius);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+}
+
+/* ========================================
+   ACTOR IMAGE STYLING
+   ======================================== */
+
+.actor-image {
+    width: 185px;
+    height: 278px;
+    border-radius: var(--actor-image-radius);
+    object-fit: cover;
+    background: var(--actor-image-placeholder) no-repeat center;
+}
+
+/* ========================================
+   ACTOR INFORMATION STYLING
+   ======================================== */
+
+.actor-info {
+    width: 100%;
+    text-align: center;
+    margin-top: 15px;
+}
+
+/* Actor Name */
+.actor-name {
+    font-weight: 600;
+    font-size: var(--actor-name-size);
+    line-height: 120%;
+    letter-spacing: -0.02em;
+    color: var(--actor-name-color);
+    margin-bottom: 5px;
+}
+
+/* Actor Name Link */
+.actor-name a {
+    text-decoration: none;
+    color: inherit;
+}
+
+/* Character Name */
+.actor-character {
+    font-weight: 400;
+    font-size: var(--actor-character-size);
+    line-height: 120%;
+    color: var(--actor-character-color);
+    margin-bottom: 10px;
+}
+
+/* Divider */
+.actor-divider {
+    width: 80%;
+    height: 1px;
+    background: var(--divider-color);
+    margin: 10px auto;
+    border: none;
+}
+
+/* ========================================
+   ACTOR MOVIES LIST
+   ======================================== */
+
+.actor-movies {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+    width: 100%;
+}
+
+.actor-movie-item {
+    margin-bottom: 10px;
+    text-align: left;
+}
+
+/* Movie Title + Release Year (Bold) */
+.actor-movie-title {
+    font-weight: 700;
+    font-size: var(--actor-movies-size);
+    color: var(--actor-movies-color);
+}
+
+/* Fix for color not applying to <strong> */
+.actor-movie-title strong {
+    color: var(--actor-movies-color); /* Ensures correct color */
+}
+
+/* Character Name + Age (Normal/Light Font) */
+.actor-movie-subtext {
+    font-weight: 400;
+    font-size: var(--actor-movies-subtext-size);
+    color: var(--actor-movies-subtext-color);
+}
+
+/* Fix for ensuring color is inherited properly */
+.actor-movie-subtext span {
+    color: var(--actor-movies-subtext-color);
+}
+
+/* ========================================
+   RESPONSIVE STYLING
+   ======================================== */
+
+@media (max-width: 768px) {
+    .actor-card {
+        width: 90%;
+    }
+
+    .actor-name {
+        font-size: calc(var(--actor-name-size) - 2px);
+    }
+
+    .actor-character {
+        font-size: calc(var(--actor-character-size) - 2px);
+    }
+
+    .actor-movie-title {
+        font-size: calc(var(--actor-movies-size) - 2px);
+    }
+
+    .actor-movie-subtext {
+        font-size: calc(var(--actor-movies-subtext-size) - 2px);
+    }
+}
