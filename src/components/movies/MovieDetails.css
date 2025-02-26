@@ -1,0 +1,122 @@
+/* ========================================
+   MOVIE DETAILS PAGE BACKGROUND
+   ======================================== */
+
+/* Ensures content starts below the fixed navbar */
+.movie-details-page {
+    padding-top: 100px; /* Prevents overlap with navbar */
+    background: linear-gradient(135deg, #0a1931 0%, #1f4068 50%, #2e86de 100%); /* Dark-to-light blue gradient */
+    min-height: 100vh; /* Ensures full-screen height */
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start; /* Aligns content to the left */
+    color: white; /* Ensures text is readable on dark background */
+}
+
+/* Restricts content width for better readability */
+.movie-details-page > * {
+    max-width: 800px; /* Limits width for readability */
+    width: 100%; /* Ensures content spans full width within max-width */
+}
+
+
+/* ========================================
+   MOVIE HEADER (POSTER + TITLE LAYOUT)
+   ======================================== */
+
+/* Creates a flexible container to align the movie poster and title */
+.movie-header {
+    display: flex; /* Enables horizontal alignment */
+    align-items: flex-start; /* Aligns both elements at the top */
+    gap: 20px; /* Adds spacing between the poster and title */
+    margin-bottom: 20px; /* Creates spacing below the header */
+}
+
+/* Ensures the title aligns with the top of the poster */
+.movie-info {
+    flex-grow: 1; /* Allows the title section to take up remaining space */
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start; /* Aligns content to the top */
+}
+
+/* Responsive Adjustments */
+@media (max-width: 768px) {
+    .movie-header {
+        flex-direction: column; /* Stacks the poster and title vertically */
+        align-items: center; /* Centers content on small screens */
+        text-align: center;
+    }
+}
+
+
+/* ========================================
+   MOVIE TITLE STYLING
+   ======================================== */
+
+/* General Styling for a Clean, Professional Look */
+.modern-title {
+    color: #fff700 !important; /* Ensures the title color is applied */
+    letter-spacing: 1px; /* Adds subtle spacing for readability */
+    line-height: 1.2; /* Ensures proper vertical spacing */
+    display: inline-flex; /* Ensures title and release year remain on the same line */
+    align-items: baseline; /* Ensures correct vertical alignment */
+    text-align: left; /* Keeps text aligned properly */
+    max-width: 100%; /* Prevents content from exceeding the container width */
+    flex-wrap: nowrap; /* Prevents wrapping unless absolutely necessary */
+    white-space: nowrap; /* Keeps title on one line unless screen size forces a wrap */
+    overflow: hidden; /* Prevents overflow */
+    text-overflow: ellipsis; /* Adds "..." if text overflows */
+}
+
+/* Styling for Release Year */
+.release-year {
+    font-size: inherit; /* Ensures same font size as title */
+    margin-left: 10px; /* Adds space between title and year */
+    opacity: 0.8; /* Slightly reduced opacity for subtle contrast */
+    color: inherit; /* Inherits the color of the movie title */
+}
+
+/* RESPONSIVE: Allows wrapping **only when necessary** */
+@media (max-width: 1200px) {
+    .modern-title {
+        flex-wrap: wrap; /* Enables wrapping only when needed */
+        white-space: normal; /* Ensures normal wrapping on smaller screens */
+        overflow: visible; /* Prevents text from getting cut off */
+    }
+}
+
+
+/* ========================================
+   MOVIE POSTER STYLING
+   ======================================== */
+
+/* Ensures the poster image is responsive and properly positioned */
+.movie-poster {
+    width: 50%; /* Increases size while keeping responsiveness */
+    max-width: 560px; /* Ensures it does not get too large */
+    min-width: 300px; /* Prevents it from getting too small */
+    border-radius: 12px; /* Keeps modern rounded corners */
+    margin-left: 40px; /* Adds spacing from the left side */
+    display: block; /* Prevents inline spacing issues */
+}
+
+/* Responsive Adjustments for Small Screens */
+@media (max-width: 768px) {
+    .movie-header {
+        flex-direction: column; /* Stacks the poster and title vertically */
+        align-items: center; /* Centers content on mobile screens */
+        text-align: center;
+    }
+
+    .movie-poster {
+        width: 80%; /* Increases poster size on smaller screens */
+        max-width: 400px; /* Limits size on mobile */
+    }
+
+    .modern-title {
+        flex-wrap: wrap; /* Allows wrapping only on small screens */
+        white-space: normal; /* Allows normal wrapping on smaller screens */
+        text-align: center;
+    }
+}
