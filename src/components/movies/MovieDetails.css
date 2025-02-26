@@ -37,10 +37,10 @@
    GENERAL PAGE STYLING
    ======================================== */
 
-.movie-details-page {
+   .movie-details-page {
     padding-top: var(--page-padding-top);
+    padding-left: 60px; /* Pushes everything away from the left */
     background: var(--page-bg-color);
-    
     background-image: linear-gradient(
         -90deg,
         transparent calc(var(--grid-gap) - var(--grid-line)),
@@ -61,6 +61,7 @@
     align-items: flex-start;
     color: var(--text-color);
 }
+
 
 /* Restricts content width for better readability */
 .movie-details-page > * {
@@ -189,6 +190,44 @@
     margin-top: 20px;
     margin-left: var(--actor-list-margin-left);
     width: 100%;
+}
+
+.actor-list {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+/* ========================================
+   MOVIE CONTENT (TITLE, RATING & ACTORS)
+   ======================================== */
+
+   .movie-content {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    margin-left: var(--actor-list-margin-left); /* Ensures left alignment */
+    width: 100%;
+}
+
+/* ========================================
+   CAST SECTION STYLING
+   ======================================== */
+
+.actor-list-container {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    margin-top: 20px;
+    margin-left: var(--actor-list-margin-left); /* Ensures left alignment */
+    width: 100%;
+}
+
+.actor-list-title {
+    font-size: var(--title-size);
+    font-weight: bold;
+    color: var(--title-color);
+    margin-bottom: 10px;
 }
 
 .actor-list {

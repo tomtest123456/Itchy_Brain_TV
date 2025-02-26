@@ -67,12 +67,16 @@ const MovieDetails = () => {
 						alt={movie.title}
 					/>
 
-					<div className="movie-info">
+					<div className="movie-content">
+						{/* Movie Title */}
 						<h1 className="title is-2 has-text-weight-bold modern-title">
-							{movie.title} <span className="release-year" style={{ fontWeight: "normal" }}>({formatDate(movie.release_date, "YYYY")})</span>
+							{movie.title}
+							<span className="release-year" style={{ fontWeight: "normal" }}>
+								({formatDate(movie.release_date, "YYYY")})
+							</span>
 						</h1>
 
-						{/* Bulma Progress Bar for Rating */}
+						{/* Progress Bar for Rating */}
 						<div className="rating-container">
 							<span className="rating-text">{Math.round(movie.vote_average * 10)}%</span>
 							<progress
@@ -84,6 +88,7 @@ const MovieDetails = () => {
 
 						{/* Cast Section */}
 						<div className="actor-list-container">
+							<h2 className="actor-list-title">Cast</h2>
 							<div className="actor-list">
 								{cast.slice(0, visibleActors).map((actor) => (
 									<ActorCard key={actor.id} actor={actor} movieReleaseDate={movie.release_date} />
@@ -96,9 +101,9 @@ const MovieDetails = () => {
 								</button>
 							)}
 						</div>
-
 					</div>
 				</div>
+
 
 				{/* Movie Information */}
 				<p><strong>Duration:</strong> {movie.runtime} min</p>
