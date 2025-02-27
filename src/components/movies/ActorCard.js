@@ -4,7 +4,6 @@ import { fetchPersonDetails } from "../../services/tmdb";
 import { formatDate, calculateAge } from "../../utils/helpers";
 import "./ActorCard.css";
 
-
 const ActorCard = ({ actor, movieReleaseDate }) => {
     const [actorDetails, setActorDetails] = useState(null);
 
@@ -28,32 +27,35 @@ const ActorCard = ({ actor, movieReleaseDate }) => {
     if (!actorDetails) return null; // Prevents crashes
 
     return (
-        <div className="actor-card-container">
-            <div className="actor-card">
-                {/* Actor Profile Picture */}
-                <img
-                    className="actor-image"
-                    src={actorDetails.profile_path
-                        ? `https://image.tmdb.org/t/p/w185${actorDetails.profile_path}`
-                        : "https://dummyimage.com/185x278/aaa/fff.png&text=No+Image"}
-                    alt={actor.name}
-                />
+        <div className="actor-card">
+            {/* ~~~ Actor Profile Picture ~~~ */}
+            <img
+                className="actor-image"
+                src={actorDetails.profile_path
+                    ? `https://image.tmdb.org/t/p/w185${actorDetails.profile_path}`
+                    : "https://dummyimage.com/185x278/aaa/fff.png&text=No+Image"}
+                alt={actor.name}
+            />
 
-                {/* Actor Information */}
-                <div className="actor-info">
-                    <h3 className="actor-name">
-                        <Link to={`/actor/${actor.id}`}>
-                            {actor.name} (Age: {calculateAge(actorDetails.birthday, new Date().toISOString().split("T")[0])})
-                        </Link>
-                    </h3>
+            {/* ~~~ Actor Information ~~~ */}
+            <div className="actor-info">
+                {/* Actor Name */}
+                <h3 className="actor-name">
+                    <Link to={`/actor/${actor.id}`}>
+                        {actor.name} (Age: {calculateAge(actorDetails.birthday, new Date().toISOString().split("T")[0])})
+                    </Link>
+                </h3>
 
-                    <p className="actor-character">
-                        {actor.character} (Aged: {calculateAge(actorDetails.birthday, movieReleaseDate)})
-                    </p>
+                {/* Character Name */}
+                <p className="actor-character">
+                    <span> as {actor.character} (Aged: {calculateAge(actorDetails.birthday, movieReleaseDate)})</span>
+                </p>
 
-                    <hr className="actor-divider" />
+                {/* Separator */}
+                <hr className="actor-divider" />
 
-                    {/* Display Other Movies */}
+                {/* Movie List */}
+                <div className="actor-movie-list">
                     <ul className="actor-movies">
                         {actorDetails.movie_credits?.cast?.slice(0, 3).map((movie) => (
                             <li key={movie.id} className="actor-movie-item">

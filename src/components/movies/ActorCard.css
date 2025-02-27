@@ -13,10 +13,10 @@
     --divider-color: #000000;
 
     /* Font Sizes */
-    --actor-name-size: 24px;
-    --actor-character-size: 18px;
-    --actor-movies-size: 16px;
-    --actor-movies-subtext-size: 14px;
+    --actor-name-size: 22px;
+    --actor-character-size: 16px;
+    --actor-movies-size: 14px;
+    --actor-movies-subtext-size: 13px;
 
     /* Border Radius */
     --actor-card-radius: 25px;
@@ -37,7 +37,7 @@
 .actor-card {
     font-family: 'Inter', sans-serif; /* Applied to everything inside */
     position: relative;
-    width: 425px;
+    width: 400px;
     background: var(--actor-card-bg);
     border-radius: var(--actor-card-radius);
     display: flex;
@@ -51,8 +51,8 @@
    ======================================== */
 
 .actor-image {
-    width: 185px;
-    height: 278px;
+    width: 200px;
+    height: 300px;
     border-radius: var(--actor-image-radius);
     object-fit: cover;
     background: var(--actor-image-placeholder) no-repeat center;
@@ -65,7 +65,7 @@
 .actor-info {
     width: 100%;
     text-align: center;
-    margin-top: 15px;
+    margin-top: 2px;
 }
 
 /* Actor Name */
@@ -75,7 +75,7 @@
     line-height: 120%;
     letter-spacing: -0.02em;
     color: var(--actor-name-color);
-    margin-bottom: 5px;
+    margin-bottom: 2px;
 }
 
 /* Actor Name Link */
@@ -90,7 +90,7 @@
     font-size: var(--actor-character-size);
     line-height: 120%;
     color: var(--actor-character-color);
-    margin-bottom: 10px;
+    margin-bottom: 2px;
 }
 
 /* Divider */
@@ -98,7 +98,7 @@
     width: 80%;
     height: 1px;
     background: var(--divider-color);
-    margin: 10px auto;
+    margin: 5px auto;
     border: none;
 }
 

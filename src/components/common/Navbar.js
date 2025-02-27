@@ -11,12 +11,12 @@ const Navbar = () => {
 
 				{/* Center - Links */}
 				<ul className="nav-links">
-					<li><a href="#">Movies</a></li>
-					<li><a href="#">TV Shows</a></li>
-					<li><a href="#">Actors</a></li>
-					<li><a href="#">Other 1</a></li>
-					<li><a href="#">Other 2</a></li>
-					<li><a href="#">Other 3</a></li>
+					<Link to="/movies">Movies</Link>
+					<Link to="/movies">TV Shows</Link>
+					<Link to="/movies">Actors</Link>
+					<Link to="/movies">Others 1</Link>
+					<Link to="/movies">Others 2</Link>
+					<Link to="/movies">Others 3</Link>
 				</ul>
 
 				{/* Right - Investors Button */}
