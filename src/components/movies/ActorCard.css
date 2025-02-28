@@ -1,169 +1,209 @@
 /* ========================================
-   ROOT VARIABLES FOR EASY CUSTOMIZATION
-   ======================================== */
-   :root {
-    --actor-card-bg: #D9D9D9;
-    --actor-image-placeholder: url("https://dummyimage.com/185x278/aaa/fff.png&text=No+Image");
-    
-    /* Font Colors */
-    --actor-name-color: #000000;
-    --actor-character-color: #000000;
-    --actor-movies-color: #000000;
-    --actor-movies-subtext-color: #000000;
-    --divider-color: #000000;
+ * ActorCard.css
+ * Styling for the ActorCard component that displays actor information
+ * including profile picture, nationality flag, name, age, character name,
+ * and notable works.
+ * ======================================== */
 
-    /* Font Sizes */
-    --actor-name-size: 22px;
-    --actor-character-size: 16px;
-    --actor-movies-size: 14px;
-    --actor-movies-subtext-size: 13px;
-
-    /* Border Radius */
-    --actor-card-radius: 25px;
-    --actor-image-radius: 12px;
-}
-
-/* ========================================
-   ACTOR CARD STYLING
-   ======================================== */
-
-.actor-card-container {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin: 20px 0;
-}
-
-.actor-card {
-    font-family: 'Inter', sans-serif; /* Applied to everything inside */
-    position: relative;
-    width: 400px;
-    background: var(--actor-card-bg);
-    border-radius: var(--actor-card-radius);
+ .card {
+    background-color: #2a2d38;
+    border-radius: 8px;
+    overflow: hidden;
+    height: 100%;
     display: flex;
     flex-direction: column;
-    align-items: center;
-    padding: 20px;
-}
-
-/* ========================================
-   ACTOR IMAGE STYLING
-   ======================================== */
-
-.actor-image {
-    width: 200px;
-    height: 300px;
-    border-radius: var(--actor-image-radius);
-    object-fit: cover;
-    background: var(--actor-image-placeholder) no-repeat center;
-}
-
-/* ========================================
-   ACTOR INFORMATION STYLING
-   ======================================== */
-
-.actor-info {
+    border: 1px solid #3900bd;
+    transition: transform 0.2s ease-in-out;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+  }
+  
+  .profileImageContainer {
+    position: relative;
     width: 100%;
-    text-align: center;
-    margin-top: 2px;
-}
-
-/* Actor Name */
-.actor-name {
-    font-weight: 600;
-    font-size: var(--actor-name-size);
-    line-height: 120%;
-    letter-spacing: -0.02em;
-    color: var(--actor-name-color);
-    margin-bottom: 2px;
-}
-
-/* Actor Name Link */
-.actor-name a {
-    text-decoration: none;
-    color: inherit;
-}
-
-/* Character Name */
-.actor-character {
-    font-weight: 400;
-    font-size: var(--actor-character-size);
-    line-height: 120%;
-    color: var(--actor-character-color);
-    margin-bottom: 2px;
-}
-
-/* Divider */
-.actor-divider {
-    width: 80%;
-    height: 1px;
-    background: var(--divider-color);
-    margin: 5px auto;
+    padding-top: 150%;
+    overflow: hidden;
+  }
+  
+  .profileImage {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+  }
+  
+  .profileImageElement {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: top;
+  }
+  
+  .imageNavButtonLeft {
+    position: absolute;
+    top: 50%;
+    left: 10px;
+    transform: translateY(-50%);
+    background-color: rgba(0, 0, 0, 0.6);
+    color: #ffffff;
     border: none;
-}
-
-/* ========================================
-   ACTOR MOVIES LIST
-   ======================================== */
-
-.actor-movies {
+    border-radius: 50%;
+    width: 30px;
+    height: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    opacity: 0;
+    transition: opacity 0.2s ease-in-out;
+    z-index: 10;
+  }
+  
+  .imageNavButtonRight {
+    position: absolute;
+    top: 50%;
+    right: 10px;
+    transform: translateY(-50%);
+    background-color: rgba(0, 0, 0, 0.6);
+    color: #ffffff;
+    border: none;
+    border-radius: 50%;
+    width: 30px;
+    height: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    opacity: 0;
+    transition: opacity 0.2s ease-in-out;
+    z-index: 10;
+  }
+  
+  .flagContainer {
+    position: absolute;
+    bottom: 10px;
+    right: 10px;
+    width: 40px;
+    height: 30px;
+    opacity: 0.8;
+    border-radius: 4px;
+    overflow: hidden;
+    z-index: 5;
+  }
+  
+  .flag {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+  
+  .cardContent {
+    padding: 15px;
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .nameLink {
+    text-decoration: none;
+    color: #ffffff;
+  }
+  
+  .actorName {
+    font-size: 1.2rem;
+    font-weight: bold;
+    margin-bottom: 5px;
+    color: #ffffff;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+  
+  .nameText {
+    display: inline-block;
+    max-width: calc(100% - 60px);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    vertical-align: bottom;
+  }
+  
+  .ageDisplay {
+    font-weight: normal;
+    font-size: 0.9rem;
+    color: #dcdcdc;
+  }
+  
+  .characterName {
+    font-size: 1rem;
+    margin-bottom: 10px;
+    color: #dcdcdc;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+  
+  .characterText {
+    display: inline-block;
+    max-width: calc(100% - 60px);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    vertical-align: bottom;
+  }
+  
+  .ageAtFilming {
+    font-size: 0.85rem;
+    font-weight: normal;
+    color: #dcdcdc;
+    opacity: 0.8;
+  }
+  
+  .notableWorksSection {
+    margin-top: auto;
+    padding-top: 10px;
+    border-top: 1px solid rgba(220, 220, 220, 0.2);
+  }
+  
+  .notableWorksTitle {
+    font-size: 0.9rem;
+    font-weight: bold;
+    margin-bottom: 5px;
+    color: #dcdcdc;
+  }
+  
+  .notableWorksList {
     list-style-type: none;
     padding: 0;
     margin: 0;
-    width: 100%;
-}
-
-.actor-movie-item {
-    margin-bottom: 10px;
-    text-align: left;
-}
-
-/* Movie Title + Release Year (Bold) */
-.actor-movie-title {
-    font-weight: 700;
-    font-size: var(--actor-movies-size);
-    color: var(--actor-movies-color);
-}
-
-/* Fix for color not applying to <strong> */
-.actor-movie-title strong {
-    color: var(--actor-movies-color); /* Ensures correct color */
-}
-
-/* Character Name + Age (Normal/Light Font) */
-.actor-movie-subtext {
-    font-weight: 400;
-    font-size: var(--actor-movies-subtext-size);
-    color: var(--actor-movies-subtext-color);
-}
-
-/* Fix for ensuring color is inherited properly */
-.actor-movie-subtext span {
-    color: var(--actor-movies-subtext-color);
-}
-
-/* ========================================
-   RESPONSIVE STYLING
-   ======================================== */
-
-@media (max-width: 768px) {
-    .actor-card {
-        width: 90%;
-    }
-
-    .actor-name {
-        font-size: calc(var(--actor-name-size) - 2px);
-    }
-
-    .actor-character {
-        font-size: calc(var(--actor-character-size) - 2px);
-    }
-
-    .actor-movie-title {
-        font-size: calc(var(--actor-movies-size) - 2px);
-    }
-
-    .actor-movie-subtext {
-        font-size: calc(var(--actor-movies-subtext-size) - 2px);
-    }
-}
+  }
+  
+  .notableWorkItem {
+    font-size: 0.85rem;
+    margin-bottom: 3px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+  
+  .notableWorkLink {
+    color: #dcdcdc;
+    text-decoration: none;
+    transition: color 0.2s ease-in-out;
+    display: block;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+  
+  /* Hover effects */
+  .profileImage:hover .imageNavButtonLeft,
+  .profileImage:hover .imageNavButtonRight {
+    opacity: 1;
+  }
+  
+  .notableWorkLink:hover {
+    color: #ffffff;
+  }
+  
+  

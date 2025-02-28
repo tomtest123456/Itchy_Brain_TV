@@ -1,0 +1,47 @@
+  // Import Sass Modules
+@use "sass:color";
+@use "bulma";
+
+
+  // Import Google Fonts: Inter (primary) & Oswald (secondary)
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&family=Oswald:wght@400;700&display=swap');
+
+// Define Colour Scheme
+$black     : #000000; // For Background
+$dark-grey : #2A2D38; // For Navbar
+$primary   : #3900BD; // Main Accent/Borders Colour
+$secondary : #B30021; // Red for Warnings/Emphasis
+$cta-color : #4C00FF; // For Buttons & Call-to-Actions
+$text-light: #DCDCDC; // Platinum for Text
+$text-dark : #FFFFFF; // White for Strong Contrast
+
+// Assign the Colour Scheme Colours (above) to Bulma’s Color System
+$primary-invert       : $text-dark;
+$link                 : $primary;
+$body-background-color: $black;
+$body-color           : $text-light;
+
+// Apply Global Styles
+body {
+  font-family     : 'Inter', sans-serif;
+  background-color: $body-background-color;
+  color           : $body-color;
+}
+
+// Custom Typography for Headings
+h1, h2, h3 {
+  font-family   : 'Oswald', sans-serif;
+  font-weight   : 700;
+  text-transform: uppercase;
+}
+
+// Button Styling using CTA Colour
+.button {
+  background-color: $cta-color;
+  color           : $text-dark;
+  font-weight     : 600;
+  border-radius   : 6px;
+  &:hover {
+    background-color: color.adjust($cta-color, $lightness: -10%);
+  }
+}
