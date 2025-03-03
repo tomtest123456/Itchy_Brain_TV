@@ -69,7 +69,7 @@ const formatYearAbbrev = (dateString) => {
 const formatDateRange = (startDate, endDate) => {
     const start = formatYearAbbrev(startDate)
     const end = formatYearAbbrev(endDate)
-    return start === end ? `(${start})` : `(${start}-${end})`
+    return start === end ? `${start}` : `${start}-${end}`
 }
 
 /**
@@ -199,86 +199,57 @@ const getRevenueScore = (credit) => {
  * @param {Object} credit - The credit object containing all work information
  * @returns {number} - Final score determining work's ranking in notable works list
  */
-const calculateOverallScore = (credit) => {
-    // Skip scoring if role isn't significant enough
-    if (!isSignificantRole(credit)) return 0;
+const calculateOverallScore = (work) => {
+    if (work.media_type === 'collection') {
+        // Collections get a comprehensive scoring based on multiple factors
+        const baseScore = work.popularity || 0;
 
-    // Base score from TMDB popularity
-    let score = credit.popularity || 0;
+        // Movie count boost (logarithmic to prevent large collections from dominating)
+        const movieCountBoost = Math.log10(work.movies?.length || 1) * 100;
 
-    // Add weighted components (adjust multipliers to change importance of each factor)
-    score += getRoleWeight(credit) * 25;     // Role prominence (x25)
-    score += getVoteScore(credit) * 20;      // Audience reception (x20)
-    score += getLegacyScore(credit) * 15;    // Historical significance (x15)
+        // Popularity boost (average of collection and individual movies)
+        const avgMoviePopularity = work.movies.reduce((sum, m) => sum + (m.popularity || 0), 0) / work.movies.length;
+        const popularityBoost = (work.popularity + avgMoviePopularity) * 3;
 
-    // Media-specific bonuses
-    if (credit.media_type === 'movie') {
-        score += getRevenueScore(credit) * 10;  // Box office success (x10)
-        score *= 1.2;  // 20% boost to favor movies over TV
-    } else if (credit.media_type === 'tv') {
-        score += getEpisodeScore(credit) * 5;   // Series involvement (x5)
+        // Vote score (considers both average and count)
+        const voteScore = (work.vote_average * Math.log10(work.vote_count + 1)) * 10;
+
+        // Revenue boost (total revenue of all movies)
+        const totalRevenue = work.movies.reduce((sum, m) => sum + (m.revenue || 0), 0);
+        const revenueBoost = Math.log10(totalRevenue + 1) * 20;
+
+        // Role significance boost (lead roles get higher scores)
+        const roleBoost = work.movies.reduce((boost, m) => {
+            return boost + (m.order < 3 ? 50 : m.order < 5 ? 30 : 10);
+        }, 0);
+
+        return baseScore + movieCountBoost + popularityBoost + voteScore + revenueBoost + roleBoost;
+    }
+
+    // For non-collection works
+    let score = work.popularity || 0;
+
+    // Role significance
+    if (work.order !== undefined) {
+        score *= (work.order < 3 ? 2 : work.order < 5 ? 1.5 : 1);
+    }
+
+    // Vote score
+    if (work.vote_average && work.vote_count) {
+        score += (work.vote_average * Math.log10(work.vote_count + 1)) * 5;
+    }
+
+    // Media-specific boosts
+    if (work.media_type === 'movie') {
+        score += getRevenueScore(work) * 15;
+        score *= 1.2; // Slight preference for movies
+    } else if (work.media_type === 'tv') {
+        const episodeBoost = Math.log10((work.episode_count || 0) + 1) * 10;
+        score += episodeBoost;
     }
 
     return score;
 };
-
-/**
- * Groups movies that belong to the same collection and formats their display
- * @param {Array} movies - List of movies to process
- * @param {number} currentMovieId - ID of the movie being viewed
- * @returns {Array} - Movies with collections grouped
- */
-const processCollections = (movies, currentMovieId) => {
-    // Group movies by collection
-    const collections = new Map()
-    const standaloneMovies = []
-
-    movies.forEach(movie => {
-        if (movie.belongs_to_collection) {
-            const collection = collections.get(movie.belongs_to_collection.id) || {
-                id: movie.belongs_to_collection.id,
-                title: movie.belongs_to_collection.name,
-                movies: [],
-                media_type: 'collection',
-                first_release: null,
-                last_release: null,
-                max_popularity: 0,
-                best_vote_score: 0,
-                belongs_to_collection: movie.belongs_to_collection
-            }
-
-            collection.movies.push(movie)
-
-            // Track release dates and best scores
-            const releaseDate = new Date(movie.release_date)
-            if (!collection.first_release || releaseDate < new Date(collection.first_release)) {
-                collection.first_release = movie.release_date
-            }
-            if (!collection.last_release || releaseDate > new Date(collection.last_release)) {
-                collection.last_release = movie.release_date
-            }
-
-            collection.max_popularity = Math.max(collection.max_popularity, movie.popularity || 0)
-            collection.best_vote_score = Math.max(collection.best_vote_score, getVoteScore(movie))
-
-            collections.set(movie.belongs_to_collection.id, collection)
-        } else {
-            standaloneMovies.push(movie)
-        }
-    })
-
-    // Convert collections to array format
-    const processedCollections = Array.from(collections.values()).map(collection => ({
-        ...collection,
-        popularity: collection.max_popularity,
-        vote_average: collection.best_vote_score,
-        movie_count: collection.movies.length,
-        release_date: collection.first_release,
-        displayTitle: `${collection.title} (x${collection.movies.length}) ${formatDateRange(collection.first_release, collection.last_release)}`
-    }))
-
-    return [...processedCollections, ...standaloneMovies]
-}
 
 /**
  * ActorCard Component
@@ -296,44 +267,132 @@ const ActorCard = ({ actor, movieReleaseDate, currentMovieId }) => {
     const processNotableWorks = (actorDetails) => {
         if (!actorDetails) return [];
 
-        // Combine all credits based on filter
-        let allWorks = [];
         const movieCredits = actorDetails.movie_credits?.cast || [];
         const tvCredits = actorDetails.tv_credits?.cast || [];
 
-        // Filter out excluded genres and invalid titles
+        // First, group movies by collection
+        const collections = new Map();
+        const standaloneMovies = [];
+
+        // Filter and process movies
         const filteredMovies = movieCredits.filter(movie =>
             !movie.genre_ids?.some(id => EXCLUDED_MOVIE_GENRES.includes(id)) &&
             isValidTitle(movie.title) &&
             isSignificantRole(movie)
         );
 
+        // Group movies by collection
+        filteredMovies.forEach(movie => {
+            if (movie.belongs_to_collection) {
+                const collectionId = movie.belongs_to_collection.id;
+                if (!collections.has(collectionId)) {
+                    collections.set(collectionId, {
+                        id: collectionId,
+                        title: movie.belongs_to_collection.name,
+                        movies: [],
+                        media_type: 'collection',
+                        first_release: null,
+                        last_release: null,
+                        popularity: 0,
+                        vote_average: 0,
+                        vote_count: 0,
+                        revenue: 0
+                    });
+                }
+                const collection = collections.get(collectionId);
+                collection.movies.push(movie);
+
+                // Update collection metadata
+                const releaseDate = new Date(movie.release_date);
+                if (!collection.first_release || releaseDate < new Date(collection.first_release)) {
+                    collection.first_release = movie.release_date;
+                }
+                if (!collection.last_release || releaseDate > new Date(collection.last_release)) {
+                    collection.last_release = movie.release_date;
+                }
+                collection.popularity = Math.max(collection.popularity, movie.popularity || 0);
+                collection.vote_average = Math.max(collection.vote_average, movie.vote_average || 0);
+                collection.vote_count += movie.vote_count || 0;
+                collection.revenue += movie.revenue || 0;
+            } else {
+                standaloneMovies.push({
+                    id: movie.id,
+                    title: movie.title,
+                    media_type: 'movie',
+                    popularity: movie.popularity,
+                    vote_average: movie.vote_average,
+                    vote_count: movie.vote_count,
+                    release_date: movie.release_date,
+                    character: movie.character,
+                    order: movie.order,
+                    revenue: movie.revenue,
+                    displayTitle: {
+                        title: movie.title,
+                        year: ` ('${new Date(movie.release_date).getFullYear().toString().slice(2)})`
+                    }
+                });
+            }
+        });
+
+        // Process collections into works format
+        const collectionWorks = Array.from(collections.values())
+            .map(collection => ({
+                id: collection.id,
+                title: collection.title,
+                media_type: 'collection',
+                popularity: collection.popularity,
+                vote_average: collection.vote_average,
+                vote_count: collection.vote_count,
+                release_date: collection.first_release,
+                movies: collection.movies,
+                revenue: collection.revenue,
+                displayTitle: {
+                    title: collection.title,
+                    year: ` (x${collection.movies.length})`
+                }
+            }));
+
+        // Process TV shows
         const filteredTvShows = tvCredits.filter(show =>
             !show.genre_ids?.some(id => EXCLUDED_TV_GENRES.includes(id)) &&
             isValidTitle(show.name) &&
             isSignificantRole({ ...show, media_type: 'tv' })
-        );
+        ).map(show => ({
+            id: show.id,
+            title: show.name,
+            media_type: 'tv',
+            popularity: show.popularity,
+            vote_average: show.vote_average,
+            vote_count: show.vote_count,
+            release_date: show.first_air_date,
+            character: show.character,
+            episode_count: show.episode_count,
+            displayTitle: {
+                title: show.name,
+                year: ` ('${new Date(show.first_air_date).getFullYear().toString().slice(2)})`
+            }
+        }));
 
-        // Process movies with collections and add media_type
-        const processedMovies = processCollections(filteredMovies, currentMovieId)
-            .map(work => ({ ...work, media_type: work.media_type || 'movie' }));
-
-        // Add media_type to TV shows
-        const processedTvShows = filteredTvShows.map(work => ({ ...work, media_type: 'tv' }));
-
-        // Combine works based on filter
-        if (workFilter === 'both') {
-            allWorks = [...processedMovies, ...processedTvShows];
-        } else if (workFilter === 'movies') {
-            allWorks = processedMovies;
-        } else {
-            allWorks = processedTvShows;
+        // Get works based on filter
+        let filteredWorks = [];
+        switch (workFilter) {
+            case 'both':
+                filteredWorks = [...collectionWorks, ...standaloneMovies, ...filteredTvShows];
+                break;
+            case 'movies':
+                filteredWorks = [...collectionWorks, ...standaloneMovies];
+                break;
+            case 'tv':
+                filteredWorks = filteredTvShows;
+                break;
+            default:
+                filteredWorks = [...collectionWorks, ...standaloneMovies, ...filteredTvShows];
         }
 
-        // Filter out duplicates based on ID and media type
-        const uniqueWorks = allWorks.reduce((acc, current) => {
+        // Remove duplicates while preserving collections
+        const uniqueWorks = filteredWorks.reduce((acc, current) => {
             const key = `${current.id}-${current.media_type}`;
-            if (!acc.has(key)) {
+            if (!acc.has(key) || current.media_type === 'collection') {
                 acc.set(key, current);
             }
             return acc;
@@ -342,37 +401,7 @@ const ActorCard = ({ actor, movieReleaseDate, currentMovieId }) => {
         // Sort by overall score and take top 5
         return Array.from(uniqueWorks.values())
             .sort((a, b) => calculateOverallScore(b) - calculateOverallScore(a))
-            .slice(0, 5)
-            .map(work => {
-                // For collections, use the pre-formatted display title
-                if (work.media_type === 'collection') {
-                    const [title, info] = work.displayTitle.split(' (');
-                    return {
-                        id: work.id,
-                        title: work.title,
-                        media_type: work.media_type,
-                        displayTitle: {
-                            title,
-                            year: `(${info}` // This includes both the movie count and year range
-                        }
-                    };
-                }
-
-                // For regular movies and TV shows
-                const year = work.release_date || work.first_air_date
-                    ? formatYearAbbrev(work.release_date || work.first_air_date)
-                    : '';
-
-                return {
-                    id: work.id,
-                    title: work.title || work.name,
-                    media_type: work.media_type,
-                    displayTitle: {
-                        title: work.title || work.name,
-                        year
-                    }
-                };
-            });
+            .slice(0, 5);
     };
 
     useEffect(() => {
@@ -565,50 +594,42 @@ const ActorCard = ({ actor, movieReleaseDate, currentMovieId }) => {
                     {calculateAgeAtFilming() && <span className="ageAtFilming"> ({calculateAgeAtFilming()})</span>}
                 </p>
 
-                {notableWorks.length > 0 && (
-                    <div className="notableWorksSection">
-                        <div className="notableWorksHeader">
-                            <p className="notableWorksTitle">Notable Work:</p>
-                            <div className="filterButtons">
-                                <button
-                                    className={`filterButton ${workFilter === 'both' ? 'active' : ''}`}
-                                    onClick={() => setWorkFilter('both')}
-                                >
-                                    Both
-                                </button>
-                                <button
-                                    className={`filterButton ${workFilter === 'movies' ? 'active' : ''}`}
-                                    onClick={() => setWorkFilter('movies')}
-                                >
-                                    Movies
-                                </button>
-                                <button
-                                    className={`filterButton ${workFilter === 'tv' ? 'active' : ''}`}
-                                    onClick={() => setWorkFilter('tv')}
-                                >
-                                    TV
-                                </button>
-                            </div>
+                <div className="notableWorksSection">
+                    <div className="notableWorksHeader">
+                        <p className="notableWorksTitle">Notable Work:</p>
+                        <div className="filterButtons">
+                            <button
+                                className={`filterButton ${workFilter === 'movies' ? 'active' : ''}`}
+                                onClick={() => setWorkFilter(workFilter === 'movies' ? 'tv' : 'movies')}
+                            >
+                                Movies
+                            </button>
+                            <button
+                                className={`filterButton ${workFilter === 'tv' ? 'active' : ''}`}
+                                onClick={() => setWorkFilter(workFilter === 'tv' ? 'movies' : 'tv')}
+                            >
+                                TV
+                            </button>
                         </div>
-                        <ul className="notableWorksList">
-                            {notableWorks.map((work) => (
-                                <li key={`${work.id}-${work.media_type}`} className="notableWorkItem">
-                                    <Link
-                                        to={work.media_type === "collection" ? `/collection/${work.id}` : `/${work.media_type}/${work.id}`}
-                                        className="notableWorkLink"
-                                    >
-                                        <span className={`title-text ${work.media_type === 'collection' ? 'collection-title' : ''}`}>
-                                            {work.displayTitle.title}
-                                        </span>
-                                        <span className="year-text">
-                                            {work.displayTitle.year}
-                                        </span>
-                                    </Link>
-                                </li>
-                            ))}
-                        </ul>
                     </div>
-                )}
+                    <ul className="notableWorksList">
+                        {notableWorks.map((work) => (
+                            <li key={`${work.id}-${work.media_type}`} className="notableWorkItem">
+                                <Link
+                                    to={work.media_type === "collection" ? `/collection/${work.id}` : `/${work.media_type}/${work.id}`}
+                                    className={`notableWorkLink ${work.media_type}`}
+                                >
+                                    <span className="title-text">
+                                        {work.displayTitle.title}
+                                    </span>
+                                    <span className="year-text">
+                                        {work.displayTitle.year}
+                                    </span>
+                                </Link>
+                            </li>
+                        ))}
+                    </ul>
+                </div>
             </div>
         </div>
     )

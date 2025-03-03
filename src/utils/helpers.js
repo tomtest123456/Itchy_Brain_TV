@@ -28,8 +28,8 @@ export const formatDate = (dateString, format = "mmm YYYY") => {
 			// Determine ordinal suffix (1st, 2nd, 3rd, 4th, etc.)
 			const suffix = (day % 10 === 1 && day !== 11) ? "st"
 				: (day % 10 === 2 && day !== 12) ? "nd"
-				: (day % 10 === 3 && day !== 13) ? "rd"
-				: "th";
+					: (day % 10 === 3 && day !== 13) ? "rd"
+						: "th";
 
 			return `${day}${suffix} ${month} ${year}`;
 		}
@@ -57,4 +57,19 @@ export const formatCurrency = (amount) => {
 	} else {
 		return `$${amount.toLocaleString()} USD`;
 	}
+};
+
+// Function to format a date range for collections (e.g., '01-'11)
+export const formatDateRange = (startDate, endDate) => {
+	if (!startDate || !endDate) return "";
+	const startYear = new Date(startDate).getFullYear().toString().slice(2);
+	const endYear = new Date(endDate).getFullYear().toString().slice(2);
+	return `'${startYear}-'${endYear}`;
+};
+
+// Function to format year with apostrophe (e.g., '17)
+export const formatYearWithApostrophe = (dateString) => {
+	if (!dateString) return "";
+	const year = new Date(dateString).getFullYear().toString();
+	return `'${year.slice(2)}`;
 };

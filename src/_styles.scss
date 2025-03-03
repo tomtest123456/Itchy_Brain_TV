@@ -15,7 +15,7 @@ $cta-color : #4C00FF; // For Buttons & Call-to-Actions
 $text-light: #DCDCDC; // Platinum for Text
 $text-dark : #FFFFFF; // White for Strong Contrast
 
-// Assign the Colour Scheme Colours (above) to Bulma’s Color System
+// Assign the Colour Scheme Colours (above) to Bulma's Color System
 $primary-invert       : $text-dark;
 $link                 : $primary;
 $body-background-color: $black;
@@ -43,5 +43,119 @@ h1, h2, h3 {
   border-radius   : 6px;
   &:hover {
     background-color: color.adjust($cta-color, $lightness: -10%);
+  }
+}
+
+// Notable Works Section Styling
+.notableWorksSection {
+  min-height: 140px; // Reduced height
+  margin-top: 0.5rem;
+  padding-top: 0.5rem;
+  border-top: 1px solid rgba($text-light, 0.2);
+  display: flex;
+  flex-direction: column;
+  
+  .notableWorksHeader {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 0.5rem;
+    
+    .notableWorksTitle {
+      font-weight: 600;
+      color: $text-light;
+      font-size: 0.9rem;
+    }
+    
+    .filterButtons {
+      display: flex;
+      gap: 0.25rem;
+      
+      .filterButton {
+        background: transparent;
+        border: 1px solid rgba($text-light, 0.4);
+        color: $text-light;
+        padding: 0.15rem 0.5rem;
+        font-size: 0.8rem;
+        border-radius: 3px;
+        cursor: pointer;
+        transition: all 0.2s ease;
+        min-width: 60px;
+        height: 22px;
+        line-height: 1;
+        
+        &.active {
+          background: rgba($primary, 0.3);
+          border-color: $primary;
+          color: $text-light;
+        }
+        
+        &:hover {
+          border-color: $primary;
+          background: rgba($primary, 0.2);
+        }
+      }
+    }
+  }
+  
+  .notableWorksList {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    flex-grow: 1;
+    
+    .notableWorkItem {
+      margin-bottom: 0.4rem;
+      
+      .notableWorkLink {
+        color: $text-light;
+        text-decoration: none;
+        display: inline-flex;
+        align-items: center;
+        font-size: 0.85rem;
+        
+        &.collection::before {
+          content: '🎬';
+          margin-right: 0.4rem;
+          font-size: 0.9em;
+          opacity: 0.9;
+        }
+        
+        &.movie::before {
+          content: '🎥';
+          margin-right: 0.4rem;
+          font-size: 0.9em;
+          opacity: 0.8;
+        }
+        
+        &.tv::before {
+          content: '📺';
+          margin-right: 0.4rem;
+          font-size: 0.9em;
+          opacity: 0.8;
+        }
+        
+        &.collection {
+          font-weight: 500;
+          color: color.adjust($text-light, $lightness: 10%);
+          
+          &:hover {
+            color: color.adjust($text-light, $lightness: 20%);
+          }
+        }
+        
+        .title-text {
+          margin-right: 0.25rem;
+        }
+        
+        .year-text {
+          opacity: 0.8;
+        }
+        
+        &:hover {
+          color: color.adjust($text-light, $lightness: 15%);
+        }
+      }
+    }
   }
 }

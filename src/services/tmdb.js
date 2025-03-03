@@ -25,7 +25,7 @@ const fetchFromAPI = async (endpoint, params = "") => {
 
 // ################## MOVIE DETAILS ##################
 export const fetchMovieDetails = async (movieId) => {
-	return fetchFromAPI(`/movie/${movieId}`, "&append_to_response=genres,credits,videos,images,recommendations,similar");
+	return fetchFromAPI(`/movie/${movieId}`, "&append_to_response=genres,credits,videos,images,recommendations,similar,belongs_to_collection");
 };
 
 export const fetchMovieCredits = async (movieId) => {
@@ -80,7 +80,23 @@ export const fetchCollectionDetails = async (collectionId) => {
 
 // ################## PERSON DETAILS (ACTORS) ##################
 export const fetchPersonDetails = async (personId) => {
-	return fetchFromAPI(`/person/${personId}`, "&append_to_response=movie_credits,tv_credits,images");
+	const details = await fetchFromAPI(`/person/${personId}`, "&append_to_response=movie_credits,tv_credits,images");
+
+	if (details?.movie_credits?.cast) {
+		// Fetch collection details for each movie
+		const moviesWithCollections = await Promise.all(
+			details.movie_credits.cast.map(async (movie) => {
+				const movieDetails = await fetchMovieDetails(movie.id);
+				return {
+					...movie,
+					belongs_to_collection: movieDetails?.belongs_to_collection || null
+				};
+			})
+		);
+		details.movie_credits.cast = moviesWithCollections;
+	}
+
+	return details;
 };
 
 export const fetchPersonMovieCredits = async (personId) => {
