@@ -10,6 +10,7 @@ import { useState, useEffect } from "react"
 import { Link } from "react-router-dom"
 import Flag from "react-world-flags"
 import { fetchPersonDetails } from "../../services/tmdb"
+import { formatDate, formatCurrency } from "../../utils/helpers";
 import { EXCLUDED_TV_GENRES, EXCLUDED_MOVIE_GENRES } from "../../services/tmdb"
 import "./ActorCard.css"
 
@@ -48,6 +49,30 @@ const formatYear = (dateString) => {
 }
 
 /**
+ * Formats a year to abbreviated format ('13 instead of 2013)
+ * @param {string} dateString - Date string from API
+ * @returns {string} - Formatted year or empty string if invalid
+ */
+const formatYearAbbrev = (dateString) => {
+    if (!dateString) return ""
+    const date = new Date(dateString)
+    if (isNaN(date.getTime())) return ""
+    return `('${date.getFullYear().toString().slice(2)})`
+}
+
+/**
+ * Formats a date range for collections
+ * @param {string} startDate - First movie release date
+ * @param {string} endDate - Last movie release date
+ * @returns {string} - Formatted date range e.g. ('04-'13)
+ */
+const formatDateRange = (startDate, endDate) => {
+    const start = formatYearAbbrev(startDate)
+    const end = formatYearAbbrev(endDate)
+    return start === end ? `(${start})` : `(${start}-${end})`
+}
+
+/**
  * Filters out unwanted titles based on common patterns
  * @param {string} title - The title to check
  * @returns {boolean} - Whether the title should be included
@@ -80,6 +105,182 @@ const isValidTitle = (title) => {
 }
 
 /**
+ * Scoring and filtering functions for notable works
+ * These functions determine how works are ranked and which ones are included in the actor's notable works list
+ */
+
+/**
+ * Determines if a role is significant enough to be considered notable work (excludes cameos and one-off appearances)
+ * @param {Object} credit - The credit object containing role information
+ * @returns {boolean} - Whether the role is significant enough to include
+ */
+const isSignificantRole = (credit) => {
+    // Exclude cameos, uncredited roles, and self appearances
+    if (!credit.character ||
+        credit.character.toLowerCase().includes('uncredited') ||
+        credit.character.toLowerCase().includes('self')) {
+        return false;
+    }
+
+    // For TV shows, only include if they appear in multiple episodes
+    if (credit.media_type === 'tv' && (credit.episode_count || 0) < 3) {
+        return false;
+    }
+
+    // For movies, exclude if they're not in main cast (order > 15 typically means minor role)
+    if (credit.media_type === 'movie' && credit.order > 15) {
+        return false;
+    }
+
+    return true;
+};
+
+/**
+ * Calculates weight based on actor's role prominence (lead vs supporting vs minor)
+ * @param {Object} credit - The credit object containing role information
+ * @returns {number} - Weight multiplier for the role's importance
+ */
+const getRoleWeight = (credit) => {
+    // Lead role (1st billing) gets highest weight, supporting roles (2-5) get medium, rest get base weight
+    return credit.order === 0 ? 3 :
+        credit.order < 5 ? 2 : 1;
+};
+
+/**
+ * Calculates score based on audience reception (combines rating and number of votes)
+ * @param {Object} credit - The credit object containing vote information
+ * @returns {number} - Score based on vote average and vote count
+ */
+const getVoteScore = (credit) => {
+    const voteAverage = credit.vote_average || 0;
+    const voteCount = credit.vote_count || 0;
+    // Heavily weight vote_count to favor widely-seen content, but maintain rating influence
+    return (voteAverage * Math.log10(voteCount + 1)) / 5;
+};
+
+/**
+ * Calculates score based on how well the work has maintained relevance over time
+ * @param {Object} credit - The credit object containing release date and popularity
+ * @returns {number} - Score based on sustained popularity relative to age
+ */
+const getLegacyScore = (credit) => {
+    const releaseDate = credit.release_date || credit.first_air_date;
+    if (!releaseDate) return 0;
+
+    const yearsSinceRelease = new Date().getFullYear() - new Date(releaseDate).getFullYear();
+    // Higher weight for works that maintain popularity despite age
+    return (credit.popularity || 0) * Math.log10(yearsSinceRelease + 1);
+};
+
+/**
+ * Calculates bonus score for TV shows based on actor's involvement level
+ * @param {Object} credit - The credit object containing episode information
+ * @returns {number} - Score based on number of episodes actor appears in
+ */
+const getEpisodeScore = (credit) => {
+    const episodeCount = credit.episode_count || 0;
+    // Only give significant bonus for shows where actor is a regular (10+ episodes)
+    return episodeCount >= 10 ? Math.log10(episodeCount) * 2 : Math.log10(episodeCount);
+};
+
+/**
+ * Calculates bonus score for movies based on commercial success
+ * @param {Object} credit - The credit object containing revenue information
+ * @returns {number} - Score based on movie's revenue
+ */
+const getRevenueScore = (credit) => {
+    const revenue = credit.revenue || 0;
+    // Use log scale to prevent blockbusters from completely dominating
+    return Math.log10(revenue + 1) / 8;
+};
+
+/**
+ * Calculates overall score for a work to determine its notability
+ * @param {Object} credit - The credit object containing all work information
+ * @returns {number} - Final score determining work's ranking in notable works list
+ */
+const calculateOverallScore = (credit) => {
+    // Skip scoring if role isn't significant enough
+    if (!isSignificantRole(credit)) return 0;
+
+    // Base score from TMDB popularity
+    let score = credit.popularity || 0;
+
+    // Add weighted components (adjust multipliers to change importance of each factor)
+    score += getRoleWeight(credit) * 25;     // Role prominence (x25)
+    score += getVoteScore(credit) * 20;      // Audience reception (x20)
+    score += getLegacyScore(credit) * 15;    // Historical significance (x15)
+
+    // Media-specific bonuses
+    if (credit.media_type === 'movie') {
+        score += getRevenueScore(credit) * 10;  // Box office success (x10)
+        score *= 1.2;  // 20% boost to favor movies over TV
+    } else if (credit.media_type === 'tv') {
+        score += getEpisodeScore(credit) * 5;   // Series involvement (x5)
+    }
+
+    return score;
+};
+
+/**
+ * Groups movies that belong to the same collection and formats their display
+ * @param {Array} movies - List of movies to process
+ * @param {number} currentMovieId - ID of the movie being viewed
+ * @returns {Array} - Movies with collections grouped
+ */
+const processCollections = (movies, currentMovieId) => {
+    // Group movies by collection
+    const collections = new Map()
+    const standaloneMovies = []
+
+    movies.forEach(movie => {
+        if (movie.belongs_to_collection) {
+            const collection = collections.get(movie.belongs_to_collection.id) || {
+                id: movie.belongs_to_collection.id,
+                title: movie.belongs_to_collection.name,
+                movies: [],
+                media_type: 'collection',
+                first_release: null,
+                last_release: null,
+                max_popularity: 0,
+                best_vote_score: 0,
+                belongs_to_collection: movie.belongs_to_collection
+            }
+
+            collection.movies.push(movie)
+
+            // Track release dates and best scores
+            const releaseDate = new Date(movie.release_date)
+            if (!collection.first_release || releaseDate < new Date(collection.first_release)) {
+                collection.first_release = movie.release_date
+            }
+            if (!collection.last_release || releaseDate > new Date(collection.last_release)) {
+                collection.last_release = movie.release_date
+            }
+
+            collection.max_popularity = Math.max(collection.max_popularity, movie.popularity || 0)
+            collection.best_vote_score = Math.max(collection.best_vote_score, getVoteScore(movie))
+
+            collections.set(movie.belongs_to_collection.id, collection)
+        } else {
+            standaloneMovies.push(movie)
+        }
+    })
+
+    // Convert collections to array format
+    const processedCollections = Array.from(collections.values()).map(collection => ({
+        ...collection,
+        popularity: collection.max_popularity,
+        vote_average: collection.best_vote_score,
+        movie_count: collection.movies.length,
+        release_date: collection.first_release,
+        displayTitle: `${collection.title} (x${collection.movies.length}) ${formatDateRange(collection.first_release, collection.last_release)}`
+    }))
+
+    return [...processedCollections, ...standaloneMovies]
+}
+
+/**
  * ActorCard Component
  * @param {Object} actor - Actor data from TMDB API
  * @param {string} movieReleaseDate - Release date of the movie
@@ -90,114 +291,120 @@ const ActorCard = ({ actor, movieReleaseDate, currentMovieId }) => {
     const [currentImageIndex, setCurrentImageIndex] = useState(0)
     const [notableWorks, setNotableWorks] = useState([])
     const [isLoading, setIsLoading] = useState(true)
+    const [workFilter, setWorkFilter] = useState('both')
+
+    const processNotableWorks = (actorDetails) => {
+        if (!actorDetails) return [];
+
+        // Combine all credits based on filter
+        let allWorks = [];
+        const movieCredits = actorDetails.movie_credits?.cast || [];
+        const tvCredits = actorDetails.tv_credits?.cast || [];
+
+        // Filter out excluded genres and invalid titles
+        const filteredMovies = movieCredits.filter(movie =>
+            !movie.genre_ids?.some(id => EXCLUDED_MOVIE_GENRES.includes(id)) &&
+            isValidTitle(movie.title) &&
+            isSignificantRole(movie)
+        );
+
+        const filteredTvShows = tvCredits.filter(show =>
+            !show.genre_ids?.some(id => EXCLUDED_TV_GENRES.includes(id)) &&
+            isValidTitle(show.name) &&
+            isSignificantRole({ ...show, media_type: 'tv' })
+        );
+
+        // Process movies with collections and add media_type
+        const processedMovies = processCollections(filteredMovies, currentMovieId)
+            .map(work => ({ ...work, media_type: work.media_type || 'movie' }));
+
+        // Add media_type to TV shows
+        const processedTvShows = filteredTvShows.map(work => ({ ...work, media_type: 'tv' }));
+
+        // Combine works based on filter
+        if (workFilter === 'both') {
+            allWorks = [...processedMovies, ...processedTvShows];
+        } else if (workFilter === 'movies') {
+            allWorks = processedMovies;
+        } else {
+            allWorks = processedTvShows;
+        }
+
+        // Filter out duplicates based on ID and media type
+        const uniqueWorks = allWorks.reduce((acc, current) => {
+            const key = `${current.id}-${current.media_type}`;
+            if (!acc.has(key)) {
+                acc.set(key, current);
+            }
+            return acc;
+        }, new Map());
+
+        // Sort by overall score and take top 5
+        return Array.from(uniqueWorks.values())
+            .sort((a, b) => calculateOverallScore(b) - calculateOverallScore(a))
+            .slice(0, 5)
+            .map(work => {
+                // For collections, use the pre-formatted display title
+                if (work.media_type === 'collection') {
+                    const [title, info] = work.displayTitle.split(' (');
+                    return {
+                        id: work.id,
+                        title: work.title,
+                        media_type: work.media_type,
+                        displayTitle: {
+                            title,
+                            year: `(${info}` // This includes both the movie count and year range
+                        }
+                    };
+                }
+
+                // For regular movies and TV shows
+                const year = work.release_date || work.first_air_date
+                    ? formatYearAbbrev(work.release_date || work.first_air_date)
+                    : '';
+
+                return {
+                    id: work.id,
+                    title: work.title || work.name,
+                    media_type: work.media_type,
+                    displayTitle: {
+                        title: work.title || work.name,
+                        year
+                    }
+                };
+            });
+    };
 
     useEffect(() => {
         const loadActorDetails = async () => {
             try {
-                setIsLoading(true)
-                const details = await fetchPersonDetails(actor.id)
+                setIsLoading(true);
+                const details = await fetchPersonDetails(actor.id);
 
                 if (details) {
-                    setActorDetails(details)
-
-                    // Process movie and TV credits
-                    const movieCredits = details.movie_credits?.cast || []
-                    const tvCredits = details.tv_credits?.cast || []
-
-                    // Add media_type to each credit
-                    const allCredits = [
-                        ...movieCredits.map((m) => ({ ...m, media_type: "movie" })),
-                        ...tvCredits.map((t) => ({ ...t, media_type: "tv" })),
-                    ]
-
-                    // Group by collections first
-                    const collections = {}
-                    allCredits.forEach((credit) => {
-                        if (credit.media_type === "movie" && credit.belongs_to_collection) {
-                            const { id, name } = credit.belongs_to_collection
-                            if (!collections[id]) {
-                                collections[id] = {
-                                    id,
-                                    name,
-                                    count: 0,
-                                    movies: [],
-                                    earliest_date: null,
-                                    popularity: 0,
-                                }
-                            }
-                            collections[id].count++
-                            collections[id].movies.push(credit)
-                            collections[id].popularity = Math.max(collections[id].popularity, credit.popularity || 0)
-
-                            // Track earliest release date
-                            const releaseDate = new Date(credit.release_date)
-                            if (!isNaN(releaseDate.getTime())) {
-                                if (!collections[id].earliest_date || releaseDate < new Date(collections[id].earliest_date)) {
-                                    collections[id].earliest_date = credit.release_date
-                                }
-                            }
-                        }
-                    })
-
-                    // Filter standalone works
-                    const standaloneWorks = allCredits.filter((credit) => {
-                        // Skip current movie, invalid titles, and collected movies
-                        if (credit.id === Number.parseInt(currentMovieId)) return false
-                        if (!isValidTitle(credit.title || credit.name)) return false
-                        if (credit.media_type === "movie" && credit.belongs_to_collection) return false
-
-                        // Filter by genre
-                        const genreIds = credit.genre_ids || []
-                        if (credit.media_type === "tv" && genreIds.some((id) => EXCLUDED_TV_GENRES.includes(id))) {
-                            return false
-                        }
-                        if (credit.media_type === "movie" && genreIds.some((id) => EXCLUDED_MOVIE_GENRES.includes(id))) {
-                            return false
-                        }
-
-                        return true
-                    })
-
-                    // Convert collections to notable works format
-                    const collectionWorks = Object.values(collections)
-                        .filter((col) => col.count > 1) // Only include collections with more than one movie
-                        .map((col) => ({
-                            id: col.id,
-                            title: `${col.name} Collection (${col.count})`,
-                            release_date: col.earliest_date,
-                            media_type: "collection",
-                            popularity: col.popularity,
-                        }))
-                        .sort((a, b) => b.popularity - a.popularity)
-
-                    // Sort standalone works by popularity
-                    const sortedStandaloneWorks = standaloneWorks.sort((a, b) => (b.popularity || 0) - (a.popularity || 0))
-
-                    // Combine and format final notable works
-                    const combinedWorks = [...collectionWorks, ...sortedStandaloneWorks].slice(0, 5).map((work) => {
-                        const title = work.title || work.name
-                        const year = formatYear(work.release_date)
-                        const displayTitle = year ? `${title} (${year})` : title
-
-                        return {
-                            ...work,
-                            displayTitle: truncateWithYear(displayTitle, 35),
-                        }
-                    })
-
-                    setNotableWorks(combinedWorks)
+                    setActorDetails(details);
+                    const works = processNotableWorks(details);
+                    setNotableWorks(works);
                 }
             } catch (error) {
-                console.error("Error fetching actor details:", error)
+                console.error("Error loading actor details:", error);
             } finally {
-                setIsLoading(false)
+                setIsLoading(false);
             }
-        }
+        };
 
         if (actor?.id) {
-            loadActorDetails()
+            loadActorDetails();
         }
-    }, [actor?.id, currentMovieId])
+    }, [actor?.id]);
+
+    // Separate useEffect for filter changes
+    useEffect(() => {
+        if (actorDetails) {
+            const filteredWorks = processNotableWorks(actorDetails);
+            setNotableWorks(filteredWorks);
+        }
+    }, [workFilter]);
 
     // Calculate actor's current age
     const calculateAge = (birthdate) => {
@@ -312,7 +519,7 @@ const ActorCard = ({ actor, movieReleaseDate, currentMovieId }) => {
 
     if (isLoading) {
         return (
-            <div className="card" style={styles.card}>
+            <div className="card">
                 <div className="card-content has-text-centered">
                     <p>Loading actor details...</p>
                 </div>
@@ -321,56 +528,81 @@ const ActorCard = ({ actor, movieReleaseDate, currentMovieId }) => {
     }
 
     return (
-        <div className="card" style={styles.card}>
-            <div style={styles.profileImageContainer}>
+        <div className="card">
+            <div className="profileImageContainer">
                 <Link to={`/actor/${actor.id}`}>
-                    <div className="image" style={styles.profileImage}>
-                        <img src={getProfileImageUrl() || "/placeholder.svg"} alt={actor.name} style={styles.profileImageElement} />
-
+                    <div className="profileImage">
+                        <img src={getProfileImageUrl() || "/placeholder.svg"} alt={actor.name} className="profileImageElement" />
                         {actorDetails?.images?.profiles?.length > 1 && (
                             <>
-                                <button onClick={handlePrevImage} style={styles.imageNavButtonLeft} className="image-nav-button-left">
+                                <button onClick={handlePrevImage} className="imageNavButtonLeft">
                                     &lt;
                                 </button>
-                                <button onClick={handleNextImage} style={styles.imageNavButtonRight} className="image-nav-button-right">
+                                <button onClick={handleNextImage} className="imageNavButtonRight">
                                     &gt;
                                 </button>
                             </>
                         )}
-
                         {getNationality() && getCountryCode(getNationality()) && (
-                            <div style={styles.flagContainer}>
-                                <Flag code={getCountryCode(getNationality())} style={styles.flag} />
+                            <div className="flagContainer">
+                                <Flag code={getCountryCode(getNationality())} className="flag" />
                             </div>
                         )}
                     </div>
                 </Link>
             </div>
 
-            <div className="card-content" style={styles.cardContent}>
-                <Link to={`/actor/${actor.id}`} style={styles.nameLink}>
-                    <h3 style={styles.actorName}>
-                        <span style={styles.nameText}>{truncateWithYear(actor.name, 20)}</span>
-                        {actorDetails?.birthday && <span style={styles.ageDisplay}> ({calculateAge(actorDetails.birthday)})</span>}
+            <div className="cardContent">
+                <Link to={`/actor/${actor.id}`} className="nameLink">
+                    <h3 className="actorName">
+                        <span className="nameText">{truncateWithYear(actor.name, 20)}</span>
+                        {actorDetails?.birthday && <span className="ageDisplay"> ({calculateAge(actorDetails.birthday)})</span>}
                     </h3>
                 </Link>
 
-                <p style={styles.characterName}>
-                    <span style={styles.characterText}>as {truncateWithYear(actor.character, 25)}</span>
-                    {calculateAgeAtFilming() && <span style={styles.ageAtFilming}> ({calculateAgeAtFilming()})</span>}
+                <p className="characterName">
+                    <span className="characterText">as {truncateWithYear(actor.character, 25)}</span>
+                    {calculateAgeAtFilming() && <span className="ageAtFilming"> ({calculateAgeAtFilming()})</span>}
                 </p>
 
                 {notableWorks.length > 0 && (
-                    <div style={styles.notableWorksSection}>
-                        <p style={styles.notableWorksTitle}>Notable Work:</p>
-                        <ul style={styles.notableWorksList}>
+                    <div className="notableWorksSection">
+                        <div className="notableWorksHeader">
+                            <p className="notableWorksTitle">Notable Work:</p>
+                            <div className="filterButtons">
+                                <button
+                                    className={`filterButton ${workFilter === 'both' ? 'active' : ''}`}
+                                    onClick={() => setWorkFilter('both')}
+                                >
+                                    Both
+                                </button>
+                                <button
+                                    className={`filterButton ${workFilter === 'movies' ? 'active' : ''}`}
+                                    onClick={() => setWorkFilter('movies')}
+                                >
+                                    Movies
+                                </button>
+                                <button
+                                    className={`filterButton ${workFilter === 'tv' ? 'active' : ''}`}
+                                    onClick={() => setWorkFilter('tv')}
+                                >
+                                    TV
+                                </button>
+                            </div>
+                        </div>
+                        <ul className="notableWorksList">
                             {notableWorks.map((work) => (
-                                <li key={`${work.id}-${work.media_type}`} style={styles.notableWorkItem}>
+                                <li key={`${work.id}-${work.media_type}`} className="notableWorkItem">
                                     <Link
                                         to={work.media_type === "collection" ? `/collection/${work.id}` : `/${work.media_type}/${work.id}`}
-                                        style={styles.notableWorkLink}
+                                        className="notableWorkLink"
                                     >
-                                        {work.displayTitle}
+                                        <span className={`title-text ${work.media_type === 'collection' ? 'collection-title' : ''}`}>
+                                            {work.displayTitle.title}
+                                        </span>
+                                        <span className="year-text">
+                                            {work.displayTitle.year}
+                                        </span>
                                     </Link>
                                 </li>
                             ))}
@@ -382,193 +614,20 @@ const ActorCard = ({ actor, movieReleaseDate, currentMovieId }) => {
     )
 }
 
-const styles = {
-    card: {
-        backgroundColor: "#2A2D38",
-        borderRadius: "8px",
-        overflow: "hidden",
-        height: "100%",
-        display: "flex",
-        flexDirection: "column",
-        border: "1px solid #3900BD",
-        transition: "transform 0.2s ease-in-out",
-        boxShadow: "0 4px 8px rgba(0, 0, 0, 0.3)",
-    },
-    profileImageContainer: {
-        position: "relative",
-        width: "100%",
-        paddingTop: "150%",
-        overflow: "hidden",
-    },
-    profileImage: {
-        position: "absolute",
-        top: 0,
-        left: 0,
-        width: "100%",
-        height: "100%",
-    },
-    profileImageElement: {
-        width: "100%",
-        height: "100%",
-        objectFit: "cover",
-        objectPosition: "top",
-    },
-    imageNavButtonLeft: {
-        position: "absolute",
-        top: "50%",
-        left: "10px",
-        transform: "translateY(-50%)",
-        backgroundColor: "rgba(0, 0, 0, 0.6)",
-        color: "#FFFFFF",
-        border: "none",
-        borderRadius: "50%",
-        width: "30px",
-        height: "30px",
-        display: "flex",
-        alignItems: "center",
-        justifyContent: "center",
-        cursor: "pointer",
-        opacity: 0,
-        transition: "opacity 0.2s ease-in-out",
-        zIndex: 10,
-    },
-    imageNavButtonRight: {
-        position: "absolute",
-        top: "50%",
-        right: "10px",
-        transform: "translateY(-50%)",
-        backgroundColor: "rgba(0, 0, 0, 0.6)",
-        color: "#FFFFFF",
-        border: "none",
-        borderRadius: "50%",
-        width: "30px",
-        height: "30px",
-        display: "flex",
-        alignItems: "center",
-        justifyContent: "center",
-        cursor: "pointer",
-        opacity: 0,
-        transition: "opacity 0.2s ease-in-out",
-        zIndex: 10,
-    },
-    flagContainer: {
-        position: "absolute",
-        bottom: "10px",
-        right: "10px",
-        width: "40px",
-        height: "30px",
-        opacity: 0.8,
-        borderRadius: "4px",
-        overflow: "hidden",
-        zIndex: 5,
-    },
-    flag: {
-        width: "100%",
-        height: "100%",
-        objectFit: "cover",
-    },
-    cardContent: {
-        padding: "15px",
-        flexGrow: 1,
-        display: "flex",
-        flexDirection: "column",
-    },
-    nameLink: {
-        textDecoration: "none",
-        color: "#FFFFFF",
-    },
-    actorName: {
-        fontSize: "1.2rem",
-        fontWeight: "bold",
-        marginBottom: "5px",
-        color: "#FFFFFF",
-        whiteSpace: "nowrap",
-        overflow: "hidden",
-        textOverflow: "ellipsis",
-    },
-    nameText: {
-        display: "inline-block",
-        maxWidth: "calc(100% - 60px)",
-        whiteSpace: "nowrap",
-        overflow: "hidden",
-        textOverflow: "ellipsis",
-        verticalAlign: "bottom",
-    },
-    ageDisplay: {
-        fontWeight: "normal",
-        fontSize: "0.9rem",
-        color: "#DCDCDC",
-    },
-    characterName: {
-        fontSize: "1rem",
-        marginBottom: "10px",
-        color: "#DCDCDC",
-        whiteSpace: "nowrap",
-        overflow: "hidden",
-        textOverflow: "ellipsis",
-    },
-    characterText: {
-        display: "inline-block",
-        maxWidth: "calc(100% - 60px)",
-        whiteSpace: "nowrap",
-        overflow: "hidden",
-        textOverflow: "ellipsis",
-        verticalAlign: "bottom",
-    },
-    ageAtFilming: {
-        fontSize: "0.85rem",
-        fontWeight: "normal",
-        color: "#DCDCDC",
-        opacity: 0.8,
-    },
-    notableWorksSection: {
-        marginTop: "auto",
-        paddingTop: "10px",
-        borderTop: "1px solid rgba(220, 220, 220, 0.2)",
-    },
-    notableWorksTitle: {
-        fontSize: "0.9rem",
-        fontWeight: "bold",
-        marginBottom: "5px",
-        color: "#DCDCDC",
-    },
-    notableWorksList: {
-        listStyleType: "none",
-        padding: 0,
-        margin: 0,
-    },
-    notableWorkItem: {
-        fontSize: "0.85rem",
-        marginBottom: "3px",
-        whiteSpace: "nowrap",
-        overflow: "hidden",
-        textOverflow: "ellipsis",
-    },
-    notableWorkLink: {
-        color: "#DCDCDC",
-        textDecoration: "none",
-        transition: "color 0.2s ease-in-out",
-        display: "block",
-        whiteSpace: "nowrap",
-        overflow: "hidden",
-        textOverflow: "ellipsis",
-    },
-}
-
 // Add hover effects
 document.addEventListener("DOMContentLoaded", () => {
     const addHoverEffects = () => {
         const profileImages = document.querySelectorAll(".image")
         profileImages.forEach((image) => {
             image.addEventListener("mouseenter", () => {
-                const leftBtn = image.querySelector(".image-nav-button-left")
-                const rightBtn = image.querySelector(".image-nav-button-right")
+                const leftBtn = image.querySelector(".imageNavButtonLeft")
+                const rightBtn = image.querySelector(".imageNavButtonRight")
                 if (leftBtn) leftBtn.style.opacity = "1"
                 if (rightBtn) rightBtn.style.opacity = "1"
             })
             image.addEventListener("mouseleave", () => {
-                const leftBtn = image.querySelector(".image-nav-button-left")
-                const rightBtn = image.querySelector(".image-nav-button-right")
+                const leftBtn = image.querySelector(".imageNavButtonLeft")
+                const rightBtn = image.querySelector(".imageNavButtonRight")
                 if (leftBtn) leftBtn.style.opacity = "0"
                 if (rightBtn) rightBtn.style.opacity = "0"
             })

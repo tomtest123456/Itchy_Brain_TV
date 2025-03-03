@@ -180,6 +180,16 @@ export const fetchCompanyDetails = async (companyId) => {
 	return fetchFromAPI(`/company/${companyId}`);
 };
 
-// ################## GENRE LIST FOR FILTERING (STATICALLY DEFINED) ##################
-export const EXCLUDED_TV_GENRES = [10764, 10767, 10763]; // Reality, Talk, News
-export const EXCLUDED_MOVIE_GENRES = [99, 10770]; // Documentary, TV Movie
+// ################## EXCLUDED GENRES ##################
+export const EXCLUDED_TV_GENRES = [
+	10767, // Talk Show
+	10763, // News
+	99,    // Documentary
+	10764, // Reality
+	10766  // Soap
+];
+
+export const EXCLUDED_MOVIE_GENRES = [
+	99,    // Documentary
+	10770  // TV Movie
+];
