@@ -40,7 +40,7 @@ const formatDisplayValue = (value, type) => {
  * RatingCircle Component
  * Displays a circular progress bar with a rating value
  */
-const RatingCircle = ({ value, type, size = 70 }) => {
+const RatingCircle = ({ value, type, size = 60 }) => {
     // Ensure value is a number
     const numericValue = Number(value) || 0;
 
@@ -55,7 +55,7 @@ const RatingCircle = ({ value, type, size = 70 }) => {
         : normalizedValue;
 
     // Calculate circle properties
-    const strokeWidth = 10;
+    const strokeWidth = 8;
     const radius = (size - strokeWidth) / 2;
     const circumference = radius * 2 * Math.PI;
     const strokeDashoffset = circumference - (percentage / 100) * circumference;

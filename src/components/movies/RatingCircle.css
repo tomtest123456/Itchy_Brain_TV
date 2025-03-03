@@ -11,10 +11,11 @@
 .ratings-container {
     display: flex;
     justify-content: center;
-    gap: 1.5rem;
-    padding: 0.5rem 0;
+    gap: clamp(0.5rem, 1.5vw, 1.5rem);
+    padding: 1rem 0;
     border-bottom: 1px solid rgba(220, 220, 220, 0.2);
-    margin-top: 0.5rem;
+    margin: 0;
+    width: 100%;
 }
 
 .rating-item {
@@ -22,13 +23,18 @@
     flex-direction: column;
     align-items: center;
     gap: 0.5rem;
+    width: 28%;
+    min-width: 50px;
+    max-width: 80px;
 }
 
 .rating-label {
     font-family: 'Inter', sans-serif;
-    font-size: 0.85rem;
+    font-size: clamp(0.7rem, 1.2vw, 0.85rem);
     color: #DCDCDC;
     opacity: 0.9;
+    text-align: center;
+    white-space: nowrap;
 }
 
 /* ========================================
@@ -40,11 +46,15 @@
     display: flex;
     align-items: center;
     justify-content: center;
+    width: 100%;
+    aspect-ratio: 1;
 }
 
 /* SVG Base Styling */
 .rating-circle-svg {
-    transform: rotate(-90deg); /* Start progress at top */
+    width: 100%;
+    height: 100%;
+    transform: rotate(-90deg);
     overflow: visible;
 }
 
@@ -65,7 +75,7 @@
 .rating-circle-text {
     position: absolute;
     font-family: 'Inter', sans-serif;
-    font-size: 0.9rem;
+    font-size: clamp(0.75rem, 1.8vw, 0.9rem);
     font-weight: 600;
     color: #FFFFFF;
     text-align: center;
@@ -86,11 +96,14 @@
  * Collection Movies List Styles
  * Styling for the collection movies list
  * ======================================== */
+.collection-section {
+    padding: 1rem 0 1.5rem 0;
+}
+
 .collection-movies-list {
     list-style: none;
     padding: 0;
-    margin: 0.5rem 0;
-    border-top: 1px solid rgba(220, 220, 220, 0.2);
+    margin: 0;
 }
 
 .collection-movie-item {
@@ -123,14 +136,131 @@
 }
 
 /* ========================================
- * Movie Info Scrollbar Styles
- * Hide scrollbar but maintain scroll functionality
+ * Movie Info Container and Scroll Behavior
  * ======================================== */
 .movie-info-container {
-    scrollbar-width: none; /* Firefox */
-    -ms-overflow-style: none; /* IE and Edge */
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+    position: sticky;
+    top: calc(var(--navbar-height) + 0.0rem);
+    max-height: calc(100vh - var(--navbar-height));
+    overflow-y: auto;
+    padding-right: 1rem;
 }
 
 .movie-info-container::-webkit-scrollbar {
-    display: none; /* Chrome, Safari, Opera */
+    display: none;
+}
+
+.movie-info-scroll-area {
+    position: absolute;
+    top: 0;
+    left: -50vw;
+    width: 50vw;
+    height: 100%;
+    z-index: -1;
+}
+
+/* ========================================
+ * Movie Info Section Styles
+ * Styling for the movie information display
+ * ======================================== */
+.movie-info-section {
+    padding: 1rem 0;
+    border-bottom: 1px solid rgba(220, 220, 220, 0.2);
+}
+
+.movie-info-section h2.title,
+.collection-section h2.title {
+    margin-bottom: 1rem;
+}
+
+.movie-info-item {
+    margin-bottom: 0.75rem;
+    font-size: 0.9rem;
+    color: #DCDCDC;
+}
+
+.movie-info-label {
+    font-weight: 600;
+    color: #FFFFFF;
+    margin-right: 0.5rem;
+    display: block;
+    margin-bottom: 0.25rem;
+}
+
+.movie-info-description {
+    position: relative;
+    max-height: 2.8em;
+    overflow: hidden;
+    transition: max-height 0.3s ease-out;
+    line-height: 1.4;
+}
+
+.movie-info-description.expanded {
+    max-height: none;
+}
+
+.description-toggle {
+    color: #3273dc;
+    cursor: pointer;
+    font-size: 0.85rem;
+    margin-top: 0.4rem;
+    display: inline-block;
+    opacity: 0.8;
+    transition: opacity 0.2s ease;
+}
+
+.description-toggle:hover {
+    opacity: 1;
+}
+
+.movie-info-link {
+    color: #DCDCDC;
+    text-decoration: none;
+    transition: color 0.2s ease;
+}
+
+.movie-info-link:hover {
+    color: #FFFFFF;
+}
+
+.movie-info-stats {
+    color: #DCDCDC;
+}
+
+.movie-info-divider {
+    margin: 0 0.5rem;
+    color: rgba(220, 220, 220, 0.4);
+}
+
+.trailer-button {
+    display: inline-block;
+    padding: 0.4rem 1rem;
+    background-color: rgba(220, 220, 220, 0.1);
+    color: #FFFFFF;
+    border-radius: 4px;
+    text-decoration: none;
+    transition: background-color 0.2s ease;
+    font-size: 0.9rem;
+}
+
+.trailer-button:hover {
+    background-color: rgba(220, 220, 220, 0.2);
+}
+
+/* Movie Poster Styles */
+.movie-poster {
+    width: 100%;
+    max-width: 300px;
+    margin: 0 auto;
+    border-radius: 12px;
+    overflow: hidden;
+}
+
+.movie-poster img {
+    width: 100%;
+    height: auto;
+    object-fit: cover;
+    border-radius: 12px;
 } 

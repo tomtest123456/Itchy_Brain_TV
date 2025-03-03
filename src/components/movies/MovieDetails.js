@@ -32,6 +32,7 @@ const MovieDetails = () => {
     const [trailer, setTrailer] = useState(null);
     const [collection, setCollection] = useState(null);
     const [visibleActors, setVisibleActors] = useState(10);
+    const [isDescriptionExpanded, setIsDescriptionExpanded] = useState(false);
 
     // ========================================
     // Data Fetching
@@ -103,6 +104,13 @@ const MovieDetails = () => {
         setVisibleActors((prev) => Math.min(prev + 10, cast.length));
     };
 
+    // Function to format runtime to hours and minutes
+    const formatRuntime = (minutes) => {
+        const hours = Math.floor(minutes / 60);
+        const remainingMinutes = minutes % 60;
+        return `${hours}hr ${remainingMinutes}m`;
+    };
+
     // ========================================
     // Component Render
     // ========================================
@@ -117,35 +125,101 @@ const MovieDetails = () => {
                 <div className="container">
                     <div className="columns is-variable is-0-mobile is-3-tablet is-8-desktop">
 
-                        {/* Left Column - Movie Poster and Information */}
-                        <div className="column is-one-quarter">
-                            <div className="movie-info-container" style={{
-                                position: "sticky",
-                                top: "calc(var(--navbar-height) + 0.0rem)",
-                                maxHeight: "calc(100vh - var(--navbar-height))",
-                                overflowY: "auto",
-                                paddingRight: "1rem"
-                            }}>
-
+                        {/* Left Column - Movie Info */}
+                        <div className="column is-one-quarter" style={{ position: 'relative' }}>
+                            <div
+                                className="movie-info-scroll-trigger"
+                                style={{
+                                    position: 'absolute',
+                                    top: 0,
+                                    left: '-100vw',
+                                    width: '100vw',
+                                    height: '100%',
+                                    zIndex: 1
+                                }}
+                                onWheel={(e) => {
+                                    const container = document.querySelector('.movie-info-container');
+                                    if (container) {
+                                        container.scrollTop += e.deltaY;
+                                        e.preventDefault();
+                                    }
+                                }}
+                            />
+                            <div className="movie-info-container">
                                 {/* Movie Poster */}
-                                <figure className="image">
+                                <div className="movie-poster">
                                     <img
                                         src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`}
                                         alt={movie.title}
-                                        style={{
-                                            borderRadius: "12px",
-                                            objectFit: "cover",
-                                            maxHeight: "450px"
-                                        }}
                                     />
-                                </figure>
+                                </div>
 
                                 {/* Movie Ratings */}
                                 <Ratings imdbId={movie.imdb_id} />
 
+                                {/* Movie Info Section */}
+                                <div className="movie-info-section">
+                                    <h2 className="title is-5">Movie Info</h2>
+
+                                    <div className="movie-info-item">
+                                        <span className="movie-info-label">Runtime:</span>
+                                        {formatRuntime(movie.runtime)}
+                                    </div>
+
+                                    <div className="movie-info-item">
+                                        <span className="movie-info-label">Genre:</span>
+                                        {movie.genres.map(genre => genre.name).join(", ")}
+                                    </div>
+
+                                    {director && (
+                                        <div className="movie-info-item">
+                                            <span className="movie-info-label">Director:</span>
+                                            <Link to={`/person/${director.id}`} className="movie-info-link">
+                                                {director.name}
+                                            </Link>
+                                        </div>
+                                    )}
+
+                                    <div className="movie-info-item">
+                                        <span className="movie-info-label">Budget:</span>
+                                        {formatCurrency(movie.budget)}
+                                    </div>
+
+                                    <div className="movie-info-item">
+                                        <span className="movie-info-label">Revenue:</span>
+                                        {formatCurrency(movie.revenue)}
+                                    </div>
+
+                                    <div className="movie-info-item">
+                                        <span className="movie-info-label">Description:</span>
+                                        <div className={`movie-info-description ${isDescriptionExpanded ? 'expanded' : ''}`}>
+                                            {movie.overview}
+                                        </div>
+                                        <span
+                                            className="description-toggle"
+                                            onClick={() => setIsDescriptionExpanded(!isDescriptionExpanded)}
+                                        >
+                                            {isDescriptionExpanded ? 'Show less' : 'Show more...'}
+                                        </span>
+                                    </div>
+
+                                    {trailer && (
+                                        <div className="movie-info-item">
+                                            <a
+                                                href={`https://www.youtube.com/watch?v=${trailer.key}`}
+                                                target="_blank"
+                                                rel="noopener noreferrer"
+                                                className="trailer-button"
+                                            >
+                                                Trailer
+                                            </a>
+                                        </div>
+                                    )}
+                                </div>
+
                                 {/* Collection Movies (if part of a collection) */}
                                 {collection && (
-                                    <div className="mt-4">
+                                    <div className="collection-section">
                                         <h2 className="title is-5">Movies in Collection</h2>
                                         <ul className="collection-movies-list">
                                             {collection.parts
@@ -183,36 +257,6 @@ const MovieDetails = () => {
                                         </ul>
                                     </div>
                                 )}
-
-                                {/* Movie Information */}
-                                <div className="content mt-4">
-                                    <p><strong>Duration:</strong> {movie.runtime} min</p>
-                                    <p><strong>Budget:</strong> {formatCurrency(movie.budget)}</p>
-                                    <p><strong>Revenue:</strong> {formatCurrency(movie.revenue)}</p>
-                                    <p><strong>Genres:</strong> {movie.genres.map(genre =>
-                                        genre.name).join(", ")}</p>
-                                    <p><strong>Description:</strong> {movie.overview}</p>
-
-                                    {/* Director Information */}
-                                    {director && (
-                                        <p><strong>Director:</strong> {director.name}</p>
-                                    )}
-
-                                    {/* Trailer Link */}
-                                    {trailer && (
-                                        <div className="mt-4">
-                                            <h2 className="title is-5">Trailer</h2>
-                                            <a
-                                                href={`https://www.youtube.com/watch?v=${trailer.key}`}
-                                                target="_blank"
-                                                rel="noopener noreferrer"
-                                                className="button is-link is-fullwidth"
-                                            >
-                                                Watch Trailer
-                                            </a>
-                                        </div>
-                                    )}
-                                </div>
                             </div>
                         </div>
 
