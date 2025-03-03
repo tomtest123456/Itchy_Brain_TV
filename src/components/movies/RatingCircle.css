@@ -1,0 +1,136 @@
+/* ========================================
+ * RatingCircle.css
+ * Styling for the rating circles and container
+ * Uses global styles from _styles.scss
+ * ======================================== */
+
+/* ========================================
+ * Rating Container Styles
+ * Layout for the ratings section
+ * ======================================== */
+.ratings-container {
+    display: flex;
+    justify-content: center;
+    gap: 1.5rem;
+    padding: 0.5rem 0;
+    border-bottom: 1px solid rgba(220, 220, 220, 0.2);
+    margin-top: 0.5rem;
+}
+
+.rating-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.rating-label {
+    font-family: 'Inter', sans-serif;
+    font-size: 0.85rem;
+    color: #DCDCDC;
+    opacity: 0.9;
+}
+
+/* ========================================
+ * Rating Circle Styles
+ * Visual styling for the circular progress indicators
+ * ======================================== */
+.rating-circle {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* SVG Base Styling */
+.rating-circle-svg {
+    transform: rotate(-90deg); /* Start progress at top */
+    overflow: visible;
+}
+
+/* Background Circle */
+.rating-circle-bg {
+    fill: none;
+    stroke: rgba(220, 220, 220, 0.1);
+}
+
+/* Progress Circle */
+.rating-circle-progress {
+    fill: none;
+    stroke-linecap: round;
+    transition: stroke-dashoffset 0.5s ease-in-out, stroke 0.3s ease;
+}
+
+/* Rating Text */
+.rating-circle-text {
+    position: absolute;
+    font-family: 'Inter', sans-serif;
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: #FFFFFF;
+    text-align: center;
+}
+
+/* Loading and Error States */
+.ratings-loading,
+.ratings-error {
+    padding: 0.5rem 0;
+    color: #DCDCDC;
+    font-family: 'Inter', sans-serif;
+    font-size: 0.9rem;
+    text-align: center;
+    opacity: 0.8;
+}
+
+/* ========================================
+ * Collection Movies List Styles
+ * Styling for the collection movies list
+ * ======================================== */
+.collection-movies-list {
+    list-style: none;
+    padding: 0;
+    margin: 0.5rem 0;
+    border-top: 1px solid rgba(220, 220, 220, 0.2);
+}
+
+.collection-movie-item {
+    padding: 0.4rem 0;
+    font-family: 'Inter', sans-serif;
+    font-size: 0.85rem;
+}
+
+.collection-movie-link {
+    color: #DCDCDC;
+    text-decoration: none;
+    transition: color 0.2s ease;
+    display: flex;
+    align-items: center;
+}
+
+.collection-movie-link:hover {
+    color: #FFFFFF;
+}
+
+.collection-movie-link.current {
+    color: #FFFFFF;
+    font-weight: 700;
+}
+
+.arrow-icon {
+    margin-right: 0.5rem;
+    font-size: 1rem;
+    line-height: 1;
+}
+
+/* ========================================
+ * Movie Info Scrollbar Styles
+ * Hide scrollbar but maintain scroll functionality
+ * ======================================== */
+.movie-info-container {
+    scrollbar-width: none; /* Firefox */
+    -ms-overflow-style: none; /* IE and Edge */
+}
+
+.movie-info-container::-webkit-scrollbar {
+    display: none; /* Chrome, Safari, Opera */
+} 

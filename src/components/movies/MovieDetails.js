@@ -10,6 +10,7 @@ import Navbar from "../../components/common/Navbar";
 import ActorCard from "../../components/movies/ActorCard";
 import { fetchMovieDetails, fetchCollectionDetails } from "../../services/tmdb";
 import { formatDate, formatCurrency } from "../../utils/helpers";
+import Ratings from './Ratings';
 
 /**
  * MovieDetails Component
@@ -118,9 +119,12 @@ const MovieDetails = () => {
 
                         {/* Left Column - Movie Poster and Information */}
                         <div className="column is-one-quarter">
-                            <div style={{
+                            <div className="movie-info-container" style={{
                                 position: "sticky",
-                                top: "calc(var(--navbar-height) + 0.0rem)"
+                                top: "calc(var(--navbar-height) + 0.0rem)",
+                                maxHeight: "calc(100vh - var(--navbar-height))",
+                                overflowY: "auto",
+                                paddingRight: "1rem"
                             }}>
 
                                 {/* Movie Poster */}
@@ -135,6 +139,50 @@ const MovieDetails = () => {
                                         }}
                                     />
                                 </figure>
+
+                                {/* Movie Ratings */}
+                                <Ratings imdbId={movie.imdb_id} />
+
+                                {/* Collection Movies (if part of a collection) */}
+                                {collection && (
+                                    <div className="mt-4">
+                                        <h2 className="title is-5">Movies in Collection</h2>
+                                        <ul className="collection-movies-list">
+                                            {collection.parts
+                                                .sort((a, b) => new Date(a.release_date) - new Date(b.release_date))
+                                                .map(part => {
+                                                    // Find common prefix in collection titles
+                                                    const titles = collection.parts.map(p => p.title);
+                                                    const commonPrefix = titles.reduce((prefix, title) => {
+                                                        while (!title.startsWith(prefix)) {
+                                                            prefix = prefix.slice(0, -1);
+                                                        }
+                                                        return prefix;
+                                                    }, titles[0]);
+
+                                                    // Remove common prefix and trim
+                                                    let displayTitle = part.title;
+                                                    if (commonPrefix && titles.length > 1) {
+                                                        displayTitle = part.title.slice(commonPrefix.length).trim();
+                                                    }
+
+                                                    return (
+                                                        <li key={part.id} className="collection-movie-item">
+                                                            <Link
+                                                                to={`/movie/${part.id}`}
+                                                                className={`collection-movie-link ${part.id === parseInt(movieId) ? 'current' : ''}`}
+                                                            >
+                                                                {part.id === parseInt(movieId) && (
+                                                                    <span className="arrow-icon">→ </span>
+                                                                )}
+                                                                {displayTitle} {'('}{formatDate(part.release_date, "YY")}{')'}
+                                                            </Link>
+                                                        </li>
+                                                    );
+                                                })}
+                                        </ul>
+                                    </div>
+                                )}
 
                                 {/* Movie Information */}
                                 <div className="content mt-4">
@@ -179,21 +227,6 @@ const MovieDetails = () => {
                                 </span>
                             </h1>
 
-                            {/* Rating Bar */}
-                            <div className="mb-5" style={{ maxWidth: "50%" }}>
-                                <div className="is-flex is-align-items-center mb-2">
-                                    <span className="has-text-weight-bold mr-3"
-                                        style={{ minWidth: "40px", textAlign: "right" }}>
-                                        {Math.round(movie.vote_average * 10)}%
-                                    </span>
-                                    <progress
-                                        className="progress is-success"
-                                        value={movie.vote_average * 10}
-                                        max="100"
-                                    />
-                                </div>
-                            </div>
-
                             {/* Actor Cards Grid - MODIFIED FOR CONSISTENT SIZING */}
                             <div className="columns is-multiline is-variable is-3">
                                 {cast.slice(0, visibleActors).map((actor) => (
@@ -212,22 +245,6 @@ const MovieDetails = () => {
                                     >
                                         Show More Actors
                                     </button>
-                                </div>
-                            )}
-
-                            {/* Movie Collection Section */}
-                            {collection && (
-                                <div className="mt-6">
-                                    <h2 className="title is-4">Other Movies in This Series</h2>
-                                    <div className="content">
-                                        <ul>
-                                            {collection.parts.map(part => (
-                                                <li key={part.id}>
-                                                    {part.title} ({formatDate(part.release_date, "YYYY")})
-                                                </li>
-                                            ))}
-                                        </ul>
-                                    </div>
                                 </div>
                             )}
                         </div>

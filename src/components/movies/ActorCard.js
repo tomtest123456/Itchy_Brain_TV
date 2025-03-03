@@ -336,21 +336,44 @@ const ActorCard = ({ actor, movieReleaseDate, currentMovieId }) => {
 
         // Process collections into works format
         const collectionWorks = Array.from(collections.values())
-            .map(collection => ({
-                id: collection.id,
-                title: collection.title,
-                media_type: 'collection',
-                popularity: collection.popularity,
-                vote_average: collection.vote_average,
-                vote_count: collection.vote_count,
-                release_date: collection.first_release,
-                movies: collection.movies,
-                revenue: collection.revenue,
-                displayTitle: {
-                    title: collection.title,
-                    year: ` (x${collection.movies.length})`
+            .map(collection => {
+                // If collection has only one movie, treat it as a standalone movie
+                if (collection.movies.length === 1) {
+                    const movie = collection.movies[0];
+                    return {
+                        id: movie.id,
+                        title: movie.title,
+                        media_type: 'movie',
+                        popularity: movie.popularity,
+                        vote_average: movie.vote_average,
+                        vote_count: movie.vote_count,
+                        release_date: movie.release_date,
+                        character: movie.character,
+                        order: movie.order,
+                        revenue: movie.revenue,
+                        displayTitle: {
+                            title: movie.title,
+                            year: ` ('${new Date(movie.release_date).getFullYear().toString().slice(2)})`
+                        }
+                    };
                 }
-            }));
+
+                return {
+                    id: collection.id,
+                    title: collection.title,
+                    media_type: 'collection',
+                    popularity: collection.popularity,
+                    vote_average: collection.vote_average,
+                    vote_count: collection.vote_count,
+                    release_date: collection.first_release,
+                    movies: collection.movies,
+                    revenue: collection.revenue,
+                    displayTitle: {
+                        title: collection.title,
+                        year: ` (x${collection.movies.length})`
+                    }
+                };
+            });
 
         // Process TV shows
         const filteredTvShows = tvCredits.filter(show =>

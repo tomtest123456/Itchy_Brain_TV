@@ -9,6 +9,8 @@ export const formatDate = (dateString, format = "mmm YYYY") => {
 	switch (format) {
 		case "YYYY":
 			return date.getFullYear().toString();
+		case "YY":
+			return `'${date.getFullYear().toString().slice(2)}`;
 		case "mmm YYYY":
 			options.month = "short";
 			options.year = "numeric";
