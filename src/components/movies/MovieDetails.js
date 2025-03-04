@@ -26,16 +26,44 @@ const MovieDetails = () => {
     // Hardcoded Movie ID for testing (Replace with useParams() for dynamic IDs)
     const movieId = "671";
 
-    const INITIAL_ACTOR_COUNT = 9;
-
     // Primary state variables for movie data
     const [movie, setMovie] = useState(null);
     const [cast, setCast] = useState([]);
     const [director, setDirector] = useState(null);
     const [trailer, setTrailer] = useState(null);
     const [collection, setCollection] = useState(null);
-    const [visibleActors, setVisibleActors] = useState(INITIAL_ACTOR_COUNT);
     const [isDescriptionExpanded, setIsDescriptionExpanded] = useState(false);
+
+    // Calculate initial visible actors based on screen size
+    const calculateInitialActorCount = () => {
+        const width = window.innerWidth;
+        let columns;
+        if (width >= 1024) {
+            columns = 3; // Desktop: 3 columns
+        } else if (width >= 768) {
+            columns = 2; // Tablet: 2 columns
+        } else {
+            columns = 1; // Mobile: 1 column
+        }
+        return columns * 3; // Show 3 rows initially
+    };
+
+    const [visibleActors, setVisibleActors] = useState(calculateInitialActorCount());
+
+    // Recalculate visible actors when window resizes
+    useEffect(() => {
+        const handleResize = () => {
+            const newCount = calculateInitialActorCount();
+            setVisibleActors(prev => {
+                // Only update if the new count is larger than current visible actors
+                // This prevents removing already visible actors when screen gets smaller
+                return Math.max(prev, newCount);
+            });
+        };
+
+        window.addEventListener('resize', handleResize);
+        return () => window.removeEventListener('resize', handleResize);
+    }, []);
 
     // Get optimal card count based on grid layout
     const { optimalCardCount, cardsPerRow } = useActorCardGrid({
@@ -111,7 +139,8 @@ const MovieDetails = () => {
 
     // Function to Load More Actors
     const loadMoreActors = () => {
-        setVisibleActors(prev => Math.min(prev + INITIAL_ACTOR_COUNT, cast.length));
+        const increment = calculateInitialActorCount();
+        setVisibleActors(prev => Math.min(prev + increment, cast.length));
     };
 
     // Function to format runtime to hours and minutes
