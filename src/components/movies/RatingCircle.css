@@ -185,8 +185,12 @@
     font-weight: 600;
     color: #FFFFFF;
     margin-right: 0.5rem;
-    display: block;
-    margin-bottom: 0.25rem;
+}
+
+.movie-info-row {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
 }
 
 .movie-info-description {

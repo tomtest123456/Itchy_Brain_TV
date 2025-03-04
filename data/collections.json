@@ -1,0 +1,225 @@
+{
+  "131295": {
+    "id": 131295,
+    "name": "Captain America Collection",
+    "overview": "A superhero film series based on the Marvel Comics character Captain America, and part of the Marvel Cinematic Universe (MCU) series. The series is centered on Steve Rogers, a man from World War II era Brooklyn who is transformed into super-soldier Captain America.",
+    "poster_path": "/2tOgiY533JSFp7OrVlkeRJvsZpI.jpg",
+    "backdrop_path": "/7kVucUYqz8fZkOmFtA8opDwJFXM.jpg",
+    "parts": [
+      {
+        "id": 100402,
+        "title": "Captain America: The Winter Soldier",
+        "release_date": "2014-03-20",
+        "poster_path": "/tVFRpFw3xTedgPGqxW0AOI8Qhh0.jpg",
+        "vote_average": 7.656,
+        "vote_count": 18956
+      },
+      {
+        "id": 271110,
+        "title": "Captain America: Civil War",
+        "release_date": "2016-04-27",
+        "poster_path": "/rAGiXaUfPzY7CDEyNKUofk3Kw2e.jpg",
+        "vote_average": 7.444,
+        "vote_count": 22932
+      },
+      {
+        "id": 822119,
+        "title": "Captain America: Brave New World",
+        "release_date": "2025-02-12",
+        "poster_path": "/pzIddUEMWhWzfvLI3TwxUG2wGoi.jpg",
+        "vote_average": 6.2,
+        "vote_count": 836
+      },
+      {
+        "id": 1771,
+        "title": "Captain America: The First Avenger",
+        "release_date": "2011-07-22",
+        "poster_path": "/vSNxAJTlD0r02V9sPYpOjqDZXUK.jpg",
+        "vote_average": 7,
+        "vote_count": 21654
+      }
+    ]
+  },
+  "558216": {
+    "id": 558216,
+    "name": "Venom Collection",
+    "overview": "A frustrated journalist named Eddie Brock and a carnivorous black symbiote unite to become the monstrous antihero Venom and battle both good and evil alike. Based on the Marvel Comics character.",
+    "poster_path": "/670x9sf0Ru8y6ezBggmYudx61yB.jpg",
+    "backdrop_path": "/vq340s8DxA5Q209FT8PHA6CXYOx.jpg",
+    "parts": [
+      {
+        "id": 580489,
+        "title": "Venom: Let There Be Carnage",
+        "release_date": "2021-09-30",
+        "poster_path": "/pzKsRuKLFmYrW5Q0q8E8G78Tcgo.jpg",
+        "vote_average": 6.779,
+        "vote_count": 10523
+      },
+      {
+        "id": 335983,
+        "title": "Venom",
+        "release_date": "2018-09-28",
+        "poster_path": "/2uNW4WbgBXL25BAbXGLnLqX71Sw.jpg",
+        "vote_average": 6.8,
+        "vote_count": 16383
+      },
+      {
+        "id": 912649,
+        "title": "Venom: The Last Dance",
+        "release_date": "2024-10-22",
+        "poster_path": "/vGXptEdgZIhPg3cGlc7e8sNPC2e.jpg",
+        "vote_average": 6.787,
+        "vote_count": 2945
+      }
+    ]
+  },
+  "720879": {
+    "id": 720879,
+    "name": "Sonic the Hedgehog Collection",
+    "overview": "Follows the adventures of Sonic the Hedgehog an anthropomorphic hedgehog born with the ability to run faster than the speed of sound, hence his name, and possesses lightning-fast reflexes to match his speed.",
+    "poster_path": "/1qtAVIWnx4vxmFEnZ3fDDbtMt8o.jpg",
+    "backdrop_path": "/ggDVF2DhqIQjJI0zUqsWMS2WTcF.jpg",
+    "parts": [
+      {
+        "id": 675353,
+        "title": "Sonic the Hedgehog 2",
+        "release_date": "2022-03-30",
+        "poster_path": "/6DrHO1jr3qVrViUO6s6kFiAGM7.jpg",
+        "vote_average": 7.479,
+        "vote_count": 5367
+      },
+      {
+        "id": 454626,
+        "title": "Sonic the Hedgehog",
+        "release_date": "2020-02-12",
+        "poster_path": "/aQvJ5WPzZgYVDrxLX4R6cLJCEaQ.jpg",
+        "vote_average": 7.308,
+        "vote_count": 9798
+      },
+      {
+        "id": 939243,
+        "title": "Sonic the Hedgehog 3",
+        "release_date": "2024-12-19",
+        "poster_path": "/d8Ryb8AunYAuycVKDp5HpdWPKgC.jpg",
+        "vote_average": 7.7,
+        "vote_count": 2047
+      },
+      {
+        "id": 1401586,
+        "title": "Sonic the Hedgehog 4",
+        "release_date": "2027-03-19",
+        "poster_path": "/t8uoHBODkFlSQJRL6qc4IclUBlH.jpg",
+        "vote_average": 0,
+        "vote_count": 0
+      }
+    ]
+  },
+  "762512": {
+    "id": 762512,
+    "name": "The Lion King (Reboot) Collection",
+    "overview": "The adventures of Simba.",
+    "poster_path": "/dGpIRn4Nqi63JO1RlKxjcPbQSAw.jpg",
+    "backdrop_path": "/jIgM7YNVft0YGeXsqrh3oG5TWLx.jpg",
+    "parts": [
+      {
+        "id": 420818,
+        "title": "The Lion King",
+        "release_date": "2019-07-12",
+        "poster_path": "/dzBtMocZuJbjLOXvrl4zGYigDzh.jpg",
+        "vote_average": 7.1,
+        "vote_count": 10237
+      },
+      {
+        "id": 762509,
+        "title": "Mufasa: The Lion King",
+        "release_date": "2024-12-18",
+        "poster_path": "/lurEK87kukWNaHd0zYnsi3yzJrs.jpg",
+        "vote_average": 7.5,
+        "vote_count": 1497
+      }
+    ]
+  },
+  "1069584": {
+    "id": 1069584,
+    "name": "Gladiator Collection",
+    "overview": "A series of epic historical action films showcasing gladiatorial combat in ancient Rome.",
+    "poster_path": "/bk6nx2rGNdlKtBsB9XcrclVKItv.jpg",
+    "backdrop_path": "/1VdLvSIeHuwqCT13H9EafxCacGB.jpg",
+    "parts": [
+      {
+        "id": 98,
+        "title": "Gladiator",
+        "release_date": "2000-05-04",
+        "poster_path": "/ty8TGRuvJLPUmAR1H1nRIsgwvim.jpg",
+        "vote_average": 8.2,
+        "vote_count": 19413
+      },
+      {
+        "id": 558449,
+        "title": "Gladiator II",
+        "release_date": "2024-11-13",
+        "poster_path": "/2cxhvwyEwRlysAmRH4iodkvo0z5.jpg",
+        "vote_average": 6.767,
+        "vote_count": 2934
+      },
+      {
+        "id": 1359289,
+        "title": "Gladiator III",
+        "release_date": "",
+        "poster_path": null,
+        "vote_average": 0,
+        "vote_count": 0
+      }
+    ]
+  },
+  "1241984": {
+    "id": 1241984,
+    "name": "Moana Collection",
+    "overview": "The Disney original collection follows in ancient Polynesia and tells the story of Moana, the strong-willed daughter of a chief of a coastal village, who is chosen by the ocean itself to reunite a mystical relic with the goddess Te Fiti.",
+    "poster_path": "/wuU5y8Jd5GWVcf71uv1nyoNkgwR.jpg",
+    "backdrop_path": "/7rgHEYy23gAmxTyxivGXBTBikA1.jpg",
+    "parts": [
+      {
+        "id": 277834,
+        "title": "Moana",
+        "release_date": "2016-10-13",
+        "poster_path": "/9tzN8sPbyod2dsa0lwuvrwBDWra.jpg",
+        "vote_average": 7.566,
+        "vote_count": 12902
+      },
+      {
+        "id": 1241982,
+        "title": "Moana 2",
+        "release_date": "2024-11-21",
+        "poster_path": "/aLVkiINlIeCkcZIzb7XHzPYgO6L.jpg",
+        "vote_average": 7.149,
+        "vote_count": 1761
+      }
+    ]
+  },
+  "1421776": {
+    "id": 1421776,
+    "name": "Panda Plan Collection",
+    "overview": "Jackie Chan and Panda Hu Hu's adventure stories.",
+    "poster_path": "/rO62kjEpxKoi22euZlM11o2hRJe.jpg",
+    "backdrop_path": null,
+    "parts": [
+      {
+        "id": 1160956,
+        "title": "Panda Plan",
+        "release_date": "2024-10-01",
+        "poster_path": "/xVS9XiO9upp2SnWx6KpBYb79hLR.jpg",
+        "vote_average": 7.1,
+        "vote_count": 146
+      },
+      {
+        "id": 1421552,
+        "title": "Panda Plan 2",
+        "release_date": "2025-10-01",
+        "poster_path": "/seERuLEpknbgD3L97LaMecxU4rX.jpg",
+        "vote_average": 0,
+        "vote_count": 0
+      }
+    ]
+  }
+}

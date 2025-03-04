@@ -11,6 +11,7 @@ import ActorCard from "../../components/movies/ActorCard";
 import { fetchMovieDetails, fetchCollectionDetails } from "../../services/tmdb";
 import { formatDate, formatCurrency } from "../../utils/helpers";
 import Ratings from './Ratings';
+import useActorCardGrid from '../../hooks/useActorCardGrid';
 
 /**
  * MovieDetails Component
@@ -25,14 +26,23 @@ const MovieDetails = () => {
     // Hardcoded Movie ID for testing (Replace with useParams() for dynamic IDs)
     const movieId = "671";
 
+    const INITIAL_ACTOR_COUNT = 9;
+
     // Primary state variables for movie data
     const [movie, setMovie] = useState(null);
     const [cast, setCast] = useState([]);
     const [director, setDirector] = useState(null);
     const [trailer, setTrailer] = useState(null);
     const [collection, setCollection] = useState(null);
-    const [visibleActors, setVisibleActors] = useState(10);
+    const [visibleActors, setVisibleActors] = useState(INITIAL_ACTOR_COUNT);
     const [isDescriptionExpanded, setIsDescriptionExpanded] = useState(false);
+
+    // Get optimal card count based on grid layout
+    const { optimalCardCount, cardsPerRow } = useActorCardGrid({
+        desiredTotal: visibleActors,
+        cardMinWidth: 300,
+        containerSelector: '.cast-grid-container'
+    });
 
     // ========================================
     // Data Fetching
@@ -101,7 +111,7 @@ const MovieDetails = () => {
 
     // Function to Load More Actors
     const loadMoreActors = () => {
-        setVisibleActors((prev) => Math.min(prev + 10, cast.length));
+        setVisibleActors(prev => Math.min(prev + INITIAL_ACTOR_COUNT, cast.length));
     };
 
     // Function to format runtime to hours and minutes
@@ -162,32 +172,42 @@ const MovieDetails = () => {
                                     <h2 className="title is-5">Movie Info</h2>
 
                                     <div className="movie-info-item">
-                                        <span className="movie-info-label">Runtime:</span>
-                                        {formatRuntime(movie.runtime)}
+                                        <div className="movie-info-row">
+                                            <span className="movie-info-label">Runtime:</span>
+                                            {formatRuntime(movie.runtime)}
+                                        </div>
                                     </div>
 
                                     <div className="movie-info-item">
-                                        <span className="movie-info-label">Genre:</span>
-                                        {movie.genres.map(genre => genre.name).join(", ")}
+                                        <div className="movie-info-row">
+                                            <span className="movie-info-label">Genre:</span>
+                                            {movie.genres.map(genre => genre.name).join(", ")}
+                                        </div>
                                     </div>
 
                                     {director && (
                                         <div className="movie-info-item">
-                                            <span className="movie-info-label">Director:</span>
-                                            <Link to={`/person/${director.id}`} className="movie-info-link">
-                                                {director.name}
-                                            </Link>
+                                            <div className="movie-info-row">
+                                                <span className="movie-info-label">Director:</span>
+                                                <Link to={`/person/${director.id}`} className="movie-info-link">
+                                                    {director.name}
+                                                </Link>
+                                            </div>
                                         </div>
                                     )}
 
                                     <div className="movie-info-item">
-                                        <span className="movie-info-label">Budget:</span>
-                                        {formatCurrency(movie.budget)}
+                                        <div className="movie-info-row">
+                                            <span className="movie-info-label">Budget:</span>
+                                            {formatCurrency(movie.budget)}
+                                        </div>
                                     </div>
 
                                     <div className="movie-info-item">
-                                        <span className="movie-info-label">Revenue:</span>
-                                        {formatCurrency(movie.revenue)}
+                                        <div className="movie-info-row">
+                                            <span className="movie-info-label">Revenue:</span>
+                                            {formatCurrency(movie.revenue)}
+                                        </div>
                                     </div>
 
                                     <div className="movie-info-item">
@@ -271,13 +291,15 @@ const MovieDetails = () => {
                                 </span>
                             </h1>
 
-                            {/* Actor Cards Grid - MODIFIED FOR CONSISTENT SIZING */}
-                            <div className="columns is-multiline is-variable is-3">
-                                {cast.slice(0, visibleActors).map((actor) => (
-                                    <div key={actor.id} className="column is-one-third-desktop is-half-tablet">
-                                        <ActorCard actor={actor} movieReleaseDate={movie.release_date} currentMovieId={movie.id} />
-                                    </div>
-                                ))}
+                            {/* Actor Cards Grid */}
+                            <div className="cast-grid-container">
+                                <div className="columns is-multiline is-variable is-3">
+                                    {cast.slice(0, visibleActors).map((actor) => (
+                                        <div key={actor.id} className="column is-one-third-desktop is-half-tablet">
+                                            <ActorCard actor={actor} movieReleaseDate={movie.release_date} currentMovieId={movie.id} />
+                                        </div>
+                                    ))}
+                                </div>
                             </div>
 
                             {/* Load More Actors Button */}
