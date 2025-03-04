@@ -153,7 +153,8 @@ export const fetchUpcomingMovies = async () => {
 };
 
 export const searchMovies = async (query) => {
-	return fetchFromAPI(`/search/movie`, `&query=${encodeURIComponent(query)}`);
+	const response = await fetchFromAPI(`/search/movie`, `&query=${encodeURIComponent(query)}`);
+	return response?.results || [];
 };
 
 export const searchTvShows = async (query) => {

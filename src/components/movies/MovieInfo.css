@@ -1,0 +1,98 @@
+.movie-info-section {
+    padding: 1rem;
+    background-color: rgba(0, 0, 0, 0.2);
+    border-radius: 8px;
+    margin-top: 1rem;
+}
+
+.movie-info-section .title.is-5 {
+    color: #FFFFFF;
+    margin-bottom: 1rem;
+}
+
+.movie-info-item {
+    margin-bottom: 0.75rem;
+}
+
+.movie-info-row {
+    display: flex;
+    align-items: baseline;
+}
+
+.movie-info-label {
+    color: #FFFFFF;
+    font-weight: 600;
+    min-width: 85px;
+    margin-right: 0.25rem;
+}
+
+.movie-info-description {
+    color: #FFFFFF;
+    margin-top: 0.5rem;
+    line-height: 1.5;
+    max-height: 4.5em;
+    overflow: hidden;
+    transition: max-height 0.3s ease;
+}
+
+.movie-info-description.expanded {
+    max-height: none;
+}
+
+.description-toggle {
+    color: rgb(72, 95, 199);
+    cursor: pointer;
+    display: block;
+    margin-top: 0.5rem;
+    font-size: 0.9rem;
+}
+
+.description-toggle:hover {
+    text-decoration: underline;
+}
+
+.trailer-button {
+    display: inline-block;
+    padding: 0.5rem 1.5rem;
+    background-color: rgb(72, 95, 199);
+    color: #FFFFFF;
+    border-radius: 4px;
+    text-decoration: none;
+    margin-top: 1rem;
+    transition: background-color 0.2s ease;
+}
+
+.trailer-button:hover {
+    background-color: rgb(82, 105, 209);
+    color: #FFFFFF;
+}
+
+/* Collection Movies List */
+.collection-section {
+    margin-top: 1.5rem;
+}
+
+.collection-movies-list {
+    list-style: none;
+    padding: 0;
+}
+
+.collection-movie-item {
+    margin-bottom: 0.5rem;
+}
+
+.collection-movie-link {
+    color: #FFFFFF;
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+}
+
+.collection-movie-link.current {
+    color: rgb(72, 95, 199);
+    font-weight: 600;
+}
+
+.arrow-icon {
+    margin-right: 0.5rem;
+} 

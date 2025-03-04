@@ -126,22 +126,14 @@
   }
   
   .actorName {
-    font-size: 1.2rem;
-    font-weight: bold;
-    margin-bottom: 5px;
-    color: #ffffff;
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
+    font-size: 1.1rem;
+    font-weight: 600;
+    margin-bottom: 0.25rem;
+    letter-spacing: 0.02em;
   }
   
   .nameText {
-    display: inline-block;
-    max-width: calc(100% - 60px);
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    vertical-align: bottom;
+    color: #FFFFFF;
   }
   
   .ageDisplay {
@@ -176,9 +168,7 @@
   }
   
   .notableWorksSection {
-    margin-top: auto;
-    padding-top: 10px;
-    border-top: 1px solid rgba(220, 220, 220, 0.2);
+    margin-top: 1rem;
   }
   
   .notableWorksTitle {
@@ -195,21 +185,32 @@
   }
   
   .notableWorkItem {
-    font-size: 0.85rem;
-    margin-bottom: 3px;
+    margin-bottom: 0.5rem;
+  }
+  
+  .notableWorkLink {
+    color: #FFFFFF;
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    gap: 0.25rem;
+  }
+  
+  .notableWorkLink.collection {
+    font-weight: 700;
+  }
+  
+  .title-text {
+    flex: 1;
+    min-width: 0;
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
   }
   
-  .notableWorkLink {
-    color: #dcdcdc;
-    text-decoration: none;
-    transition: color 0.2s ease-in-out;
-    display: block;
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
+  .year-text {
+    color: rgba(255, 255, 255, 0.7);
+    flex-shrink: 0;
   }
   
   /* Hover effects */

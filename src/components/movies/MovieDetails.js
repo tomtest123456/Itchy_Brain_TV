@@ -5,13 +5,14 @@
 // ========================================
 
 import React, { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import Navbar from "../../components/common/Navbar";
 import ActorCard from "../../components/movies/ActorCard";
 import { fetchMovieDetails, fetchCollectionDetails } from "../../services/tmdb";
 import { formatDate, formatCurrency } from "../../utils/helpers";
 import Ratings from './Ratings';
 import useActorCardGrid from '../../hooks/useActorCardGrid';
+import './MovieInfo.css';
 
 /**
  * MovieDetails Component
@@ -23,8 +24,8 @@ const MovieDetails = () => {
     // State Management
     // ========================================
 
-    // Hardcoded Movie ID for testing (Replace with useParams() for dynamic IDs)
-    const movieId = "671";
+    // Get movie ID from URL parameters
+    const { id } = useParams();
 
     // Primary state variables for movie data
     const [movie, setMovie] = useState(null);
@@ -80,7 +81,7 @@ const MovieDetails = () => {
     useEffect(() => {
         const loadMovieData = async () => {
             try {
-                const movieData = await fetchMovieDetails(movieId);
+                const movieData = await fetchMovieDetails(id);
                 if (!movieData) return;
 
                 setMovie(movieData);
@@ -116,8 +117,10 @@ const MovieDetails = () => {
             }
         };
 
-        loadMovieData();
-    }, []); // Removed movieId from dependencies
+        if (id) {
+            loadMovieData();
+        }
+    }, [id]); // Dependency on id
 
     // ========================================
     // Loading State Handler
@@ -210,7 +213,7 @@ const MovieDetails = () => {
                                     <div className="movie-info-item">
                                         <div className="movie-info-row">
                                             <span className="movie-info-label">Genre:</span>
-                                            {movie.genres.map(genre => genre.name).join(", ")}
+                                            {movie.genres.slice(0, 3).map(genre => genre.name).join(", ")}
                                         </div>
                                     </div>
 
@@ -273,36 +276,19 @@ const MovieDetails = () => {
                                         <ul className="collection-movies-list">
                                             {collection.parts
                                                 .sort((a, b) => new Date(a.release_date) - new Date(b.release_date))
-                                                .map(part => {
-                                                    // Find common prefix in collection titles
-                                                    const titles = collection.parts.map(p => p.title);
-                                                    const commonPrefix = titles.reduce((prefix, title) => {
-                                                        while (!title.startsWith(prefix)) {
-                                                            prefix = prefix.slice(0, -1);
-                                                        }
-                                                        return prefix;
-                                                    }, titles[0]);
-
-                                                    // Remove common prefix and trim
-                                                    let displayTitle = part.title;
-                                                    if (commonPrefix && titles.length > 1) {
-                                                        displayTitle = part.title.slice(commonPrefix.length).trim();
-                                                    }
-
-                                                    return (
-                                                        <li key={part.id} className="collection-movie-item">
-                                                            <Link
-                                                                to={`/movie/${part.id}`}
-                                                                className={`collection-movie-link ${part.id === parseInt(movieId) ? 'current' : ''}`}
-                                                            >
-                                                                {part.id === parseInt(movieId) && (
-                                                                    <span className="arrow-icon">→ </span>
-                                                                )}
-                                                                {displayTitle} {'('}{formatDate(part.release_date, "YY")}{')'}
-                                                            </Link>
-                                                        </li>
-                                                    );
-                                                })}
+                                                .map(part => (
+                                                    <li key={part.id} className="collection-movie-item">
+                                                        <Link
+                                                            to={`/movie/${part.id}`}
+                                                            className={`collection-movie-link ${part.id === parseInt(id) ? 'current' : ''}`}
+                                                        >
+                                                            {part.id === parseInt(id) && (
+                                                                <span className="arrow-icon">→ </span>
+                                                            )}
+                                                            {part.title} {'('}{formatDate(part.release_date, "YY")}{')'}
+                                                        </Link>
+                                                    </li>
+                                                ))}
                                         </ul>
                                     </div>
                                 )}
