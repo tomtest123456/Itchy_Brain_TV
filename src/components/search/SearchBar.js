@@ -289,12 +289,6 @@ const SearchBar = ({ isLarge = false }) => {
 										</span>
 									)}
 								</div>
-								{movie.overview && (
-									<p className="search-result-overview">
-										{movie.overview.slice(0, 100)}
-										{movie.overview.length > 100 ? '...' : ''}
-									</p>
-								)}
 							</div>
 						</div>
 					))}

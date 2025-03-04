@@ -63,6 +63,7 @@
 /* Individual search result */
 .search-result {
     display: flex;
+    align-items: center;
     padding: 0.75rem 1rem;
     border-bottom: 1px solid rgba(255, 255, 255, 0.1);
     cursor: pointer;
@@ -89,31 +90,30 @@
 
 /* Movie info in search results */
 .search-result-info {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
     flex: 1;
-    min-width: 0;
 }
 
 .search-result-title {
     font-weight: 600;
-    margin-bottom: 0.25rem;
     color: #FFFFFF;
+    line-height: 1.2;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
 }
 
 .search-result-year {
     color: rgba(255, 255, 255, 0.7);
-    margin-left: 0.5rem;
+    margin-left: 0.25rem;
     font-weight: normal;
+    display: inline;
 }
 
+/* Remove the overview section */
 .search-result-overview {
-    font-size: 0.875rem;
-    color: rgba(255, 255, 255, 0.7);
-    margin: 0;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    display: -webkit-box;
-    -webkit-line-clamp: 2;
-    -webkit-box-orient: vertical;
+    display: none;
 }
 
 /* Error message */

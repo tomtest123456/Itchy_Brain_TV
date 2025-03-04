@@ -213,6 +213,10 @@
     flex-shrink: 0;
   }
   
+  .notableWorkLink.collection .title-text {
+    font-weight: 700;
+  }
+  
   /* Hover effects */
   .profileImage:hover .imageNavButtonLeft,
   .profileImage:hover .imageNavButtonRight {

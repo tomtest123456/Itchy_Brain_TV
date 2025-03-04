@@ -95,4 +95,12 @@
 
 .arrow-icon {
     margin-right: 0.5rem;
+}
+
+.title.is-3 {
+    letter-spacing: 0.05em;
+}
+
+.title.is-3 span {
+    letter-spacing: normal;  /* Reset letter-spacing for the year */
 } 
