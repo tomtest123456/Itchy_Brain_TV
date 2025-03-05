@@ -44,9 +44,18 @@ export const formatDate = (dateString, format = "mmm YYYY") => {
 // Function to calculate age based on a reference date
 export const calculateAge = (birthdate, referenceDate) => {
 	if (!birthdate) return "Unknown";
-	const birthYear = parseInt(birthdate.split("-")[0], 10);
-	const referenceYear = parseInt(referenceDate.split("-")[0], 10);
-	return referenceYear - birthYear;
+
+	const birthDate = new Date(birthdate);
+	const referenceDateObj = referenceDate ? new Date(referenceDate) : new Date();
+
+	let age = referenceDateObj.getFullYear() - birthDate.getFullYear();
+	const monthDiff = referenceDateObj.getMonth() - birthDate.getMonth();
+
+	if (monthDiff < 0 || (monthDiff === 0 && referenceDateObj.getDate() < birthDate.getDate())) {
+		age--;
+	}
+
+	return age;
 };
 
 // Function to format currency to be "$120m USD"

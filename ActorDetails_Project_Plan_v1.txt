@@ -1,0 +1,131 @@
+Phase 1: Initial Setup and Core Components
+1. ActorDetails.js (Main Container)
+Requirements:
+Implement responsive Bulma grid layout (columns structure)
+Fetch and manage primary actor data using TMDB API
+Handle loading and error states
+Layout structure:
+Navbar at top
+Two-column layout below (1/4 and 3/4 width)
+Mobile-responsive design
+Key Features:
+Actor name and age in header
+Proper state management for all child components
+Loading skeleton during data fetch
+Error boundary implementation
+2. ActorInfo.js (Left Sidebar)
+Requirements:
+Profile image gallery with navigation arrows
+Image preloading system
+Biographical information display
+Responsive design for mobile view
+Key Features:
+Profile image navigation (like ActorCard.js)
+Expandable biography text
+Personal information display:
+Date of birth (with age calculation)
+Place of birth (with flag)
+Known for (primary profession)
+Social media links
+Biography (collapsible)
+Phase 2: Notable Works Grid Implementation
+3. useActorNotableWorkGrid.js (Custom Hook)
+Requirements:
+Adapt useActorCardGrid.js pattern
+Calculate optimal grid layout
+Handle responsive breakpoints
+Manage grid state and updates
+Key Features:
+Dynamic card count calculation
+Responsive grid adjustments
+Efficient re-render management
+Screen size breakpoint handling
+4. ActorNotableWorkCard.js (Movie/TV Cards)
+Requirements:
+Display movie/TV show information
+Fetch and display ratings from OMDB API
+Calculate actor's age during filming
+Handle different media types (movie/TV)
+Key Features:
+Movie/Show title and year
+Character name
+Actor's age during filming
+Rating display (IMDB, Rotten Tomatoes, Metacritic)
+Hover effects and transitions
+Error handling for missing data
+Phase 3: API Integration and Data Management
+5. TMDB Service Updates (tmdb.js)
+Requirements:
+Add actor-specific API endpoints
+Implement data transformation functions
+Setup caching system
+Handle batch loading
+Key Features:
+Fetch actor details
+Fetch actor images
+Fetch actor credits
+Transform and organize response data
+Cache frequently accessed data
+6. OMDB Service Integration (omdb.js)
+Requirements:
+Integrate with existing rating system
+Implement batch loading for multiple titles
+Cache rating data
+Handle API errors
+Phase 4: Styling and UI Enhancement
+7. CSS Implementation
+Requirements:
+ActorDetails.css
+Main layout styling
+Responsive design rules
+Grid system customization
+ActorInfo.css
+Profile image gallery styling
+Information layout
+Responsive adaptations
+ActorNotableWorkCard.css
+Card styling
+Rating display
+Hover effects
+Transitions
+Key Features:
+Consistent theme with existing pages
+Responsive breakpoints
+Animation and transitions
+Loading state styling
+Phase 5: Optimization and Enhancement
+8. Performance Optimizations
+Requirements:
+Implement lazy loading
+Setup image optimization
+Configure proper caching
+Add error boundaries
+Key Features:
+Progressive image loading
+Data caching system
+Batch API requests
+Performance monitoring
+9. Additional Features
+Requirements:
+Implement filtering system for notable works
+Add sorting options
+Setup infinite scroll
+Add keyboard navigation
+Testing and Quality Assurance
+10. Testing Requirements
+Component unit tests
+Integration tests
+Responsive design testing
+Performance testing
+Accessibility testing
+Implementation Notes:
+Use existing patterns from MovieDetails.js and ActorCard.js
+Follow Bulma class naming conventions
+Implement proper error handling throughout
+Ensure mobile-first responsive design
+Maintain consistent loading states
+Follow existing code style and patterns
+Implement proper TypeScript/PropTypes
+Add comprehensive error boundaries
+Include proper documentation
+Ensure accessibility compliance

@@ -4,6 +4,10 @@ import { getMovieCollection, organizeCreditsWithCollections } from './localColle
 const API_KEY = process.env.REACT_APP_TMDB_API_KEY;
 const BASE_URL = "https://api.themoviedb.org/3";
 
+// Debug API key
+console.log("TMDB API Key present:", !!API_KEY);
+console.log("TMDB API Key length:", API_KEY ? API_KEY.length : 0);
+
 // Ensure API key exists
 if (!API_KEY) {
 	console.error("TMDB API Key is missing! Make sure REACT_APP_TMDB_API_KEY is set.");
@@ -12,15 +16,29 @@ if (!API_KEY) {
 // Helper function to make API requests
 const fetchFromAPI = async (endpoint, params = "") => {
 	try {
+		if (!API_KEY) {
+			throw new Error("TMDB API Key is missing");
+		}
+
 		const url = `${BASE_URL}${endpoint}?api_key=${API_KEY}${params}`;
+		console.log("Fetching from URL:", url);
+
 		const response = await fetch(url);
+		console.log("Response status:", response.status);
+		console.log("Response headers:", Object.fromEntries(response.headers.entries()));
+
 		if (!response.ok) {
+			const errorText = await response.text();
+			console.error("API Error Response:", errorText);
 			throw new Error(`API Error: ${response.status} - ${response.statusText}`);
 		}
-		return await response.json();
+
+		const data = await response.json();
+		console.log("API Response data:", data);
+		return data;
 	} catch (error) {
 		console.error(`TMDB API Error on ${endpoint}:`, error);
-		return null;
+		throw error; // Re-throw the error to handle it in the component
 	}
 };
 
