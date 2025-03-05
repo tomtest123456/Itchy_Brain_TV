@@ -77,10 +77,20 @@ export const organizeCreditsWithCollections = (movieCredits) => {
         if (collectionInfo) {
             // Add to collection group
             if (!collectionMovies.has(collectionInfo.collectionId)) {
+                // Get full collection data
+                const collectionData = collectionsCache.get(collectionInfo.collectionId.toString());
                 collectionMovies.set(collectionInfo.collectionId, {
+                    id: collectionInfo.collectionId,
                     name: collectionInfo.collectionName,
                     totalMovies: collectionInfo.movieCount,
-                    movies: []
+                    movies: [],
+                    // Add collection metadata
+                    overview: collectionData?.overview || '',
+                    poster_path: collectionData?.poster_path || '',
+                    backdrop_path: collectionData?.backdrop_path || '',
+                    popularity: collectionData?.popularity || 0,
+                    vote_average: collectionData?.vote_average || 0,
+                    vote_count: collectionData?.vote_count || 0
                 });
             }
             collectionMovies.get(collectionInfo.collectionId).movies.push(credit);
@@ -96,6 +106,7 @@ export const organizeCreditsWithCollections = (movieCredits) => {
         .map(collection => ({
             ...collection,
             movieCount: collection.movies.length,
+            media_type: 'collection',
             movies: collection.movies.sort((a, b) => a.release_date?.localeCompare(b.release_date || ''))
         }));
 
