@@ -131,44 +131,85 @@ const isSignificantRole = (credit) => {
 };
 
 /**
+ * Scoring System for Notable Works
+ * -------------------------------
+ * The scoring system uses different weights for different media types:
+ * 1. Collections (Highest Priority):
+ *    - Base popularity score (x5)
+ *    - Movie count boost (logarithmic scale to prevent large collections dominating)
+ *    - Average movie popularity in collection
+ *    - Vote score (considers both average and count)
+ *    - Role significance boost
+ *    - Final score multiplied by 3 to prioritize collections
+ * 
+ * 2. Movies (Medium Priority):
+ *    - Base popularity score (x2)
+ *    - Role significance boost (higher for leading roles)
+ *    - Vote score
+ *    - Final score multiplied by 2
+ * 
+ * 3. TV Shows (Lowest Priority):
+ *    - Base popularity score
+ *    - Episode count boost
+ *    - Role significance
+ *    - Vote score
+ *    - No additional multiplier
+ */
+
+/**
  * Calculates overall score for a work to determine its notability
- * @param {Object} credit - The credit object containing all work information
+ * @param {Object} work - The work object containing all information
  * @returns {number} - Final score determining work's ranking in notable works list
  */
 const calculateOverallScore = (work) => {
+    let score = 0;
+    const basePopularity = work.popularity || 0;
+    const voteScore = (work.vote_average || 0) * Math.log10((work.vote_count || 0) + 1);
+
     if (work.media_type === 'collection') {
-        // Collections get a comprehensive scoring based on multiple factors
-        const baseScore = work.popularity || 0;
+        // Collection scoring (highest priority)
+        score = basePopularity * 5; // Higher base popularity weight
 
         // Movie count boost (logarithmic to prevent large collections from dominating)
-        const movieCountBoost = Math.log10(work.movies?.length || 1) * 100;
+        const movieCountBoost = Math.log10(work.movies?.length || 1) * 200;
 
-        // Popularity boost (average of collection and individual movies)
-        const avgMoviePopularity = work.movies.reduce((sum, m) => sum + (m.popularity || 0), 0) / work.movies.length;
-        const popularityBoost = (work.popularity + avgMoviePopularity) * 3;
+        // Average movie popularity and vote score
+        const avgMoviePopularity = work.movies?.reduce((sum, m) => sum + (m.popularity || 0), 0) / (work.movies?.length || 1);
+        const avgMovieVoteScore = work.movies?.reduce((sum, m) => {
+            return sum + ((m.vote_average || 0) * Math.log10((m.vote_count || 0) + 1));
+        }, 0) / (work.movies?.length || 1);
 
-        // Vote score (considers both average and count)
-        const voteScore = (work.vote_average * Math.log10(work.vote_count + 1)) * 10;
+        // Role significance boost
+        const roleBoost = work.movies?.reduce((boost, m) => {
+            return boost + (m.order < 3 ? 100 : m.order < 5 ? 50 : 20);
+        }, 0) || 0;
 
-        // Role significance boost (lead roles get higher scores)
-        const roleBoost = work.movies.reduce((boost, m) => {
-            return boost + (m.order < 3 ? 50 : m.order < 5 ? 30 : 10);
-        }, 0);
+        score += movieCountBoost + (avgMoviePopularity * 2) + (avgMovieVoteScore * 50) + roleBoost;
+        score *= 3; // Final collection multiplier
 
-        return baseScore + movieCountBoost + popularityBoost + voteScore + roleBoost;
-    }
+    } else if (work.media_type === 'movie') {
+        // Movie scoring (medium priority)
+        score = basePopularity * 2;
 
-    // For non-collection works
-    let score = work.popularity || 0;
+        // Role significance boost
+        const roleBoost = work.order < 3 ? 200 : work.order < 5 ? 100 : 50;
 
-    // Role significance
-    if (work.order !== undefined) {
-        score *= (work.order < 3 ? 2 : work.order < 5 ? 1.5 : 1);
-    }
+        // Vote score has more weight for individual movies
+        score += roleBoost + (voteScore * 30);
+        score *= 2; // Final movie multiplier
 
-    // Vote score
-    if (work.vote_average && work.vote_count) {
-        score += (work.vote_average * Math.log10(work.vote_count + 1)) * 5;
+    } else if (work.media_type === 'tv') {
+        // TV Show scoring (lowest priority)
+        score = basePopularity;
+
+        // Episode count boost (more episodes = more significant role)
+        const episodeBoost = Math.log10((work.episode_count || 1) + 1) * 50;
+
+        // Role significance is weighted less for TV shows
+        const roleBoost = work.order < 3 ? 100 : work.order < 5 ? 50 : 25;
+
+        score += episodeBoost + roleBoost + (voteScore * 20);
+        // No additional multiplier for TV shows
     }
 
     return score;
