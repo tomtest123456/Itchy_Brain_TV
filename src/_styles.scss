@@ -1,10 +1,9 @@
-  // Import Sass Modules
+// Import Sass Modules
 @use "sass:color";
 @use "bulma";
 
-
-  // Import Google Fonts: Inter (primary) & Oswald (secondary)
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&family=Oswald:wght@400;700&display=swap');
+// Import Google Fonts: Inter (primary) & Oswald (secondary)
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&family=Oswald:wght@400;700&family=Material+Icons&display=swap');
 
 // Define Colour Scheme
 $black     : #000000; // For Background

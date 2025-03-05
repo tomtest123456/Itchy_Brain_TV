@@ -1,4 +1,5 @@
 // src/services/tmdb.js
+import { getMovieCollection, organizeCreditsWithCollections } from './localCollections';
 
 const API_KEY = process.env.REACT_APP_TMDB_API_KEY;
 const BASE_URL = "https://api.themoviedb.org/3";
@@ -83,17 +84,10 @@ export const fetchPersonDetails = async (personId) => {
 	const details = await fetchFromAPI(`/person/${personId}`, "&append_to_response=movie_credits,tv_credits,images");
 
 	if (details?.movie_credits?.cast) {
-		// Fetch collection details for each movie
-		const moviesWithCollections = await Promise.all(
-			details.movie_credits.cast.map(async (movie) => {
-				const movieDetails = await fetchMovieDetails(movie.id);
-				return {
-					...movie,
-					belongs_to_collection: movieDetails?.belongs_to_collection || null
-				};
-			})
-		);
-		details.movie_credits.cast = moviesWithCollections;
+		// Organize movies into collections and individual movies
+		const organizedCredits = organizeCreditsWithCollections(details.movie_credits.cast);
+		details.movie_credits.collections = organizedCredits.collections;
+		details.movie_credits.cast = organizedCredits.individualMovies;
 	}
 
 	return details;
@@ -109,6 +103,26 @@ export const fetchPersonTvCredits = async (personId) => {
 
 export const fetchPersonImages = async (personId) => {
 	return fetchFromAPI(`/person/${personId}/images`);
+};
+
+// ################## BATCHED PERSON DETAILS ##################
+export const fetchBatchedPersonDetails = async (personIds) => {
+	const BATCH_SIZE = 20; // Adjust based on API rate limits
+	const batches = [];
+
+	for (let i = 0; i < personIds.length; i += BATCH_SIZE) {
+		const batchIds = personIds.slice(i, i + BATCH_SIZE);
+		const batchPromises = batchIds.map(id => fetchPersonDetails(id));
+		batches.push(Promise.all(batchPromises));
+	}
+
+	try {
+		const results = await Promise.all(batches);
+		return results.flat().filter(Boolean); // Flatten results and remove any null values
+	} catch (error) {
+		console.error('Error in batch fetching person details:', error);
+		return [];
+	}
 };
 
 // ################## DISCOVER & SEARCH ##################

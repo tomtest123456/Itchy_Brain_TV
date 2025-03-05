@@ -194,10 +194,31 @@
     display: flex;
     align-items: center;
     gap: 0.25rem;
+    padding: 2px 4px;
+    border-radius: 4px;
+    transition: background-color 0.2s ease;
+  }
+  
+  .notableWorkLink:hover {
+    background-color: rgba(255, 255, 255, 0.1);
   }
   
   .notableWorkLink.collection {
-    font-weight: 700;
+    font-weight: 600;
+    color: #4a9eff;
+    background-color: rgba(74, 158, 255, 0.1);
+  }
+  
+  .notableWorkLink.collection:hover {
+    background-color: rgba(74, 158, 255, 0.2);
+  }
+  
+  .notableWorkLink.movie {
+    color: #e6e6e6;
+  }
+  
+  .notableWorkLink.tv {
+    color: #b8e986;
   }
   
   .title-text {
@@ -209,12 +230,77 @@
   }
   
   .year-text {
-    color: rgba(255, 255, 255, 0.7);
+    color: rgba(255, 255, 255, 0.6);
     flex-shrink: 0;
+    font-size: 0.9em;
   }
   
-  .notableWorkLink.collection .title-text {
-    font-weight: 700;
+  .notableWorkLink.collection .year-text {
+    color: rgba(74, 158, 255, 0.8);
+  }
+  
+  /* Icons for different types */
+  .notableWorkLink::before {
+    font-family: "Material Icons";
+    font-size: 1.1em;
+    margin-right: 4px;
+  }
+  
+  .notableWorkLink.collection::before {
+    content: "movie";
+    color: #4a9eff;
+  }
+  
+  .notableWorkLink.movie::before {
+    content: "local_movies";
+    color: #e6e6e6;
+  }
+  
+  .notableWorkLink.tv::before {
+    content: "tv";
+    color: #b8e986;
+  }
+  
+  /* Filter buttons */
+  .notableWorksHeader {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 0.75rem;
+  }
+  
+  .notableWorksTitle {
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: #ffffff;
+    margin: 0;
+  }
+  
+  .filterButtons {
+    display: flex;
+    gap: 4px;
+  }
+  
+  .filterButton {
+    padding: 2px 8px;
+    font-size: 0.8rem;
+    background: transparent;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    color: rgba(255, 255, 255, 0.7);
+    border-radius: 4px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+  }
+  
+  .filterButton:hover {
+    border-color: rgba(255, 255, 255, 0.4);
+    color: rgba(255, 255, 255, 0.9);
+  }
+  
+  .filterButton.active {
+    background: rgba(74, 158, 255, 0.2);
+    border-color: #4a9eff;
+    color: #4a9eff;
   }
   
   /* Hover effects */
@@ -225,40 +311,6 @@
   
   .notableWorkLink:hover {
     color: #ffffff;
-  }
-  
-  .notableWorksHeader {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    margin-bottom: 0.5rem;
-  }
-  
-  .filterButtons {
-    display: flex;
-    gap: 2px;
-  }
-  
-  .filterButton {
-    padding: 2px 8px;
-    font-size: 0.8rem;
-    border: 1px solid #ddd;
-    background: #f5f5f5;
-    cursor: pointer;
-    height: 24px;
-    line-height: 1;
-    border-radius: 4px;
-    transition: all 0.2s ease;
-  }
-  
-  .filterButton:hover {
-    background: #e5e5e5;
-  }
-  
-  .filterButton.active {
-    background: #3273dc;
-    color: white;
-    border-color: #3273dc;
   }
   
   

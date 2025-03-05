@@ -1,0 +1,3009 @@
+{
+  "10": {
+    "id": 10,
+    "name": "Star Wars Collection",
+    "overview": "An epic space-opera theatrical film series, which depicts the adventures of various characters \"a long time ago in a galaxy far, far away….\"",
+    "poster_path": "/aSrMJYmQX8kpF26LijkCsYhBMvm.jpg",
+    "backdrop_path": "/zZDkgOmFMVYpGAkR9Tkxw0CRnxX.jpg",
+    "parts": [
+      {
+        "backdrop_path": "/2w4xG178RpB4MDAIfTkqAuSJzec.jpg",
+        "id": 11,
+        "title": "Star Wars",
+        "original_title": "Star Wars",
+        "overview": "Princess Leia is captured and held hostage by the evil Imperial forces in their effort to take over the galactic Empire. Venturesome Luke Skywalker and dashing captain Han Solo team together with the loveable robot duo R2-D2 and C-3PO to rescue the beautiful princess and restore peace and justice in the Empire.",
+        "poster_path": "/6FfCtAuVAW8XJjZ7eWeLibRLWTw.jpg",
+        "media_type": "movie",
+        "adult": false,
+        "original_language": "en",
+        "genre_ids": [
+          12,
+          28,
+          878
+        ],
+        "popularity": 99.899,
+        "release_date": "1977-05-25",
+        "video": false,
+        "vote_average": 8.203,
+        "vote_count": 20924
+      },
+      {
+        "backdrop_path": "/b37U5gN6itEjaFcmaKhUOqG2Mkt.jpg",
+        "id": 1891,
+        "title": "The Empire Strikes Back",
+        "original_title": "The Empire Strikes Back",
+        "overview": "The epic saga continues as Luke Skywalker, in hopes of defeating the evil Galactic Empire, learns the ways of the Jedi from aging master Yoda. But Darth Vader is more determined than ever to capture Luke. Meanwhile, rebel leader Princess Leia, cocky Han Solo, Chewbacca, and droids C-3PO and R2-D2 are thrown into various stages of capture, betrayal and despair.",
+        "poster_path": "/nNAeTmF4CtdSgMDplXTDPOpYzsX.jpg",
+        "media_type": "movie",
+        "adult": false,
+        "original_language": "en",
+        "genre_ids": [
+          12,
+          28,
+          878
+        ],
+        "popularity": 34.335,
+        "release_date": "1980-05-20",
+        "video": false,
+        "vote_average": 8.4,
+        "vote_count": 17217
+      },
+      {
+        "backdrop_path": "/iP2tEA2A77qhbhRfcFkiD6WFOqH.jpg",
+        "id": 1892,
+        "title": "Return of the Jedi",
+        "original_title": "Return of the Jedi",
+        "overview": "Luke Skywalker leads a mission to rescue his friend Han Solo from the clutches of Jabba the Hutt, while the Emperor seeks to destroy the Rebellion once and for all with a second dreaded Death Star.",
+        "poster_path": "/jQYlydvHm3kUix1f8prMucrplhm.jpg",
+        "media_type": "movie",
+        "adult": false,
+        "original_language": "en",
+        "genre_ids": [
+          12,
+          28,
+          878
+        ],
+        "popularity": 34.059,
+        "release_date": "1983-05-25",
+        "video": false,
+        "vote_average": 7.895,
+        "vote_count": 15895
+      },
+      {
+        "backdrop_path": "/5fu7fzy4NZTsL1Jap00UBIInAuB.jpg",
+        "id": 1893,
+        "title": "Star Wars: Episode I - The Phantom Menace",
+        "original_title": "Star Wars: Episode I - The Phantom Menace",
+        "overview": "Anakin Skywalker, a young slave strong with the Force, is discovered on Tatooine. Meanwhile, the evil Sith have returned, enacting their plot for revenge against the Jedi.",
+        "poster_path": "/6wkfovpn7Eq8dYNKaG5PY3q2oq6.jpg",
+        "media_type": "movie",
+        "adult": false,
+        "original_language": "en",
+        "genre_ids": [
+          12,
+          28,
+          878
+        ],
+        "popularity": 37.608,
+        "release_date": "1999-05-19",
+        "video": false,
+        "vote_average": 6.556,
+        "vote_count": 14822
+      },
+      {
+        "backdrop_path": "/1uQSh7P3k0oRbRf0vH8GVt4thpP.jpg",
+        "id": 1894,
+        "title": "Star Wars: Episode II - Attack of the Clones",
+        "original_title": "Star Wars: Episode II - Attack of the Clones",
+        "overview": "Following an assassination attempt on Senator Padmé Amidala, Jedi Knights Anakin Skywalker and Obi-Wan Kenobi investigate a mysterious plot that could change the galaxy forever.",
+        "poster_path": "/oZNPzxqM2s5DyVWab09NTQScDQt.jpg",
+        "media_type": "movie",
+        "adult": false,
+        "original_language": "en",
+        "genre_ids": [
+          12,
+          28,
+          878
+        ],
+        "popularity": 34.431,
+        "release_date": "2002-05-15",
+        "video": false,
+        "vote_average": 6.6,
+        "vote_count": 13421
+      },
+      {
+        "backdrop_path": "/hPO0A0BGg5M7Q8I7qayaDyC5tb5.jpg",
+        "id": 1895,
+        "title": "Star Wars: Episode III - Revenge of the Sith",
+        "original_title": "Star Wars: Episode III - Revenge of the Sith",
+        "overview": "The evil Darth Sidious enacts his final plan for unlimited power -- and the heroic Jedi Anakin Skywalker must choose a side.",
+        "poster_path": "/xfSAoBEm9MNBjmlNcDYLvLSMlnq.jpg",
+        "media_type": "movie",
+        "adult": false,
+        "original_language": "en",
+        "genre_ids": [
+          12,
+          28,
+          878
+        ],
+        "popularity": 47.708,
+        "release_date": "2005-05-17",
+        "video": false,
+        "vote_average": 7.436,
+        "vote_count": 13924
+      },
+      {
+        "backdrop_path": "/k6EOrckWFuz7I4z4wiRwz8zsj4H.jpg",
+        "id": 140607,
+        "title": "Star Wars: The Force Awakens",
+        "original_title": "Star Wars: The Force Awakens",
+        "overview": "Thirty years after defeating the Galactic Empire, Han Solo and his allies face a new threat from the evil Kylo Ren and his army of Stormtroopers.",
+        "poster_path": "/wqnLdwVXoBjKibFRR5U3y0aDUhs.jpg",
+        "media_type": "movie",
+        "adult": false,
+        "original_language": "en",
+        "genre_ids": [
+          12,
+          28,
+          878
+        ],
+        "popularity": 67.957,
+        "release_date": "2015-12-15",
+        "video": false,
+        "vote_average": 7.264,
+        "vote_count": 19574
+      },
+      {
+        "backdrop_path": "/auJKGst3vXpJozHZh4nMFs0xWIU.jpg",
+        "id": 181812,
+        "title": "Star Wars: The Rise of Skywalker",
+        "original_title": "Star Wars: The Rise of Skywalker",
+        "overview": "The surviving Resistance faces the First Order once again as the journey of Rey, Finn and Poe Dameron continues. With the power and knowledge of generations behind them, the final battle begins.",
+        "poster_path": "/db32LaOibwEliAmSL2jjDF6oDdj.jpg",
+        "media_type": "movie",
+        "adult": false,
+        "original_language": "en",
+        "genre_ids": [
+          12,
+          28,
+          878
+        ],
+        "popularity": 62.347,
+        "release_date": "2019-12-18",
+        "video": false,
+        "vote_average": 6.3,
+        "vote_count": 10060
+      },
+      {
+        "backdrop_path": "/5Iw7zQTHVRBOYpA0V6z0yypOPZh.jpg",
+        "id": 181808,
+        "title": "Star Wars: The Last Jedi",
+        "original_title": "Star Wars: The Last Jedi",
+        "overview": "Rey develops her newly discovered abilities with the guidance of Luke Skywalker, who is unsettled by the strength of her powers. Meanwhile, the Resistance prepares to do battle with the First Order.",
+        "poster_path": "/ySaaKHOLAQU5HoZqWmzDIj1VvZ1.jpg",
+        "media_type": "movie",
+        "adult": false,
+        "original_language": "en",
+        "genre_ids": [
+          12,
+          28,
+          878
+        ],
+        "popularity": 64.751,
+        "release_date": "2017-12-13",
+        "video": false,
+        "vote_average": 6.783,
+        "vote_count": 15457
+      }
+    ]
+  },
+  "84": {
+    "id": 84,
+    "name": "Indiana Jones Collection",
+    "overview": "Adventure film series created by George Lucas and Philip Kaufman starring Harrison Ford as archaeologist Dr. Henry Walton \"Indiana\" Jones, Jr., and directed by Steven Spielberg and James Mangold. Spanning the globe, on death-defying archeological endeavors, if adventure has a name... it must be Indiana Jones.",
+    "poster_path": "/lpxDrACKJhbbGOlwVMNz5YCj6SI.jpg",
+    "backdrop_path": "/6kh59mZizZsttZPR0HAdXk6Ve2n.jpg",
+    "parts": [
+      {
+        "backdrop_path": "/ueDw7djPgKPZfph0vC43aD2EMyF.jpg",
+        "id": 85,
+        "title": "Raiders of the Lost Ark",
+        "original_title": "Raiders of the Lost Ark",
+        "overview": "When Dr. Indiana Jones – the tweed-suited professor who just happens to be a celebrated archaeologist – is hired by the government to locate the legendary Ark of the Covenant, he finds himself up against the entire Nazi regime.",
+        "poster_path": "/ceG9VzoRAVGwivFU403Wc3AHRys.jpg",
+        "media_type": "movie",
+        "adult": false,
+        "original_language": "en",
+        "genre_ids": [
+          12,
+          28
+        ],
+        "popularity": 218.86,
+        "release_date": "1981-06-12",
+        "video": false,
+        "vote_average": 7.921,
+        "vote_count": 12708
+      },
+      {
+        "backdrop_path": "/f133nWlU6yUkZqqwcCXCbTEJWHr.jpg",
+        "id": 87,
+        "title": "Indiana Jones and the Temple of Doom",
+        "original_title": "Indiana Jones and the Temple of Doom",
+        "overview": "After arriving in India, Indiana Jones is asked by a desperate village to find a mystical stone. He agrees – and stumbles upon a secret cult plotting a terrible plan in the catacombs of an ancient palace.",
+        "poster_path": "/om61eim8XwLfh6QXzh2r0Q4blBz.jpg",
+        "media_type": "movie",
+        "adult": false,
+        "original_language": "en",
+        "genre_ids": [
+          12,
+          28
+        ],
+        "popularity": 50.053,
+        "release_date": "1984-05-23",
+        "video": false,
+        "vote_average": 7.296,
+        "vote_count": 9411
+      },
+      {
+        "backdrop_path": "/2Y7nbXrDtHwAfcTX7KBN0z40OAy.jpg",
+        "id": 89,
+        "title": "Indiana Jones and the Last Crusade",
+        "original_title": "Indiana Jones and the Last Crusade",
+        "overview": "In 1938, an art collector appeals to eminent archaeologist Dr. Indiana Jones to embark on a search for the Holy Grail. Indy learns that a medieval historian has vanished while searching for it, and the missing man is his own father, Dr. Henry Jones Sr.. He sets out to rescue his father by following clues in the old man's notebook, which his father had mailed to him before he went missing. Indy arrives in Venice, where he enlists the help of a beautiful academic, Dr. Elsa Schneider, along with Marcus Brody and Sallah. Together they must stop the Nazis from recovering the power of eternal life and taking over the world!",
+        "poster_path": "/sizg1AU8f8JDZX4QIgE4pjUMBvx.jpg",
+        "media_type": "movie",
+        "adult": false,
+        "original_language": "en",
+        "genre_ids": [
+          12,
+          28
+        ],
+        "popularity": 51.305,
+        "release_date": "1989-05-24",
+        "video": false,
+        "vote_average": 7.849,
+        "vote_count": 10289
+      },
+      {
+        "backdrop_path": "/p96949hcwUG2BwE6MgKmw0uYNCx.jpg",
+        "id": 217,
+        "title": "Indiana Jones and the Kingdom of the Crystal Skull",
+        "original_title": "Indiana Jones and the Kingdom of the Crystal Skull",
+        "overview": "Set during the Cold War, the Soviets—led by sword-wielding Irina Spalko—are in search of a crystal skull which has supernatural powers related to a mystical Lost City of Gold. Indy is coerced to head to Peru at the behest of a young man whose friend—and Indy's colleague—Professor Oxley has been captured for his knowledge of the skull's whereabouts.",
+        "poster_path": "/56As6XEM1flWvprX4LgkPl8ii4K.jpg",
+        "media_type": "movie",
+        "adult": false,
+        "original_language": "en",
+        "genre_ids": [
+          12,
+          28
+        ],
+        "popularity": 46.044,
+        "release_date": "2008-05-21",
+        "video": false,
+        "vote_average": 6,
+        "vote_count": 8419
+      },
+      {
+        "backdrop_path": "/35z8hWuzfFUZQaYog8E9LsXW3iI.jpg",
+        "id": 335977,
+        "title": "Indiana Jones and the Dial of Destiny",
+        "original_title": "Indiana Jones and the Dial of Destiny",
+        "overview": "Finding himself in a new era, and approaching retirement, Indy wrestles with fitting into a world that seems to have outgrown him. But as the tentacles of an all-too-familiar evil return in the form of an old rival, Indy must don his hat and pick up his whip once more to make sure an ancient and powerful artifact doesn't fall into the wrong hands.",
+        "poster_path": "/Af4bXE63pVsb2FtbW8uYIyPBadD.jpg",
+        "media_type": "movie",
+        "adult": false,
+        "original_language": "en",
+        "genre_ids": [
+          12,
+          28
+        ],
+        "popularity": 70.415,
+        "release_date": "2023-06-25",
+        "video": false,
+        "vote_average": 6.561,
+        "vote_count": 3565
+      }
+    ]
+  },
+  "119": {
+    "id": 119,
+    "name": "The Lord of the Rings Collection",
+    "overview": "The Lord of the Rings trilogy consists of three epic fantasy films, based on the influential novels written by J. R. R. Tolkien, directed by Peter Jackson.",
+    "poster_path": "/oENY593nKRVL2PnxXsMtlh8izb4.jpg",
+    "backdrop_path": "/bccR2CGTWVVSZAG0yqmy3DIvhTX.jpg",
+    "parts": [
+      {
+        "backdrop_path": "/x2RS3uTcsJJ9IfjNPcgDmukoEcQ.jpg",
+        "id": 120,
+        "title": "The Lord of the Rings: The Fellowship of the Ring",
+        "original_title": "The Lord of the Rings: The Fellowship of the Ring",
+        "overview": "Young hobbit Frodo Baggins, after inheriting a mysterious ring from his uncle Bilbo, must leave his home in order to keep it from falling into the hands of its evil creator. Along the way, a fellowship is formed to protect the ringbearer and make sure that the ring arrives at its final destination: Mt. Doom, the only place where it can be destroyed.",
+        "poster_path": "/6oom5QYQ2yQTMJIbnvbkBL9cHo6.jpg",
+        "media_type": "movie",
+        "adult": false,
+        "original_language": "en",
+        "genre_ids": [
+          12,
+          14,
+          28
+        ],
+        "popularity": 172.638,
+        "release_date": "2001-12-18",
+        "video": false,
+        "vote_average": 8.418,
+        "vote_count": 25672
+      },
+      {
+        "backdrop_path": "/jfEOzpsjc6JDlKhUHb4toWQPt.jpg",
+        "id": 121,
+        "title": "The Lord of the Rings: The Two Towers",
+        "original_title": "The Lord of the Rings: The Two Towers",
+        "overview": "Frodo Baggins and the other members of the Fellowship continue on their sacred quest to destroy the One Ring--but on separate paths. Their destinies lie at two towers--Orthanc Tower in Isengard, where the corrupt wizard Saruman awaits, and Sauron's fortress at Barad-dur, deep within the dark lands of Mordor. Frodo and Sam are trekking to Mordor to destroy the One Ring of Power while Gimli, Legolas and Aragorn search for the orc-captured Merry and Pippin. All along, nefarious wizard Saruman awaits the Fellowship members at the Orthanc Tower in Isengard.",
+        "poster_path": "/5VTN0pR8gcqV3EPUHHfMGnJYN9L.jpg",
+        "media_type": "movie",
+        "adult": false,
+        "original_language": "en",
+        "genre_ids": [
+          12,
+          14,
+          28
+        ],
+        "popularity": 121.076,
+        "release_date": "2002-12-18",
+        "video": false,
+        "vote_average": 8.4,
+        "vote_count": 22288
+      },
+      {
+        "backdrop_path": "/2u7zbn8EudG6kLlBzUYqP8RyFU4.jpg",
+        "id": 122,
+        "title": "The Lord of the Rings: The Return of the King",
+        "original_title": "The Lord of the Rings: The Return of the King",
+        "overview": "As armies mass for a final battle that will decide the fate of the world--and powerful, ancient forces of Light and Dark compete to determine the outcome--one member of the Fellowship of the Ring is revealed as the noble heir to the throne of the Kings of Men. Yet, the sole hope for triumph over evil lies with a brave hobbit, Frodo, who, accompanied by his loyal friend Sam and the hideous, wretched Gollum, ventures deep into the very dark heart of Mordor on his seemingly impossible quest to destroy the Ring of Power.​",
+        "poster_path": "/rCzpDGLbOoPwLjy3OAm5NUPOTrC.jpg",
+        "media_type": "movie",
+        "adult": false,
+        "original_language": "en",
+        "genre_ids": [
+          12,
+          14,
+          28
+        ],
+        "popularity": 161.784,
+        "release_date": "2003-12-17",
+        "video": false,
+        "vote_average": 8.481,
+        "vote_count": 24754
+      }
+    ]
+  },
+  "295": {
+    "id": 295,
+    "name": "Pirates of the Caribbean Collection",
+    "overview": "A series of fantasy swashbuckler films based on Walt Disney's theme park ride of the same name. The films follow the adventures of Captain Jack Sparrow and take place in a fictional historical setting; a world ruled by the British Empire, the East India Trading Company and the Spanish Empire, with pirates representing freedom from the ruling powers.",
+    "poster_path": "/4KUJ38SsViJTsUmTRvXxerBNwAv.jpg",
+    "backdrop_path": "/wxgD3fB5lQ2sGJLog0rvXW049Pf.jpg",
+    "parts": [
+      {
+        "backdrop_path": "/wW7Wt5bXzPy4VOEE4LTIUDyDgBo.jpg",
+        "id": 22,
+        "title": "Pirates of the Caribbean: The Curse of the Black Pearl",
+        "original_title": "Pirates of the Caribbean: The Curse of the Black Pearl",
+        "overview": "After Port Royal is attacked and pillaged by a mysterious pirate crew, capturing the governor's daughter Elizabeth Swann in the process, William Turner asks free-willing pirate Jack Sparrow to help him locate the crew's ship—The Black Pearl—so that he can rescue the woman he loves.",
+        "poster_path": "/z8onk7LV9Mmw6zKz4hT6pzzvmvl.jpg",
+        "media_type": "movie",
+        "adult": false,
+        "original_language": "en",
+        "genre_ids": [
+          12,
+          14,
+          28
+        ],
+        "popularity": 127.926,
+        "release_date": "2003-07-09",
+        "video": false,
+        "vote_average": 7.808,
+        "vote_count": 20932
+      },
+      {
+        "backdrop_path": "/vr6n6ZFUZvedvIlhfYcbCWcaKyW.jpg",
+        "id": 58,
+        "title": "Pirates of the Caribbean: Dead Man's Chest",
+        "original_title": "Pirates of the Caribbean: Dead Man's Chest",
+        "overview": "Captain Jack Sparrow races to recover the heart of Davy Jones to avoid enslaving his soul to Jones' service, as other friends and foes seek the heart for their own agenda as well.",
+        "poster_path": "/uXEqmloGyP7UXAiphJUu2v2pcuE.jpg",
+        "media_type": "movie",
+        "adult": false,
+        "original_language": "en",
+        "genre_ids": [
+          12,
+          14,
+          28
+        ],
+        "popularity": 109.529,
+        "release_date": "2006-07-06",
+        "video": false,
+        "vote_average": 7.364,
+        "vote_count": 16189
+      },
+      {
+        "backdrop_path": "/1jHxkVXMI5s3vRiyiZooUy1shB5.jpg",
+        "id": 285,
+        "title": "Pirates of the Caribbean: At World's End",
+        "original_title": "Pirates of the Caribbean: At World's End",
+        "overview": "Will Turner and Elizabeth Swann join forces with the revived Captain Barbossa to free Jack Sparrow from Davy Jones' locker. The group must navigate dangerous waters, confront many foes and, ultimately, choose sides in a battle wherein piracy itself hangs in the balance.",
+        "poster_path": "/jGWpG4YhpQwVmjyHEGkxEkeRf0S.jpg",
+        "media_type": "movie",
+        "adult": false,
+        "original_language": "en",
+        "genre_ids": [
+          12,
+          14,
+          28
+        ],
+        "popularity": 101.093,
+        "release_date": "2007-05-19",
+        "video": false,
+        "vote_average": 7.258,
+        "vote_count": 14551
+      },
+      {
+        "backdrop_path": "/uzIGtyS6bbnJzGsPL93WCF1FWm8.jpg",
+        "id": 1865,
+        "title": "Pirates of the Caribbean: On Stranger Tides",
+        "original_title": "Pirates of the Caribbean: On Stranger Tides",
+        "overview": "Captain Jack Sparrow crosses paths with a woman from his past, and he's not sure if it's love — or if she's a ruthless con artist who's using him to find the fabled Fountain of Youth. When she forces him aboard the Queen Anne's Revenge, the ship of the formidable pirate Blackbeard, Jack finds himself on an unexpected adventure in which he doesn't know who to fear more: Blackbeard or the woman from his past.",
+        "poster_path": "/keGfSvCmYj7CvdRx36OdVrAEibE.jpg",
+        "media_type": "movie",
+        "adult": false,
+        "original_language": "en",
+        "genre_ids": [
+          12,
+          28,
+          14
+        ],
+        "popularity": 89.164,
+        "release_date": "2011-05-15",
+        "video": false,
+        "vote_average": 6.556,
+        "vote_count": 14169
+      },
+      {
+        "backdrop_path": "/7C921eWK06n12c1miRXnYoEu5Yv.jpg",
+        "id": 166426,
+        "title": "Pirates of the Caribbean: Dead Men Tell No Tales",
+        "original_title": "Pirates of the Caribbean: Dead Men Tell No Tales",
+        "overview": "Thrust into an all-new adventure, a down-on-his-luck Capt. Jack Sparrow feels the winds of ill-fortune blowing even more strongly when deadly ghost sailors led by his old nemesis, the evil Capt. Salazar, escape from the Devil's Triangle. Jack's only hope of survival lies in seeking out the legendary Trident of Poseidon, but to find it, he must forge an uneasy alliance with a brilliant and beautiful astronomer and a headstrong young man in the British navy.",
+        "poster_path": "/qwoGfcg6YUS55nUweKGujHE54Wy.jpg",
+        "media_type": "movie",
+        "adult": false,
+        "original_language": "en",
+        "genre_ids": [
+          12,
+          28,
+          14
+        ],
+        "popularity": 82.23,
+        "release_date": "2017-05-23",
+        "video": false,
+        "vote_average": 6.7,
+        "vote_count": 12117
+      }
+    ]
+  },
+  "528": {
+    "id": 528,
+    "name": "The Terminator Collection",
+    "overview": "A series of science-fiction films about the futuristic conflict between the humans led by John Connor and the Terminators that are made and controlled by Skynet, a self-aware super computer that started Armageddon and may indeed end humanity for good. Skynet's most well-known products in its genocidal goals are the various terminator models, such as the T-800 (Model 101).",
+    "poster_path": "/kpZxdNsAV7qTdTLwKM5NLqa7GEo.jpg",
+    "backdrop_path": "/jz9usvWv5DrQGtjauEU4KSzgb8M.jpg",
+    "parts": [
+      {
+        "backdrop_path": "/wh4ze6klUbeichAj603OKZwY1W5.jpg",
+        "id": 218,
+        "title": "The Terminator",
+        "original_title": "The Terminator",
+        "overview": "In the post-apocalyptic future, reigning tyrannical supercomputers teleport a cyborg assassin known as the \"Terminator\" back to 1984 to kill Sarah Connor, whose unborn son is destined to lead insurgents against 21st century mechanical hegemony. Meanwhile, the human-resistance movement dispatches a lone warrior to safeguard Sarah. Can he stop the virtually indestructible killing machine?",
+        "poster_path": "/hzXSE66v6KthZ8nPoLZmsi2G05j.jpg",
+        "media_type": "movie",
+        "adult": false,
+        "original_language": "en",
+        "genre_ids": [
+          28,
+          53,
+          878
+        ],
+        "popularity": 96.783,
+        "release_date": "1984-10-26",
+        "video": false,
+        "vote_average": 7.7,
+        "vote_count": 13412
+      },
+      {
+        "backdrop_path": "/vINgGecnz95iDL6fjQMARDsocgG.jpg",
+        "id": 280,
+        "title": "Terminator 2: Judgment Day",
+        "original_title": "Terminator 2: Judgment Day",
+        "overview": "Set ten years after the events of the original, James Cameron’s classic sci-fi action flick tells the story of a second attempt to get rid of rebellion leader John Connor, this time targeting the boy himself. However, the rebellion has sent a reprogrammed terminator to protect Connor.",
+        "poster_path": "/5M0j0B18abtBI5gi2RhfjjurTqb.jpg",
+        "media_type": "movie",
+        "adult": false,
+        "original_language": "en",
+        "genre_ids": [
+          28,
+          53,
+          878
+        ],
+        "popularity": 73.597,
+        "release_date": "1991-07-03",
+        "video": false,
+        "vote_average": 8.1,
+        "vote_count": 13129
+      },
+      {
+        "backdrop_path": "/kbXMOnz2RhTSAbLtHX5hy5AXtwv.jpg",
+        "id": 296,
+        "title": "Terminator 3: Rise of the Machines",
+        "original_title": "Terminator 3: Rise of the Machines",
+        "overview": "It's been 10 years since John Connor saved Earth from Judgment Day, and he's now living under the radar, steering clear of using anything Skynet can trace. That is, until he encounters T-X, a robotic assassin ordered to finish what T-1000 started. Good thing Connor's former nemesis, the Terminator, is back to aid the now-adult Connor … just like he promised.",
+        "poster_path": "/vvevzdYIrk2636maNW4qeWmlPFG.jpg",
+        "media_type": "movie",
+        "adult": false,
+        "original_language": "en",
+        "genre_ids": [
+          28,
+          53,
+          878
+        ],
+        "popularity": 33.298,
+        "release_date": "2003-07-02",
+        "video": false,
+        "vote_average": 6.2,
+        "vote_count": 6719
+      },
+      {
+        "backdrop_path": "/m9yHpYz4GcEtmHJW4rvQIrF891h.jpg",
+        "id": 534,
+        "title": "Terminator Salvation",
+        "original_title": "Terminator Salvation",
+        "overview": "All grown up in post-apocalyptic 2018, John Connor must lead the resistance of humans against the increasingly dominating militaristic robots. But when Marcus Wright appears, his existence confuses the mission as Connor tries to determine whether Wright has come from the future or the past -- and whether he's friend or foe.",
+        "poster_path": "/gw6JhlekZgtKUFlDTezq3j5JEPK.jpg",
+        "media_type": "movie",
+        "adult": false,
+        "original_language": "en",
+        "genre_ids": [
+          28,
+          878,
+          53
+        ],
+        "popularity": 30.948,
+        "release_date": "2009-05-20",
+        "video": false,
+        "vote_average": 6.1,
+        "vote_count": 6536
+      },
+      {
+        "backdrop_path": "/wvlIoof1FnKPLv9jAYanuP31V0C.jpg",
+        "id": 87101,
+        "title": "Terminator Genisys",
+        "original_title": "Terminator Genisys",
+        "overview": "The year is 2029. John Connor, leader of the resistance continues the war against the machines. At the Los Angeles offensive, John's fears of the unknown future begin to emerge when TECOM spies reveal a new plot by SkyNet that will attack him from both fronts; past and future, and will ultimately change warfare forever.",
+        "poster_path": "/oZRVDpNtmHk8M1VYy1aeOWUXgbC.jpg",
+        "media_type": "movie",
+        "adult": false,
+        "original_language": "en",
+        "genre_ids": [
+          878,
+          28,
+          53,
+          12
+        ],
+        "popularity": 73.409,
+        "release_date": "2015-06-23",
+        "video": false,
+        "vote_average": 5.9,
+        "vote_count": 8483
+      },
+      {
+        "backdrop_path": "/a6cDxdwaQIFjSkXf7uskg78ZyTq.jpg",
+        "id": 290859,
+        "title": "Terminator: Dark Fate",
+        "original_title": "Terminator: Dark Fate",
+        "overview": "Decades after Sarah Connor prevented Judgment Day, a lethal new Terminator is sent to eliminate the future leader of the resistance. In a fight to save mankind, battle-hardened Sarah Connor teams up with an unexpected ally and an enhanced super soldier to stop the deadliest Terminator yet.",
+        "poster_path": "/vqzNJRH4YyquRiWxCCOH0aXggHI.jpg",
+        "media_type": "movie",
+        "adult": false,
+        "original_language": "en",
+        "genre_ids": [
+          878,
+          28,
+          12,
+          53
+        ],
+        "popularity": 44.797,
+        "release_date": "2019-10-23",
+        "video": false,
+        "vote_average": 6.4,
+        "vote_count": 5203
+      }
+    ]
+  },
+  "556": {
+    "id": 556,
+    "name": "Spider-Man Collection",
+    "overview": "A superhero film series based on the Marvel Comics character Spider-Man. The series is centered on Peter Parker, an academically gifted but socially inept freelance photographer who gets bitten by a genetically modified spider and gains spider-like abilities, all of which he uses to fight crime as a spider-masked vigilante, learning for himself that with great power comes great responsibility.",
+    "poster_path": "/bp5PqLa06QA1LsELA1SsKZ008H7.jpg",
+    "backdrop_path": "/waZqriYTuBE3WqXI3SDGi3kfDQE.jpg",
+    "parts": [
+      {
+        "backdrop_path": "/qJzloL8O9YHhiWBrhlPfKAtZu2I.jpg",
+        "id": 557,
+        "title": "Spider-Man",
+        "original_title": "Spider-Man",
+        "overview": "After being bitten by a genetically altered spider at Oscorp, nerdy but endearing high school student Peter Parker is endowed with amazing powers to become the superhero known as Spider-Man.",
+        "poster_path": "/gh4cZbhZxyTbgxQPxD0dOudNPTn.jpg",
+        "media_type": "movie",
+        "adult": false,
+        "original_language": "en",
+        "genre_ids": [
+          28,
+          878
+        ],
+        "popularity": 110.025,
+        "release_date": "2002-05-01",
+        "video": false,
+        "vote_average": 7.304,
+        "vote_count": 19384
+      },
+      {
+        "backdrop_path": "/8G6HCS82vNxgg5wp7oBDSk32XpF.jpg",
+        "id": 558,
+        "title": "Spider-Man 2",
+        "original_title": "Spider-Man 2",
+        "overview": "Peter Parker is going through a major identity crisis. Burned out from being Spider-Man, he decides to shelve his superhero alter ego, which leaves the city suffering in the wake of carnage left by the evil Doc Ock. In the meantime, Parker still can't act on his feelings for Mary Jane Watson, a girl he's loved since childhood. A certain anger begins to brew in his best friend Harry Osborn as well...",
+        "poster_path": "/olxpyq9kJAZ2NU1siLshhhXEPR7.jpg",
+        "media_type": "movie",
+        "adult": false,
+        "original_language": "en",
+        "genre_ids": [
+          28,
+          12,
+          878
+        ],
+        "popularity": 29.215,
+        "release_date": "2004-06-25",
+        "video": false,
+        "vote_average": 7.288,
+        "vote_count": 15335
+      },
+      {
+        "backdrop_path": "/w1oD1MzHjnBJc5snKupIQaSBLIh.jpg",
+        "id": 559,
+        "title": "Spider-Man 3",
+        "original_title": "Spider-Man 3",
+        "overview": "The seemingly invincible Spider-Man goes up against an all-new crop of villains—including the shape-shifting Sandman. While Spider-Man’s superpowers are altered by an alien organism, his alter ego, Peter Parker, deals with nemesis Eddie Brock and also gets caught up in a love triangle.",
+        "poster_path": "/qFmwhVUoUSXjkKRmca5yGDEXBIj.jpg",
+        "media_type": "movie",
+        "adult": false,
+        "original_language": "en",
+        "genre_ids": [
+          28,
+          12,
+          878
+        ],
+        "popularity": 70.762,
+        "release_date": "2007-05-01",
+        "video": false,
+        "vote_average": 6.4,
+        "vote_count": 14311
+      }
+    ]
+  },
+  "645": {
+    "id": 645,
+    "name": "James Bond Collection",
+    "overview": "The James Bond Collection is a legendary spy film series based on Ian Fleming’s novels, following MI6 agent 007, James Bond, as he takes on global threats with style, gadgets, and charm. Produced by EON Productions, the franchise spans 25 official films (1962–2021) and has featured six actors, from Sean Connery to Daniel Craig. Known for its thrilling action, iconic villains, Bond girls, and unforgettable theme songs, the series remains a cornerstone of the spy genre. With espionage, luxury cars, and shaken-not-stirred martinis, Bond continues to captivate audiences worldwide.",
+    "poster_path": "/ofwSiqOFShhunAIYYdSMHMJQSx2.jpg",
+    "backdrop_path": "/dOSECZImeyZldoq0ObieBE0lwie.jpg",
+    "parts": [
+      {
+        "backdrop_path": "/hzmmXx6UeYQeylioNbliFKjSbV7.jpg",
+        "id": 253,
+        "title": "Live and Let Die",
+        "original_title": "Live and Let Die",
+        "overview": "James Bond must investigate a mysterious murder case of a British agent in New Orleans. Soon he finds himself up against a gangster boss named Mr. Big.",
+        "poster_path": "/39qkrjqMZs6utwNmihVImC3ghas.jpg",
+        "media_type": "movie",
+        "adult": false,
+        "original_language": "en",
+        "genre_ids": [
+          12,
+          28,
+          53
+        ],
+        "popularity": 25.298,
+        "release_date": "1973-06-27",
+        "video": false,
+        "vote_average": 6.5,
+        "vote_count": 2075
+      },
+      {
+        "backdrop_path": "/ptcXbbxTyjHfEE4d4QocNP0YQct.jpg",
+        "id": 646,
+        "title": "Dr. No",
+        "original_title": "Dr. No",
+        "overview": "Agent 007 battles mysterious Dr. No, a scientific genius bent on destroying the U.S. space program. As the countdown to disaster begins, Bond must go to Jamaica, where he encounters beautiful Honey Ryder, to confront a megalomaniacal villain in his massive island headquarters.",
+        "poster_path": "/9zCOLJmLNst0sCPZlkW1IRoH65E.jpg",
+        "media_type": "movie",
+        "adult": false,
+        "original_language": "en",
+        "genre_ids": [
+          12,
+          28,
+          53
+        ],
+        "popularity": 35.792,
+        "release_date": "1962-10-07",
+        "video": false,
+        "vote_average": 6.986,
+        "vote_count": 3664
+      },
+      {
+        "backdrop_path": "/8uNjWHsSW3TSOWDU4EY76H5MzAG.jpg",
+        "id": 657,
+        "title": "From Russia with Love",
+        "original_title": "From Russia with Love",
+        "overview": "Agent 007 is back in the second installment of the James Bond series, this time battling a secret crime organization known as SPECTRE. Russians Rosa Klebb and Kronsteen are out to snatch a decoding device known as the Lektor, using the ravishing Tatiana to lure Bond into helping them. Bond willingly travels to meet Tatiana in Istanbul, where he must rely on his wits to escape with his life in a series of deadly encounters with the enemy.",
+        "poster_path": "/zx4V17FP8oclNvOpTgs2iCCtiYk.jpg",
+        "media_type": "movie",
+        "adult": false,
+        "original_language": "en",
+        "genre_ids": [
+          28,
+          53,
+          12
+        ],
+        "popularity": 23.875,
+        "release_date": "1963-10-10",
+        "video": false,
+        "vote_average": 7.063,
+        "vote_count": 3031
+      },
+      {
+        "backdrop_path": "/lh65Y0sUQcRh5UVVgnTOfMUbN2c.jpg",
+        "id": 658,
+        "title": "Goldfinger",
+        "original_title": "Goldfinger",
+        "overview": "Special agent 007 comes face to face with one of the most notorious villains of all time, and now he must outwit and outgun the powerful tycoon to prevent him from cashing in on a devious scheme to raid Fort Knox -- and obliterate the world's economy.",
+        "poster_path": "/yNW09AHdvWwIXshiF0tMLr4bAWA.jpg",
+        "media_type": "movie",
+        "adult": false,
+        "original_language": "en",
+        "genre_ids": [
+          12,
+          28,
+          53
+        ],
+        "popularity": 24.118,
+        "release_date": "1964-09-20",
+        "video": false,
+        "vote_average": 7.3,
+        "vote_count": 3615
+      },
+      {
+        "backdrop_path": "/yQCaNJpqPtfMMvKt51rHghG1J2w.jpg",
+        "id": 660,
+        "title": "Thunderball",
+        "original_title": "Thunderball",
+        "overview": "A criminal organization has obtained two nuclear bombs and are asking for a 100 million pound ransom in the form of diamonds in seven days or they will use the weapons. The secret service sends James Bond to the Bahamas to once again save the world.",
+        "poster_path": "/wCc4qllaTDsQN8zgGkAgQrKO6N9.jpg",
+        "media_type": "movie",
+        "adult": false,
+        "original_language": "en",
+        "genre_ids": [
+          12,
+          28,
+          53
+        ],
+        "popularity": 30.477,
+        "release_date": "1965-12-11",
+        "video": false,
+        "vote_average": 6.7,
+        "vote_count": 2359
+      },
+      {
+        "backdrop_path": "/cpZAXIYA0lkZMpAt7d1MmH8ojNV.jpg",
+        "id": 667,
+        "title": "You Only Live Twice",
+        "original_title": "You Only Live Twice",
+        "overview": "A mysterious spacecraft captures Russian and American space capsules and brings the two superpowers to the brink of war. James Bond investigates the case in Japan and comes face to face with his archenemy Blofeld.",
+        "poster_path": "/gIhS0VC7YzI8pj6zfS3KxsxV0dS.jpg",
+        "media_type": "movie",
+        "adult": false,
+        "original_language": "en",
+        "genre_ids": [
+          28,
+          53,
+          12
+        ],
+        "popularity": 26.229,
+        "release_date": "1967-06-13",
+        "video": false,
+        "vote_average": 6.6,
+        "vote_count": 2231
+      },
+      {
+        "backdrop_path": "/1kdyLiE2Mqt7cxnivdPX3qckvfW.jpg",
+        "id": 668,
+        "title": "On Her Majesty's Secret Service",
+        "original_title": "On Her Majesty's Secret Service",
+        "overview": "James Bond tracks his archnemesis, Ernst Blofeld, to a mountaintop retreat in the Swiss alps where he is training an army of beautiful, lethal women. Along the way, Bond falls for Italian contessa Tracy Draco, and marries her in order to get closer to Blofeld.",
+        "poster_path": "/m3KfbxvqaiAvRJ6MpguA3GuLdDQ.jpg",
+        "media_type": "movie",
+        "adult": false,
+        "original_language": "en",
+        "genre_ids": [
+          12,
+          28,
+          53
+        ],
+        "popularity": 28.079,
+        "release_date": "1969-12-18",
+        "video": false,
+        "vote_average": 6.6,
+        "vote_count": 1927
+      },
+      {
+        "backdrop_path": "/pyTDtQCn5sG8gi2zkM5ZylSNmtJ.jpg",
+        "id": 681,
+        "title": "Diamonds Are Forever",
+        "original_title": "Diamonds Are Forever",
+        "overview": "Diamonds are stolen only to be sold again in the international market. James Bond infiltrates a smuggling mission to find out who's guilty. The mission takes him to Las Vegas where Bond meets his archenemy Blofeld.",
+        "poster_path": "/ooDT0eKrWCxJCsn9JehPkD0QYNj.jpg",
+        "media_type": "movie",
+        "adult": false,
+        "original_language": "en",
+        "genre_ids": [
+          28,
+          53
+        ],
+        "popularity": 22.952,
+        "release_date": "1971-12-14",
+        "video": false,
+        "vote_average": 6.4,
+        "vote_count": 2134
+      },
+      {
+        "backdrop_path": "/3tpNEbRahT8smy7RraaWa0xg9Gv.jpg",
+        "id": 682,
+        "title": "The Man with the Golden Gun",
+        "original_title": "The Man with the Golden Gun",
+        "overview": "Cool government operative James Bond searches for a stolen invention that can turn the sun's heat into a destructive weapon. He soon crosses paths with the menacing Francisco Scaramanga, a hitman so skilled he has a seven-figure working fee. Bond then joins forces with the swimsuit-clad Mary Goodnight, and together they track Scaramanga to a Thai tropical isle hideout where the killer-for-hire lures the slick spy into a deadly maze for a final duel.",
+        "poster_path": "/yVqDbroZ1UKy8AYu34IbEwRbwZx.jpg",
+        "media_type": "movie",
+        "adult": false,
+        "original_language": "en",
+        "genre_ids": [
+          12,
+          28,
+          53
+        ],
+        "popularity": 27.691,
+        "release_date": "1974-12-04",
+        "video": false,
+        "vote_average": 6.44,
+        "vote_count": 2073
+      },
+      {
+        "backdrop_path": "/xButHM6FwbA6tiWCD68BMpVqaHY.jpg",
+        "id": 691,
+        "title": "The Spy Who Loved Me",
+        "original_title": "The Spy Who Loved Me",
+        "overview": "Russian and British submarines with nuclear missiles on board both vanish from sight without a trace. England and Russia both blame each other as James Bond tries to solve the riddle of the disappearing ships. But the KGB also has an agent on the case.",
+        "poster_path": "/3ZxHKFxMYvAko680DsRgAZKWcLi.jpg",
+        "media_type": "movie",
+        "adult": false,
+        "original_language": "en",
+        "genre_ids": [
+          12,
+          28,
+          53
+        ],
+        "popularity": 21.47,
+        "release_date": "1977-07-07",
+        "video": false,
+        "vote_average": 6.8,
+        "vote_count": 2013
+      },
+      {
+        "backdrop_path": "/mrDC5DLx2wljt4HZGwgkmqlzfcF.jpg",
+        "id": 698,
+        "title": "Moonraker",
+        "original_title": "Moonraker",
+        "overview": "After Drax Industries' Moonraker space shuttle is hijacked, secret agent James Bond is assigned to investigate, traveling to California to meet the company's owner, the mysterious Hugo Drax. With the help of scientist Dr. Holly Goodhead, Bond soon uncovers Drax's nefarious plans for humanity, all the while fending off an old nemesis, Jaws, and venturing to Venice, Rio, the Amazon...and even outer space.",
+        "poster_path": "/6LrJdXNmu5uHOVALZxVYd44Lva0.jpg",
+        "media_type": "movie",
+        "adult": false,
+        "original_language": "en",
+        "genre_ids": [
+          28,
+          12,
+          53,
+          878
+        ],
+        "popularity": 19.154,
+        "release_date": "1979-06-26",
+        "video": false,
+        "vote_average": 6.17,
+        "vote_count": 2008
+      },
+      {
+        "backdrop_path": "/s8xrgq9lIv2w7LXn13PAQ05c54v.jpg",
+        "id": 699,
+        "title": "For Your Eyes Only",
+        "original_title": "For Your Eyes Only",
+        "overview": "A British spy ship has sunk and on board was a hi-tech encryption device. James Bond is sent to find the device that holds British launching instructions before the enemy Soviets get to it first.",
+        "poster_path": "/xV4Nnr6DjjERlqNikqDQX8LUgua.jpg",
+        "media_type": "movie",
+        "adult": false,
+        "original_language": "en",
+        "genre_ids": [
+          12,
+          28,
+          53
+        ],
+        "popularity": 24.388,
+        "release_date": "1981-06-24",
+        "video": false,
+        "vote_average": 6.528,
+        "vote_count": 1882
+      },
+      {
+        "backdrop_path": "/aqvospM52NFtgFkrIbzk5nSy7Sh.jpg",
+        "id": 700,
+        "title": "Octopussy",
+        "original_title": "Octopussy",
+        "overview": "James Bond is sent to investigate after a fellow “00” agent is found dead with a priceless Indian Fabergé egg. Bond follows the mystery and uncovers a smuggling scandal and a Russian General who wants to provoke a new World War.",
+        "poster_path": "/yoosZitM9igSk3Sd0sBXIhKlAh1.jpg",
+        "media_type": "movie",
+        "adult": false,
+        "original_language": "en",
+        "genre_ids": [
+          12,
+          28,
+          53
+        ],
+        "popularity": 23.001,
+        "release_date": "1983-06-05",
+        "video": false,
+        "vote_average": 6.3,
+        "vote_count": 1998
+      },
+      {
+        "backdrop_path": "/z0Efy7yyuAUh2xiK5C9L3dFq4Gj.jpg",
+        "id": 707,
+        "title": "A View to a Kill",
+        "original_title": "A View to a Kill",
+        "overview": "A newly-developed microchip designed by Zorin Industries for the British Government that can survive the electromagnetic radiation caused by a nuclear explosion has landed in the hands of the KGB. James Bond must find out how and why. His suspicions soon lead him to big industry leader Max Zorin who forms a plan to destroy his only competition in Silicon Valley by triggering a massive earthquake in the San Francisco Bay.",
+        "poster_path": "/arJF829RP9cYvh0NU70dC5TtXSa.jpg",
+        "media_type": "movie",
+        "adult": false,
+        "original_language": "en",
+        "genre_ids": [
+          12,
+          28,
+          53
+        ],
+        "popularity": 20.104,
+        "release_date": "1985-05-24",
+        "video": false,
+        "vote_average": 6.233,
+        "vote_count": 1999
+      },
+      {
+        "backdrop_path": "/p6VFbg5lhWj0RCgXf5dj6IDMPvt.jpg",
+        "id": 709,
+        "title": "Licence to Kill",
+        "original_title": "Licence to Kill",
+        "overview": "After capturing the notorious drug lord Franz Sanchez, Bond's close friend and former CIA agent Felix Leiter is left for dead and his wife is murdered. Bond goes rogue and seeks vengeance on those responsible, as he infiltrates Sanchez's organization from the inside.",
+        "poster_path": "/8nzJve63EXA79HGAyidZwivZrQ2.jpg",
+        "media_type": "movie",
+        "adult": false,
+        "original_language": "en",
+        "genre_ids": [
+          12,
+          28,
+          53
+        ],
+        "popularity": 22.796,
+        "release_date": "1989-06-13",
+        "video": false,
+        "vote_average": 6.403,
+        "vote_count": 1953
+      },
+      {
+        "backdrop_path": "/vm7yMg7YiYisMSeO3mUC5NUKbSB.jpg",
+        "id": 710,
+        "title": "GoldenEye",
+        "original_title": "GoldenEye",
+        "overview": "When a powerful satellite system falls into the hands of Alec Trevelyan, AKA Agent 006, a former ally-turned-enemy, only James Bond can save the world from a dangerous space weapon that -- in one short pulse -- could destroy the earth! As Bond squares off against his former compatriot, he also battles Xenia Onatopp, an assassin who uses pleasure as her ultimate weapon.",
+        "poster_path": "/z0ljRnNxIO7CRBhLEO0DvLgAFPR.jpg",
+        "media_type": "movie",
+        "adult": false,
+        "original_language": "en",
+        "genre_ids": [
+          12,
+          28,
+          53
+        ],
+        "popularity": 28.812,
+        "release_date": "1995-11-16",
+        "video": false,
+        "vote_average": 6.9,
+        "vote_count": 3952
+      },
+      {
+        "backdrop_path": "/fesAgiKA0pc04vScDTAQe1f9nd4.jpg",
+        "id": 714,
+        "title": "Tomorrow Never Dies",
+        "original_title": "Tomorrow Never Dies",
+        "overview": "A deranged media mogul is staging international incidents to pit the world's superpowers against each other. Now James Bond must take on this evil mastermind in an adrenaline-charged battle to end his reign of terror and prevent global pandemonium.",
+        "poster_path": "/gZm002w7q9yLOkltxT76TWGfdZX.jpg",
+        "media_type": "movie",
+        "adult": false,
+        "original_language": "en",
+        "genre_ids": [
+          12,
+          28,
+          53
+        ],
+        "popularity": 22.854,
+        "release_date": "1997-12-11",
+        "video": false,
+        "vote_average": 6.4,
+        "vote_count": 3135
+      },
+      {
+        "backdrop_path": "/1tW2fJCE6vb7lAbBMOs3eYMuA7X.jpg",
+        "id": 10764,
+        "title": "Quantum of Solace",
+        "original_title": "Quantum of Solace",
+        "overview": "Betrayed by Vesper, the woman he loved, 007 fights the urge to make his latest mission personal. Pursuing his determination to uncover the truth, Bond and M interrogate Mr. White, who reveals that the organization that blackmailed Vesper is far more complex and dangerous than anyone had imagined.",
+        "poster_path": "/e3DXXLJHGqMx9yYpXsql1XNljmM.jpg",
+        "media_type": "movie",
+        "adult": false,
+        "original_language": "en",
+        "genre_ids": [
+          12,
+          28,
+          53,
+          80
+        ],
+        "popularity": 37.191,
+        "release_date": "2008-10-29",
+        "video": false,
+        "vote_average": 6.3,
+        "vote_count": 7941
+      },
+      {
+        "backdrop_path": "/klJMCIblHLFwCuGjKz7tyOpekIC.jpg",
+        "id": 36557,
+        "title": "Casino Royale",
+        "original_title": "Casino Royale",
+        "overview": "Le Chiffre, a banker to the world's terrorists, is scheduled to participate in a high-stakes poker game in Montenegro, where he intends to use his winnings to establish his financial grip on the terrorist market. M sends Bond—on his maiden mission as a 00 Agent—to attend this game and prevent Le Chiffre from winning. With the help of Vesper Lynd and Felix Leiter, Bond enters the most important poker game in his already dangerous career.",
+        "poster_path": "/lMrxYKKhd4lqRzwUHAy5gcx9PSO.jpg",
+        "media_type": "movie",
+        "adult": false,
+        "original_language": "en",
+        "genre_ids": [
+          12,
+          28,
+          53
+        ],
+        "popularity": 38.812,
+        "release_date": "2006-11-14",
+        "video": false,
+        "vote_average": 7.6,
+        "vote_count": 10841
+      },
+      {
+        "backdrop_path": "/n2jVDMcBEWsLFooO7W1ZkcMUtWS.jpg",
+        "id": 36643,
+        "title": "The World Is Not Enough",
+        "original_title": "The World Is Not Enough",
+        "overview": "Greed, revenge, world dominance and high-tech terrorism – it's all in a day's work for Bond, who's on a mission to protect a beautiful oil heiress from a notorious terrorist. In a race against time that culminates in a dramatic submarine showdown, Bond works to defuse the international power struggle that has the world's oil supply hanging in the balance.",
+        "poster_path": "/wCb2msgoZPK01WIqry24M4xsM73.jpg",
+        "media_type": "movie",
+        "adult": false,
+        "original_language": "en",
+        "genre_ids": [
+          12,
+          28,
+          53
+        ],
+        "popularity": 26.824,
+        "release_date": "1999-11-17",
+        "video": false,
+        "vote_average": 6.3,
+        "vote_count": 2966
+      },
+      {
+        "backdrop_path": "/bAMPiltMT6UifIZbIDFwyh1Hnls.jpg",
+        "id": 36669,
+        "title": "Die Another Day",
+        "original_title": "Die Another Day",
+        "overview": "James Bond is sent to investigate the connection between a North Korean terrorist and a diamond mogul, who is funding the development of an international space weapon.",
+        "poster_path": "/bZmGqOhMhaLn8AoFMvFDct4tbrL.jpg",
+        "media_type": "movie",
+        "adult": false,
+        "original_language": "en",
+        "genre_ids": [
+          12,
+          28,
+          53
+        ],
+        "popularity": 27.817,
+        "release_date": "2002-11-17",
+        "video": false,
+        "vote_average": 6,
+        "vote_count": 3562
+      },
+      {
+        "backdrop_path": "/mgcbG1w3lgj9lajGBXVUjLQti8P.jpg",
+        "id": 37724,
+        "title": "Skyfall",
+        "original_title": "Skyfall",
+        "overview": "When Bond's latest assignment goes gravely wrong, agents around the world are exposed and MI6 headquarters is attacked. While M faces challenges to her authority and position from Gareth Mallory, the new Chairman of the Intelligence and Security Committee, it's up to Bond, aided only by field agent Eve, to locate the mastermind behind the attack.",
+        "poster_path": "/d0IVecFQvsGdSbnMAHqiYsNYaJT.jpg",
+        "media_type": "movie",
+        "adult": false,
+        "original_language": "en",
+        "genre_ids": [
+          28,
+          12,
+          53
+        ],
+        "popularity": 43.497,
+        "release_date": "2012-10-24",
+        "video": false,
+        "vote_average": 7.2,
+        "vote_count": 15329
+      },
+      {
+        "backdrop_path": "/8lBViysvNJBPkl6zG1LVAaW3qhj.jpg",
+        "id": 206647,
+        "title": "Spectre",
+        "original_title": "Spectre",
+        "overview": "A cryptic message from Bond’s past sends him on a trail to uncover a sinister organization. While M battles political forces to keep the secret service alive, Bond peels back the layers of deceit to reveal the terrible truth behind SPECTRE.",
+        "poster_path": "/aD8fQF2WFAvMMxmMHHj2RXz2hwP.jpg",
+        "media_type": "movie",
+        "adult": false,
+        "original_language": "en",
+        "genre_ids": [
+          28,
+          12,
+          53
+        ],
+        "popularity": 44.056,
+        "release_date": "2015-10-26",
+        "video": false,
+        "vote_average": 6.555,
+        "vote_count": 10616
+      },
+      {
+        "backdrop_path": "/ebaq0ecL1Tu39rIExfHwE4ToFl2.jpg",
+        "id": 708,
+        "title": "The Living Daylights",
+        "original_title": "The Living Daylights",
+        "overview": "After a defecting Russian general reveals a plot to assassinate foreign spies, James Bond is assigned a secret mission to dispatch the new head of the KGB to prevent an escalation of tensions between the Soviet Union and the West.",
+        "poster_path": "/1oRlmWX9hewpn2B44wawBjHd7dx.jpg",
+        "media_type": "movie",
+        "adult": false,
+        "original_language": "en",
+        "genre_ids": [
+          28,
+          12,
+          53
+        ],
+        "popularity": 22.368,
+        "release_date": "1987-06-29",
+        "video": false,
+        "vote_average": 6.5,
+        "vote_count": 1810
+      },
+      {
+        "backdrop_path": "/bz7pwNGCbV576COsDcYN9MbEACC.jpg",
+        "id": 370172,
+        "title": "No Time to Die",
+        "original_title": "No Time to Die",
+        "overview": "Bond has left active service and is enjoying a tranquil life in Jamaica. His peace is short-lived when his old friend Felix Leiter from the CIA turns up asking for help. The mission to rescue a kidnapped scientist turns out to be far more treacherous than expected, leading Bond onto the trail of a mysterious villain armed with dangerous new technology.",
+        "poster_path": "/iUgygt3fscRoKWCV1d0C7FbM9TP.jpg",
+        "media_type": "movie",
+        "adult": false,
+        "original_language": "en",
+        "genre_ids": [
+          28,
+          53,
+          12
+        ],
+        "popularity": 61.103,
+        "release_date": "2021-09-29",
+        "video": false,
+        "vote_average": 7.4,
+        "vote_count": 6409
+      },
+      {
+        "backdrop_path": "/43VeglojU12NbT9AbuIWqTZOvpS.jpg",
+        "id": 36670,
+        "title": "Never Say Never Again",
+        "original_title": "Never Say Never Again",
+        "overview": "James Bond returns as the secret agent 007 to battle the evil organization SPECTRE. Bond must defeat Largo, who has stolen two atomic warheads for nuclear blackmail. But Bond has an ally in Largo's girlfriend, the willowy Domino, who falls for Bond and seeks revenge.",
+        "poster_path": "/4Dweg95w6lSJ3kEhEcQTX2YAb6k.jpg",
+        "media_type": "movie",
+        "adult": false,
+        "original_language": "en",
+        "genre_ids": [
+          12,
+          28,
+          53
+        ],
+        "popularity": 27.867,
+        "release_date": "1983-10-07",
+        "video": false,
+        "vote_average": 6.1,
+        "vote_count": 1465
+      }
+    ]
+  },
+  "1241": {
+    "id": 1241,
+    "name": "Harry Potter Collection",
+    "overview": "The Harry Potter films are a fantasy series based on the series of seven Harry Potter novels by British writer J. K. Rowling.",
+    "poster_path": "/s4hXqX1VyWMc2ctJRuNBDB7YNJ3.jpg",
+    "backdrop_path": "/kmEsQL2vOTA0jnM28fXS45Ky8kX.jpg",
+    "parts": [
+      {
+        "backdrop_path": "/bfh9Z3Ghz4FOJAfLOAhmc3ccnHU.jpg",
+        "id": 671,
+        "title": "Harry Potter and the Philosopher's Stone",
+        "original_title": "Harry Potter and the Philosopher's Stone",
+        "overview": "Harry Potter has lived under the stairs at his aunt and uncle's house his whole life. But on his 11th birthday, he learns he's a powerful wizard—with a place waiting for him at the Hogwarts School of Witchcraft and Wizardry. As he learns to harness his newfound powers with the help of the school's kindly headmaster, Harry uncovers the truth about his parents' deaths—and about the villain who's to blame.",
+        "poster_path": "/wuMc08IPKEatf9rnMNXvIDxqP4W.jpg",
+        "media_type": "movie",
+        "adult": false,
+        "original_language": "en",
+        "genre_ids": [
+          12,
+          14
+        ],
+        "popularity": 175.072,
+        "release_date": "2001-11-16",
+        "video": false,
+        "vote_average": 7.9,
+        "vote_count": 27950
+      },
+      {
+        "backdrop_path": "/yHzyPJrVqlTySQ9mc379yxrLBYQ.jpg",
+        "id": 672,
+        "title": "Harry Potter and the Chamber of Secrets",
+        "original_title": "Harry Potter and the Chamber of Secrets",
+        "overview": "Cars fly, trees fight back, and a mysterious house-elf comes to warn Harry Potter at the start of his second year at Hogwarts. Adventure and danger await when bloody writing on a wall announces: The Chamber Of Secrets Has Been Opened. To save Hogwarts will require all of Harry, Ron and Hermione’s magical abilities and courage.",
+        "poster_path": "/sdEOH0992YZ0QSxgXNIGLq1ToUi.jpg",
+        "media_type": "movie",
+        "adult": false,
+        "original_language": "en",
+        "genre_ids": [
+          12,
+          14
+        ],
+        "popularity": 150.694,
+        "release_date": "2002-11-13",
+        "video": false,
+        "vote_average": 7.711,
+        "vote_count": 22335
+      },
+      {
+        "backdrop_path": "/5rrGVmRUuCKVbqUu41XIWTXJmNA.jpg",
+        "id": 674,
+        "title": "Harry Potter and the Goblet of Fire",
+        "original_title": "Harry Potter and the Goblet of Fire",
+        "overview": "When Harry Potter's name emerges from the Goblet of Fire, he becomes a competitor in a grueling battle for glory among three wizarding schools—the Triwizard Tournament. But since Harry never submitted his name for the Tournament, who did? Now Harry must confront a deadly dragon, fierce water demons and an enchanted maze only to find himself in the cruel grasp of He Who Must Not Be Named.",
+        "poster_path": "/fECBtHlr0RB3foNHDiCBXeg9Bv9.jpg",
+        "media_type": "movie",
+        "adult": false,
+        "original_language": "en",
+        "genre_ids": [
+          12,
+          14
+        ],
+        "popularity": 122.096,
+        "release_date": "2005-11-16",
+        "video": false,
+        "vote_average": 7.803,
+        "vote_count": 21007
+      },
+      {
+        "backdrop_path": "/urDWNffjwmNi5IQaezw9GwqkUXa.jpg",
+        "id": 767,
+        "title": "Harry Potter and the Half-Blood Prince",
+        "original_title": "Harry Potter and the Half-Blood Prince",
+        "overview": "As Lord Voldemort tightens his grip on both the Muggle and wizarding worlds, Hogwarts is no longer a safe haven. Harry suspects perils may even lie within the castle, but Dumbledore is more intent upon preparing him for the final battle fast approaching. Together they work to find the key to unlock Voldemorts defenses and to this end, Dumbledore recruits his old friend and colleague Horace Slughorn, whom he believes holds crucial information. Even as the decisive showdown looms, romance blossoms for Harry, Ron, Hermione and their classmates. Love is in the air, but danger lies ahead and Hogwarts may never be the same again.",
+        "poster_path": "/z7uo9zmQdQwU5ZJHFpv2Upl30i1.jpg",
+        "media_type": "movie",
+        "adult": false,
+        "original_language": "en",
+        "genre_ids": [
+          12,
+          14
+        ],
+        "popularity": 114.478,
+        "release_date": "2009-07-15",
+        "video": false,
+        "vote_average": 7.685,
+        "vote_count": 19712
+      },
+      {
+        "backdrop_path": "/htmYEfH7TQgzsXHCnNXxmoYKQtL.jpg",
+        "id": 673,
+        "title": "Harry Potter and the Prisoner of Azkaban",
+        "original_title": "Harry Potter and the Prisoner of Azkaban",
+        "overview": "Year three at Hogwarts means new fun and challenges as Harry learns the delicate art of approaching a Hippogriff, transforming shape-shifting Boggarts into hilarity and even turning back time. But the term also brings danger: soul-sucking Dementors hover over the school, an ally of the accursed He-Who-Cannot-Be-Named lurks within the castle walls, and fearsome wizard Sirius Black escapes Azkaban. And Harry will confront them all.",
+        "poster_path": "/aWxwnYoe8p2d2fcxOqtvAtJ72Rw.jpg",
+        "media_type": "movie",
+        "adult": false,
+        "original_language": "en",
+        "genre_ids": [
+          12,
+          14
+        ],
+        "popularity": 118.806,
+        "release_date": "2004-05-31",
+        "video": false,
+        "vote_average": 8.014,
+        "vote_count": 21916
+      },
+      {
+        "backdrop_path": "/82a7AGF081PzFfoM8GAVGMvZNYK.jpg",
+        "id": 675,
+        "title": "Harry Potter and the Order of the Phoenix",
+        "original_title": "Harry Potter and the Order of the Phoenix",
+        "overview": "Returning for his fifth year of study at Hogwarts, Harry is stunned to find that his warnings about the return of Lord Voldemort have been ignored. Left with no choice, Harry takes matters into his own hands, training a small group of students to defend themselves against the dark arts.",
+        "poster_path": "/5aOyriWkPec0zUDxmHFP9qMmBaj.jpg",
+        "media_type": "movie",
+        "adult": false,
+        "original_language": "en",
+        "genre_ids": [
+          12,
+          14
+        ],
+        "popularity": 113.577,
+        "release_date": "2007-07-08",
+        "video": false,
+        "vote_average": 7.675,
+        "vote_count": 19730
+      },
+      {
+        "backdrop_path": "/AqLcLsGGTzAjm3pCCq0CZCQrp6m.jpg",
+        "id": 12444,
+        "title": "Harry Potter and the Deathly Hallows: Part 1",
+        "original_title": "Harry Potter and the Deathly Hallows: Part 1",
+        "overview": "Harry, Ron and Hermione walk away from their last year at Hogwarts to find and destroy the remaining Horcruxes, putting an end to Voldemort's bid for immortality. But with Harry's beloved Dumbledore dead and Voldemort's unscrupulous Death Eaters on the loose, the world is more dangerous than ever.",
+        "poster_path": "/iGoXIpQb7Pot00EEdwpwPajheZ5.jpg",
+        "media_type": "movie",
+        "adult": false,
+        "original_language": "en",
+        "genre_ids": [
+          12,
+          14
+        ],
+        "popularity": 107.431,
+        "release_date": "2010-11-17",
+        "video": false,
+        "vote_average": 7.744,
+        "vote_count": 19329
+      },
+      {
+        "backdrop_path": "/n5A7brJCjejceZmHyujwUTVgQNC.jpg",
+        "id": 12445,
+        "title": "Harry Potter and the Deathly Hallows: Part 2",
+        "original_title": "Harry Potter and the Deathly Hallows: Part 2",
+        "overview": "Harry, Ron and Hermione continue their quest to vanquish the evil Voldemort once and for all. Just as things begin to look hopeless for the young wizards, Harry discovers a trio of magical objects that endow him with powers to rival Voldemort's formidable skills.",
+        "poster_path": "/c54HpQmuwXjHq2C9wmoACjxoom3.jpg",
+        "media_type": "movie",
+        "adult": false,
+        "original_language": "en",
+        "genre_ids": [
+          14,
+          12
+        ],
+        "popularity": 100.291,
+        "release_date": "2011-07-12",
+        "video": false,
+        "vote_average": 8.089,
+        "vote_count": 20845
+      }
+    ]
+  },
+  "2344": {
+    "id": 2344,
+    "name": "The Matrix Collection",
+    "overview": "The Matrix collection depicts a complex science fiction story incorporating many philosophical elements. Written and directed by the Wachowskis and produced by Joel Silver.",
+    "poster_path": "/bV9qTVHTVf0gkW0j7p7M0ILD4pG.jpg",
+    "backdrop_path": "/bRm2DEgUiYciDw3myHuYFInD7la.jpg",
+    "parts": [
+      {
+        "backdrop_path": "/icmmSD4vTTDKOq2vvdulafOGw93.jpg",
+        "id": 603,
+        "title": "The Matrix",
+        "original_title": "The Matrix",
+        "overview": "Set in the 22nd century, The Matrix tells the story of a computer hacker who joins a group of underground insurgents fighting the vast and powerful computers who now rule the earth.",
+        "poster_path": "/dXNAPwY7VrqMAo51EKhhCJfaGb5.jpg",
+        "media_type": "movie",
+        "adult": false,
+        "original_language": "en",
+        "genre_ids": [
+          28,
+          878
+        ],
+        "popularity": 111.112,
+        "release_date": "1999-03-31",
+        "video": false,
+        "vote_average": 8.222,
+        "vote_count": 26105
+      },
+      {
+        "backdrop_path": "/tva2OlLELCagFynFibcefhn2D9i.jpg",
+        "id": 604,
+        "title": "The Matrix Reloaded",
+        "original_title": "The Matrix Reloaded",
+        "overview": "Six months after the events depicted in The Matrix, Neo has proved to be a good omen for the free humans, as more and more humans are being freed from the matrix and brought to Zion, the one and only stronghold of the Resistance.  Neo himself has discovered his superpowers including super speed, ability to see the codes of the things inside the matrix and a certain degree of pre-cognition. But a nasty piece of news hits the human resistance: 250,000 machine sentinels are digging to Zion and would reach them in 72 hours. As Zion prepares for the ultimate war, Neo, Morpheus and Trinity are advised by the Oracle to find the Keymaker who would help them reach the Source.  Meanwhile Neo's recurrent dreams depicting Trinity's death have got him worried and as if it was not enough, Agent Smith has somehow escaped deletion, has become more powerful than before and has fixed Neo as his next target.",
+        "poster_path": "/9TGHDvWrqKBzwDxDodHYXEmOE6J.jpg",
+        "media_type": "movie",
+        "adult": false,
+        "original_language": "en",
+        "genre_ids": [
+          12,
+          28,
+          53,
+          878
+        ],
+        "popularity": 54.621,
+        "release_date": "2003-05-15",
+        "video": false,
+        "vote_average": 7.054,
+        "vote_count": 11140
+      },
+      {
+        "backdrop_path": "/533xAMhhVyjTy8hwMUFEt5TuDfR.jpg",
+        "id": 605,
+        "title": "The Matrix Revolutions",
+        "original_title": "The Matrix Revolutions",
+        "overview": "The human city of Zion defends itself against the massive invasion of the machines as Neo fights to end the war at another front while also opposing the rogue Agent Smith.",
+        "poster_path": "/t1wm4PgOQ8e4z1C6tk1yDNrps4T.jpg",
+        "media_type": "movie",
+        "adult": false,
+        "original_language": "en",
+        "genre_ids": [
+          12,
+          28,
+          53,
+          878
+        ],
+        "popularity": 44.068,
+        "release_date": "2003-11-05",
+        "video": false,
+        "vote_average": 6.73,
+        "vote_count": 10051
+      },
+      {
+        "backdrop_path": "/dB0CxRwLXJoOrRPUvsJjb2hnPtq.jpg",
+        "id": 624860,
+        "title": "The Matrix Resurrections",
+        "original_title": "The Matrix Resurrections",
+        "overview": "Plagued by strange memories, Neo's life takes an unexpected turn when he finds himself back inside the Matrix.",
+        "poster_path": "/8c4a8kE7PizaGQQnditMmI1xbRp.jpg",
+        "media_type": "movie",
+        "adult": false,
+        "original_language": "en",
+        "genre_ids": [
+          878,
+          28,
+          12
+        ],
+        "popularity": 58.917,
+        "release_date": "2021-12-16",
+        "video": false,
+        "vote_average": 6.389,
+        "vote_count": 5883
+      }
+    ]
+  },
+  "2806": {
+    "id": 2806,
+    "name": "American Pie Collection",
+    "overview": "American Pie is a series of sex comedy films. The first film in the series was released in 1999, by Universal Pictures, and became a worldwide pop culture phenomenon, cult following amongst young people. The second and third films were released at two-year intervals, whereas the fourth film was released in 2012. A spin-off film series titled American Pie Presents, which includes four direct-to-video films was released from 2005 to 2009. - Wikipedia",
+    "poster_path": "/twY1eM88fu8CCGVtem5ItlrgeDA.jpg",
+    "backdrop_path": "/beYtptCFllZuHYEY8LnuolcQl22.jpg",
+    "parts": [
+      {
+        "backdrop_path": "/cvH1gNIMRITdLzoWv1HNAbRyH3n.jpg",
+        "id": 2105,
+        "title": "American Pie",
+        "original_title": "American Pie",
+        "overview": "At a high-school party, four friends find that losing their collective virginity isn't as easy as they had thought. But they still believe that they need to do so before college. To motivate themselves, they enter a pact to all \"score\" by their senior prom.",
+        "poster_path": "/5P68by2Thn8wHAziyWGEw2O7hco.jpg",
+        "media_type": "movie",
+        "adult": false,
+        "original_language": "en",
+        "genre_ids": [
+          35,
+          10749
+        ],
+        "popularity": 70.369,
+        "release_date": "1999-07-09",
+        "video": false,
+        "vote_average": 6.586,
+        "vote_count": 7767
+      },
+      {
+        "backdrop_path": "/uKiMpSGhKHDfZ7TwNfVFDLwvNRR.jpg",
+        "id": 2770,
+        "title": "American Pie 2",
+        "original_title": "American Pie 2",
+        "overview": "After a year apart - attending different schools, meeting different people - the guys rent a beach house and vow to make this the best summer ever. As it turns out, whether that will happen or not has a lot to do with the girls. Between the wild parties, outrageous revelations and yes, a trip to band camp, they discover that times change and people change, but in the end, it's all about sticking together.",
+        "poster_path": "/854ZZxXdeabAs90mrV72NqShJqR.jpg",
+        "media_type": "movie",
+        "adult": false,
+        "original_language": "en",
+        "genre_ids": [
+          35,
+          10749
+        ],
+        "popularity": 47.306,
+        "release_date": "2001-08-10",
+        "video": false,
+        "vote_average": 6.238,
+        "vote_count": 4963
+      },
+      {
+        "backdrop_path": "/qW703anWHFXulRTKWOckAg9i70K.jpg",
+        "id": 8273,
+        "title": "American Wedding",
+        "original_title": "American Wedding",
+        "overview": "With high school a distant memory, Jim and Michelle are getting married — and in a hurry, since Jim's grandmother is sick and wants to see him walk down the aisle — prompting Stifler to throw the ultimate bachelor party. And Jim's dad is reliable as ever, doling out advice no one wants to hear.",
+        "poster_path": "/pCO3lJv2PzPkJty29APxCVSjyoE.jpg",
+        "media_type": "movie",
+        "adult": false,
+        "original_language": "en",
+        "genre_ids": [
+          35,
+          10749
+        ],
+        "popularity": 46.579,
+        "release_date": "2003-08-01",
+        "video": false,
+        "vote_average": 6.215,
+        "vote_count": 4119
+      },
+      {
+        "backdrop_path": "/xr3a08OeCkSHwOUvJrOngQSlrC2.jpg",
+        "id": 71552,
+        "title": "American Reunion",
+        "original_title": "American Reunion",
+        "overview": "The characters we met a little more than a decade ago return to East Great Falls for their high school reunion. In one long-overdue weekend, they will discover what has changed, who hasn’t, and that time and distance can’t break the bonds of friendship.",
+        "poster_path": "/de5QBIdVR4dnkBZ4a0zjkS4lTg.jpg",
+        "media_type": "movie",
+        "adult": false,
+        "original_language": "en",
+        "genre_ids": [
+          35
+        ],
+        "popularity": 52.045,
+        "release_date": "2012-04-04",
+        "video": false,
+        "vote_average": 6.297,
+        "vote_count": 4449
+      }
+    ]
+  },
+  "2883": {
+    "id": 2883,
+    "name": "Kill Bill Collection",
+    "overview": "The Kill Bill Collection is a series of thrilling revenge dramas directed by Quentin Tarantino. Inspired by Hong Kong martial arts movies, Japanese samurai films, and Italian spaghetti westerns, these movies are characterized by their stylized violence, pop culture references, and extensive use of popular music. Featuring Uma Thurman in the iconic role of The Bride, the Kill Bill films have become cult classics that continue to captivate audiences worldwide.",
+    "poster_path": "/tf1nUtw3LJGUGv1EFFi23iz6ngr.jpg",
+    "backdrop_path": "/voSMLsbi3f0YMGuC8DvflOEB3lo.jpg",
+    "parts": [
+      {
+        "backdrop_path": "/p3WiF8qYS7Qp17YRYgrFh7gf9P9.jpg",
+        "id": 24,
+        "title": "Kill Bill: Vol. 1",
+        "original_title": "Kill Bill: Vol. 1",
+        "overview": "An assassin is shot by her ruthless employer, Bill, and other members of their assassination circle – but she lives to plot her vengeance.",
+        "poster_path": "/v7TaX8kXMXs5yFFGR41guUDNcnB.jpg",
+        "media_type": "movie",
+        "adult": false,
+        "original_language": "en",
+        "genre_ids": [
+          28,
+          80
+        ],
+        "popularity": 57.128,
+        "release_date": "2003-10-10",
+        "video": false,
+        "vote_average": 8,
+        "vote_count": 17661
+      },
+      {
+        "backdrop_path": "/pgG6tzJzC8mjGqhaT8IWwEk00xf.jpg",
+        "id": 393,
+        "title": "Kill Bill: Vol. 2",
+        "original_title": "Kill Bill: Vol. 2",
+        "overview": "The Bride unwaveringly continues on her roaring rampage of revenge against the band of assassins who had tried to kill her and her unborn child. She visits each of her former associates one-by-one, checking off the victims on her Death List Five until there's nothing left to do … but kill Bill.",
+        "poster_path": "/2yhg0mZQMhDyvUQ4rG1IZ4oIA8L.jpg",
+        "media_type": "movie",
+        "adult": false,
+        "original_language": "en",
+        "genre_ids": [
+          28,
+          80,
+          53
+        ],
+        "popularity": 38.737,
+        "release_date": "2004-04-16",
+        "video": false,
+        "vote_average": 7.9,
+        "vote_count": 14074
+      }
+    ]
+  },
+  "2980": {
+    "id": 2980,
+    "name": "Ghostbusters Collection",
+    "overview": "Ghostbusters is a 1984 American supernatural comedy film, directed and produced by Ivan Reitman and written by Dan Aykroyd and Harold Ramis. The film stars Bill Murray, Aykroyd, and Ramis as three eccentric parapsychologists in New York City who start a ghost-catching business. The second film, Ghostbusters II, was released in 1989.",
+    "poster_path": "/sctvCtE1M1rDF4f0W2fMrk2BrGB.jpg",
+    "backdrop_path": "/guigdRPHN65fsgZHmvVvBOyiArf.jpg",
+    "parts": [
+      {
+        "backdrop_path": "/c6yfABGVKuB5cjoOwdX4AJMlzUz.jpg",
+        "id": 620,
+        "title": "Ghostbusters",
+        "original_title": "Ghostbusters",
+        "overview": "After losing their academic posts at a prestigious university, a team of parapsychologists goes into business as proton-pack-toting \"ghostbusters\" who exterminate ghouls, hobgoblins and supernatural pests of all stripes. An ad campaign pays off when a knockout cellist hires the squad to purge her swanky digs of demons that appear to be living in her refrigerator.",
+        "poster_path": "/7E8nLijS9AwwUEPu2oFYOVKhdFA.jpg",
+        "media_type": "movie",
+        "adult": false,
+        "original_language": "en",
+        "genre_ids": [
+          35,
+          14
+        ],
+        "popularity": 44.731,
+        "release_date": "1984-06-08",
+        "video": false,
+        "vote_average": 7.491,
+        "vote_count": 9085
+      },
+      {
+        "backdrop_path": "/qBAfvEIpywGYknzOGGzrif7C4Qu.jpg",
+        "id": 2978,
+        "title": "Ghostbusters II",
+        "original_title": "Ghostbusters II",
+        "overview": "Having lost their status and credibility five years after covering New York City with gooey roasted marshmallows in Ghostbusters (1984), the city's former heroes and once-popular spirit-hunters struggle to keep afloat, forced to work odd jobs. However, when Dana and her baby have yet another terrifying encounter with the paranormal, it is up to Peter Venkman and his fearless team of supernatural crime fighters to step up and save the day. Once more, humankind is in danger, as rivers of slimy psycho-reactive ectoplasm, paired with the dreadful manifestation of evil sixteenth-century tyrant Vigo the Carpathian, threaten to plunge the entire city into darkness. Is the world ready to believe? Can the Ghostbusters save us for the second time?",
+        "poster_path": "/yObYPMA58DnTMvJooFW7GG6jWAt.jpg",
+        "media_type": "movie",
+        "adult": false,
+        "original_language": "en",
+        "genre_ids": [
+          35,
+          14
+        ],
+        "popularity": 32.65,
+        "release_date": "1989-06-16",
+        "video": false,
+        "vote_average": 6.578,
+        "vote_count": 4494
+      },
+      {
+        "backdrop_path": "/EnDlndEvw6Ptpp8HIwmRcSSNKQ.jpg",
+        "id": 425909,
+        "title": "Ghostbusters: Afterlife",
+        "original_title": "Ghostbusters: Afterlife",
+        "overview": "When single mom Callie and her two kids Trevor and Phoebe arrive in a small Oklahoma town, they begin to discover their connection to the original Ghostbusters and the secret legacy their grandfather left behind.",
+        "poster_path": "/sg4xJaufDiQl7caFEskBtQXfD4x.jpg",
+        "media_type": "movie",
+        "adult": false,
+        "original_language": "en",
+        "genre_ids": [
+          14,
+          35,
+          12,
+          878
+        ],
+        "popularity": 38.011,
+        "release_date": "2021-11-18",
+        "video": false,
+        "vote_average": 7.4,
+        "vote_count": 4723
+      },
+      {
+        "backdrop_path": "/5cCfqeUH2f5Gnu7Lh9xepY9TB6x.jpg",
+        "id": 967847,
+        "title": "Ghostbusters: Frozen Empire",
+        "original_title": "Ghostbusters: Frozen Empire",
+        "overview": "When the discovery of an ancient artifact unleashes an evil force, Ghostbusters new and old must join forces to protect their home and save the world from a second Ice Age.",
+        "poster_path": "/e1J2oNzSBdou01sUvriVuoYp0pJ.jpg",
+        "media_type": "movie",
+        "adult": false,
+        "original_language": "en",
+        "genre_ids": [
+          14,
+          12,
+          35
+        ],
+        "popularity": 52.49,
+        "release_date": "2024-03-20",
+        "video": false,
+        "vote_average": 6.5,
+        "vote_count": 1722
+      }
+    ]
+  },
+  "9485": {
+    "id": 9485,
+    "name": "The Fast and the Furious Collection",
+    "overview": "An action film series centered on illegal street racing and heists.",
+    "poster_path": "/zOCnMPoUxgJK1RFPfN4PcnT16gr.jpg",
+    "backdrop_path": "/z5A5W3WYJc3UVEWljSGwdjDgQ0j.jpg",
+    "parts": [
+      {
+        "backdrop_path": "/z3ioibdjWZOYeXjoiabFOFOfPI3.jpg",
+        "id": 584,
+        "title": "2 Fast 2 Furious",
+        "original_title": "2 Fast 2 Furious",
+        "overview": "It's a major double-cross when former police officer Brian O'Conner teams up with his ex-con buddy Roman Pearce to transport a shipment of \"dirty\" money for shady Miami-based import-export dealer Carter Verone. But the guys are actually working with undercover agent Monica Fuentes to bring Verone down.",
+        "poster_path": "/6nDZExrDKIXvSAghsFKVFRVJuSf.jpg",
+        "media_type": "movie",
+        "adult": false,
+        "original_language": "en",
+        "genre_ids": [
+          28,
+          80,
+          53
+        ],
+        "popularity": 6.529,
+        "release_date": "2003-06-05",
+        "video": false,
+        "vote_average": 6.504,
+        "vote_count": 7564
+      },
+      {
+        "backdrop_path": "/dMARcKLrv0T7kVJ4iQR3vqTTdtT.jpg",
+        "id": 9615,
+        "title": "The Fast and the Furious: Tokyo Drift",
+        "original_title": "The Fast and the Furious: Tokyo Drift",
+        "overview": "In order to avoid a jail sentence, Sean Boswell heads to Tokyo to live with his military father. In a low-rent section of the city, Shaun gets caught up in the underground world of drift racing",
+        "poster_path": "/46xqGOwHbh2TH2avWSw3SMXph4E.jpg",
+        "media_type": "movie",
+        "adult": false,
+        "original_language": "en",
+        "genre_ids": [
+          28,
+          80,
+          18,
+          53
+        ],
+        "popularity": 15.375,
+        "release_date": "2006-06-03",
+        "video": false,
+        "vote_average": 6.513,
+        "vote_count": 7018
+      },
+      {
+        "backdrop_path": "/jY9ef5nqY4xIIMu3yzW3qamUCoi.jpg",
+        "id": 9799,
+        "title": "The Fast and the Furious",
+        "original_title": "The Fast and the Furious",
+        "overview": "Dominic Toretto is a Los Angeles street racer suspected of masterminding a series of big-rig hijackings. When undercover cop Brian O'Conner infiltrates Toretto's iconoclastic crew, he falls for Toretto's sister and must choose a side: the gang or the LAPD.",
+        "poster_path": "/gqY0ITBgT7A82poL9jv851qdnIb.jpg",
+        "media_type": "movie",
+        "adult": false,
+        "original_language": "en",
+        "genre_ids": [
+          28,
+          80,
+          53
+        ],
+        "popularity": 6.244,
+        "release_date": "2001-06-22",
+        "video": false,
+        "vote_average": 6.986,
+        "vote_count": 10145
+      },
+      {
+        "backdrop_path": "/krtWl2iNKAzoZZnVCgApBsH30sb.jpg",
+        "id": 51497,
+        "title": "Fast Five",
+        "original_title": "Fast Five",
+        "overview": "Former cop Brian O'Conner partners with ex-con Dom Toretto on the opposite side of the law. Since Brian and Mia Toretto broke Dom out of custody, they've blown across many borders to elude authorities. Now backed into a corner in Rio de Janeiro, they must pull one last job in order to gain their freedom.",
+        "poster_path": "/gEfQjjQwY7fh5bI4GlG0RrBu7Pz.jpg",
+        "media_type": "movie",
+        "adult": false,
+        "original_language": "en",
+        "genre_ids": [
+          28,
+          53,
+          80
+        ],
+        "popularity": 8.118,
+        "release_date": "2011-04-20",
+        "video": false,
+        "vote_average": 7.242,
+        "vote_count": 8305
+      },
+      {
+        "backdrop_path": "/xDp29MSWa7O3ROC13r6dPTFnREJ.jpg",
+        "id": 82992,
+        "title": "Fast & Furious 6",
+        "original_title": "Fast & Furious 6",
+        "overview": "Hobbs has Dominic and Brian reassemble their crew to take down a team of mercenaries; Dominic unexpectedly gets sidetracked with facing his presumed deceased girlfriend, Letty.",
+        "poster_path": "/thSmnRdrzPBBospIOJjLZBReqzo.jpg",
+        "media_type": "movie",
+        "adult": false,
+        "original_language": "en",
+        "genre_ids": [
+          28,
+          53,
+          80
+        ],
+        "popularity": 6.842,
+        "release_date": "2013-05-21",
+        "video": false,
+        "vote_average": 6.8,
+        "vote_count": 10675
+      },
+      {
+        "backdrop_path": "/cHkhb5A4gQRK6zs6Pv7zorHs8Nk.jpg",
+        "id": 168259,
+        "title": "Furious 7",
+        "original_title": "Furious 7",
+        "overview": "Deckard Shaw seeks revenge against Dominic Toretto and his family for his comatose brother.",
+        "poster_path": "/wurKlC3VKUgcfsn0K51MJYEleS2.jpg",
+        "media_type": "movie",
+        "adult": false,
+        "original_language": "en",
+        "genre_ids": [
+          28,
+          53,
+          80
+        ],
+        "popularity": 70.576,
+        "release_date": "2015-04-01",
+        "video": false,
+        "vote_average": 7.229,
+        "vote_count": 10730
+      },
+      {
+        "backdrop_path": "/acktCBsLJcgEJsjTuyiQhJipCD6.jpg",
+        "id": 13804,
+        "title": "Fast & Furious",
+        "original_title": "Fast & Furious",
+        "overview": "When a crime brings them back to L.A., fugitive ex-con Dom Toretto reignites his feud with agent Brian O'Conner. But as they are forced to confront a shared enemy, Dom and Brian must give in to an uncertain new trust if they hope to outmaneuver him. And the two men will find the best way to get revenge: push the limits of what's possible behind the wheel.",
+        "poster_path": "/lUtVoRukW7WNtUySwd8hWlByBds.jpg",
+        "media_type": "movie",
+        "adult": false,
+        "original_language": "en",
+        "genre_ids": [
+          28,
+          80,
+          18,
+          53
+        ],
+        "popularity": 6.295,
+        "release_date": "2009-04-02",
+        "video": false,
+        "vote_average": 6.682,
+        "vote_count": 7322
+      },
+      {
+        "backdrop_path": "/awuUwOAGCPqC4mIDQmeKdPiiLR5.jpg",
+        "id": 337339,
+        "title": "The Fate of the Furious",
+        "original_title": "The Fate of the Furious",
+        "overview": "When a mysterious woman seduces Dom into the world of crime and a betrayal of those closest to him, the crew face trials that will test them as never before.",
+        "poster_path": "/dImWM7GJqryWJO9LHa3XQ8DD5NH.jpg",
+        "media_type": "movie",
+        "adult": false,
+        "original_language": "en",
+        "genre_ids": [
+          28,
+          80,
+          53
+        ],
+        "popularity": 60.46,
+        "release_date": "2017-04-12",
+        "video": false,
+        "vote_average": 6.9,
+        "vote_count": 10363
+      },
+      {
+        "backdrop_path": "/4XM8DUTQb3lhLemJC51Jx4a2EuA.jpg",
+        "id": 385687,
+        "title": "Fast X",
+        "original_title": "Fast X",
+        "overview": "Over many missions and against impossible odds, Dom Toretto and his family have outsmarted, out-nerved and outdriven every foe in their path. Now, they confront the most lethal opponent they've ever faced: A terrifying threat emerging from the shadows of the past who's fueled by blood revenge, and who is determined to shatter this family and destroy everything—and everyone—that Dom loves, forever.",
+        "poster_path": "/fiVW06jE7z9YnO4trhaMEdclSiC.jpg",
+        "media_type": "movie",
+        "adult": false,
+        "original_language": "en",
+        "genre_ids": [
+          28,
+          80,
+          53
+        ],
+        "popularity": 207.863,
+        "release_date": "2023-05-17",
+        "video": false,
+        "vote_average": 7.1,
+        "vote_count": 5794
+      },
+      {
+        "backdrop_path": "/xXHZeb1yhJvnSHPzZDqee0zfMb6.jpg",
+        "id": 385128,
+        "title": "F9",
+        "original_title": "F9",
+        "overview": "Dominic Toretto and his crew battle the most skilled assassin and high-performance driver they've ever encountered: his forsaken brother.",
+        "poster_path": "/deEmLILTPejEb6OGsXRJ5MCvyDW.jpg",
+        "media_type": "movie",
+        "adult": false,
+        "original_language": "en",
+        "genre_ids": [
+          28,
+          12,
+          80
+        ],
+        "popularity": 47.151,
+        "release_date": "2021-05-19",
+        "video": false,
+        "vote_average": 7.056,
+        "vote_count": 7289
+      },
+      {
+        "backdrop_path": null,
+        "id": 755679,
+        "title": "Fast X: Part 2",
+        "original_title": "Fast X: Part 2",
+        "overview": "The eleventh installment in The Fast Saga, which is a direct sequel to \"Fast X\".",
+        "poster_path": "/lD8V3DBban95Mxz4sjuA81Tw771.jpg",
+        "media_type": "movie",
+        "adult": false,
+        "original_language": "en",
+        "genre_ids": [
+          28,
+          80,
+          53
+        ],
+        "popularity": 70.549,
+        "release_date": "",
+        "video": false,
+        "vote_average": 0,
+        "vote_count": 0
+      }
+    ]
+  },
+  "33514": {
+    "id": 33514,
+    "name": "The Twilight Collection",
+    "overview": "The Twilight movies are a romantic fantasy vampire series based on the series of novels by Stephenie Meyer.",
+    "poster_path": "/aKAX2HO5V94JYeSIkOMFNlRI71E.jpg",
+    "backdrop_path": "/3be0BffeZTyMbj4Ndzo6Y877SBQ.jpg",
+    "parts": [
+      {
+        "backdrop_path": "/weAYfu6FfrNxEDJ3xH1XpgQcqUv.jpg",
+        "id": 8966,
+        "title": "Twilight",
+        "original_title": "Twilight",
+        "overview": "When Bella Swan moves to a small town in the Pacific Northwest, she falls in love with Edward Cullen, a mysterious classmate who reveals himself to be a 108-year-old vampire. Despite Edward's repeated cautions, Bella can't stay away from him, a fatal move that endangers her own life.",
+        "poster_path": "/3Gkb6jm6962ADUPaCBqzz9CTbn9.jpg",
+        "media_type": "movie",
+        "adult": false,
+        "original_language": "en",
+        "genre_ids": [
+          14,
+          18,
+          10749
+        ],
+        "popularity": 102.316,
+        "release_date": "2008-11-20",
+        "video": false,
+        "vote_average": 6.3,
+        "vote_count": 13690
+      },
+      {
+        "backdrop_path": "/1E7kqUJghDRSgYkxDXAyoaVqQ96.jpg",
+        "id": 18239,
+        "title": "The Twilight Saga: New Moon",
+        "original_title": "The Twilight Saga: New Moon",
+        "overview": "Forks, Washington resident Bella Swan is reeling from the departure of her vampire love, Edward Cullen, and finds comfort in her friendship with Jacob Black, a werewolf. But before she knows it, she's thrust into a centuries-old conflict, and her desire to be with Edward at any cost leads her to take greater and greater risks.",
+        "poster_path": "/j5jM5pq78ObAXX1WhTsb115EkLl.jpg",
+        "media_type": "movie",
+        "adult": false,
+        "original_language": "en",
+        "genre_ids": [
+          12,
+          14,
+          18,
+          10749
+        ],
+        "popularity": 64.4,
+        "release_date": "2009-11-18",
+        "video": false,
+        "vote_average": 5.991,
+        "vote_count": 9287
+      },
+      {
+        "backdrop_path": "/hBwDYiOPwXHuwiYGP82ekFNSeBr.jpg",
+        "id": 50619,
+        "title": "The Twilight Saga: Breaking Dawn - Part 1",
+        "original_title": "The Twilight Saga: Breaking Dawn - Part 1",
+        "overview": "The new found married bliss of Bella Swan and vampire Edward Cullen is cut short when a series of betrayals and misfortunes threatens to destroy their world.",
+        "poster_path": "/qs8LsHKYlVRmJbFUiSUhhRAygwj.jpg",
+        "media_type": "movie",
+        "adult": false,
+        "original_language": "en",
+        "genre_ids": [
+          12,
+          14,
+          10749
+        ],
+        "popularity": 86.921,
+        "release_date": "2011-11-16",
+        "video": false,
+        "vote_average": 6.196,
+        "vote_count": 8841
+      },
+      {
+        "backdrop_path": "/qkl57wzSFrpi2sRpoc2mZJbMuLP.jpg",
+        "id": 50620,
+        "title": "The Twilight Saga: Breaking Dawn - Part 2",
+        "original_title": "The Twilight Saga: Breaking Dawn - Part 2",
+        "overview": "After the birth of Renesmee, the Cullens gather other vampire clans in order to protect the child from a false allegation that puts the family in front of the Volturi.",
+        "poster_path": "/7IGdPaKujv0BjI0Zd0m0a4CzEjJ.jpg",
+        "media_type": "movie",
+        "adult": false,
+        "original_language": "en",
+        "genre_ids": [
+          12,
+          14,
+          18,
+          10749
+        ],
+        "popularity": 77.839,
+        "release_date": "2012-11-13",
+        "video": false,
+        "vote_average": 6.5,
+        "vote_count": 8968
+      },
+      {
+        "backdrop_path": "/oguoQWtQJcqIkmmUNbe3CmLx6AP.jpg",
+        "id": 24021,
+        "title": "The Twilight Saga: Eclipse",
+        "original_title": "The Twilight Saga: Eclipse",
+        "overview": "Bella once again finds herself surrounded by danger as Seattle is ravaged by a string of mysterious killings and a malicious vampire continues her quest for revenge. In the midst of it all, she is forced to choose between her love for Edward and her friendship with Jacob, knowing that her decision has the potential to ignite the ageless struggle between vampire and werewolf. With her graduation quickly approaching, Bella is confronted with the most important decision of her life.",
+        "poster_path": "/3mFM80dPzSqoXXuC2UMvLIRWX32.jpg",
+        "media_type": "movie",
+        "adult": false,
+        "original_language": "en",
+        "genre_ids": [
+          12,
+          14,
+          18,
+          10749
+        ],
+        "popularity": 67.022,
+        "release_date": "2010-06-23",
+        "video": false,
+        "vote_average": 6.2,
+        "vote_count": 8830
+      }
+    ]
+  },
+  "86055": {
+    "id": 86055,
+    "name": "Men In Black Collection",
+    "overview": "A series of American science fiction action comedy films based on Malibu / Marvel comic book series The Men in Black by Lowell Cunningham. Stylized MIB and spawned 2 numbered sequels as well as a spin-off.",
+    "poster_path": "/rWcgZaoJ0nxTFRn0H6w9bdtoDUI.jpg",
+    "backdrop_path": "/xKz6YaOvmnIJQ3MYIpnaa7FBaAB.jpg",
+    "parts": [
+      {
+        "backdrop_path": "/1GJvBE7UWU1WOVi0XREl4JQc7f8.jpg",
+        "id": 607,
+        "title": "Men in Black",
+        "original_title": "Men in Black",
+        "overview": "After a police chase with an otherworldly being, a New York City cop is recruited as an agent in a top-secret organization established to monitor and police alien activity on Earth: the Men in Black. Agent K and new recruit Agent J find themselves in the middle of a deadly plot by an intergalactic terrorist who has arrived on Earth to assassinate two ambassadors from opposing galaxies.",
+        "poster_path": "/uLOmOF5IzWoyrgIF5MfUnh5pa1X.jpg",
+        "media_type": "movie",
+        "adult": false,
+        "original_language": "en",
+        "genre_ids": [
+          28,
+          12,
+          35,
+          878
+        ],
+        "popularity": 46.233,
+        "release_date": "1997-07-02",
+        "video": false,
+        "vote_average": 7.203,
+        "vote_count": 13926
+      },
+      {
+        "backdrop_path": "/o1l6OCqA3pYDZHIc5L1s7CEzCMv.jpg",
+        "id": 608,
+        "title": "Men in Black II",
+        "original_title": "Men in Black II",
+        "overview": "Kay and Jay reunite to provide our best, last and only line of defense against a sinister seductress who levels the toughest challenge yet to the MIB's untarnished mission statement – protecting Earth from the scum of the universe. It's been four years since the alien-seeking agents averted an intergalactic disaster of epic proportions. Now it's a race against the clock as Jay must convince Kay – who not only has absolutely no memory of his time spent with the MIB, but is also the only living person left with the expertise to save the galaxy – to reunite with the MIB before the earth submits to ultimate destruction.",
+        "poster_path": "/enA22EPyzc2WQ1VVyY7zxresQQr.jpg",
+        "media_type": "movie",
+        "adult": false,
+        "original_language": "en",
+        "genre_ids": [
+          28,
+          35,
+          878
+        ],
+        "popularity": 38.103,
+        "release_date": "2002-07-03",
+        "video": false,
+        "vote_average": 6.4,
+        "vote_count": 10017
+      },
+      {
+        "backdrop_path": "/5AhpUb8CAP0jZ4Wrn7AsRUYjZxB.jpg",
+        "id": 41154,
+        "title": "Men in Black 3",
+        "original_title": "Men in Black 3",
+        "overview": "Agents J and K are back...in time. J has seen some inexplicable things in his 15 years with the Men in Black, but nothing, not even aliens, perplexes him as much as his wry, reticent partner. But when K's life and the fate of the planet are put at stake, Agent J will have to travel back in time to put things right. J discovers that there are secrets to the universe that K never told him - secrets that will reveal themselves as he teams up with the young Agent K to save his partner, the agency, and the future of humankind.",
+        "poster_path": "/90DdoEStzeObs96fsYf4GG544iN.jpg",
+        "media_type": "movie",
+        "adult": false,
+        "original_language": "en",
+        "genre_ids": [
+          28,
+          35,
+          878
+        ],
+        "popularity": 33.332,
+        "release_date": "2012-05-23",
+        "video": false,
+        "vote_average": 6.5,
+        "vote_count": 10390
+      }
+    ]
+  },
+  "86066": {
+    "id": 86066,
+    "name": "Despicable Me Collection",
+    "overview": "The Despicable Me franchise centers on Gru, a super-villain (who later becomes a dad and superhero); his yellow-coloured Minions; and his three orphan girls, Margo, Edith and Agnes.",
+    "poster_path": "/xIXhIlZDRmSSfNbpN7kBCm5hg39.jpg",
+    "backdrop_path": "/37xamYKRUGCRux532lKcZdVGYuR.jpg",
+    "parts": [
+      {
+        "backdrop_path": "/v4W554WRfWdWn1P9WJ9XYbXz36l.jpg",
+        "id": 20352,
+        "title": "Despicable Me",
+        "original_title": "Despicable Me",
+        "overview": "Villainous Gru lives up to his reputation as a despicable, deplorable and downright unlikable guy when he hatches a plan to steal the moon from the sky. But he has a tough time staying on task after three orphans land in his care.",
+        "poster_path": "/9lOloREsAhBu0pEtU0BgeR1rHyo.jpg",
+        "media_type": "movie",
+        "adult": false,
+        "original_language": "en",
+        "genre_ids": [
+          16,
+          10751,
+          35
+        ],
+        "popularity": 93.67,
+        "release_date": "2010-07-08",
+        "video": false,
+        "vote_average": 7.246,
+        "vote_count": 15263
+      },
+      {
+        "backdrop_path": "/fOipappvgVtUbbHOtmCkHzcwJjC.jpg",
+        "id": 93456,
+        "title": "Despicable Me 2",
+        "original_title": "Despicable Me 2",
+        "overview": "Gru is recruited by the Anti-Villain League to help deal with a powerful new super criminal.",
+        "poster_path": "/xL6t0Fo38DjiiuNLVSj58xJWNJy.jpg",
+        "media_type": "movie",
+        "adult": false,
+        "original_language": "en",
+        "genre_ids": [
+          16,
+          35,
+          10751
+        ],
+        "popularity": 55.586,
+        "release_date": "2013-06-26",
+        "video": false,
+        "vote_average": 6.9,
+        "vote_count": 11388
+      },
+      {
+        "backdrop_path": "/ftRkFtAGuHngHnLiOxktq0aCVMF.jpg",
+        "id": 324852,
+        "title": "Despicable Me 3",
+        "original_title": "Despicable Me 3",
+        "overview": "Gru and his wife Lucy must stop former '80s child star Balthazar Bratt from achieving world domination.",
+        "poster_path": "/6t3YWl7hrr88lCEFlGVqW5yV99R.jpg",
+        "media_type": "movie",
+        "adult": false,
+        "original_language": "en",
+        "genre_ids": [
+          28,
+          16,
+          35,
+          10751,
+          12
+        ],
+        "popularity": 39.475,
+        "release_date": "2017-06-15",
+        "video": false,
+        "vote_average": 6.5,
+        "vote_count": 7249
+      },
+      {
+        "backdrop_path": "/lgkPzcOSnTvjeMnuFzozRO5HHw1.jpg",
+        "id": 519182,
+        "title": "Despicable Me 4",
+        "original_title": "Despicable Me 4",
+        "overview": "Gru and Lucy and their girls—Margo, Edith and Agnes—welcome a new member to the Gru family, Gru Jr., who is intent on tormenting his dad. Gru also faces a new nemesis in Maxime Le Mal and his femme fatale girlfriend Valentina, forcing the family to go on the run.",
+        "poster_path": "/wWba3TaojhK7NdycRhoQpsG0FaH.jpg",
+        "media_type": "movie",
+        "adult": false,
+        "original_language": "en",
+        "genre_ids": [
+          16,
+          10751,
+          35,
+          878
+        ],
+        "popularity": 420.996,
+        "release_date": "2024-06-20",
+        "video": false,
+        "vote_average": 7.059,
+        "vote_count": 2593
+      }
+    ]
+  },
+  "86311": {
+    "id": 86311,
+    "name": "The Avengers Collection",
+    "overview": "A superhero film series produced by Marvel Studios based on the Marvel Comics superhero team of the same name, and part of the Marvel Cinematic Universe (MCU).  The series features an ensemble cast from the Marvel Cinematic Universe series films, as they join forces for the peacekeeping organization S.H.I.E.L.D. led by Nick Fury.",
+    "poster_path": "/yFSIUVTCvgYrpalUktulvk3Gi5Y.jpg",
+    "backdrop_path": "/zuW6fOiusv4X9nnW3paHGfXcSll.jpg",
+    "parts": [
+      {
+        "backdrop_path": "/9BBTo63ANSmhC4e6r62OJFuK2GL.jpg",
+        "id": 24428,
+        "title": "The Avengers",
+        "original_title": "The Avengers",
+        "overview": "When an unexpected enemy emerges and threatens global safety and security, Nick Fury, director of the international peacekeeping agency known as S.H.I.E.L.D., finds himself in need of a team to pull the world back from the brink of disaster. Spanning the globe, a daring recruitment effort begins!",
+        "poster_path": "/RYMX2wcKCBAr24UyPD7xwmjaTn.jpg",
+        "media_type": "movie",
+        "adult": false,
+        "original_language": "en",
+        "genre_ids": [
+          878,
+          28,
+          12
+        ],
+        "popularity": 169.504,
+        "release_date": "2012-04-25",
+        "video": false,
+        "vote_average": 7.73,
+        "vote_count": 31292
+      },
+      {
+        "backdrop_path": "/6YwkGolwdOMNpbTOmLjoehlVWs5.jpg",
+        "id": 99861,
+        "title": "Avengers: Age of Ultron",
+        "original_title": "Avengers: Age of Ultron",
+        "overview": "When Tony Stark tries to jumpstart a dormant peacekeeping program, things go awry and Earth’s Mightiest Heroes are put to the ultimate test as the fate of the planet hangs in the balance. As the villainous Ultron emerges, it is up to The Avengers to stop him from enacting his terrible plans, and soon uneasy alliances and unexpected action pave the way for an epic and unique global adventure.",
+        "poster_path": "/4ssDuvEDkSArWEdyBl2X5EHvYKU.jpg",
+        "media_type": "movie",
+        "adult": false,
+        "original_language": "en",
+        "genre_ids": [
+          28,
+          12,
+          878
+        ],
+        "popularity": 96.707,
+        "release_date": "2015-04-22",
+        "video": false,
+        "vote_average": 7.272,
+        "vote_count": 23244
+      },
+      {
+        "backdrop_path": "/mDfJG3LC3Dqb67AZ52x3Z0jU0uB.jpg",
+        "id": 299536,
+        "title": "Avengers: Infinity War",
+        "original_title": "Avengers: Infinity War",
+        "overview": "As the Avengers and their allies have continued to protect the world from threats too large for any one hero to handle, a new danger has emerged from the cosmic shadows: Thanos. A despot of intergalactic infamy, his goal is to collect all six Infinity Stones, artifacts of unimaginable power, and use them to inflict his twisted will on all of reality. Everything the Avengers have fought for has led up to this moment - the fate of Earth and existence itself has never been more uncertain.",
+        "poster_path": "/7WsyChQLEftFiDOVTGkv3hFpyyt.jpg",
+        "media_type": "movie",
+        "adult": false,
+        "original_language": "en",
+        "genre_ids": [
+          12,
+          28,
+          878
+        ],
+        "popularity": 229.571,
+        "release_date": "2018-04-25",
+        "video": false,
+        "vote_average": 8.237,
+        "vote_count": 30236
+      },
+      {
+        "backdrop_path": "/7RyHsO4yDXtBv1zUU3mTpHeQ0d5.jpg",
+        "id": 299534,
+        "title": "Avengers: Endgame",
+        "original_title": "Avengers: Endgame",
+        "overview": "After the devastating events of Avengers: Infinity War, the universe is in ruins due to the efforts of the Mad Titan, Thanos. With the help of remaining allies, the Avengers must assemble once more in order to undo Thanos' actions and restore order to the universe once and for all, no matter what consequences may be in store.",
+        "poster_path": "/ulzhLuWrPK07P1YkdWQLZnQh1JL.jpg",
+        "media_type": "movie",
+        "adult": false,
+        "original_language": "en",
+        "genre_ids": [
+          12,
+          878,
+          28
+        ],
+        "popularity": 115.617,
+        "release_date": "2019-04-24",
+        "video": false,
+        "vote_average": 8.2,
+        "vote_count": 26069
+      },
+      {
+        "backdrop_path": "/vrncuH8IDqQ5M47XPk19yxY8o1b.jpg",
+        "id": 1003596,
+        "title": "Avengers: Doomsday",
+        "original_title": "Avengers: Doomsday",
+        "overview": "An upcoming film in the Marvel Cinematic Universe's (MCU) sixth Phase and part of The Multiverse Saga. Plot TBA.",
+        "poster_path": "/eO6OdA4RDRWeCVlDMcsoxWYFySD.jpg",
+        "media_type": "movie",
+        "adult": false,
+        "original_language": "en",
+        "genre_ids": [
+          878
+        ],
+        "popularity": 82.08,
+        "release_date": "2026-04-29",
+        "video": false,
+        "vote_average": 0,
+        "vote_count": 0
+      },
+      {
+        "backdrop_path": "/h0rLRgh21cQS2Mrou9fEcZQuaku.jpg",
+        "id": 1003598,
+        "title": "Avengers: Secret Wars",
+        "original_title": "Avengers: Secret Wars",
+        "overview": "An upcoming film in Phase 6 of the Marvel Cinematic Universe (MCU) and the finale of The Multiverse Saga. Plot TBA.",
+        "poster_path": "/f0YBuh4hyiAheXhh4JnJWoKi9g5.jpg",
+        "media_type": "movie",
+        "adult": false,
+        "original_language": "en",
+        "genre_ids": [
+          878
+        ],
+        "popularity": 44.142,
+        "release_date": "2027-05-05",
+        "video": false,
+        "vote_average": 0,
+        "vote_count": 0
+      }
+    ]
+  },
+  "87359": {
+    "id": 87359,
+    "name": "Mission: Impossible Collection",
+    "overview": "Mission: Impossible is a series of a secret agent thriller films based on the popular television series. They chronicle the missions of a team of secret government agents known as the Impossible Missions Force (IMF) under the leadership of agent Ethan Hunt.",
+    "poster_path": "/geEjCGfdmRAA1skBPwojcdvnZ8A.jpg",
+    "backdrop_path": "/mroWh717g0Ah2c0rrPGW6f3EWMM.jpg",
+    "parts": [
+      {
+        "backdrop_path": "/sra8XnL96OyLHENcglmZJg6HA8z.jpg",
+        "id": 954,
+        "title": "Mission: Impossible",
+        "original_title": "Mission: Impossible",
+        "overview": "When Ethan Hunt, the leader of a crack espionage team whose perilous operation has gone awry with no explanation, discovers that a mole has penetrated the CIA, he's surprised to learn that he's the prime suspect. To clear his name, Hunt now must ferret out the real double agent and, in the process, even the score.",
+        "poster_path": "/l5uxY5m5OInWpcExIpKG6AR3rgL.jpg",
+        "media_type": "movie",
+        "adult": false,
+        "original_language": "en",
+        "genre_ids": [
+          12,
+          28,
+          53
+        ],
+        "popularity": 40.356,
+        "release_date": "1996-05-22",
+        "video": false,
+        "vote_average": 6.989,
+        "vote_count": 9036
+      },
+      {
+        "backdrop_path": "/24DZfupDlhXeTchmcOkoGRhP5Vg.jpg",
+        "id": 955,
+        "title": "Mission: Impossible II",
+        "original_title": "Mission: Impossible II",
+        "overview": "With computer genius Luther Stickell at his side and a beautiful thief on his mind, agent Ethan Hunt races across Australia and Spain to stop a former IMF agent from unleashing a genetically engineered biological weapon called Chimera. This mission, should Hunt choose to accept it, plunges him into the center of an international crisis of terrifying magnitude.",
+        "poster_path": "/7us8nE3ldE0gX2cziUz4tKg0Go0.jpg",
+        "media_type": "movie",
+        "adult": false,
+        "original_language": "en",
+        "genre_ids": [
+          12,
+          28,
+          53
+        ],
+        "popularity": 34.546,
+        "release_date": "2000-05-24",
+        "video": false,
+        "vote_average": 6.1,
+        "vote_count": 6853
+      },
+      {
+        "backdrop_path": "/mOyF7rHVLF6uLbyb18FWTmcrjJe.jpg",
+        "id": 956,
+        "title": "Mission: Impossible III",
+        "original_title": "Mission: Impossible III",
+        "overview": "Retired from active duty, and training recruits for the Impossible Mission Force, agent Ethan Hunt faces the toughest foe of his career: Owen Davian, an international broker of arms and information, who's as cunning as he is ruthless. Davian emerges to threaten Hunt and all that he holds dear – including the woman Hunt loves.",
+        "poster_path": "/vKGYCpmQyV9uHybWDzXuII8Los5.jpg",
+        "media_type": "movie",
+        "adult": false,
+        "original_language": "en",
+        "genre_ids": [
+          12,
+          28,
+          53
+        ],
+        "popularity": 42.908,
+        "release_date": "2006-04-25",
+        "video": false,
+        "vote_average": 6.738,
+        "vote_count": 6909
+      },
+      {
+        "backdrop_path": "/ih4lZkUpmSE7AP3maymiO72xJ1z.jpg",
+        "id": 56292,
+        "title": "Mission: Impossible - Ghost Protocol",
+        "original_title": "Mission: Impossible - Ghost Protocol",
+        "overview": "Ethan Hunt and his team are racing against time to track down a dangerous terrorist named Hendricks, who has gained access to Russian nuclear launch codes and is planning a strike on the United States. An attempt to stop him ends in an explosion causing severe destruction to the Kremlin and the IMF to be implicated in the bombing, forcing the President to disavow them. No longer being aided by the government, Ethan and his team chase Hendricks around the globe, although they might still be too late to stop a disaster.",
+        "poster_path": "/eRZTGx7GsiKqPch96k27LK005ZL.jpg",
+        "media_type": "movie",
+        "adult": false,
+        "original_language": "en",
+        "genre_ids": [
+          28,
+          53,
+          12
+        ],
+        "popularity": 47.974,
+        "release_date": "2011-12-07",
+        "video": false,
+        "vote_average": 7.093,
+        "vote_count": 9994
+      },
+      {
+        "backdrop_path": "/39gQ0wzN2N2VPLgwpzr3ebbh0jl.jpg",
+        "id": 177677,
+        "title": "Mission: Impossible - Rogue Nation",
+        "original_title": "Mission: Impossible - Rogue Nation",
+        "overview": "Ethan and team take on their most impossible mission yet—eradicating 'The Syndicate', an International and highly-skilled rogue organization committed to destroying the IMF.",
+        "poster_path": "/sGvcWcI99OTXLzghD7qXw00KaY5.jpg",
+        "media_type": "movie",
+        "adult": false,
+        "original_language": "en",
+        "genre_ids": [
+          28,
+          12
+        ],
+        "popularity": 58.622,
+        "release_date": "2015-07-23",
+        "video": false,
+        "vote_average": 7.207,
+        "vote_count": 8945
+      },
+      {
+        "backdrop_path": "/aw4FOsWr2FY373nKSxbpNi3fz4F.jpg",
+        "id": 353081,
+        "title": "Mission: Impossible - Fallout",
+        "original_title": "Mission: Impossible - Fallout",
+        "overview": "When an IMF mission ends badly, the world is faced with dire consequences. As Ethan Hunt takes it upon himself to fulfill his original briefing, the CIA begin to question his loyalty and his motives. The IMF team find themselves in a race against time, hunted by assassins while trying to prevent a global catastrophe.",
+        "poster_path": "/AkJQpZp9WoNdj7pLYSj1L0RcMMN.jpg",
+        "media_type": "movie",
+        "adult": false,
+        "original_language": "en",
+        "genre_ids": [
+          28,
+          12
+        ],
+        "popularity": 62.193,
+        "release_date": "2018-07-13",
+        "video": false,
+        "vote_average": 7.429,
+        "vote_count": 8361
+      },
+      {
+        "backdrop_path": "/TFTfzrkX8L7bAKUcch6qLmjpLu.jpg",
+        "id": 575264,
+        "title": "Mission: Impossible - Dead Reckoning Part One",
+        "original_title": "Mission: Impossible - Dead Reckoning Part One",
+        "overview": "Ethan Hunt and his IMF team embark on their most dangerous mission yet: To track down a terrifying new weapon that threatens all of humanity before it falls into the wrong hands. With control of the future and the world's fate at stake and dark forces from Ethan's past closing in, a deadly race around the globe begins. Confronted by a mysterious, all-powerful enemy, Ethan must consider that nothing can matter more than his mission—not even the lives of those he cares about most.",
+        "poster_path": "/NNxYkU70HPurnNCSiCjYAmacwm.jpg",
+        "media_type": "movie",
+        "adult": false,
+        "original_language": "en",
+        "genre_ids": [
+          28,
+          12
+        ],
+        "popularity": 109.595,
+        "release_date": "2023-07-08",
+        "video": false,
+        "vote_average": 7.5,
+        "vote_count": 4060
+      },
+      {
+        "backdrop_path": "/78Bgar8OaUalLNLWNtD4xr6AD8T.jpg",
+        "id": 575265,
+        "title": "Mission: Impossible - The Final Reckoning",
+        "original_title": "Mission: Impossible - The Final Reckoning",
+        "overview": "After escaping a calamitous train crash, Ethan realizes The Entity is stashed aboard an old Russian submarine, but a foe from his past named Gabriel is also on the trail.",
+        "poster_path": "/z53D72EAOxGRqdr7KXXWp9dJiDe.jpg",
+        "media_type": "movie",
+        "adult": false,
+        "original_language": "en",
+        "genre_ids": [
+          28,
+          12,
+          53
+        ],
+        "popularity": 86.906,
+        "release_date": "2025-05-21",
+        "video": false,
+        "vote_average": 0,
+        "vote_count": 0
+      }
+    ]
+  },
+  "91361": {
+    "id": 91361,
+    "name": "Halloween Collection",
+    "overview": "Halloween is a horror film series that consists of slasher films focused on the fictional character of Michael Myers. Michael's killings occur on the holiday of Halloween, on which all of the films primarily take place.",
+    "poster_path": "/uCIMY95aqKEwIEwNuFq42UQkY9f.jpg",
+    "backdrop_path": "/d6uWYZe7h7M3F7h4IBjO1jgIkMh.jpg",
+    "parts": [
+      {
+        "backdrop_path": "/aRka9neADW1M0Zf9lF8kW2jEgXe.jpg",
+        "id": 948,
+        "title": "Halloween",
+        "original_title": "Halloween",
+        "overview": "Fifteen years after murdering his sister on Halloween Night 1963, Michael Myers escapes from a mental hospital and returns to the small town of Haddonfield, Illinois to kill again.",
+        "poster_path": "/wijlZ3HaYMvlDTPqJoTCWKFkCPU.jpg",
+        "media_type": "movie",
+        "adult": false,
+        "original_language": "en",
+        "genre_ids": [
+          27,
+          53
+        ],
+        "popularity": 49.747,
+        "release_date": "1978-10-24",
+        "video": false,
+        "vote_average": 7.56,
+        "vote_count": 5705
+      },
+      {
+        "backdrop_path": "/hm3MSsiBMPsCi9HNwwzR4dNmB5.jpg",
+        "id": 11281,
+        "title": "Halloween II",
+        "original_title": "Halloween II",
+        "overview": "After failing to kill stubborn survivor Laurie and taking a bullet or six from former psychiatrist Dr. Sam Loomis, Michael Myers has followed Laurie to the Haddonfield Memorial Hospital, where she's been admitted for Myers' attempt on her life. The institution proves to be particularly suited to serial killers, however, as Myers cuts, stabs and slashes his way through hospital staff to reach his favorite victim.",
+        "poster_path": "/gL3dPbbZInWn4U9jd87uoFGOdot.jpg",
+        "media_type": "movie",
+        "adult": false,
+        "original_language": "en",
+        "genre_ids": [
+          27,
+          53
+        ],
+        "popularity": 17.113,
+        "release_date": "1981-10-30",
+        "video": false,
+        "vote_average": 6.6,
+        "vote_count": 2065
+      },
+      {
+        "backdrop_path": "/gIFaKvX5ARTwKsRl1qYTUygWNPf.jpg",
+        "id": 10676,
+        "title": "Halloween III: Season of the Witch",
+        "original_title": "Halloween III: Season of the Witch",
+        "overview": "A terrified toy salesman is mysteriously attacked, and at the hospital, babbles and clutches the year's most popular Halloween costume, an eerie pumpkin mask. Suddenly, Doctor Daniel Challis finds himself thrust into a terrifying nightmare.",
+        "poster_path": "/WABfdeaThFYXCySGIOvRNv2sSW.jpg",
+        "media_type": "movie",
+        "adult": false,
+        "original_language": "en",
+        "genre_ids": [
+          27,
+          878,
+          9648,
+          53
+        ],
+        "popularity": 16.712,
+        "release_date": "1982-10-22",
+        "video": false,
+        "vote_average": 5.2,
+        "vote_count": 1404
+      },
+      {
+        "backdrop_path": "/zE4I9YvrrMUfwDZ3zLiN10eRZxG.jpg",
+        "id": 11357,
+        "title": "Halloween 4: The Return of Michael Myers",
+        "original_title": "Halloween 4: The Return of Michael Myers",
+        "overview": "Michael returns to Haddonfield for Jamie Lloyd – the orphaned daughter of Laurie Strode – and her babysitter Rachel. Can Dr. Loomis stop him before the unholy slaughter reaches his innocent young niece?",
+        "poster_path": "/eFSOkXF9n9hsfGv45MDsPixiOyx.jpg",
+        "media_type": "movie",
+        "adult": false,
+        "original_language": "en",
+        "genre_ids": [
+          27,
+          53
+        ],
+        "popularity": 22.252,
+        "release_date": "1988-10-21",
+        "video": false,
+        "vote_average": 6.2,
+        "vote_count": 1932
+      },
+      {
+        "backdrop_path": "/ynpPgJrdHmEbFICkfPlHwQiPo04.jpg",
+        "id": 11361,
+        "title": "Halloween 5: The Revenge of Michael Myers",
+        "original_title": "Halloween 5: The Revenge of Michael Myers",
+        "overview": "One year later, Michael Myers' traumatized young niece is horrified to discover she has a telepathic bond with her evil uncle... and that he is on the way back to Haddonfield to begin the carnage again.",
+        "poster_path": "/rYvP6yMXCIVHnkVtwGaAXFmpzkB.jpg",
+        "media_type": "movie",
+        "adult": false,
+        "original_language": "en",
+        "genre_ids": [
+          27,
+          53
+        ],
+        "popularity": 15.137,
+        "release_date": "1989-10-12",
+        "video": false,
+        "vote_average": 5.3,
+        "vote_count": 1220
+      },
+      {
+        "backdrop_path": "/cFFCNDLLJqPIsQDMH9dlniYDiIT.jpg",
+        "id": 10987,
+        "title": "Halloween: The Curse of Michael Myers",
+        "original_title": "Halloween: The Curse of Michael Myers",
+        "overview": "Six years after being kidnapped by a cult, Jamie tries to escape the clutches of her serial killer uncle, Michael Myers.",
+        "poster_path": "/noCnM8nEI2bEDSdKHh0RKbwBwbC.jpg",
+        "media_type": "movie",
+        "adult": false,
+        "original_language": "en",
+        "genre_ids": [
+          27,
+          53
+        ],
+        "popularity": 16.67,
+        "release_date": "1995-09-29",
+        "video": false,
+        "vote_average": 5.2,
+        "vote_count": 1129
+      },
+      {
+        "backdrop_path": "/qNf28DAHAj0JiECIvs3rwneu2FK.jpg",
+        "id": 11675,
+        "title": "Halloween H20: 20 Years Later",
+        "original_title": "Halloween H20: 20 Years Later",
+        "overview": "Two decades after surviving a massacre on October 31, 1978, former baby sitter Laurie Strode finds herself hunted by persistent knife-wielder Michael Myers. Laurie now lives in Northern California under an assumed name, where she works as the headmistress of a private school. But it's not far enough to escape Myers, who soon discovers her whereabouts. As Halloween descends upon Laurie's peaceful community, a feeling of dread weighs upon her -- with good reason.",
+        "poster_path": "/lqLXUm3oK59sGJKRH2Zjj2m3iMg.jpg",
+        "media_type": "movie",
+        "adult": false,
+        "original_language": "en",
+        "genre_ids": [
+          27,
+          53
+        ],
+        "popularity": 20.37,
+        "release_date": "1998-08-05",
+        "video": false,
+        "vote_average": 6,
+        "vote_count": 1667
+      },
+      {
+        "backdrop_path": "/wpkcvqArMg5YUAPBq7t15Wq5APt.jpg",
+        "id": 11442,
+        "title": "Halloween: Resurrection",
+        "original_title": "Halloween: Resurrection",
+        "overview": "Reality programmers at DangerTainment select a group of thrill-seeking teenagers to spend one night in the childhood home of serial killer Michael Myers. Their planned live broadcast turns deadly when Michael decides to crash the party.",
+        "poster_path": "/1mlKwbNzJCGzqe4i0ZEJtUUL290.jpg",
+        "media_type": "movie",
+        "adult": false,
+        "original_language": "en",
+        "genre_ids": [
+          27,
+          53
+        ],
+        "popularity": 14.455,
+        "release_date": "2002-07-01",
+        "video": false,
+        "vote_average": 4.6,
+        "vote_count": 1284
+      },
+      {
+        "backdrop_path": "/hO1oTBGNxO5fBKVEuWnSpICJH7c.jpg",
+        "id": 424139,
+        "title": "Halloween",
+        "original_title": "Halloween",
+        "overview": "Laurie Strode comes to her final confrontation with Michael Myers, the masked figure who has haunted her since she narrowly escaped his killing spree on Halloween night four decades ago.",
+        "poster_path": "/f7JAX5EGk4GgsEnus6OxyzwpFp7.jpg",
+        "media_type": "movie",
+        "adult": false,
+        "original_language": "en",
+        "genre_ids": [
+          27,
+          53,
+          80,
+          18
+        ],
+        "popularity": 28.995,
+        "release_date": "2018-10-18",
+        "video": false,
+        "vote_average": 6.6,
+        "vote_count": 4774
+      },
+      {
+        "backdrop_path": "/2cdrhlf3hvvueGyQDx0u8jpWvQR.jpg",
+        "id": 610253,
+        "title": "Halloween Kills",
+        "original_title": "Halloween Kills",
+        "overview": "Michael manages to free himself from Laurie Strode's trap to resume his ritual bloodbath. As she fights for her life from injuries from their last encounter, she inspires her daughter Karen, her granddaughter Allyson, and all of Haddonfield to rise up against the unstoppable monster.",
+        "poster_path": "/4CclCDyQXBBgz62Qtp3CoflQE5g.jpg",
+        "media_type": "movie",
+        "adult": false,
+        "original_language": "en",
+        "genre_ids": [
+          27,
+          53,
+          28,
+          18
+        ],
+        "popularity": 17.263,
+        "release_date": "2021-10-14",
+        "video": false,
+        "vote_average": 6.44,
+        "vote_count": 2717
+      },
+      {
+        "backdrop_path": "/aTovumsNlDjof7YVoU5nW2RHaYn.jpg",
+        "id": 616820,
+        "title": "Halloween Ends",
+        "original_title": "Halloween Ends",
+        "overview": "Four years after the events of Halloween in 2018, Laurie has decided to liberate herself from fear and rage and embrace life. But when a young man is accused of killing a boy he was babysitting, it ignites a cascade of violence and terror that will force Laurie to finally confront the evil she can’t control, once and for all.",
+        "poster_path": "/3uDwqxbr0j34rJVJMOW6o8Upw5W.jpg",
+        "media_type": "movie",
+        "adult": false,
+        "original_language": "en",
+        "genre_ids": [
+          27,
+          53
+        ],
+        "popularity": 48.51,
+        "release_date": "2022-10-12",
+        "video": false,
+        "vote_average": 6.1,
+        "vote_count": 1814
+      }
+    ]
+  },
+  "121938": {
+    "id": 121938,
+    "name": "The Hobbit Collection",
+    "overview": "The Hobbit collection is a three-part epic fantasy-adventure film directed and produced by Peter Jackson and based on J. R. R. Tolkien's fantasy novel of the same name. The trilogy of films are set in Middle-earth 60 years before \"The Lord of the Rings\", and will act as a prequel to Jackson's The Lord of the Rings trilogy.",
+    "poster_path": "/hQghXOjSS2xfzx9XnMyZqt8brCF.jpg",
+    "backdrop_path": "/7wO7MSnP5UcwR2cTHdJFF1vP4Ie.jpg",
+    "parts": [
+      {
+        "backdrop_path": "/xyXmtuvsoM5J3yNad0nvcetpBdY.jpg",
+        "id": 49051,
+        "title": "The Hobbit: An Unexpected Journey",
+        "original_title": "The Hobbit: An Unexpected Journey",
+        "overview": "Bilbo Baggins, a hobbit enjoying his quiet life, is swept into an epic quest by Gandalf the Grey and thirteen dwarves who seek to reclaim their mountain home from Smaug, the dragon.",
+        "poster_path": "/yHA9Fc37VmpUA5UncTxxo3rTGVA.jpg",
+        "media_type": "movie",
+        "adult": false,
+        "original_language": "en",
+        "genre_ids": [
+          12,
+          14,
+          28
+        ],
+        "popularity": 79.835,
+        "release_date": "2012-12-12",
+        "video": false,
+        "vote_average": 7.357,
+        "vote_count": 18625
+      },
+      {
+        "backdrop_path": "/npCPnwDyWfQltGfIZKN6WqeUXGI.jpg",
+        "id": 57158,
+        "title": "The Hobbit: The Desolation of Smaug",
+        "original_title": "The Hobbit: The Desolation of Smaug",
+        "overview": "The Dwarves, Bilbo and Gandalf have successfully escaped the Misty Mountains, and Bilbo has gained the One Ring. They all continue their journey to get their gold back from the Dragon, Smaug.",
+        "poster_path": "/xQYiXsheRCDBA39DOrmaw1aSpbk.jpg",
+        "media_type": "movie",
+        "adult": false,
+        "original_language": "en",
+        "genre_ids": [
+          14,
+          12,
+          28
+        ],
+        "popularity": 63.523,
+        "release_date": "2013-12-11",
+        "video": false,
+        "vote_average": 7.571,
+        "vote_count": 13341
+      },
+      {
+        "backdrop_path": "/zn13a7U9eMTJq8sHthe3bCgsVm4.jpg",
+        "id": 122917,
+        "title": "The Hobbit: The Battle of the Five Armies",
+        "original_title": "The Hobbit: The Battle of the Five Armies",
+        "overview": "Immediately after the events of The Desolation of Smaug, Bilbo and the dwarves try to defend Erebor's mountain of treasure from others who claim it: the men of the ruined Laketown and the elves of Mirkwood. Meanwhile an army of Orcs led by Azog the Defiler is marching on Erebor, fueled by the rise of the dark lord Sauron. Dwarves, elves and men must unite, and the hope for Middle-Earth falls into Bilbo's hands.",
+        "poster_path": "/xT98tLqatZPQApyRmlPL12LtiWp.jpg",
+        "media_type": "movie",
+        "adult": false,
+        "original_language": "en",
+        "genre_ids": [
+          28,
+          12,
+          14
+        ],
+        "popularity": 130.726,
+        "release_date": "2014-12-10",
+        "video": false,
+        "vote_average": 7.325,
+        "vote_count": 14464
+      }
+    ]
+  },
+  "131635": {
+    "id": 131635,
+    "name": "The Hunger Games Collection",
+    "overview": "A science fiction film series based on the novel of the same name by Suzanne Collins. The film series takes place in a dystopian post-apocalyptic future in the nation of Panem, featuring the protagonist, Katniss Everdeen.",
+    "poster_path": "/fPer2U4uQT1dkXTUWODDaLECWoW.jpg",
+    "backdrop_path": "/Ipp7cegtub4t0mu7xaKLQkYoGc.jpg",
+    "parts": [
+      {
+        "backdrop_path": "/qvo0g1yeQnYoCcXctSHI4mkoFMc.jpg",
+        "id": 131631,
+        "title": "The Hunger Games: Mockingjay - Part 1",
+        "original_title": "The Hunger Games: Mockingjay - Part 1",
+        "overview": "Katniss Everdeen reluctantly becomes the symbol of a mass rebellion against the autocratic Capitol.",
+        "poster_path": "/2hTPkBiXoMmrdtYgHtB9WU5dg80.jpg",
+        "media_type": "movie",
+        "adult": false,
+        "original_language": "en",
+        "genre_ids": [
+          878,
+          12,
+          53
+        ],
+        "popularity": 72.185,
+        "release_date": "2014-11-19",
+        "video": false,
+        "vote_average": 6.8,
+        "vote_count": 15957
+      },
+      {
+        "backdrop_path": "/9zWWAL8LciOBXvAArLn9mtGvRzQ.jpg",
+        "id": 131634,
+        "title": "The Hunger Games: Mockingjay - Part 2",
+        "original_title": "The Hunger Games: Mockingjay - Part 2",
+        "overview": "With the nation of Panem in a full scale war, Katniss confronts President Snow in the final showdown. Teamed with a group of her closest friends – including Gale, Finnick, and Peeta – Katniss goes off on a mission with the unit from District 13 as they risk their lives to stage an assassination attempt on President Snow who has become increasingly obsessed with destroying her. The mortal traps, enemies, and moral choices that await Katniss will challenge her more than any arena she faced in The Hunger Games.",
+        "poster_path": "/7uLJCuK0ufoDklUdOORC8XanOKw.jpg",
+        "media_type": "movie",
+        "adult": false,
+        "original_language": "en",
+        "genre_ids": [
+          28,
+          12,
+          878
+        ],
+        "popularity": 50.449,
+        "release_date": "2015-11-18",
+        "video": false,
+        "vote_average": 6.9,
+        "vote_count": 12642
+      },
+      {
+        "backdrop_path": "/p2i9vE7mu2ZTmwYbEiimgHeKpq5.jpg",
+        "id": 70160,
+        "title": "The Hunger Games",
+        "original_title": "The Hunger Games",
+        "overview": "Every year in the ruins of what was once North America, the nation of Panem forces each of its twelve districts to send a teenage boy and girl to compete in the Hunger Games.  Part twisted entertainment, part government intimidation tactic, the Hunger Games are a nationally televised event in which “Tributes” must fight with one another until one survivor remains.  Pitted against highly-trained Tributes who have prepared for these Games their entire lives, Katniss is forced to rely upon her sharp instincts as well as the mentorship of drunken former victor Haymitch Abernathy.  If she’s ever to return home to District 12, Katniss must make impossible choices in the arena that weigh survival against humanity and life against love. The world will be watching.",
+        "poster_path": "/kFC9H1K1FeiWdbxayX4CskmWpS5.jpg",
+        "media_type": "movie",
+        "adult": false,
+        "original_language": "en",
+        "genre_ids": [
+          878,
+          12,
+          14
+        ],
+        "popularity": 33.903,
+        "release_date": "2012-03-12",
+        "video": false,
+        "vote_average": 7.2,
+        "vote_count": 22185
+      },
+      {
+        "backdrop_path": "/14FK4FjArsTdpmbqwlROrWA4Npl.jpg",
+        "id": 101299,
+        "title": "The Hunger Games: Catching Fire",
+        "original_title": "The Hunger Games: Catching Fire",
+        "overview": "Katniss Everdeen has returned home safe after winning the 74th Annual Hunger Games along with fellow tribute Peeta Mellark. Winning means that they must turn around and leave their family and close friends, embarking on a \"Victor's Tour\" of the districts. Along the way Katniss senses that a rebellion is simmering, but the Capitol is still very much in control as President Snow prepares the 75th Annual Hunger Games (The Quarter Quell) - a competition that could change Panem forever.",
+        "poster_path": "/qdXXEFGuLLfMWa1DGEkWFUo8Zwd.jpg",
+        "media_type": "movie",
+        "adult": false,
+        "original_language": "en",
+        "genre_ids": [
+          12,
+          28,
+          878
+        ],
+        "popularity": 51.051,
+        "release_date": "2013-11-15",
+        "video": false,
+        "vote_average": 7.4,
+        "vote_count": 17510
+      },
+      {
+        "backdrop_path": "/yfQXs8yXplCVXTLi9mxgvRf4ymE.jpg",
+        "id": 695721,
+        "title": "The Hunger Games: The Ballad of Songbirds & Snakes",
+        "original_title": "The Hunger Games: The Ballad of Songbirds & Snakes",
+        "overview": "64 years before he becomes the tyrannical president of Panem, Coriolanus Snow sees a chance for a change in fortunes when he mentors Lucy Gray Baird, the female tribute from District 12.",
+        "poster_path": "/lrkOYL5GBTFW9cgs9RlojxAcZZF.jpg",
+        "media_type": "movie",
+        "adult": false,
+        "original_language": "en",
+        "genre_ids": [
+          18,
+          878,
+          28,
+          12,
+          53,
+          10752
+        ],
+        "popularity": 69.262,
+        "release_date": "2023-11-15",
+        "video": false,
+        "vote_average": 7.037,
+        "vote_count": 2918
+      }
+    ]
+  }
+}

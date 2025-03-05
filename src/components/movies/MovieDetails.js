@@ -8,7 +8,7 @@ import React, { useState, useEffect } from "react";
 import { Link, useParams } from "react-router-dom";
 import Navbar from "../../components/common/Navbar";
 import ActorCard from "../../components/movies/ActorCard";
-import { fetchMovieDetails, fetchCollectionDetails } from "../../services/tmdb";
+import { fetchMovieDetails, fetchCollectionDetails, fetchBatchedPersonDetails } from "../../services/tmdb";
 import { formatDate, formatCurrency } from "../../utils/helpers";
 import Ratings from './Ratings';
 import useActorCardGrid from '../../hooks/useActorCardGrid';
@@ -34,6 +34,8 @@ const MovieDetails = () => {
     const [trailer, setTrailer] = useState(null);
     const [collection, setCollection] = useState(null);
     const [isDescriptionExpanded, setIsDescriptionExpanded] = useState(false);
+    const [actorDetails, setActorDetails] = useState(new Map());
+    const [isLoadingActors, setIsLoadingActors] = useState(false);
 
     // Calculate initial visible actors based on screen size
     const calculateInitialActorCount = () => {
@@ -50,6 +52,38 @@ const MovieDetails = () => {
     };
 
     const [visibleActors, setVisibleActors] = useState(calculateInitialActorCount());
+
+    // Function to load actor details in batches
+    const loadActorDetails = async (startIndex, count) => {
+        if (!cast || cast.length === 0) return;
+
+        setIsLoadingActors(true);
+        try {
+            const actorIds = cast.slice(startIndex, startIndex + count).map(actor => actor.id);
+            const details = await fetchBatchedPersonDetails(actorIds);
+
+            setActorDetails(prevDetails => {
+                const updatedDetails = new Map(prevDetails);
+                details.forEach(detail => {
+                    if (detail) updatedDetails.set(detail.id, detail);
+                });
+                return updatedDetails;
+            });
+        } catch (error) {
+            console.error("Error loading actor details:", error);
+        } finally {
+            setIsLoadingActors(false);
+        }
+    };
+
+    // Load initial batch of actors (visible + next batch)
+    useEffect(() => {
+        if (cast && cast.length > 0) {
+            const initialCount = calculateInitialActorCount();
+            const nextBatchCount = initialCount;
+            loadActorDetails(0, initialCount + nextBatchCount);
+        }
+    }, [cast]);
 
     // Recalculate visible actors when window resizes
     useEffect(() => {
@@ -311,7 +345,12 @@ const MovieDetails = () => {
                                 <div className="columns is-multiline is-variable is-3">
                                     {cast.slice(0, visibleActors).map((actor) => (
                                         <div key={actor.id} className="column is-one-third-desktop is-half-tablet">
-                                            <ActorCard actor={actor} movieReleaseDate={movie.release_date} currentMovieId={movie.id} />
+                                            <ActorCard
+                                                actor={actor}
+                                                movieReleaseDate={movie.release_date}
+                                                currentMovieId={movie.id}
+                                                preloadedDetails={actorDetails.get(actor.id)}
+                                            />
                                         </div>
                                     ))}
                                 </div>
@@ -323,8 +362,9 @@ const MovieDetails = () => {
                                     <button
                                         className="button is-primary is-medium"
                                         onClick={loadMoreActors}
+                                        disabled={isLoadingActors}
                                     >
-                                        Show More Actors
+                                        {isLoadingActors ? 'Loading...' : 'Show More Actors'}
                                     </button>
                                 </div>
                             )}
