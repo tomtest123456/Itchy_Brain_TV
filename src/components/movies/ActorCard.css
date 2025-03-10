@@ -351,21 +351,30 @@
   
   .showMoreButton {
     width: 100%;
-    padding: 0.5rem;
+    padding: 12px 20px;
     margin-top: 1rem;
     background-color: rgba(74, 158, 255, 0.15);
     border: 1px solid rgba(74, 158, 255, 0.3);
     color: #4a9eff;
-    border-radius: 4px;
+    border-radius: 8px;
     cursor: pointer;
     transition: all 0.2s ease;
-    display: block;
+    font-size: 0.95rem;
+    font-weight: 500;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     text-align: center;
   }
   
   .showMoreButton:hover {
     background-color: rgba(74, 158, 255, 0.25);
     border-color: rgba(74, 158, 255, 0.5);
+    transform: translateY(-1px);
+  }
+  
+  .showMoreButton:active {
+    transform: translateY(0);
   }
   
   /* Mobile Styles */
@@ -417,12 +426,9 @@
 
     .showMoreButton {
         font-size: 1.4rem;
-        padding: 15px;
+        padding: 15px 25px;
         margin-top: 1.5rem;
-        width: 100%;
-        display: block;
-        text-align: center;
-        background-color: rgba(74, 158, 255, 0.2);
+        border-radius: 12px;
     }
 
     .cardContent {

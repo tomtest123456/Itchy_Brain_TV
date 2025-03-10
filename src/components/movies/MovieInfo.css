@@ -136,9 +136,10 @@
 }
 
 /* Mobile Styles */
-@media screen and (max-width: 768px) {
+@media screen and (max-width: 768px), 
+       screen and (hover: none) and (pointer: coarse) {
     .mobile-info-toggle {
-        display: block;
+        display: block !important;
     }
 
     .mobile-info-hidden {
@@ -147,35 +148,42 @@
 
     .movie-info-container {
         font-size: 1.6rem;
+        line-height: 1.6;
     }
 
     .movie-info-label {
         font-size: 1.7rem;
-        min-width: 100px;
+        min-width: 120px;
+        margin-right: 0.5rem;
     }
 
     .movie-info-description {
         font-size: 1.6rem;
         line-height: 1.6;
+        margin-top: 1rem;
     }
 
     .movie-info-row {
         font-size: 1.6rem;
         padding: 12px 0;
+        flex-wrap: wrap;
     }
 
     .collection-movie-link {
         font-size: 1.6rem;
         padding: 12px 20px;
+        line-height: 1.4;
     }
 
     .title.is-3 {
         font-size: 2.2rem !important;
         line-height: 1.3;
+        margin-bottom: 1.5rem;
     }
 
     .title.is-5 {
         font-size: 1.8rem !important;
+        margin-bottom: 1.2rem;
     }
 
     .movie-info-section {
@@ -192,18 +200,71 @@
 
     .collection-movies-list {
         font-size: 1.6rem;
+        line-height: 1.5;
     }
 
     .trailer-button {
         font-size: 1.6rem;
         padding: 18px 35px;
         border-radius: 8px;
+        margin-top: 1.5rem;
     }
 
     .description-toggle {
         font-size: 1.4rem;
         padding: 10px 0;
         margin-top: 1rem;
+    }
+
+    /* Ensure proper spacing when info is hidden */
+    .mobile-info-hidden .cast-grid-container {
+        margin-top: 20px;
+    }
+
+    /* Improve button visibility */
+    .mobile-info-toggle {
+        font-size: 1.6rem;
+        padding: 20px 35px;
+        border-radius: 30px;
+        min-width: 220px;
+        bottom: 40px;
+    }
+}
+
+/* Additional styles for very small devices */
+@media screen and (max-width: 380px) {
+    .movie-info-container {
+        font-size: 1.4rem;
+    }
+
+    .movie-info-label {
+        font-size: 1.5rem;
+        min-width: 100px;
+    }
+
+    .title.is-3 {
+        font-size: 2rem !important;
+    }
+
+    .mobile-info-toggle {
+        font-size: 1.4rem;
+        padding: 15px 25px;
+        min-width: 180px;
+        bottom: 30px;
+    }
+}
+
+/* Ensure smooth transitions */
+.movie-info-column,
+.column.is-full {
+    transition: all 0.3s ease-in-out;
+}
+
+/* Handle orientation changes */
+@media screen and (orientation: landscape) and (max-height: 600px) {
+    .mobile-info-toggle {
+        bottom: 20px;
+        padding: 12px 25px;
     }
 }
 
@@ -218,15 +279,4 @@
 
 .mobile-info-hidden .column.is-full {
     padding: 15px;
-}
-
-/* Add smooth transitions */
-.movie-info-column,
-.column.is-full {
-    transition: all 0.3s ease-in-out;
-}
-
-/* Ensure content reflows properly */
-.mobile-info-hidden .cast-grid-container {
-    margin-top: 20px;
 } 

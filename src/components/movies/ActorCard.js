@@ -224,6 +224,8 @@ const calculateOverallScore = (work) => {
 const processNotableWorks = (actorDetails, workFilter) => {
     if (!actorDetails) return [];
 
+    console.log('Processing notable works:', { workFilter, hasDetails: !!actorDetails });
+
     // Get filtered TV shows
     const tvShows = workFilter !== 'movies' ? (actorDetails.tv_credits?.cast || [])
         .filter(show =>
@@ -283,9 +285,11 @@ const processNotableWorks = (actorDetails, workFilter) => {
             }))) : [];
 
     // Combine and sort all works
-    return [...movieResults, ...tvShows]
-        .sort((a, b) => calculateOverallScore(b) - calculateOverallScore(a))
-        .slice(0, 5);
+    const allWorks = [...movieResults, ...tvShows]
+        .sort((a, b) => calculateOverallScore(b) - calculateOverallScore(a));
+
+    console.log('Total notable works found:', allWorks.length);
+    return allWorks; // Remove the .slice(0, 5) to allow for "Show More" functionality
 };
 
 /**
@@ -330,6 +334,11 @@ const ActorCard = ({ actor, movieReleaseDate, currentMovieId, preloadedDetails }
     useEffect(() => {
         if (actorDetails) {
             const works = processNotableWorks(actorDetails, workFilter);
+            console.log('Setting notable works:', {
+                total: works.length,
+                visible: visibleWorksCount,
+                hasShowMoreButton: works.length > visibleWorksCount
+            });
             setNotableWorks(works);
         }
     }, [actorDetails, workFilter]);
@@ -523,6 +532,11 @@ const ActorCard = ({ actor, movieReleaseDate, currentMovieId, preloadedDetails }
 
     // Function to show more notable works
     const handleShowMore = () => {
+        console.log('Show more clicked:', {
+            before: visibleWorksCount,
+            after: visibleWorksCount + 5,
+            total: notableWorks.length
+        });
         setVisibleWorksCount(prev => prev + 5);
     };
 

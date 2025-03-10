@@ -14,6 +14,24 @@ import Ratings from './Ratings';
 import useActorCardGrid from '../../hooks/useActorCardGrid';
 import './MovieInfo.css';
 
+// Add this helper function at the top level
+const isMobileDevice = () => {
+    const userAgent = navigator.userAgent || navigator.vendor || window.opera;
+    const mobileRegex = /android|webos|iphone|ipad|ipod|blackberry|iemobile|opera mini/i;
+    const isTouch = 'ontouchstart' in window || navigator.maxTouchPoints > 0;
+    const isNarrow = window.innerWidth <= 768;
+
+    console.log('Mobile Detection:', {
+        userAgent,
+        isMobileByUA: mobileRegex.test(userAgent.toLowerCase()),
+        isTouch,
+        windowWidth: window.innerWidth,
+        isNarrow
+    });
+
+    return mobileRegex.test(userAgent.toLowerCase()) || (isTouch && isNarrow);
+};
+
 /**
  * MovieDetails Component
  * Displays comprehensive information about a movie including poster, title,
@@ -37,7 +55,7 @@ const MovieDetails = () => {
     const [actorDetails, setActorDetails] = useState(new Map());
     const [isLoadingActors, setIsLoadingActors] = useState(false);
     const [isMovieInfoVisible, setIsMovieInfoVisible] = useState(true);
-    const [isMobile, setIsMobile] = useState(window.innerWidth <= 768);
+    const [isMobile, setIsMobile] = useState(isMobileDevice());
 
     // Calculate initial visible actors based on screen size
     const calculateInitialActorCount = () => {
@@ -102,15 +120,31 @@ const MovieDetails = () => {
         return () => window.removeEventListener('resize', handleResize);
     }, []);
 
-    // Add mobile detection
+    // Update mobile detection on resize
     useEffect(() => {
         const handleResize = () => {
-            setIsMobile(window.innerWidth <= 768);
+            const newIsMobile = isMobileDevice();
+            console.log('Resize event:', {
+                width: window.innerWidth,
+                height: window.innerHeight,
+                newIsMobile
+            });
+            setIsMobile(newIsMobile);
         };
 
         window.addEventListener('resize', handleResize);
         return () => window.removeEventListener('resize', handleResize);
     }, []);
+
+    // Toggle movie info visibility
+    const toggleMovieInfo = () => {
+        console.log('Toggling movie info:', {
+            currentState: isMovieInfoVisible,
+            isMobile,
+            windowWidth: window.innerWidth
+        });
+        setIsMovieInfoVisible(prev => !prev);
+    };
 
     // Get optimal card count based on grid layout
     const { optimalCardCount, cardsPerRow } = useActorCardGrid({
@@ -387,7 +421,15 @@ const MovieDetails = () => {
                     {isMobile && (
                         <button
                             className="mobile-info-toggle"
-                            onClick={() => setIsMovieInfoVisible(!isMovieInfoVisible)}
+                            onClick={toggleMovieInfo}
+                            style={{
+                                position: 'fixed',
+                                bottom: '30px',
+                                left: '50%',
+                                transform: 'translateX(-50%)',
+                                zIndex: 9999,
+                                display: 'block'
+                            }}
                         >
                             {isMovieInfoVisible ? 'Hide Movie Info' : 'Show Movie Info'}
                         </button>
