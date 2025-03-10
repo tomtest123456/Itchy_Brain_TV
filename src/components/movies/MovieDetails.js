@@ -447,20 +447,11 @@ const MovieDetails = () => {
 
                     {/* Enhanced Mobile Toggle Button */}
                     <button
-                        className={`mobile-info-toggle ${isMobile ? 'is-visible' : ''}`}
+                        className={`mobile-info-toggle ${isMobile ? 'is-visible' : ''} ${isMovieInfoVisible ? 'is-active' : ''}`}
                         onClick={toggleMovieInfo}
-                        style={{
-                            position: 'fixed',
-                            bottom: '40px',
-                            left: '50%',
-                            transform: 'translateX(-50%)',
-                            zIndex: 99999,
-                            display: isMobile ? 'block' : 'none',
-                            opacity: 1,
-                            visibility: 'visible'
-                        }}
+                        aria-label={isMovieInfoVisible ? 'Hide Movie Info' : 'Show Movie Info'}
                     >
-                        {isMovieInfoVisible ? 'Hide Movie Info' : 'Show Movie Info'}
+                        {isMovieInfoVisible ? '◀' : '▶'}
                     </button>
                 </div>
             </section>

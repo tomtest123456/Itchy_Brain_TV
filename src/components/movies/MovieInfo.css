@@ -24,6 +24,7 @@
     font-weight: 600;
     min-width: 85px;
     margin-right: 0.25rem;
+    font-size: 1rem;
 }
 
 .movie-info-description {
@@ -33,6 +34,7 @@
     max-height: 4.5em;
     overflow: hidden;
     transition: max-height 0.3s ease;
+    font-size: 1rem;
 }
 
 .movie-info-description.expanded {
@@ -105,52 +107,95 @@
     letter-spacing: normal;  /* Reset letter-spacing for the year */
 }
 
-/* Base styles */
+/* Base styles - remove mobile scale factor */
 :root {
-    --mobile-scale-factor: 1.4;
-    --tablet-scale-factor: 1.2;
+    --actor-card-scale: 1.4;
 }
 
-/* Mobile Info Toggle */
+/* Revert movie info font sizes to original */
+.movie-info-container {
+    font-size: 1rem;
+    line-height: 1.5;
+}
+
+/* Updated Mobile Toggle Button */
 .mobile-info-toggle {
     display: none !important;
     position: fixed;
-    bottom: 40px;
-    left: 50%;
-    transform: translateX(-50%);
-    padding: 20px 35px;
-    background-color: rgba(74, 158, 255, 0.95);
-    color: white;
-    border: none;
-    border-radius: 50px;
-    font-size: 1.6rem;
-    font-weight: 600;
+    bottom: 30px;
+    left: 20px;
+    width: 50px;
+    height: 50px;
+    background-color: rgba(0, 0, 0, 0.8);
+    color: #4a9eff;
+    border: 2px solid #4a9eff;
+    border-radius: 50%;
+    font-size: 24px;
+    font-weight: 900;
     cursor: pointer;
     z-index: 99999;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
     transition: all 0.2s ease;
-    white-space: nowrap;
-    min-width: 220px;
-    text-align: center;
-    opacity: 1 !important;
-    visibility: visible !important;
+    padding: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
 }
 
 .mobile-info-toggle.is-visible {
-    display: block !important;
+    display: flex !important;
 }
 
-.mobile-info-toggle:hover,
-.mobile-info-toggle:active {
-    background-color: rgba(74, 158, 255, 1);
-    transform: translateX(-50%) translateY(-2px);
-    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.6);
+.mobile-info-toggle:hover {
+    background-color: rgba(0, 0, 0, 0.9);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.4);
+    transform: scale(1.05);
+}
+
+.mobile-info-toggle.is-active {
+    transform: rotate(180deg);
 }
 
 /* Enhanced Mobile Styles */
 @media screen and (max-width: 1024px), 
        screen and (hover: none) and (pointer: coarse),
        screen and (-webkit-min-device-pixel-ratio: 2) {
+    /* Actor Card specific font size increases */
+    .actorName {
+        font-size: calc(1.1rem * var(--actor-card-scale)) !important;
+    }
+
+    .ageDisplay {
+        font-size: calc(0.9rem * var(--actor-card-scale)) !important;
+    }
+
+    .characterName {
+        font-size: calc(1rem * var(--actor-card-scale)) !important;
+    }
+
+    .notableWorksTitle {
+        font-size: calc(0.9rem * var(--actor-card-scale)) !important;
+    }
+
+    .notableWorkLink {
+        font-size: calc(0.9rem * var(--actor-card-scale)) !important;
+        padding: 8px 12px;
+    }
+
+    .year-text {
+        font-size: calc(0.85rem * var(--actor-card-scale)) !important;
+    }
+
+    .filterButton {
+        font-size: calc(0.8rem * var(--actor-card-scale)) !important;
+        padding: 8px 15px;
+    }
+
+    .showMoreButton {
+        font-size: calc(0.95rem * var(--actor-card-scale)) !important;
+        padding: 12px 20px;
+    }
+
     .mobile-info-toggle.is-visible {
         display: block !important;
     }
@@ -233,24 +278,23 @@
 
 /* Additional styles for very small devices */
 @media screen and (max-width: 380px) {
-    :root {
-        --mobile-scale-factor: 1.2;
-    }
-
     .mobile-info-toggle {
-        font-size: calc(1.4rem * var(--mobile-scale-factor));
-        padding: 15px 25px;
-        min-width: 180px;
-        bottom: 30px;
+        width: 40px;
+        height: 40px;
+        font-size: 20px;
+        bottom: 20px;
+        left: 15px;
     }
 }
 
 /* Landscape mode adjustments */
 @media screen and (orientation: landscape) and (max-height: 600px) {
     .mobile-info-toggle {
-        bottom: 20px;
-        padding: 12px 25px;
-        font-size: calc(1.2rem * var(--mobile-scale-factor));
+        width: 35px;
+        height: 35px;
+        font-size: 18px;
+        bottom: 15px;
+        left: 15px;
     }
 }
 
