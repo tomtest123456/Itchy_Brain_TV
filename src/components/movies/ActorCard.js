@@ -192,7 +192,7 @@ const calculateOverallScore = (work) => {
         score = basePopularity * 2;
 
         // Role significance boost
-        const roleBoost = work.order < 3 ? 200 : work.order < 5 ? 100 : 50;
+        const roleBoost = work.order < 4 ? 200 : work.order < 8 ? 100 : 50;
 
         // Vote score has more weight for individual movies
         score += roleBoost + (voteScore * 30);
@@ -302,6 +302,29 @@ const ActorCard = ({ actor, movieReleaseDate, currentMovieId, preloadedDetails }
     const [workFilter, setWorkFilter] = useState('both');
     const [imageLoadError, setImageLoadError] = useState(false);
     const [loadedImages, setLoadedImages] = useState(new Set());
+    const [expandedCollections, setExpandedCollections] = useState(new Set());
+    const [visibleWorksCount, setVisibleWorksCount] = useState(5);
+
+    // Reset expanded collections when navigating to a different movie
+    useEffect(() => {
+        setExpandedCollections(new Set());
+        setVisibleWorksCount(5);
+    }, [currentMovieId]);
+
+    // Toggle collection expansion
+    const toggleCollection = (e, collectionId) => {
+        e.preventDefault();
+        e.stopPropagation();
+        setExpandedCollections(prev => {
+            const newSet = new Set(prev);
+            if (newSet.has(collectionId)) {
+                newSet.delete(collectionId);
+            } else {
+                newSet.add(collectionId);
+            }
+            return newSet;
+        });
+    };
 
     // Update notable works when actor details or work filter changes
     useEffect(() => {
@@ -498,6 +521,11 @@ const ActorCard = ({ actor, movieReleaseDate, currentMovieId, preloadedDetails }
         }
     }, [actorDetails, currentImageIndex]);
 
+    // Function to show more notable works
+    const handleShowMore = () => {
+        setVisibleWorksCount(prev => prev + 5);
+    };
+
     if (isLoading) {
         return (
             <div className="card">
@@ -570,22 +598,71 @@ const ActorCard = ({ actor, movieReleaseDate, currentMovieId, preloadedDetails }
                         </div>
                     </div>
                     <ul className="notableWorksList">
-                        {notableWorks.map((work) => (
+                        {notableWorks.slice(0, visibleWorksCount).map((work) => (
                             <li key={`${work.id}-${work.media_type}`} className="notableWorkItem">
-                                <Link
-                                    to={work.media_type === "collection" ? `/collection/${work.id}` : `/${work.media_type}/${work.id}`}
-                                    className={`notableWorkLink ${work.media_type}`}
-                                >
-                                    <span className="title-text">
-                                        {work.displayTitle.title}
-                                    </span>
-                                    <span className="year-text">
-                                        {work.displayTitle.year}
-                                    </span>
-                                </Link>
+                                {work.media_type === "collection" ? (
+                                    <div className="collectionContainer">
+                                        <Link
+                                            to={`/collection/${work.id}`}
+                                            className={`notableWorkLink ${work.media_type}`}
+                                            onClick={(e) => toggleCollection(e, work.id)}
+                                        >
+                                            <span className="title-text">
+                                                {work.displayTitle.title}
+                                            </span>
+                                            <span className="year-text">
+                                                {work.displayTitle.year}
+                                            </span>
+                                            <span className="expandIcon">
+                                                {expandedCollections.has(work.id) ? '▼' : '▶'}
+                                            </span>
+                                        </Link>
+                                        {expandedCollections.has(work.id) && work.movies && (
+                                            <ul className="collectionMoviesList">
+                                                {work.movies
+                                                    .sort((a, b) => new Date(a.release_date) - new Date(b.release_date))
+                                                    .map(movie => (
+                                                        <li key={movie.id} className="collectionMovieItem">
+                                                            <Link
+                                                                to={`/movie/${movie.id}`}
+                                                                className="notableWorkLink movie"
+                                                            >
+                                                                <span className="title-text">
+                                                                    {movie.title}
+                                                                </span>
+                                                                <span className="year-text">
+                                                                    {movie.release_date ? ` ('${new Date(movie.release_date).getFullYear().toString().slice(2)})` : ''}
+                                                                </span>
+                                                            </Link>
+                                                        </li>
+                                                    ))}
+                                            </ul>
+                                        )}
+                                    </div>
+                                ) : (
+                                    <Link
+                                        to={`/${work.media_type}/${work.id}`}
+                                        className={`notableWorkLink ${work.media_type}`}
+                                    >
+                                        <span className="title-text">
+                                            {work.displayTitle.title}
+                                        </span>
+                                        <span className="year-text">
+                                            {work.displayTitle.year}
+                                        </span>
+                                    </Link>
+                                )}
                             </li>
                         ))}
                     </ul>
+                    {notableWorks.length > visibleWorksCount && (
+                        <button
+                            className="showMoreButton"
+                            onClick={handleShowMore}
+                        >
+                            Show More
+                        </button>
+                    )}
                 </div>
             </div>
         </div>

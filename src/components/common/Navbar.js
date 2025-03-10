@@ -21,19 +21,11 @@ const Navbar = () => {
     // ========================================
 
     const [isActive, setIsActive] = useState(false);
-    const [windowWidth, setWindowWidth] = useState(window.innerWidth);
 
     // Function to toggle mobile menu
     const toggleMenu = () => {
         setIsActive(!isActive);
     };
-
-    // Update window width on resize
-    useEffect(() => {
-        const handleResize = () => setWindowWidth(window.innerWidth);
-        window.addEventListener("resize", handleResize);
-        return () => window.removeEventListener("resize", handleResize);
-    }, []);
 
     // Dynamic Navigation Links (Easy to add more)
     const navLinks = [
@@ -59,8 +51,8 @@ const Navbar = () => {
                         </Link>
 
                         {/* Mobile Burger Menu */}
-                        <a
-                            role="button"
+                        <button
+                            type="button"
                             className={`navbar-burger ${isActive ? "is-active" : ""}`}
                             aria-label="menu"
                             aria-expanded={isActive ? "true" : "false"}
@@ -70,7 +62,7 @@ const Navbar = () => {
                             <span aria-hidden="true"></span>
                             <span aria-hidden="true"></span>
                             <span aria-hidden="true"></span>
-                        </a>
+                        </button>
                     </div>
 
                     {/* Search Bar (Perfectly Centered) */}

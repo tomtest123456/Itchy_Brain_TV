@@ -36,6 +36,8 @@ const MovieDetails = () => {
     const [isDescriptionExpanded, setIsDescriptionExpanded] = useState(false);
     const [actorDetails, setActorDetails] = useState(new Map());
     const [isLoadingActors, setIsLoadingActors] = useState(false);
+    const [isMovieInfoVisible, setIsMovieInfoVisible] = useState(true);
+    const [isMobile, setIsMobile] = useState(window.innerWidth <= 768);
 
     // Calculate initial visible actors based on screen size
     const calculateInitialActorCount = () => {
@@ -94,6 +96,16 @@ const MovieDetails = () => {
                 // This prevents removing already visible actors when screen gets smaller
                 return Math.max(prev, newCount);
             });
+        };
+
+        window.addEventListener('resize', handleResize);
+        return () => window.removeEventListener('resize', handleResize);
+    }, []);
+
+    // Add mobile detection
+    useEffect(() => {
+        const handleResize = () => {
+            setIsMobile(window.innerWidth <= 768);
         };
 
         window.addEventListener('resize', handleResize);
@@ -199,10 +211,10 @@ const MovieDetails = () => {
             {/* Main Content Section */}
             <section className="section" style={{ paddingTop: "var(--navbar-height)" }}>
                 <div className="container">
-                    <div className="columns is-variable is-0-mobile is-3-tablet is-8-desktop">
+                    <div className={`columns is-variable is-0-mobile is-3-tablet is-8-desktop ${!isMovieInfoVisible && isMobile ? 'mobile-info-hidden' : ''}`}>
 
                         {/* Left Column - Movie Info */}
-                        <div className="column is-one-quarter" style={{ position: 'relative' }}>
+                        <div className={`column is-one-quarter movie-info-column ${!isMovieInfoVisible && isMobile ? 'is-hidden' : ''}`} style={{ position: 'relative' }}>
                             <div
                                 className="movie-info-scroll-trigger"
                                 style={{
@@ -330,7 +342,7 @@ const MovieDetails = () => {
                         </div>
 
                         {/* Right Column - Title, Rating, and Cast */}
-                        <div className="column">
+                        <div className={`column ${!isMovieInfoVisible && isMobile ? 'is-full' : ''}`}>
 
                             {/* Movie Title and Release Year */}
                             <h1 className="title is-3 has-text-weight-bold mb-4">
@@ -370,6 +382,16 @@ const MovieDetails = () => {
                             )}
                         </div>
                     </div>
+
+                    {/* Mobile Toggle Button */}
+                    {isMobile && (
+                        <button
+                            className="mobile-info-toggle"
+                            onClick={() => setIsMovieInfoVisible(!isMovieInfoVisible)}
+                        >
+                            {isMovieInfoVisible ? 'Hide Movie Info' : 'Show Movie Info'}
+                        </button>
+                    )}
                 </div>
             </section>
         </>
