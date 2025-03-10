@@ -674,7 +674,7 @@ const ActorCard = ({ actor, movieReleaseDate, currentMovieId, preloadedDetails }
                             className="showMoreButton"
                             onClick={handleShowMore}
                         >
-                            Show More
+                            Show More..
                         </button>
                     )}
                 </div>
