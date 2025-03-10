@@ -109,25 +109,30 @@
 .mobile-info-toggle {
     display: none;
     position: fixed;
-    bottom: 20px;
-    left: 20px;
-    padding: 15px 25px;
+    bottom: 30px;
+    left: 50%;
+    transform: translateX(-50%);
+    padding: 18px 30px;
     background-color: rgba(74, 158, 255, 0.95);
     color: white;
     border: none;
-    border-radius: 12px;
-    font-size: 1.2rem;
+    border-radius: 50px;
+    font-size: 1.4rem;
     font-weight: 600;
     cursor: pointer;
-    z-index: 100;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
+    z-index: 9999;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
     transition: all 0.2s ease;
+    white-space: nowrap;
+    min-width: 200px;
+    text-align: center;
 }
 
-.mobile-info-toggle:hover {
+.mobile-info-toggle:hover,
+.mobile-info-toggle:active {
     background-color: rgba(74, 158, 255, 1);
-    transform: translateY(-2px);
-    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.5);
+    transform: translateX(-50%) translateY(-2px);
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.6);
 }
 
 /* Mobile Styles */
@@ -141,57 +146,64 @@
     }
 
     .movie-info-container {
-        font-size: 1.3rem;
+        font-size: 1.6rem;
     }
 
     .movie-info-label {
-        font-size: 1.4rem;
+        font-size: 1.7rem;
+        min-width: 100px;
     }
 
     .movie-info-description {
-        font-size: 1.3rem;
+        font-size: 1.6rem;
         line-height: 1.6;
     }
 
     .movie-info-row {
-        font-size: 1.3rem;
-        padding: 10px 0;
+        font-size: 1.6rem;
+        padding: 12px 0;
     }
 
     .collection-movie-link {
-        font-size: 1.3rem;
-        padding: 10px 15px;
+        font-size: 1.6rem;
+        padding: 12px 20px;
     }
 
     .title.is-3 {
-        font-size: 2rem !important;
+        font-size: 2.2rem !important;
+        line-height: 1.3;
     }
 
     .title.is-5 {
-        font-size: 1.6rem !important;
+        font-size: 1.8rem !important;
     }
 
     .movie-info-section {
-        padding: 25px;
+        padding: 30px;
+        margin: 15px;
+        border-radius: 12px;
     }
 
     .collection-section {
-        padding: 25px;
+        padding: 30px;
+        margin: 15px;
+        border-radius: 12px;
     }
 
     .collection-movies-list {
-        font-size: 1.3rem;
+        font-size: 1.6rem;
     }
 
     .trailer-button {
-        font-size: 1.4rem;
-        padding: 15px 30px;
+        font-size: 1.6rem;
+        padding: 18px 35px;
+        border-radius: 8px;
     }
 
     .description-toggle {
-        font-size: 1.2rem;
-        padding: 8px 0;
-        margin-top: 0.75rem;
+        font-size: 1.4rem;
+        padding: 10px 0;
+        margin-top: 1rem;
     }
 }
 
@@ -205,6 +217,16 @@
 }
 
 .mobile-info-hidden .column.is-full {
-    padding-left: 0;
-    padding-right: 0;
+    padding: 15px;
+}
+
+/* Add smooth transitions */
+.movie-info-column,
+.column.is-full {
+    transition: all 0.3s ease-in-out;
+}
+
+/* Ensure content reflows properly */
+.mobile-info-hidden .cast-grid-container {
+    margin-top: 20px;
 } 
