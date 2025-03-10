@@ -105,27 +105,39 @@
     letter-spacing: normal;  /* Reset letter-spacing for the year */
 }
 
+/* Base styles */
+:root {
+    --mobile-scale-factor: 1.4;
+    --tablet-scale-factor: 1.2;
+}
+
 /* Mobile Info Toggle */
 .mobile-info-toggle {
-    display: none;
+    display: none !important;
     position: fixed;
-    bottom: 30px;
+    bottom: 40px;
     left: 50%;
     transform: translateX(-50%);
-    padding: 18px 30px;
+    padding: 20px 35px;
     background-color: rgba(74, 158, 255, 0.95);
     color: white;
     border: none;
     border-radius: 50px;
-    font-size: 1.4rem;
+    font-size: 1.6rem;
     font-weight: 600;
     cursor: pointer;
-    z-index: 9999;
+    z-index: 99999;
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
     transition: all 0.2s ease;
     white-space: nowrap;
-    min-width: 200px;
+    min-width: 220px;
     text-align: center;
+    opacity: 1 !important;
+    visibility: visible !important;
+}
+
+.mobile-info-toggle.is-visible {
+    display: block !important;
 }
 
 .mobile-info-toggle:hover,
@@ -135,10 +147,11 @@
     box-shadow: 0 6px 20px rgba(0, 0, 0, 0.6);
 }
 
-/* Mobile Styles */
-@media screen and (max-width: 768px), 
-       screen and (hover: none) and (pointer: coarse) {
-    .mobile-info-toggle {
+/* Enhanced Mobile Styles */
+@media screen and (max-width: 1024px), 
+       screen and (hover: none) and (pointer: coarse),
+       screen and (-webkit-min-device-pixel-ratio: 2) {
+    .mobile-info-toggle.is-visible {
         display: block !important;
     }
 
@@ -146,112 +159,106 @@
         margin-left: 0;
     }
 
+    /* Increase base font sizes */
     .movie-info-container {
-        font-size: 1.6rem;
+        font-size: calc(1.6rem * var(--mobile-scale-factor));
         line-height: 1.6;
     }
 
     .movie-info-label {
-        font-size: 1.7rem;
-        min-width: 120px;
+        font-size: calc(1.7rem * var(--mobile-scale-factor));
+        min-width: 140px;
         margin-right: 0.5rem;
     }
 
     .movie-info-description {
-        font-size: 1.6rem;
+        font-size: calc(1.6rem * var(--mobile-scale-factor));
         line-height: 1.6;
         margin-top: 1rem;
     }
 
     .movie-info-row {
-        font-size: 1.6rem;
-        padding: 12px 0;
+        font-size: calc(1.6rem * var(--mobile-scale-factor));
+        padding: 15px 0;
         flex-wrap: wrap;
     }
 
     .collection-movie-link {
-        font-size: 1.6rem;
-        padding: 12px 20px;
+        font-size: calc(1.6rem * var(--mobile-scale-factor));
+        padding: 15px 25px;
         line-height: 1.4;
     }
 
     .title.is-3 {
-        font-size: 2.2rem !important;
+        font-size: calc(2.2rem * var(--mobile-scale-factor)) !important;
         line-height: 1.3;
         margin-bottom: 1.5rem;
     }
 
     .title.is-5 {
-        font-size: 1.8rem !important;
+        font-size: calc(1.8rem * var(--mobile-scale-factor)) !important;
         margin-bottom: 1.2rem;
     }
 
     .movie-info-section {
-        padding: 30px;
-        margin: 15px;
-        border-radius: 12px;
+        padding: 35px;
+        margin: 20px;
+        border-radius: 15px;
     }
 
     .collection-section {
-        padding: 30px;
-        margin: 15px;
-        border-radius: 12px;
+        padding: 35px;
+        margin: 20px;
+        border-radius: 15px;
     }
 
     .collection-movies-list {
-        font-size: 1.6rem;
+        font-size: calc(1.6rem * var(--mobile-scale-factor));
         line-height: 1.5;
     }
 
     .trailer-button {
-        font-size: 1.6rem;
-        padding: 18px 35px;
-        border-radius: 8px;
-        margin-top: 1.5rem;
+        font-size: calc(1.6rem * var(--mobile-scale-factor));
+        padding: 20px 40px;
+        border-radius: 12px;
+        margin-top: 2rem;
     }
 
     .description-toggle {
-        font-size: 1.4rem;
-        padding: 10px 0;
+        font-size: calc(1.4rem * var(--mobile-scale-factor));
+        padding: 12px 0;
         margin-top: 1rem;
-    }
-
-    /* Ensure proper spacing when info is hidden */
-    .mobile-info-hidden .cast-grid-container {
-        margin-top: 20px;
-    }
-
-    /* Improve button visibility */
-    .mobile-info-toggle {
-        font-size: 1.6rem;
-        padding: 20px 35px;
-        border-radius: 30px;
-        min-width: 220px;
-        bottom: 40px;
     }
 }
 
 /* Additional styles for very small devices */
 @media screen and (max-width: 380px) {
-    .movie-info-container {
-        font-size: 1.4rem;
-    }
-
-    .movie-info-label {
-        font-size: 1.5rem;
-        min-width: 100px;
-    }
-
-    .title.is-3 {
-        font-size: 2rem !important;
+    :root {
+        --mobile-scale-factor: 1.2;
     }
 
     .mobile-info-toggle {
-        font-size: 1.4rem;
+        font-size: calc(1.4rem * var(--mobile-scale-factor));
         padding: 15px 25px;
         min-width: 180px;
         bottom: 30px;
     }
+}
+
+/* Landscape mode adjustments */
+@media screen and (orientation: landscape) and (max-height: 600px) {
+    .mobile-info-toggle {
+        bottom: 20px;
+        padding: 12px 25px;
+        font-size: calc(1.2rem * var(--mobile-scale-factor));
+    }
+}
+
+/* Force visibility for mobile toggle */
+.movie-details-section .mobile-info-toggle.is-visible {
+    display: block !important;
+    opacity: 1 !important;
+    visibility: visible !important;
 }
 
 /* Ensure smooth transitions */

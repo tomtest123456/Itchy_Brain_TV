@@ -17,19 +17,25 @@ import './MovieInfo.css';
 // Add this helper function at the top level
 const isMobileDevice = () => {
     const userAgent = navigator.userAgent || navigator.vendor || window.opera;
-    const mobileRegex = /android|webos|iphone|ipad|ipod|blackberry|iemobile|opera mini/i;
+    const mobileRegex = /android|webos|iphone|ipad|ipod|blackberry|iemobile|opera mini|mobile|tablet/i;
     const isTouch = 'ontouchstart' in window || navigator.maxTouchPoints > 0;
-    const isNarrow = window.innerWidth <= 768;
+    const isNarrow = window.innerWidth <= 1024; // Increased breakpoint
+    const devicePixelRatio = window.devicePixelRatio || 1;
 
-    console.log('Mobile Detection:', {
+    console.log('Mobile Detection Debug:', {
         userAgent,
         isMobileByUA: mobileRegex.test(userAgent.toLowerCase()),
         isTouch,
         windowWidth: window.innerWidth,
-        isNarrow
+        windowHeight: window.innerHeight,
+        isNarrow,
+        devicePixelRatio,
+        screenWidth: window.screen.width,
+        screenHeight: window.screen.height
     });
 
-    return mobileRegex.test(userAgent.toLowerCase()) || (isTouch && isNarrow);
+    // More aggressive mobile detection
+    return mobileRegex.test(userAgent.toLowerCase()) || isTouch || isNarrow;
 };
 
 /**
@@ -120,28 +126,50 @@ const MovieDetails = () => {
         return () => window.removeEventListener('resize', handleResize);
     }, []);
 
-    // Update mobile detection on resize
+    // Add debug effect for mobile state changes
+    useEffect(() => {
+        console.log('Mobile State Changed:', {
+            isMobile,
+            isMovieInfoVisible,
+            windowWidth: window.innerWidth,
+            timestamp: new Date().toISOString()
+        });
+    }, [isMobile, isMovieInfoVisible]);
+
+    // Enhanced resize handler
     useEffect(() => {
         const handleResize = () => {
             const newIsMobile = isMobileDevice();
-            console.log('Resize event:', {
+            console.log('Resize Event Debug:', {
                 width: window.innerWidth,
                 height: window.innerHeight,
-                newIsMobile
+                newIsMobile,
+                currentIsMobile: isMobile,
+                timestamp: new Date().toISOString()
             });
             setIsMobile(newIsMobile);
         };
 
+        // Initial check
+        handleResize();
+
+        // Add resize listener
         window.addEventListener('resize', handleResize);
-        return () => window.removeEventListener('resize', handleResize);
+        window.addEventListener('orientationchange', handleResize);
+
+        return () => {
+            window.removeEventListener('resize', handleResize);
+            window.removeEventListener('orientationchange', handleResize);
+        };
     }, []);
 
-    // Toggle movie info visibility
+    // Enhanced toggle function
     const toggleMovieInfo = () => {
-        console.log('Toggling movie info:', {
+        console.log('Toggle Movie Info Debug:', {
             currentState: isMovieInfoVisible,
             isMobile,
-            windowWidth: window.innerWidth
+            windowWidth: window.innerWidth,
+            timestamp: new Date().toISOString()
         });
         setIsMovieInfoVisible(prev => !prev);
     };
@@ -243,7 +271,7 @@ const MovieDetails = () => {
             <Navbar />
 
             {/* Main Content Section */}
-            <section className="section" style={{ paddingTop: "var(--navbar-height)" }}>
+            <section className="section movie-details-section" style={{ paddingTop: "var(--navbar-height)" }}>
                 <div className="container">
                     <div className={`columns is-variable is-0-mobile is-3-tablet is-8-desktop ${!isMovieInfoVisible && isMobile ? 'mobile-info-hidden' : ''}`}>
 
@@ -417,23 +445,23 @@ const MovieDetails = () => {
                         </div>
                     </div>
 
-                    {/* Mobile Toggle Button */}
-                    {isMobile && (
-                        <button
-                            className="mobile-info-toggle"
-                            onClick={toggleMovieInfo}
-                            style={{
-                                position: 'fixed',
-                                bottom: '30px',
-                                left: '50%',
-                                transform: 'translateX(-50%)',
-                                zIndex: 9999,
-                                display: 'block'
-                            }}
-                        >
-                            {isMovieInfoVisible ? 'Hide Movie Info' : 'Show Movie Info'}
-                        </button>
-                    )}
+                    {/* Enhanced Mobile Toggle Button */}
+                    <button
+                        className={`mobile-info-toggle ${isMobile ? 'is-visible' : ''}`}
+                        onClick={toggleMovieInfo}
+                        style={{
+                            position: 'fixed',
+                            bottom: '40px',
+                            left: '50%',
+                            transform: 'translateX(-50%)',
+                            zIndex: 99999,
+                            display: isMobile ? 'block' : 'none',
+                            opacity: 1,
+                            visibility: 'visible'
+                        }}
+                    >
+                        {isMovieInfoVisible ? 'Hide Movie Info' : 'Show Movie Info'}
+                    </button>
                 </div>
             </section>
         </>
