@@ -4,7 +4,7 @@
 // poster, title, rating, cast, and other metadata using Bulma's styling system.
 // ========================================
 
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { Link, useParams } from "react-router-dom";
 import Navbar from "../../components/common/Navbar";
 import ActorCard from "../../components/movies/ActorCard";
@@ -62,6 +62,7 @@ const MovieDetails = () => {
     const [isLoadingActors, setIsLoadingActors] = useState(false);
     const [isMovieInfoVisible, setIsMovieInfoVisible] = useState(true);
     const [isMobile, setIsMobile] = useState(isMobileDevice());
+    const gridContainerRef = useRef(null);
 
     // Calculate initial visible actors based on screen size
     const calculateInitialActorCount = () => {
@@ -230,6 +231,42 @@ const MovieDetails = () => {
         }
     }, [id]); // Dependency on id
 
+    // Add intersection observer for infinite scroll
+    useEffect(() => {
+        if (!cast || cast.length === 0) return;
+
+        const options = {
+            root: null,
+            rootMargin: '100px',
+            threshold: 0.1
+        };
+
+        const handleIntersect = (entries) => {
+            const [entry] = entries;
+            if (entry.isIntersecting && !isLoadingActors && visibleActors < cast.length) {
+                loadMoreActors();
+            }
+        };
+
+        const observer = new IntersectionObserver(handleIntersect, options);
+
+        // Create a sentinel element for infinite scroll
+        const sentinel = document.createElement('div');
+        sentinel.style.height = '1px';
+        if (gridContainerRef.current) {
+            gridContainerRef.current.appendChild(sentinel);
+            observer.observe(sentinel);
+        }
+
+        return () => {
+            if (sentinel) {
+                observer.unobserve(sentinel);
+                sentinel.remove();
+            }
+            observer.disconnect();
+        };
+    }, [cast, visibleActors, isLoadingActors]);
+
     // ========================================
     // Loading State Handler
     // ========================================
@@ -249,9 +286,17 @@ const MovieDetails = () => {
     // ========================================
 
     // Function to Load More Actors
-    const loadMoreActors = () => {
+    const loadMoreActors = async () => {
+        if (isLoadingActors || visibleActors >= cast.length) return;
+
+        setIsLoadingActors(true);
         const increment = calculateInitialActorCount();
+
+        // Simulate loading delay for smoother UX
+        await new Promise(resolve => setTimeout(resolve, 300));
+
         setVisibleActors(prev => Math.min(prev + increment, cast.length));
+        setIsLoadingActors(false);
     };
 
     // Function to format runtime to hours and minutes
@@ -407,7 +452,7 @@ const MovieDetails = () => {
                         <div className={`column ${!isMovieInfoVisible && isMobile ? 'is-full' : ''}`}>
 
                             {/* Movie Title and Release Year */}
-                            <h1 className="title is-3 has-text-weight-bold mb-4">
+                            <h1 className="title is-3 has-text-weight-bold mb-4 mobile-title">
                                 {movie.title}
                                 <span className="has-text-weight-normal has-text-grey ml-2">
                                     ({formatDate(movie.release_date, "YYYY")})
@@ -415,7 +460,7 @@ const MovieDetails = () => {
                             </h1>
 
                             {/* Actor Cards Grid */}
-                            <div className="cast-grid-container">
+                            <div className="cast-grid-container" ref={gridContainerRef}>
                                 <div className="columns is-multiline is-variable is-3">
                                     {cast.slice(0, visibleActors).map((actor) => (
                                         <div key={actor.id} className="column is-one-third-desktop is-half-tablet">
@@ -430,16 +475,10 @@ const MovieDetails = () => {
                                 </div>
                             </div>
 
-                            {/* Load More Actors Button */}
-                            {visibleActors < cast.length && (
+                            {/* Remove the Load More button since we're using infinite scroll */}
+                            {isLoadingActors && visibleActors < cast.length && (
                                 <div className="has-text-centered mt-6">
-                                    <button
-                                        className="button is-primary is-medium"
-                                        onClick={loadMoreActors}
-                                        disabled={isLoadingActors}
-                                    >
-                                        {isLoadingActors ? 'Loading...' : 'Show More Actors'}
-                                    </button>
+                                    <div className="loading-spinner">Loading...</div>
                                 </div>
                             )}
                         </div>
@@ -450,7 +489,9 @@ const MovieDetails = () => {
                         className={`mobile-info-toggle ${isMobile ? 'is-visible' : ''} ${isMovieInfoVisible ? 'is-active' : ''}`}
                         onClick={toggleMovieInfo}
                         aria-label={isMovieInfoVisible ? 'Hide Movie Info' : 'Show Movie Info'}
-                    />
+                    >
+                        {isMovieInfoVisible ? '◀' : '▶'}
+                    </button>
                 </div>
             </section>
         </>
