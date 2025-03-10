@@ -111,21 +111,23 @@
     position: fixed;
     bottom: 20px;
     left: 20px;
-    padding: 12px 20px;
-    background-color: rgba(74, 158, 255, 0.9);
+    padding: 15px 25px;
+    background-color: rgba(74, 158, 255, 0.95);
     color: white;
     border: none;
-    border-radius: 8px;
-    font-size: 1rem;
+    border-radius: 12px;
+    font-size: 1.2rem;
+    font-weight: 600;
     cursor: pointer;
     z-index: 100;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
     transition: all 0.2s ease;
 }
 
 .mobile-info-toggle:hover {
     background-color: rgba(74, 158, 255, 1);
     transform: translateY(-2px);
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.5);
 }
 
 /* Mobile Styles */
@@ -139,51 +141,57 @@
     }
 
     .movie-info-container {
-        font-size: 1.1rem;
+        font-size: 1.3rem;
     }
 
     .movie-info-label {
-        font-size: 1.2rem;
+        font-size: 1.4rem;
     }
 
     .movie-info-description {
-        font-size: 1.1rem;
-        line-height: 1.5;
+        font-size: 1.3rem;
+        line-height: 1.6;
     }
 
     .movie-info-row {
-        font-size: 1.1rem;
-        padding: 8px 0;
+        font-size: 1.3rem;
+        padding: 10px 0;
     }
 
     .collection-movie-link {
-        font-size: 1.1rem;
-        padding: 8px 12px;
+        font-size: 1.3rem;
+        padding: 10px 15px;
     }
 
     .title.is-3 {
-        font-size: 1.8rem !important;
+        font-size: 2rem !important;
     }
 
     .title.is-5 {
-        font-size: 1.4rem !important;
+        font-size: 1.6rem !important;
     }
 
     .movie-info-section {
-        padding: 20px;
+        padding: 25px;
     }
 
     .collection-section {
-        padding: 20px;
+        padding: 25px;
     }
 
     .collection-movies-list {
-        font-size: 1.1rem;
+        font-size: 1.3rem;
     }
 
     .trailer-button {
+        font-size: 1.4rem;
+        padding: 15px 30px;
+    }
+
+    .description-toggle {
         font-size: 1.2rem;
-        padding: 12px 24px;
+        padding: 8px 0;
+        margin-top: 0.75rem;
     }
 }
 
@@ -194,4 +202,9 @@
 
 .column.is-full {
     transition: all 0.3s ease;
+}
+
+.mobile-info-hidden .column.is-full {
+    padding-left: 0;
+    padding-right: 0;
 } 
