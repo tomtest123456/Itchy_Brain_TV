@@ -450,9 +450,7 @@ const MovieDetails = () => {
                         className={`mobile-info-toggle ${isMobile ? 'is-visible' : ''} ${isMovieInfoVisible ? 'is-active' : ''}`}
                         onClick={toggleMovieInfo}
                         aria-label={isMovieInfoVisible ? 'Hide Movie Info' : 'Show Movie Info'}
-                    >
-                        {isMovieInfoVisible ? '◀' : '▶'}
-                    </button>
+                    />
                 </div>
             </section>
         </>

@@ -572,7 +572,7 @@ const ActorCard = ({ actor, movieReleaseDate, currentMovieId, preloadedDetails }
                             </>
                         )}
                         {getNationality() && getCountryCode(getNationality()) && (
-                            <div className="flagContainer">
+                            <div className="flagContainer" data-country={getNationality()}>
                                 <Flag code={getCountryCode(getNationality())} className="flag" />
                             </div>
                         )}

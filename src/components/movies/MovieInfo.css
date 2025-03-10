@@ -1,8 +1,8 @@
 .movie-info-section {
-    padding: 1rem;
+    padding: 0.75rem;
     background-color: rgba(0, 0, 0, 0.2);
     border-radius: 8px;
-    margin-top: 1rem;
+    margin-top: 0.5rem;
 }
 
 .movie-info-section .title.is-5 {
@@ -17,14 +17,15 @@
 .movie-info-row {
     display: flex;
     align-items: baseline;
+    padding: 4px 0;
+    width: 100%;
 }
 
 .movie-info-label {
     color: #FFFFFF;
     font-weight: 600;
     min-width: 85px;
-    margin-right: 0.25rem;
-    font-size: 1rem;
+    margin-right: 0.5rem;
 }
 
 .movie-info-description {
@@ -152,8 +153,98 @@
     transform: scale(1.05);
 }
 
+/* Remove rotation and fix arrow direction */
 .mobile-info-toggle.is-active {
-    transform: rotate(180deg);
+    transform: none;
+}
+
+.mobile-info-toggle.is-active::before {
+    content: '◀';
+}
+
+.mobile-info-toggle:not(.is-active)::before {
+    content: '▶';
+}
+
+/* Movie Info Layout Improvements */
+.movie-info-section {
+    padding: 0.75rem;
+    background-color: rgba(0, 0, 0, 0.2);
+    border-radius: 8px;
+    margin-top: 0.5rem;
+}
+
+.movie-info-row {
+    display: flex;
+    align-items: baseline;
+    padding: 4px 0;
+    width: 100%;
+}
+
+.movie-info-label {
+    color: #FFFFFF;
+    font-weight: 600;
+    min-width: 85px;
+    margin-right: 0.5rem;
+}
+
+/* Mobile Title Size */
+@media screen and (max-width: 1024px) {
+    .title.is-3 {
+        font-size: 2.5rem !important;
+        line-height: 1.2;
+        margin-bottom: 1.5rem;
+    }
+}
+
+/* Reduce Show More Button Size */
+.showMoreButton {
+    width: 100%;
+    padding: 8px 16px;
+    margin-top: 0.75rem;
+    background-color: rgba(74, 158, 255, 0.15);
+    border: 1px solid rgba(74, 158, 255, 0.3);
+    color: #4a9eff;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    font-size: 0.9rem;
+    font-weight: 500;
+}
+
+/* Mobile Profile Image Navigation */
+@media screen and (max-width: 1024px) {
+    .imageNavButtonLeft,
+    .imageNavButtonRight {
+        opacity: 1 !important;
+    }
+}
+
+/* Flag Tooltip */
+.flagContainer {
+    position: relative;
+}
+
+.flagContainer::after {
+    content: attr(data-country);
+    position: absolute;
+    bottom: 100%;
+    right: 0;
+    background: rgba(0, 0, 0, 0.8);
+    color: white;
+    padding: 4px 8px;
+    border-radius: 4px;
+    font-size: 12px;
+    white-space: nowrap;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.2s ease;
+}
+
+.flagContainer:hover::after {
+    opacity: 1;
+    visibility: visible;
+    bottom: calc(100% + 5px);
 }
 
 /* Enhanced Mobile Styles */
