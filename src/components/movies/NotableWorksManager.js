@@ -25,12 +25,16 @@ const SCORING_WEIGHTS = {
     popularity    : 2.0,   // Current popularity score
     voteCount     : 2.0,   // Number of votes (indicates reach)
     revenue       : 1.2,   // Box office/financial success
-    creditOrder   : 2.5,   // Role prominence
+    creditOrder   : {
+        topThree   : 5.0,   // Top 3 billing
+        topEight   : 2.0,   // 4-8 billing
+        significant: 1.5    // Top 20% but not in above categories
+    },
     releaseRecency: 0.5,   // Recent releases get a small boost
     mediaType     : {
         movie     : 1.0,
         tv        : 1.0,
-        collection: 2.0   // Collections get higher weight
+        collection: 2.0    // Collections get higher weight
     }
 };
 
@@ -50,7 +54,7 @@ const isSignificantRole = (credit) => {
     const lowerCharacter = credit.character.toLowerCase();
     if (lowerCharacter.includes('uncredited') || 
         lowerCharacter.includes('self') || 
-        lowerCharacter === 'narrator' ||
+        //lowerCharacter === 'narrator' ||
         lowerCharacter === 'host') {
         return false;
     }
@@ -131,15 +135,34 @@ const calculateRevenueScore = (work) => {
 };
 
 /**
- * Calculate credit order score
+ * Calculate credit order score with tiered weighting
  * @param {number} order - Position in credits
  * @param {number} totalCast - Total number of cast members
- * @returns {number} - Credit order score between 0 and 1
+ * @returns {number} - Credit order score between 0 and 1, with weighting applied
  */
 const calculateCreditOrderScore = (order, totalCast = 50) => {
     if (typeof order !== 'number') return 0;
-    const baseScore = Math.max(0, 1 - (order / totalCast));
-    return order <= 3 ? Math.min(baseScore * 1.5, 1) : baseScore;
+    
+    // Calculate the significance threshold (top 20%)
+    const significantThreshold = Math.ceil(totalCast * 0.2);
+    
+    // Base score calculation
+    const baseScore = Math.max(0, 1 - (order / significantThreshold));
+    
+    // Apply tiered weighting
+    if (order <= 3) {
+        // Top 3 billing gets highest weight
+        return Math.min(baseScore * SCORING_WEIGHTS.creditOrder.topThree, 1);
+    } else if (order <= 8) {
+        // 4-8 billing gets medium-high weight
+        return Math.min(baseScore * SCORING_WEIGHTS.creditOrder.topEight, 1);
+    } else if (order <= significantThreshold) {
+        // Remaining significant roles get standard weight
+        return Math.min(baseScore * SCORING_WEIGHTS.creditOrder.significant, 1);
+    }
+    
+    // Return 0 for non-significant roles
+    return 0;
 };
 
 /**
@@ -167,13 +190,24 @@ const calculateOverallScore = (work) => {
     const creditOrderScore = calculateCreditOrderScore(work.order, work.total_cast_members);
     const recencyScore = calculateRecencyScore(work.release_date || work.first_air_date);
 
+    console.log('Score components for:', work.title || work.name, {
+        creditOrder: work.order,
+        totalCast: work.total_cast_members,
+        creditOrderScore,
+        weightedRating,
+        popularityScore,
+        voteCountScore,
+        revenueScore,
+        recencyScore
+    });
+
     // Apply weights to get base score
     const baseScore = (
         weightedRating * SCORING_WEIGHTS.userRating +
         popularityScore * SCORING_WEIGHTS.popularity +
         voteCountScore * SCORING_WEIGHTS.voteCount +
         revenueScore * SCORING_WEIGHTS.revenue +
-        creditOrderScore * SCORING_WEIGHTS.creditOrder +
+        creditOrderScore +  // Credit order weighting is now handled in calculateCreditOrderScore
         recencyScore * SCORING_WEIGHTS.releaseRecency
     );
 
@@ -192,48 +226,72 @@ const calculateOverallScore = (work) => {
  * @returns {Array} - Sorted array of notable works
  */
 const processNotableWorks = (actorDetails, workFilter) => {
-    console.log('Processing notable works:', { filter: workFilter, actorDetails });
+    console.log('Processing notable works:', { 
+        filter: workFilter, 
+        hasMovieCredits: !!actorDetails?.movie_credits,
+        hasCollections: !!actorDetails?.movie_credits?.collections,
+        totalMovies: actorDetails?.movie_credits?.cast?.length,
+        collectionsCount: actorDetails?.movie_credits?.collections?.length || 0
+    });
     
     if (!actorDetails) return [];
 
     let works = [];
     const processedIds = new Set(); // Track processed works to prevent duplicates
 
-    // Process collections first if showing movies
+    // Process movies and collections if showing movies
     if (workFilter === 'movies' || workFilter === 'both') {
+        // First add all collections - these are already organized by localCollections.js
         const collections = (actorDetails.movie_credits?.collections || [])
-            .filter(collection => collection.movies?.length > 1)
-            .map(collection => ({
-                ...collection,
-                media_type: 'collection',
-                revenue: collection.movies?.reduce((sum, m) => sum + (m.revenue || 0), 0),
-                vote_count: collection.movies?.reduce((sum, m) => sum + (m.vote_count || 0), 0),
-                vote_average: collection.movies?.reduce((sum, m) => sum + (m.vote_average || 0), 0) / 
-                            (collection.movies?.length || 1)
-            }));
+            .map(collection => {
+                console.log('Processing collection:', {
+                    name: collection.name,
+                    movieCount: collection.movies?.length,
+                    movies: collection.movies?.map(m => ({
+                        title: m.title,
+                        id: m.id,
+                        character: m.character
+                    }))
+                });
+
+                // Track all movies in this collection
+                collection.movies?.forEach(movie => processedIds.add(movie.id));
+
+                return {
+                    ...collection,
+                    media_type: 'collection',
+                    // Ensure collection metrics are calculated
+                    revenue: collection.movies?.reduce((sum, m) => sum + (m.revenue || 0), 0) || 0,
+                    vote_count: collection.movies?.reduce((sum, m) => sum + (m.vote_count || 0), 0) || 0,
+                    vote_average: collection.movies?.reduce((sum, m) => sum + (m.vote_average || 0), 0) / 
+                                (collection.movies?.length || 1) || 0,
+                    popularity: Math.max(...(collection.movies?.map(m => m.popularity || 0) || [0])),
+                    release_date: collection.movies?.[0]?.release_date
+                };
+            });
 
         works.push(...collections);
 
-        // Track movies in collections
-        collections.forEach(collection => {
-            collection.movies?.forEach(movie => {
-                processedIds.add(movie.id);
-            });
-        });
-
-        // Add individual movies not in collections
-        const movies = (actorDetails.movie_credits?.cast || [])
-            .filter(movie => 
-                !processedIds.has(movie.id) && 
-                isSignificantRole({ ...movie, media_type: 'movie' })
-            )
+        // Add remaining individual movies that aren't in collections
+        const movies = actorDetails.movie_credits?.cast || [];
+        const individualMovies = movies
+            .filter(movie => !processedIds.has(movie.id) && isSignificantRole({ ...movie, media_type: 'movie' }))
             .map(movie => ({
                 ...movie,
                 media_type: 'movie'
             }));
 
-        works.push(...movies);
-        movies.forEach(movie => processedIds.add(movie.id));
+        works.push(...individualMovies);
+
+        console.log('Final works breakdown:', {
+            totalWorks: works.length,
+            collections: collections.map(c => ({
+                name: c.name,
+                movieCount: c.movies?.length,
+                movies: c.movies?.map(m => m.title)
+            })),
+            individualMovies: individualMovies.map(m => m.title)
+        });
     }
 
     // Add TV shows if requested
