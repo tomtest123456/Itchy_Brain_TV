@@ -29,6 +29,7 @@
 
 .movie-info-description {
     color: #FFFFFF;
+    font-weight: 100;
     margin-top: 0.5rem;
     line-height: 1.5;
     max-height: 4.5em;
@@ -92,7 +93,7 @@
 
 .collection-movie-link.current {
     color: rgb(72, 95, 199);
-    font-weight: 600;
+    font-weight: 900;
 }
 
 .arrow-icon {
@@ -114,8 +115,12 @@
 
 /* Revert movie info font sizes to original */
 .movie-info-container {
-    font-size: 1rem;
-    line-height: 1.5;
+    overflow-x: hidden;
+    padding-right: 10px;
+}
+
+.movie-info-column {
+    position: relative;
 }
 
 /* Updated Mobile Toggle Button */

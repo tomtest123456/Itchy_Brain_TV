@@ -192,6 +192,8 @@ const calculateOverallScore = (work) => {
  * @returns {Array} - Sorted array of notable works
  */
 const processNotableWorks = (actorDetails, workFilter) => {
+    console.log('Processing notable works:', { filter: workFilter, actorDetails });
+    
     if (!actorDetails) return [];
 
     let works = [];

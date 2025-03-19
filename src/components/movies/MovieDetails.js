@@ -6,7 +6,6 @@
 
 import React, { useState, useEffect, useRef } from "react";
 import { Link, useParams } from "react-router-dom";
-import Navbar from "../../components/common/Navbar";
 import ActorCard from "../../components/movies/ActorCard";
 import { fetchMovieDetails, fetchCollectionDetails, fetchBatchedPersonDetails } from "../../services/tmdb";
 import { formatDate, formatCurrency } from "../../utils/helpers";
@@ -52,6 +51,7 @@ const MovieDetails = () => {
     const { id } = useParams();
 
     // Primary state variables for movie data
+    const movieInfoContainerRef = useRef(null);
     const [movie, setMovie] = useState(null);
     const [cast, setCast] = useState([]);
     const [director, setDirector] = useState(null);
@@ -267,6 +267,17 @@ const MovieDetails = () => {
         };
     }, [cast, visibleActors, isLoadingActors]);
 
+    // Reset scroll positions when movie ID changes
+    useEffect(() => {
+        // Reset main page scroll
+        window.scrollTo(0, 0);
+        
+        // Reset movie info container scroll
+        if (movieInfoContainerRef.current) {
+            movieInfoContainerRef.current.scrollTop = 0;
+        }
+    }, [id]);
+
     // ========================================
     // Loading State Handler
     // ========================================
@@ -312,9 +323,6 @@ const MovieDetails = () => {
 
     return (
         <>
-            {/* Navigation Bar */}
-            <Navbar />
-
             {/* Main Content Section */}
             <section className="section movie-details-section" style={{ paddingTop: "var(--navbar-height)" }}>
                 <div className="container">
@@ -340,7 +348,7 @@ const MovieDetails = () => {
                                     }
                                 }}
                             />
-                            <div className="movie-info-container">
+                            <div className="movie-info-container" ref={movieInfoContainerRef}>
                                 {/* Movie Poster */}
                                 <div className="movie-poster">
                                     <img

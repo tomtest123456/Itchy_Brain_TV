@@ -27,6 +27,10 @@
     line-height: 0;
   }
   
+  .profileImageContainer:hover .imageNavButton {
+    opacity: 1;
+  }
+  
   .profileImageContainer a {
     display    : block;
     line-height: 0;
@@ -56,44 +60,36 @@
     line-height    : 0;
   }
   
-  .imageNavButtonLeft {
-    position        : absolute;
-    top             : 50%;
-    left            : 10px;
-    transform       : translateY(-50%);
+  .imageNavButton {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
     background-color: rgba(0, 0, 0, 0.6);
-    color           : #ffffff;
-    border          : none;
-    border-radius   : 50%;
-    width           : 30px;
-    height          : 30px;
-    display         : flex;
-    align-items     : center;
-    justify-content : center;
-    cursor          : pointer;
-    opacity         : 0;
-    transition      : opacity 0.2s ease-in-out;
-    z-index         : 10;
+    color: #ffffff;
+    border: none;
+    border-radius: 50%;
+    width: 35px;
+    height: 35px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    opacity: 0;
+    transition: opacity 0.2s ease-in-out, background-color 0.2s ease-in-out;
+    z-index: 10;
+    font-size: 18px;
   }
   
-  .imageNavButtonRight {
-    position        : absolute;
-    top             : 50%;
-    right           : 10px;
-    transform       : translateY(-50%);
-    background-color: rgba(0, 0, 0, 0.6);
-    color           : #ffffff;
-    border          : none;
-    border-radius   : 50%;
-    width           : 30px;
-    height          : 30px;
-    display         : flex;
-    align-items     : center;
-    justify-content : center;
-    cursor          : pointer;
-    opacity         : 0;
-    transition      : opacity 0.2s ease-in-out;
-    z-index         : 10;
+  .imageNavButton:hover {
+    background-color: rgba(0, 0, 0, 0.8);
+  }
+  
+  .imageNavButton.left {
+    left: 10px;
+  }
+  
+  .imageNavButton.right {
+    right: 10px;
   }
   
   .flagContainer {
@@ -229,10 +225,12 @@
     text-decoration: none;
     display        : flex;
     align-items    : center;
-    gap            : 0.25rem;
     padding        : 2px 4px;
     border-radius  : 4px;
     transition     : background-color 0.2s ease;
+    white-space    : nowrap;
+    overflow       : hidden;
+    position       : relative;
   }
   
   .notableWorkLink:hover {
@@ -257,17 +255,22 @@
     color: #b8e986;
   }
   
+  .notableWorkLink::before {
+    flex-shrink: 0;
+  }
+  
   .title-text {
     flex         : 1;
     min-width    : 0;
     white-space  : nowrap;
     overflow     : hidden;
     text-overflow: ellipsis;
+    margin-right : 0.25rem;
   }
   
   .year-text {
-    color      : rgba(255, 255, 255, 0.6);
     flex-shrink: 0;
+    color      : rgba(255, 255, 255, 0.6);
     font-size  : 0.9em;
   }
   
@@ -340,8 +343,7 @@
   }
   
     /* Hover effects */
-  .profileImage: hover .imageNavButtonLeft,
-  .profileImage: hover .imageNavButtonRight {
+  .profileImage:hover .imageNavButton {
     opacity: 1;
   }
   
@@ -440,12 +442,21 @@
         margin-left: 10px;
     }
 
-    .imageNavButtonLeft,
-    .imageNavButtonRight {
+    .imageNavButton {
         width    : 45px;
         height   : 45px;
         font-size: 1.4rem;
     }
+  }
+  
+  .character-name {
+    display: block;
+    font-size: 0.75rem;
+    color: rgba(220, 220, 220, 0.7);
+    margin-top: 0.1rem;
+    margin-left: 2rem;
+    font-style: italic;
+    white-space: normal;
   }
   
   

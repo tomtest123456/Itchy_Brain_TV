@@ -282,15 +282,21 @@ const ActorCard = ({ actor, movieReleaseDate, currentMovieId, preloadedDetails }
                 {actorDetails?.images?.profiles?.length > 1 && (
                     <>
                         <button
-                            className="imageNavButtonLeft"
-                            onClick={() => handleImageNav('prev')}
+                            className="imageNavButton left"
+                            onClick={(e) => {
+                                e.preventDefault();
+                                handleImageNav('prev');
+                            }}
                             aria-label="Previous image"
                         >
                             ◀
                         </button>
                         <button
-                            className="imageNavButtonRight"
-                            onClick={() => handleImageNav('next')}
+                            className="imageNavButton right"
+                            onClick={(e) => {
+                                e.preventDefault();
+                                handleImageNav('next');
+                            }}
                             aria-label="Next image"
                         >
                             ▶
@@ -312,13 +318,13 @@ const ActorCard = ({ actor, movieReleaseDate, currentMovieId, preloadedDetails }
                 <Link to={`/actor/${actor.id}`} className="nameLink">
                     <h3 className="actorName">
                         <span className="nameText">{truncateWithYear(actor.name, 20)}</span>
-                        {actorDetails?.birthday && <span className="ageDisplay"> ({calculateAge(actorDetails.birthday)})</span>}
+                        {actorDetails?.birthday && <span className="ageDisplay"> [{calculateAge(actorDetails.birthday)}]</span>}
                     </h3>
                 </Link>
 
                 <p className="characterName">
                     <span className="characterText">as {truncateWithYear(actor.character, 25)}</span>
-                    {calculateAgeAtFilming() && <span className="ageAtFilming"> ({calculateAgeAtFilming()})</span>}
+                    {calculateAgeAtFilming() && <span className="ageAtFilming"> [{calculateAgeAtFilming()}]</span>}
                 </p>
 
                 <div className="notableWorksSection">
@@ -363,21 +369,44 @@ const ActorCard = ({ actor, movieReleaseDate, currentMovieId, preloadedDetails }
                                             <ul className="collectionMoviesList">
                                                 {work.movies
                                                     .sort((a, b) => new Date(a.release_date) - new Date(b.release_date))
-                                                    .map(movie => (
-                                                        <li key={movie.id} className="collectionMovieItem">
-                                                            <Link
-                                                                to={`/movie/${movie.id}`}
-                                                                className="notableWorkLink movie"
-                                                            >
-                                                                <span className="title-text">
-                                                                    {movie.title}
-                                                                </span>
-                                                                <span className="year-text">
-                                                                    {movie.release_date ? ` ('${new Date(movie.release_date).getFullYear().toString().slice(2)})` : ''}
-                                                                </span>
-                                                            </Link>
-                                                        </li>
-                                                    ))}
+                                                    .map(movie => {
+                                                        console.log('Collection movie data:', {
+                                                            title: movie.title,
+                                                            character: movie.character,
+                                                            cast: movie.cast,
+                                                            rawMovie: movie
+                                                        });
+                                                        return (
+                                                            <li key={movie.id} className="collectionMovieItem">
+                                                                <Link
+                                                                    to={`/movie/${movie.id}`}
+                                                                    className="notableWorkLink movie"
+                                                                >
+                                                                    <span className="title-text">
+                                                                        {movie.title}
+                                                                    </span>
+                                                                    <span className="year-text">
+                                                                        {movie.release_date ? ` ('${new Date(movie.release_date).getFullYear().toString().slice(2)})` : ''}
+                                                                    </span>
+                                                                    {movie.character && (
+                                                                        <span className="character-name">
+                                                                            {movie.character} [{(() => {
+                                                                                if (!actorDetails?.birthday || !movie.release_date) return null;
+                                                                                const birthDate = new Date(actorDetails.birthday);
+                                                                                const filmingDate = new Date(movie.release_date);
+                                                                                let age = filmingDate.getFullYear() - birthDate.getFullYear();
+                                                                                const m = filmingDate.getMonth() - birthDate.getMonth();
+                                                                                if (m < 0 || (m === 0 && filmingDate.getDate() < birthDate.getDate())) {
+                                                                                    age--;
+                                                                                }
+                                                                                return age;
+                                                                            })()}]
+                                                                        </span>
+                                                                    )}
+                                                                </Link>
+                                                            </li>
+                                                        );
+                                                    })}
                                             </ul>
                                         )}
                                     </div>
@@ -385,6 +414,17 @@ const ActorCard = ({ actor, movieReleaseDate, currentMovieId, preloadedDetails }
                                     <Link
                                         to={`/${work.media_type}/${work.id}`}
                                         className={`notableWorkLink ${work.media_type}`}
+                                        ref={el => {
+                                            if (el) {
+                                                console.log('Link element metrics:', {
+                                                    workId: work.id,
+                                                    title: NotableWorksManager.formatWorkDisplay(work).title,
+                                                    containerWidth: el.offsetWidth,
+                                                    contentWidth: el.scrollWidth,
+                                                    isOverflowing: el.scrollWidth > el.offsetWidth
+                                                });
+                                            }
+                                        }}
                                     >
                                         <span className="title-text">
                                             {NotableWorksManager.formatWorkDisplay(work).title}
@@ -392,6 +432,11 @@ const ActorCard = ({ actor, movieReleaseDate, currentMovieId, preloadedDetails }
                                         <span className="year-text">
                                             {NotableWorksManager.formatWorkDisplay(work).year}
                                         </span>
+                                        {work.character && (
+                                            <span className="character-name">
+                                                {work.character} [{calculateAgeAtFilming()}]
+                                            </span>
+                                        )}
                                     </Link>
                                 )}
                             </li>
