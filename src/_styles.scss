@@ -141,21 +141,21 @@ h1, h2, h3 {
           content: '🎬';
           margin-right: 0.4rem;
           font-size: 0.9em;
-          opacity: 0.9;
+          opacity: 1;
         }
         
         &.movie::before {
           content: '🎥';
           margin-right: 0.4rem;
           font-size: 0.9em;
-          opacity: 0.8;
+          opacity: 1;
         }
         
         &.tv::before {
           content: '📺';
           margin-right: 0.4rem;
           font-size: 0.9em;
-          opacity: 0.8;
+          opacity: 1;
         }
         
         &.collection {

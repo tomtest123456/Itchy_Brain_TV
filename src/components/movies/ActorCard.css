@@ -443,9 +443,23 @@
     }
 
     .imageNavButton {
-        width    : 45px;
-        height   : 45px;
+        width: 45px;
+        height: 45px;
         font-size: 1.4rem;
+        opacity: 1;
+        background-color: rgba(0, 0, 0, 0.8);
+    }
+
+    .imageNavButton:hover {
+        background-color: rgba(0, 0, 0, 0.9);
+    }
+
+    .imageNavButton.left {
+        left: 5px;
+    }
+
+    .imageNavButton.right {
+        right: 5px;
     }
   }
   
