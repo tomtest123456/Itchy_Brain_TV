@@ -1,4 +1,4 @@
-/* ========================================
+  /* ========================================
  * ActorCard.css
  * Styling for the ActorCard component that displays actor information
  * including profile picture, nationality flag, name, age, character name,
@@ -7,129 +7,129 @@
 
  .card {
     background-color: #2a2d38;
-    border-radius: 8px;
-    overflow: hidden;
-    height: auto;
-    min-height: 100%;
-    display: flex;
-    flex-direction: column;
-    border: 1px solid #3900bd;
-    transition: all 0.2s ease-in-out;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+    border-radius   : 8px;
+    overflow        : hidden;
+    height          : auto;
+    min-height      : 100%;
+    display         : flex;
+    flex-direction  : column;
+    border          : 1px solid #3900bd;
+    transition      : all 0.2s ease-in-out;
+    box-shadow      : 0 4px 8px rgba(0, 0, 0, 0.3);
   }
   
   .profileImageContainer {
-    position: relative;
-    width: 100%;
+    position   : relative;
+    width      : 100%;
     padding-top: 150%;
-    overflow: hidden;
-    margin: 0;
+    overflow   : hidden;
+    margin     : 0;
     line-height: 0;
   }
   
   .profileImageContainer a {
-    display: block;
+    display    : block;
     line-height: 0;
-    margin: 0;
-    padding: 0;
+    margin     : 0;
+    padding    : 0;
   }
   
   .profileImage {
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    margin: 0;
-    padding: 0;
+    position   : absolute;
+    top        : 0;
+    left       : 0;
+    right      : 0;
+    bottom     : 0;
+    margin     : 0;
+    padding    : 0;
     line-height: 0;
   }
   
   .profileImageElement {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
+    width          : 100%;
+    height         : 100%;
+    object-fit     : cover;
     object-position: top;
-    display: block;
-    margin: 0;
-    padding: 0;
-    line-height: 0;
+    display        : block;
+    margin         : 0;
+    padding        : 0;
+    line-height    : 0;
   }
   
   .imageNavButtonLeft {
-    position: absolute;
-    top: 50%;
-    left: 10px;
-    transform: translateY(-50%);
+    position        : absolute;
+    top             : 50%;
+    left            : 10px;
+    transform       : translateY(-50%);
     background-color: rgba(0, 0, 0, 0.6);
-    color: #ffffff;
-    border: none;
-    border-radius: 50%;
-    width: 30px;
-    height: 30px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    cursor: pointer;
-    opacity: 0;
-    transition: opacity 0.2s ease-in-out;
-    z-index: 10;
+    color           : #ffffff;
+    border          : none;
+    border-radius   : 50%;
+    width           : 30px;
+    height          : 30px;
+    display         : flex;
+    align-items     : center;
+    justify-content : center;
+    cursor          : pointer;
+    opacity         : 0;
+    transition      : opacity 0.2s ease-in-out;
+    z-index         : 10;
   }
   
   .imageNavButtonRight {
-    position: absolute;
-    top: 50%;
-    right: 10px;
-    transform: translateY(-50%);
+    position        : absolute;
+    top             : 50%;
+    right           : 10px;
+    transform       : translateY(-50%);
     background-color: rgba(0, 0, 0, 0.6);
-    color: #ffffff;
-    border: none;
-    border-radius: 50%;
-    width: 30px;
-    height: 30px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    cursor: pointer;
-    opacity: 0;
-    transition: opacity 0.2s ease-in-out;
-    z-index: 10;
+    color           : #ffffff;
+    border          : none;
+    border-radius   : 50%;
+    width           : 30px;
+    height          : 30px;
+    display         : flex;
+    align-items     : center;
+    justify-content : center;
+    cursor          : pointer;
+    opacity         : 0;
+    transition      : opacity 0.2s ease-in-out;
+    z-index         : 10;
   }
   
   .flagContainer {
-    position: absolute;
-    bottom: 10px;
-    right: 10px;
-    width: 40px;
-    height: 30px;
-    opacity: 0.8;
+    position     : absolute;
+    bottom       : 10px;
+    right        : 10px;
+    width        : 40px;
+    height       : 30px;
+    opacity      : 0.8;
     border-radius: 4px;
-    overflow: hidden;
-    z-index: 5;
+    overflow     : hidden;
+    z-index      : 5;
   }
   
   .flag {
-    width: 100%;
-    height: 100%;
+    width     : 100%;
+    height    : 100%;
     object-fit: cover;
   }
   
   .cardContent {
-    padding: 15px;
-    flex-grow: 1;
-    display: flex;
+    padding       : 15px;
+    flex-grow     : 1;
+    display       : flex;
     flex-direction: column;
   }
   
   .nameLink {
     text-decoration: none;
-    color: #ffffff;
+    color          : #ffffff;
   }
   
   .actorName {
-    font-size: 1.1rem;
-    font-weight: 600;
-    margin-bottom: 0.25rem;
+    font-size     : 1.1rem;
+    font-weight   : 600;
+    margin-bottom : 0.25rem;
     letter-spacing: 0.02em;
   }
   
@@ -139,33 +139,33 @@
   
   .ageDisplay {
     font-weight: normal;
-    font-size: 0.9rem;
-    color: #dcdcdc;
+    font-size  : 0.9rem;
+    color      : #dcdcdc;
   }
   
   .characterName {
-    font-size: 1rem;
+    font-size    : 1rem;
     margin-bottom: 10px;
-    color: #dcdcdc;
-    white-space: nowrap;
-    overflow: hidden;
+    color        : #dcdcdc;
+    white-space  : nowrap;
+    overflow     : hidden;
     text-overflow: ellipsis;
   }
   
   .characterText {
-    display: inline-block;
-    max-width: calc(100% - 60px);
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
+    display       : inline-block;
+    max-width     : calc(100% - 60px);
+    white-space   : nowrap;
+    overflow      : hidden;
+    text-overflow : ellipsis;
     vertical-align: bottom;
   }
   
   .ageAtFilming {
-    font-size: 0.85rem;
+    font-size  : 0.85rem;
     font-weight: normal;
-    color: #dcdcdc;
-    opacity: 0.8;
+    color      : #dcdcdc;
+    opacity    : 0.8;
   }
   
   .notableWorksSection {
@@ -173,39 +173,39 @@
   }
   
   .notableWorksTitle {
-    font-size: 0.9rem;
-    font-weight: bold;
+    font-size    : 0.9rem;
+    font-weight  : bold;
     margin-bottom: 5px;
-    color: #dcdcdc;
+    color        : #dcdcdc;
   }
   
   .notableWorksList {
     list-style-type: none;
-    padding: 0;
-    margin: 0;
+    padding        : 0;
+    margin         : 0;
   }
   
   .notableWorkItem {
     margin-bottom: 0.5rem;
-    transition: all 0.2s ease-in-out;
+    transition   : all 0.2s ease-in-out;
   }
   
   .collectionContainer {
-    display: flex;
+    display       : flex;
     flex-direction: column;
-    gap: 0.25rem;
+    gap           : 0.25rem;
   }
   
   .collectionMoviesList {
     list-style-type: none;
-    padding-left: 1.5rem;
-    margin: 0.25rem 0 0.5rem;
-    border-left: 1px solid rgba(74, 158, 255, 0.3);
+    padding-left   : 1.5rem;
+    margin         : 0.25rem 0 0.5rem;
+    border-left    : 1px solid rgba(74, 158, 255, 0.3);
   }
   
   .collectionMovieItem {
-    margin: 0.25rem 0;
-    opacity: 0.9;
+    margin    : 0.25rem 0;
+    opacity   : 0.9;
     transition: opacity 0.2s ease;
   }
   
@@ -215,9 +215,9 @@
   
   .expandIcon {
     margin-left: 0.5rem;
-    font-size: 0.8em;
-    opacity: 0.7;
-    transition: opacity 0.2s ease;
+    font-size  : 0.8em;
+    opacity    : 0.7;
+    transition : opacity 0.2s ease;
   }
   
   .notableWorkLink:hover .expandIcon {
@@ -225,14 +225,14 @@
   }
   
   .notableWorkLink {
-    color: #FFFFFF;
+    color          : #FFFFFF;
     text-decoration: none;
-    display: flex;
-    align-items: center;
-    gap: 0.25rem;
-    padding: 2px 4px;
-    border-radius: 4px;
-    transition: background-color 0.2s ease;
+    display        : flex;
+    align-items    : center;
+    gap            : 0.25rem;
+    padding        : 2px 4px;
+    border-radius  : 4px;
+    transition     : background-color 0.2s ease;
   }
   
   .notableWorkLink:hover {
@@ -240,8 +240,8 @@
   }
   
   .notableWorkLink.collection {
-    font-weight: 600;
-    color: #4a9eff;
+    font-weight     : 600;
+    color           : #4a9eff;
     background-color: rgba(74, 158, 255, 0.1);
   }
   
@@ -258,90 +258,90 @@
   }
   
   .title-text {
-    flex: 1;
-    min-width: 0;
-    white-space: nowrap;
-    overflow: hidden;
+    flex         : 1;
+    min-width    : 0;
+    white-space  : nowrap;
+    overflow     : hidden;
     text-overflow: ellipsis;
   }
   
   .year-text {
-    color: rgba(255, 255, 255, 0.6);
+    color      : rgba(255, 255, 255, 0.6);
     flex-shrink: 0;
-    font-size: 0.9em;
+    font-size  : 0.9em;
   }
   
   .notableWorkLink.collection .year-text {
     color: rgba(74, 158, 255, 0.8);
   }
   
-  /* Icons for different types */
+    /* Icons for different types */
   .notableWorkLink::before {
-    font-family: "Material Icons";
-    font-size: 1.1em;
+    font-family : "Material Icons";
+    font-size   : 1.1em;
     margin-right: 4px;
   }
   
   .notableWorkLink.collection::before {
     content: "movie";
-    color: #4a9eff;
+    color  : #4a9eff;
   }
   
   .notableWorkLink.movie::before {
     content: "local_movies";
-    color: #e6e6e6;
+    color  : #e6e6e6;
   }
   
   .notableWorkLink.tv::before {
     content: "tv";
-    color: #b8e986;
+    color  : #b8e986;
   }
   
-  /* Filter buttons */
+    /* Filter buttons */
   .notableWorksHeader {
-    display: flex;
-    align-items: center;
+    display        : flex;
+    align-items    : center;
     justify-content: space-between;
-    margin-bottom: 0.75rem;
+    margin-bottom  : 0.75rem;
   }
   
   .notableWorksTitle {
-    font-size: 0.9rem;
+    font-size  : 0.9rem;
     font-weight: 600;
-    color: #ffffff;
-    margin: 0;
+    color      : #ffffff;
+    margin     : 0;
   }
   
   .filterButtons {
     display: flex;
-    gap: 4px;
+    gap    : 4px;
   }
   
   .filterButton {
-    padding: 2px 8px;
-    font-size: 0.8rem;
-    background: transparent;
-    border: 1px solid rgba(255, 255, 255, 0.2);
-    color: rgba(255, 255, 255, 0.7);
+    padding      : 2px 8px;
+    font-size    : 0.8rem;
+    background   : transparent;
+    border       : 1px solid rgba(255, 255, 255, 0.2);
+    color        : rgba(255, 255, 255, 0.7);
     border-radius: 4px;
-    cursor: pointer;
-    transition: all 0.2s ease;
+    cursor       : pointer;
+    transition   : all 0.2s ease;
   }
   
   .filterButton:hover {
     border-color: rgba(255, 255, 255, 0.4);
-    color: rgba(255, 255, 255, 0.9);
+    color       : rgba(255, 255, 255, 0.9);
   }
   
   .filterButton.active {
-    background: rgba(74, 158, 255, 0.2);
+    background  : rgba(74, 158, 255, 0.2);
     border-color: #4a9eff;
-    color: #4a9eff;
+    color       : #4a9eff;
   }
   
-  /* Hover effects */
-  .profileImage:hover .imageNavButtonLeft,
-  .profileImage:hover .imageNavButtonRight {
+    /* Hover effects */
+  .profileImage: hover .imageNavButtonLeft,
+  .profileImage: hover .imageNavButtonRight {
     opacity: 1;
   }
   
@@ -350,37 +350,37 @@
   }
   
   .showMoreButton {
-    width: 100%;
-    padding: 12px 20px;
-    margin-top: 1rem;
+    width           : 100%;
+    padding         : 12px 20px;
+    margin-top      : 1rem;
     background-color: rgba(74, 158, 255, 0.15);
-    border: 1px solid rgba(74, 158, 255, 0.3);
-    color: #4a9eff;
-    border-radius: 8px;
-    cursor: pointer;
-    transition: all 0.2s ease;
-    font-size: 0.95rem;
-    font-weight: 500;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    text-align: center;
+    border          : 1px solid rgba(74, 158, 255, 0.3);
+    color           : #4a9eff;
+    border-radius   : 8px;
+    cursor          : pointer;
+    transition      : all 0.2s ease;
+    font-size       : 0.95rem;
+    font-weight     : 500;
+    display         : flex;
+    align-items     : center;
+    justify-content : center;
+    text-align      : center;
   }
   
   .showMoreButton:hover {
     background-color: rgba(74, 158, 255, 0.25);
-    border-color: rgba(74, 158, 255, 0.5);
-    transform: translateY(-1px);
+    border-color    : rgba(74, 158, 255, 0.5);
+    transform       : translateY(-1px);
   }
   
   .showMoreButton:active {
     transform: translateY(0);
   }
   
-  /* Mobile Styles */
+    /* Mobile Styles */
   @media screen and (max-width: 768px) {
     .actorName {
-        font-size: 1.8rem;
+        font-size  : 1.8rem;
         line-height: 1.3;
     }
 
@@ -389,19 +389,19 @@
     }
 
     .characterName {
-        font-size: 1.7rem;
+        font-size    : 1.7rem;
         margin-bottom: 15px;
-        line-height: 1.3;
+        line-height  : 1.3;
     }
 
     .notableWorksTitle {
-        font-size: 1.6rem;
+        font-size    : 1.6rem;
         margin-bottom: 10px;
     }
 
     .notableWorkLink {
-        font-size: 1.6rem;
-        padding: 12px 16px;
+        font-size    : 1.6rem;
+        padding      : 12px 16px;
         margin-bottom: 8px;
     }
 
@@ -411,7 +411,7 @@
 
     .collectionMoviesList {
         padding-left: 3rem;
-        margin: 0.5rem 0 1rem;
+        margin      : 0.5rem 0 1rem;
     }
 
     .collectionMovieItem {
@@ -420,14 +420,14 @@
 
     .filterButton {
         font-size: 1.4rem;
-        padding: 8px 20px;
-        margin: 0 4px;
+        padding  : 8px 20px;
+        margin   : 0 4px;
     }
 
     .showMoreButton {
-        font-size: 1.4rem;
-        padding: 15px 25px;
-        margin-top: 1.5rem;
+        font-size    : 1.4rem;
+        padding      : 15px 25px;
+        margin-top   : 1.5rem;
         border-radius: 12px;
     }
 
@@ -436,14 +436,14 @@
     }
 
     .expandIcon {
-        font-size: 1.3rem;
+        font-size  : 1.3rem;
         margin-left: 10px;
     }
 
     .imageNavButtonLeft,
     .imageNavButtonRight {
-        width: 45px;
-        height: 45px;
+        width    : 45px;
+        height   : 45px;
         font-size: 1.4rem;
     }
   }
