@@ -11,7 +11,7 @@ import { Link } from "react-router-dom"
 import Flag from "react-world-flags"
 import { fetchPersonDetails } from "../../services/tmdb"
 import { formatDate, formatCurrency } from "../../utils/helpers";
-import NotableWorksManager from "./NotableWorksManager";
+import NotableWorksManager from "../common/NotableWorksManager";
 import "./ActorCard.css"
 
 /**

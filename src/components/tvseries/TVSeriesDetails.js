@@ -1,13 +1,13 @@
 // ========================================
-// MovieDetails.js
-// This component displays detailed information about a movie including
+// TVSeriesDetails.js
+// This component displays detailed information about a TV Show including
 // poster, title, rating, cast, and other metadata using Bulma's styling system.
 // ========================================
 
 import React, { useState, useEffect, useRef } from "react";
 import { Link, useParams } from "react-router-dom";
-import ActorCard from "../../components/actorcard/ActorCard";
-import { fetchMovieDetails, fetchCollectionDetails, fetchBatchedPersonDetails } from "../../services/tmdb";
+import ActorCard from "../actorcard/ActorCard";
+import { fetchTvShowDetails, fetchCollectionDetails, fetchBatchedPersonDetails } from "../../services/tmdb";
 import { formatDate, formatCurrency } from "../../utils/helpers";
 import Ratings from '../ratings/Ratings';
 import useActorCardGrid from '../../hooks/useActorCardGrid';
@@ -18,7 +18,7 @@ const isMobileDevice = () => {
     const userAgent = navigator.userAgent || navigator.vendor || window.opera;
     const mobileRegex = /android|webos|iphone|ipad|ipod|blackberry|iemobile|opera mini|mobile|tablet/i;
     const isTouch = 'ontouchstart' in window || navigator.maxTouchPoints > 0;
-    const isNarrow = window.innerWidth <= 1024; // Increased breakpoint
+    const isNarrow = window.innerWidth <= 1024;
     const devicePixelRatio = window.devicePixelRatio || 1;
 
     console.log('Mobile Detection Debug:', {
@@ -33,34 +33,33 @@ const isMobileDevice = () => {
         screenHeight: window.screen.height
     });
 
-    // More aggressive mobile detection
     return mobileRegex.test(userAgent.toLowerCase()) || isTouch || isNarrow;
 };
 
 /**
- * MovieDetails Component
- * Displays comprehensive information about a movie including poster, title,
- * rating, cast, and other metadata
+ * TVSeriesDetails Component
+ * Displays comprehensive information about a TV Show including poster, title,
+ * rating, cast, and other metadata.
  */
-const MovieDetails = () => {
+const TVSeriesDetails = () => {
     // ========================================
     // State Management
     // ========================================
 
-    // Get movie ID from URL parameters
+    // Get TV Show ID from URL parameters
     const { id } = useParams();
 
-    // Primary state variables for movie data
-    const movieInfoContainerRef = useRef(null);
-    const [movie, setMovie] = useState(null);
+    // Primary state variables for TV show data
+    const tvInfoContainerRef = useRef(null);
+    const [tvShow, setTvShow] = useState(null);
     const [cast, setCast] = useState([]);
-    const [director, setDirector] = useState(null);
+    const [director, setDirector] = useState(null); // Will hold the "creator"
     const [trailer, setTrailer] = useState(null);
     const [collection, setCollection] = useState(null);
     const [isDescriptionExpanded, setIsDescriptionExpanded] = useState(false);
     const [actorDetails, setActorDetails] = useState(new Map());
     const [isLoadingActors, setIsLoadingActors] = useState(false);
-    const [isMovieInfoVisible, setIsMovieInfoVisible] = useState(true);
+    const [isTvShowInfoVisible, setIsTvShowInfoVisible] = useState(true);
     const [isMobile, setIsMobile] = useState(isMobileDevice());
     const gridContainerRef = useRef(null);
 
@@ -69,13 +68,13 @@ const MovieDetails = () => {
         const width = window.innerWidth;
         let columns;
         if (width >= 1024) {
-            columns = 3; // Desktop: 3 columns
+            columns = 3;
         } else if (width >= 768) {
-            columns = 2; // Tablet: 2 columns
+            columns = 2;
         } else {
-            columns = 1; // Mobile: 1 column
+            columns = 1;
         }
-        return columns * 3; // Show 3 rows initially
+        return columns * 3;
     };
 
     const [visibleActors, setVisibleActors] = useState(calculateInitialActorCount());
@@ -116,26 +115,22 @@ const MovieDetails = () => {
     useEffect(() => {
         const handleResize = () => {
             const newCount = calculateInitialActorCount();
-            setVisibleActors(prev => {
-                // Only update if the new count is larger than current visible actors
-                // This prevents removing already visible actors when screen gets smaller
-                return Math.max(prev, newCount);
-            });
+            setVisibleActors(prev => Math.max(prev, newCount));
         };
 
         window.addEventListener('resize', handleResize);
         return () => window.removeEventListener('resize', handleResize);
     }, []);
 
-    // Add debug effect for mobile state changes
+    // Debug effect for mobile state changes
     useEffect(() => {
         console.log('Mobile State Changed:', {
             isMobile,
-            isMovieInfoVisible,
+            isTvShowInfoVisible,
             windowWidth: window.innerWidth,
             timestamp: new Date().toISOString()
         });
-    }, [isMobile, isMovieInfoVisible]);
+    }, [isMobile, isTvShowInfoVisible]);
 
     // Enhanced resize handler
     useEffect(() => {
@@ -151,10 +146,8 @@ const MovieDetails = () => {
             setIsMobile(newIsMobile);
         };
 
-        // Initial check
         handleResize();
 
-        // Add resize listener
         window.addEventListener('resize', handleResize);
         window.addEventListener('orientationchange', handleResize);
 
@@ -164,15 +157,15 @@ const MovieDetails = () => {
         };
     }, []);
 
-    // Enhanced toggle function
-    const toggleMovieInfo = () => {
-        console.log('Toggle Movie Info Debug:', {
-            currentState: isMovieInfoVisible,
+    // Toggle function for TV Show Info visibility
+    const toggleTvShowInfo = () => {
+        console.log('Toggle TV Show Info Debug:', {
+            currentState: isTvShowInfoVisible,
             isMobile,
             windowWidth: window.innerWidth,
             timestamp: new Date().toISOString()
         });
-        setIsMovieInfoVisible(prev => !prev);
+        setIsTvShowInfoVisible(prev => !prev);
     };
 
     // Get optimal card count based on grid layout
@@ -186,52 +179,50 @@ const MovieDetails = () => {
     // Data Fetching
     // ========================================
 
-    // Fetch Movie Data from API
     useEffect(() => {
-        const loadMovieData = async () => {
+        const loadTvShowData = async () => {
             try {
-                const movieData = await fetchMovieDetails(id);
-                if (!movieData) return;
+                const tvShowData = await fetchTvShowDetails(id);
+                if (!tvShowData) return;
 
-                setMovie(movieData);
+                setTvShow(tvShowData);
 
                 // Extract Cast Data
-                if (movieData.credits?.cast?.length > 0) {
-                    setCast(movieData.credits.cast);
+                if (tvShowData.credits?.cast?.length > 0) {
+                    setCast(tvShowData.credits.cast);
                 }
 
-                // Extract Director Data
-                if (movieData.credits?.crew?.length > 0) {
-                    const movieDirector = movieData.credits.crew.find(member => member.job === "Director");
-                    setDirector(movieDirector || null);
+                // Extract Creator Data (using created_by array)
+                if (tvShowData.created_by && tvShowData.created_by.length > 0) {
+                    setDirector(tvShowData.created_by[0]);
                 }
 
                 // Extract Trailer (YouTube)
-                if (movieData.videos?.results?.length > 0) {
-                    const movieTrailer = movieData.videos.results.find(video =>
+                if (tvShowData.videos?.results?.length > 0) {
+                    const tvTrailer = tvShowData.videos.results.find(video =>
                         video.type === "Trailer" && video.site === "YouTube"
                     );
-                    setTrailer(movieTrailer || null);
+                    setTrailer(tvTrailer || null);
                 }
 
-                // Fetch Movie Collection (If Applicable)
-                if (movieData.belongs_to_collection) {
+                // Fetch TV Show Collection (if applicable)
+                if (tvShowData.belongs_to_collection) {
                     const collectionData = await fetchCollectionDetails(
-                        movieData.belongs_to_collection.id
+                        tvShowData.belongs_to_collection.id
                     );
                     setCollection(collectionData);
                 }
             } catch (error) {
-                console.error("Error fetching movie details:", error);
+                console.error("Error fetching TV show details:", error);
             }
         };
 
         if (id) {
-            loadMovieData();
+            loadTvShowData();
         }
-    }, [id]); // Dependency on id
+    }, [id]);
 
-    // Add intersection observer for infinite scroll
+    // Intersection observer for infinite scroll
     useEffect(() => {
         if (!cast || cast.length === 0) return;
 
@@ -249,8 +240,6 @@ const MovieDetails = () => {
         };
 
         const observer = new IntersectionObserver(handleIntersect, options);
-
-        // Create a sentinel element for infinite scroll
         const sentinel = document.createElement('div');
         sentinel.style.height = '1px';
         if (gridContainerRef.current) {
@@ -267,14 +256,11 @@ const MovieDetails = () => {
         };
     }, [cast, visibleActors, isLoadingActors]);
 
-    // Reset scroll positions when movie ID changes
+    // Reset scroll positions when TV show ID changes
     useEffect(() => {
-        // Reset main page scroll
         window.scrollTo(0, 0);
-        
-        // Reset movie info container scroll
-        if (movieInfoContainerRef.current) {
-            movieInfoContainerRef.current.scrollTop = 0;
+        if (tvInfoContainerRef.current) {
+            tvInfoContainerRef.current.scrollTop = 0;
         }
     }, [id]);
 
@@ -282,19 +268,15 @@ const MovieDetails = () => {
     // Loading State Handler
     // ========================================
 
-    if (!movie) return (
+    if (!tvShow) return (
         <section className="section">
             <div className="container">
                 <div className="has-text-centered">
-                    <p className="is-size-4">Loading movie details...</p>
+                    <p className="is-size-4">Loading TV show details...</p>
                 </div>
             </div>
         </section>
     );
-
-    // ========================================
-    // Event Handlers
-    // ========================================
 
     // Function to Load More Actors
     const loadMoreActors = async () => {
@@ -303,19 +285,23 @@ const MovieDetails = () => {
         setIsLoadingActors(true);
         const increment = calculateInitialActorCount();
 
-        // Simulate loading delay for smoother UX
         await new Promise(resolve => setTimeout(resolve, 300));
 
         setVisibleActors(prev => Math.min(prev + increment, cast.length));
         setIsLoadingActors(false);
     };
 
-    // Function to format runtime to hours and minutes
+    // Function to format runtime to hours and minutes (using first episode runtime)
     const formatRuntime = (minutes) => {
         const hours = Math.floor(minutes / 60);
         const remainingMinutes = minutes % 60;
         return `${hours}hr ${remainingMinutes}m`;
     };
+
+    // Determine episode runtime (use first value in episode_run_time array)
+    const episodeRuntime = (tvShow.episode_run_time && tvShow.episode_run_time.length > 0)
+        ? tvShow.episode_run_time[0]
+        : 0;
 
     // ========================================
     // Component Render
@@ -324,14 +310,14 @@ const MovieDetails = () => {
     return (
         <>
             {/* Main Content Section */}
-            <section className="section movie-details-section" style={{ paddingTop: "var(--navbar-height)" }}>
+            <section className="section tv-details-section" style={{ paddingTop: "var(--navbar-height)" }}>
                 <div className="container">
-                    <div className={`columns is-variable is-0-mobile is-3-tablet is-8-desktop ${!isMovieInfoVisible && isMobile ? 'mobile-info-hidden' : ''}`}>
+                    <div className={`columns is-variable is-0-mobile is-3-tablet is-8-desktop ${!isTvShowInfoVisible && isMobile ? 'mobile-info-hidden' : ''}`}>
 
-                        {/* Left Column - Movie Info */}
-                        <div className={`column is-one-quarter movie-info-column ${!isMovieInfoVisible && isMobile ? 'is-hidden' : ''}`} style={{ position: 'relative' }}>
+                        {/* Left Column - TV Show Info */}
+                        <div className={`column is-one-quarter tv-info-column ${!isTvShowInfoVisible && isMobile ? 'is-hidden' : ''}`} style={{ position: 'relative' }}>
                             <div
-                                className="movie-info-scroll-trigger"
+                                className="tv-info-scroll-trigger"
                                 style={{
                                     position: 'absolute',
                                     top: 0,
@@ -341,72 +327,72 @@ const MovieDetails = () => {
                                     zIndex: 1
                                 }}
                                 onWheel={(e) => {
-                                    const container = document.querySelector('.movie-info-container');
+                                    const container = document.querySelector('.tv-info-container');
                                     if (container) {
                                         container.scrollTop += e.deltaY;
                                         e.preventDefault();
                                     }
                                 }}
                             />
-                            <div className="movie-info-container" ref={movieInfoContainerRef}>
-                                {/* Movie Poster */}
-                                <div className="movie-poster">
+                            <div className="tv-info-container" ref={tvInfoContainerRef}>
+                                {/* TV Show Poster */}
+                                <div className="tv-poster">
                                     <img
-                                        src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`}
-                                        alt={movie.title}
+                                        src={`https://image.tmdb.org/t/p/w500${tvShow.poster_path}`}
+                                        alt={tvShow.name}
                                     />
                                 </div>
 
-                                {/* Movie Ratings */}
-                                <Ratings imdbId={movie.imdb_id} />
+                                {/* TV Show Ratings */}
+                                <Ratings imdbId={tvShow.imdb_id} />
 
-                                {/* Movie Info Section */}
-                                <div className="movie-info-section">
-                                    <h2 className="title is-5">Movie Info</h2>
+                                {/* TV Show Info Section */}
+                                <div className="tv-info-section">
+                                    <h2 className="title is-5">TV Show Info</h2>
 
-                                    <div className="movie-info-item">
-                                        <div className="movie-info-row">
-                                            <span className="movie-info-label">Runtime:</span>
-                                            {formatRuntime(movie.runtime)}
+                                    <div className="tv-info-item">
+                                        <div className="tv-info-row">
+                                            <span className="tv-info-label">Runtime:</span>
+                                            {formatRuntime(episodeRuntime)}
                                         </div>
                                     </div>
 
-                                    <div className="movie-info-item">
-                                        <div className="movie-info-row">
-                                            <span className="movie-info-label">Genre:</span>
-                                            {movie.genres.slice(0, 3).map(genre => genre.name).join(", ")}
+                                    <div className="tv-info-item">
+                                        <div className="tv-info-row">
+                                            <span className="tv-info-label">Genre:</span>
+                                            {tvShow.genres.slice(0, 3).map(genre => genre.name).join(", ")}
                                         </div>
                                     </div>
 
                                     {director && (
-                                        <div className="movie-info-item">
-                                            <div className="movie-info-row">
-                                                <span className="movie-info-label">Director:</span>
-                                                <Link to={`/person/${director.id}`} className="movie-info-link">
+                                        <div className="tv-info-item">
+                                            <div className="tv-info-row">
+                                                <span className="tv-info-label">Creator:</span>
+                                                <Link to={`/person/${director.id}`} className="tv-info-link">
                                                     {director.name}
                                                 </Link>
                                             </div>
                                         </div>
                                     )}
 
-                                    <div className="movie-info-item">
-                                        <div className="movie-info-row">
-                                            <span className="movie-info-label">Budget:</span>
-                                            {formatCurrency(movie.budget)}
+                                    <div className="tv-info-item">
+                                        <div className="tv-info-row">
+                                            <span className="tv-info-label">Seasons:</span>
+                                            {tvShow.number_of_seasons}
                                         </div>
                                     </div>
 
-                                    <div className="movie-info-item">
-                                        <div className="movie-info-row">
-                                            <span className="movie-info-label">Revenue:</span>
-                                            {formatCurrency(movie.revenue)}
+                                    <div className="tv-info-item">
+                                        <div className="tv-info-row">
+                                            <span className="tv-info-label">Episodes:</span>
+                                            {tvShow.number_of_episodes}
                                         </div>
                                     </div>
 
-                                    <div className="movie-info-item">
-                                        <span className="movie-info-label">Description:</span>
-                                        <div className={`movie-info-description ${isDescriptionExpanded ? 'expanded' : ''}`}>
-                                            {movie.overview}
+                                    <div className="tv-info-item">
+                                        <span className="tv-info-label">Description:</span>
+                                        <div className={`tv-info-description ${isDescriptionExpanded ? 'expanded' : ''}`}>
+                                            {tvShow.overview}
                                         </div>
                                         <span
                                             className="description-toggle"
@@ -417,7 +403,7 @@ const MovieDetails = () => {
                                     </div>
 
                                     {trailer && (
-                                        <div className="movie-info-item">
+                                        <div className="tv-info-item">
                                             <a
                                                 href={`https://www.youtube.com/watch?v=${trailer.key}`}
                                                 target="_blank"
@@ -430,23 +416,23 @@ const MovieDetails = () => {
                                     )}
                                 </div>
 
-                                {/* Collection Movies (if part of a collection) */}
+                                {/* Collection TV Shows (if part of a collection) */}
                                 {collection && (
                                     <div className="collection-section">
-                                        <h2 className="title is-5">Movies in Collection</h2>
-                                        <ul className="collection-movies-list">
+                                        <h2 className="title is-5">TV Series Collection</h2>
+                                        <ul className="collection-series-list">
                                             {collection.parts
-                                                .sort((a, b) => new Date(a.release_date) - new Date(b.release_date))
+                                                .sort((a, b) => new Date(a.first_air_date) - new Date(b.first_air_date))
                                                 .map(part => (
-                                                    <li key={part.id} className="collection-movie-item">
+                                                    <li key={part.id} className="collection-series-item">
                                                         <Link
-                                                            to={`/movie/${part.id}`}
-                                                            className={`collection-movie-link ${part.id === parseInt(id) ? 'current' : ''}`}
+                                                            to={`/tv/${part.id}`}
+                                                            className={`collection-series-link ${part.id === parseInt(id) ? 'current' : ''}`}
                                                         >
                                                             {part.id === parseInt(id) && (
                                                                 <span className="arrow-icon">→ </span>
                                                             )}
-                                                            {part.title} {'('}{formatDate(part.release_date, "YY")}{')'}
+                                                            {part.name} {'('}{formatDate(part.first_air_date, "YY")}{')'}
                                                         </Link>
                                                     </li>
                                                 ))}
@@ -457,13 +443,11 @@ const MovieDetails = () => {
                         </div>
 
                         {/* Right Column - Title, Rating, and Cast */}
-                        <div className={`column ${!isMovieInfoVisible && isMobile ? 'is-full' : ''}`}>
-
-                            {/* Movie Title and Release Year */}
+                        <div className={`column ${!isTvShowInfoVisible && isMobile ? 'is-full' : ''}`}>
                             <h1 className="title is-3 has-text-weight-bold mb-4 mobile-title">
-                                {movie.title}
+                                {tvShow.name}
                                 <span className="has-text-weight-normal has-text-grey ml-2">
-                                    ({formatDate(movie.release_date, "YYYY")})
+                                    ({formatDate(tvShow.first_air_date, "YYYY")})
                                 </span>
                             </h1>
 
@@ -474,8 +458,8 @@ const MovieDetails = () => {
                                         <div key={actor.id} className="column is-one-third-desktop is-half-tablet">
                                             <ActorCard
                                                 actor={actor}
-                                                movieReleaseDate={movie.release_date}
-                                                currentMovieId={movie.id}
+                                                seriesReleaseDate={tvShow.first_air_date}
+                                                currentSeriesId={tvShow.id}
                                                 preloadedDetails={actorDetails.get(actor.id)}
                                             />
                                         </div>
@@ -483,7 +467,6 @@ const MovieDetails = () => {
                                 </div>
                             </div>
 
-                            {/* Remove the Load More button since we're using infinite scroll */}
                             {isLoadingActors && visibleActors < cast.length && (
                                 <div className="has-text-centered mt-6">
                                     <div className="loading-spinner">Loading...</div>
@@ -494,11 +477,11 @@ const MovieDetails = () => {
 
                     {/* Enhanced Mobile Toggle Button */}
                     <button
-                        className={`mobile-info-toggle ${isMobile ? 'is-visible' : ''} ${isMovieInfoVisible ? 'is-active' : ''}`}
-                        onClick={toggleMovieInfo}
-                        aria-label={isMovieInfoVisible ? 'Hide Movie Info' : 'Show Movie Info'}
+                        className={`mobile-info-toggle ${isMobile ? 'is-visible' : ''} ${isTvShowInfoVisible ? 'is-active' : ''}`}
+                        onClick={toggleTvShowInfo}
+                        aria-label={isTvShowInfoVisible ? 'Hide TV Show Info' : 'Show TV Show Info'}
                     >
-                        {isMovieInfoVisible ? '◀' : '▶'}
+                        {isTvShowInfoVisible ? '◀' : '▶'}
                     </button>
                 </div>
             </section>
@@ -506,4 +489,4 @@ const MovieDetails = () => {
     );
 };
 
-export default MovieDetails;
+export default TVSeriesDetails;
