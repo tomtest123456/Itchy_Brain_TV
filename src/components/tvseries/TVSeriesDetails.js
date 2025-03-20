@@ -36,6 +36,15 @@ const isMobileDevice = () => {
     return mobileRegex.test(userAgent.toLowerCase()) || isTouch || isNarrow;
 };
 
+// Add this helper function at the top of the file with other imports
+const getRatingColor = (rating) => {
+    if (rating < 40) return '#D32F2F';      // Red - Very Bad
+    if (rating < 60) return '#D88200';      // Orange - Below Average
+    if (rating < 75) return '#E8CC15';      // Yellow - Mixed Reviews
+    if (rating < 90) return '#89BA51';      // Light Green - Good
+    return '#2CC131';                       // Green - Excellent
+};
+
 /**
  * TVSeriesDetails Component
  * Displays comprehensive information about a TV Show including poster, title,
@@ -344,7 +353,7 @@ const TVSeriesDetails = () => {
                                 </div>
 
                                 {/* TV Show Ratings */}
-                                <Ratings imdbId={tvShow.imdb_id} />
+                                <Ratings imdbId={tvShow.imdb_id} tmdbRating={tvShow.vote_average} />
 
                                 {/* TV Show Info Section */}
                                 <div className="info-section">
@@ -352,54 +361,76 @@ const TVSeriesDetails = () => {
 
                                     <div className="info-item">
                                         <div className="info-row">
-                                            <span className="info-label">Runtime:</span>
-                                            {formatRuntime(episodeRuntime)}
-                                        </div>
-                                    </div>
-
-                                    <div className="info-item">
-                                        <div className="info-row">
-                                            <span className="info-label">Genre:</span>
-                                            {tvShow.genres.slice(0, 3).map(genre => genre.name).join(", ")}
-                                        </div>
-                                    </div>
-
-                                    {director && (
-                                        <div className="info-item">
-                                            <div className="info-row">
-                                                <span className="info-label">Creator:</span>
-                                                <Link to={`/person/${director.id}`} className="info-link">
-                                                    {director.name}
-                                                </Link>
-                                            </div>
-                                        </div>
-                                    )}
-
-                                    <div className="info-item">
-                                        <div className="info-row">
                                             <span className="info-label">Seasons:</span>
-                                            {tvShow.number_of_seasons}
+                                            <span>
+                                                {tvShow.seasons?.filter(season => 
+                                                    season.season_number > 0 && // Exclude season 0 (specials)
+                                                    (!tvShow.in_production || new Date(season.air_date) <= new Date())
+                                                ).length || tvShow.number_of_seasons}
+                                            </span>
                                         </div>
                                     </div>
 
                                     <div className="info-item">
                                         <div className="info-row">
                                             <span className="info-label">Episodes:</span>
-                                            {tvShow.number_of_episodes}
+                                            <span>
+                                                {tvShow.seasons?.filter(season => season.season_number > 0)
+                                                    .map(season => season.episode_count)
+                                                    .reduce((a, b) => Math.max(a, b), 0) || 
+                                                    Math.round(tvShow.number_of_episodes / (tvShow.number_of_seasons || 1))} per season
+                                            </span>
+                                        </div>
+                                    </div>
+
+                                    <div className="info-item">
+                                        <div className="info-row">
+                                            <span className="info-label">Total:</span>
+                                            <span>{tvShow.number_of_episodes} episodes</span>
+                                        </div>
+                                    </div>
+
+                                    <div className="info-item">
+                                        <div className="info-row">
+                                            <span className="info-label">Genre:</span>
+                                            <span>{tvShow.genres.slice(0, 3).map(genre => genre.name).join(", ")}</span>
+                                        </div>
+                                    </div>
+
+                                    <div className="info-item">
+                                        <div className="info-row">
+                                            <span className="info-label">Network:</span>
+                                            <span>{tvShow.networks?.[0]?.name || 'Unknown'}</span>
                                         </div>
                                     </div>
 
                                     <div className="info-item">
                                         <span className="info-label">Description:</span>
-                                        <div className={`info-description ${isDescriptionExpanded ? 'expanded' : ''}`}>
+                                        <div 
+                                            className="info-description" 
+                                            style={{ 
+                                                maxHeight: isDescriptionExpanded ? 'none' : '100px',
+                                                overflow: 'hidden',
+                                                position: 'relative',
+                                                marginBottom: '8px'
+                                            }}
+                                        >
                                             {tvShow.overview}
                                         </div>
-                                        <span
-                                            className="description-toggle"
-                                            onClick={() => setIsDescriptionExpanded(!isDescriptionExpanded)}
-                                        >
-                                            {isDescriptionExpanded ? 'Show less' : 'Show more...'}
-                                        </span>
+                                        {tvShow.overview.length > 200 && (
+                                            <span
+                                                className="description-toggle"
+                                                onClick={() => setIsDescriptionExpanded(!isDescriptionExpanded)}
+                                                style={{
+                                                    cursor: 'pointer',
+                                                    color: '#4a9eff',
+                                                    display: 'block',
+                                                    marginTop: '4px'
+                                                }}
+                                            >
+                                                {isDescriptionExpanded ? 'Show less' : 'Show more...'}
+                                            </span>
+                                        )}
                                     </div>
 
                                     {trailer && (
@@ -414,6 +445,33 @@ const TVSeriesDetails = () => {
                                             </a>
                                         </div>
                                     )}
+                                </div>
+
+                                {/* Seasons Section */}
+                                <div className="collection-section">
+                                    <h2 className="title is-5">Seasons</h2>
+                                    <ul className="collection-series-list">
+                                        {tvShow.seasons
+                                            ?.filter(season => season.season_number > 0)
+                                            .map(season => (
+                                                <li key={season.id} className="collection-series-item">
+                                                    <div className="collection-series-link">
+                                                        <span>Season {season.season_number}</span>
+                                                        {season.vote_average > 0 && (
+                                                            <span 
+                                                                className="season-rating"
+                                                                style={{
+                                                                    marginLeft: 'auto',
+                                                                    color: getRatingColor(season.vote_average * 10)
+                                                                }}
+                                                            >
+                                                                {season.vote_average.toFixed(1)}
+                                                            </span>
+                                                        )}
+                                                    </div>
+                                                </li>
+                                            ))}
+                                    </ul>
                                 </div>
 
                                 {/* Collection TV Shows (if part of a collection) */}
@@ -447,7 +505,7 @@ const TVSeriesDetails = () => {
                             <h1 className="title is-3 has-text-weight-bold mb-4 mobile-title">
                                 {tvShow.name}
                                 <span className="has-text-weight-normal has-text-grey ml-2">
-                                    ({formatDate(tvShow.first_air_date, "YYYY")})
+                                    ({formatDate(tvShow.first_air_date, "YYYY")} - {formatDate(tvShow.last_air_date, "YYYY")})
                                 </span>
                             </h1>
 
@@ -457,10 +515,10 @@ const TVSeriesDetails = () => {
                                     {cast.slice(0, visibleActors).map((actor) => (
                                         <div key={actor.id} className="column is-one-third-desktop is-half-tablet">
                                             <ActorCard
-                                                actor={actor}
-                                                seriesReleaseDate={tvShow.first_air_date}
-                                                currentSeriesId={tvShow.id}
-                                                preloadedDetails={actorDetails.get(actor.id)}
+                                                actor             = {actor}
+                                                seriesReleaseDate = {tvShow.first_air_date}
+                                                currentSeriesId   = {tvShow.id}
+                                                preloadedDetails  = {actorDetails.get(actor.id)}
                                             />
                                         </div>
                                     ))}

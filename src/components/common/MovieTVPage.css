@@ -38,17 +38,20 @@
     margin-bottom: 0.75rem;
 }
 .info-row {
-    display    : flex;
+    display: flex;
     align-items: baseline;
+    justify-content: flex-start;
+    gap: 0.5rem;
 }
 
 /* Runtime, Genre, Description, etc. */
 .info-label {
-    color       : #ffffff;
-    font-weight : 600;
-    min-width   : 85px;
+    color: #ffffff;
+    font-weight: 600;
+    min-width: 85px;
     margin-right: 0.25rem;
-    font-size   : 1rem;
+    font-size: 1rem;
+    flex-shrink: 0;
 }
 
 /* Movie/TV Description */
@@ -126,6 +129,27 @@
     margin-right: 0.5rem;
 }
 
+/* Seasons Section Styles */
+.collection-series-link {
+    display        : flex;
+    align-items    : center;
+    justify-content: space-between;
+    color          : rgba(255, 255, 255, 0.9);
+    font-weight    : 400;
+    text-decoration: none;
+    padding        : 8px 12px;
+    border-radius  : 4px;
+    transition     : background-color 0.2s ease;
+}
+
+.collection-series-link:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+}
+
+.season-rating {
+    font-weight: 600;
+    font-size: 1.1rem;
+}
 
   /* ========================================
  * Mobile Scaling
