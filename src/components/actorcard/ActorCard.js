@@ -124,11 +124,19 @@ const ActorCard = ({ actor, movieReleaseDate, currentMovieId, preloadedDetails }
         }
     }, [actor?.id, preloadedDetails]);
 
-    // Calculate actor's age during filming
-    const calculateAgeAtFilming = () => {
-        if (!actorDetails?.birthday || !movieReleaseDate) return null;
+    // Calculate actor's age during filming for a specific release date
+    const calculateAgeAtFilming = (releaseDate) => {
+        console.log('Calculating age with:', {
+            birthday: actorDetails?.birthday,
+            releaseDate: releaseDate,
+            isValidDate: releaseDate && !isNaN(new Date(releaseDate).getTime())
+        });
+
+        if (!actorDetails?.birthday || !releaseDate) return null;
         const birthDate = new Date(actorDetails.birthday);
-        const filmingDate = new Date(movieReleaseDate);
+        const filmingDate = new Date(releaseDate);
+        if (isNaN(filmingDate.getTime())) return null;
+        
         let age = filmingDate.getFullYear() - birthDate.getFullYear();
         const m = filmingDate.getMonth() - birthDate.getMonth();
         if (m < 0 || (m === 0 && filmingDate.getDate() < birthDate.getDate())) {
@@ -324,7 +332,7 @@ const ActorCard = ({ actor, movieReleaseDate, currentMovieId, preloadedDetails }
 
                 <p className="characterName">
                     <span className="characterText">as {truncateWithYear(actor.character, 25)}</span>
-                    {calculateAgeAtFilming() && <span className="ageAtFilming"> [{calculateAgeAtFilming()}]</span>}
+                    {calculateAgeAtFilming(movieReleaseDate) && <span className="ageAtFilming"> [{calculateAgeAtFilming(movieReleaseDate)}]</span>}
                 </p>
 
                 <div className="notableWorksSection">
@@ -390,17 +398,15 @@ const ActorCard = ({ actor, movieReleaseDate, currentMovieId, preloadedDetails }
                                                                     </span>
                                                                     {movie.character && (
                                                                         <span className="character-name">
-                                                                            {movie.character} [{(() => {
-                                                                                if (!actorDetails?.birthday || !movie.release_date) return null;
-                                                                                const birthDate = new Date(actorDetails.birthday);
-                                                                                const filmingDate = new Date(movie.release_date);
-                                                                                let age = filmingDate.getFullYear() - birthDate.getFullYear();
-                                                                                const m = filmingDate.getMonth() - birthDate.getMonth();
-                                                                                if (m < 0 || (m === 0 && filmingDate.getDate() < birthDate.getDate())) {
-                                                                                    age--;
-                                                                                }
-                                                                                return age;
-                                                                            })()}]
+                                                                            {movie.character} {(() => {
+                                                                                console.log('Collection movie age calculation:', {
+                                                                                    movieTitle: movie.title,
+                                                                                    releaseDate: movie.release_date,
+                                                                                    character: movie.character
+                                                                                });
+                                                                                const age = calculateAgeAtFilming(movie.release_date);
+                                                                                return age ? `[${age}]` : '';
+                                                                            })()}
                                                                         </span>
                                                                     )}
                                                                 </Link>
@@ -434,7 +440,15 @@ const ActorCard = ({ actor, movieReleaseDate, currentMovieId, preloadedDetails }
                                         </span>
                                         {work.character && (
                                             <span className="character-name">
-                                                {work.character} [{calculateAgeAtFilming()}]
+                                                {work.character} {(() => {
+                                                    console.log('Individual work age calculation:', {
+                                                        workTitle: work.title || work.name,
+                                                        releaseDate: work.release_date || work.first_air_date,
+                                                        character: work.character
+                                                    });
+                                                    const age = calculateAgeAtFilming(work.release_date || work.first_air_date);
+                                                    return age ? `[${age}]` : '';
+                                                })()}
                                             </span>
                                         )}
                                     </Link>
