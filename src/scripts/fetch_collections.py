@@ -35,16 +35,48 @@ def get_popular_collections():
     
     # List of popular franchises to search for
     popular_franchises = [
-        "Star Wars", "Marvel", "Harry Potter", "James Bond", "Lord of the Rings",
-        "Fast and Furious", "Batman", "Spider-Man", "X-Men", "Jurassic Park",
-        "Mission: Impossible", "Terminator", "Alien", "Indiana Jones", "Matrix",
-        "Transformers", "Pirates of the Caribbean", "Toy Story", "Ice Age", "Shrek",
-        "The Hunger Games", "Twilight", "Avengers", "Iron Man", "Captain America",
-        "Thor", "Guardians of the Galaxy", "Ant-Man", "Doctor Strange", "Black Panther",
-        "Rocky", "Rambo", "Die Hard", "Bourne", "Ocean's", "Mad Max", "John Wick",
-        "Planet of the Apes", "The Godfather", "Back to the Future", "Men in Black",
-        "Ghostbusters", "Blade Runner", "Predator", "Halloween", "Friday the 13th",
-        "Nightmare on Elm Street", "Final Destination", "Saw", "Resident Evil"
+        # Superhero/Comic Book
+        "Marvel", "Avengers", "Iron Man", "Captain America", "Thor", 
+        "Guardians of the Galaxy", "Ant-Man", "Doctor Strange", "Black Panther",
+        "Batman", "Spider-Man", "X-Men", "Wonder Woman", "Thunderbolts",
+        "Kraven the Hunter",
+
+        # Sci-Fi/Fantasy
+        "Star Wars", "Star Trek", "Avatar", "Dune", "Matrix", "Tron",
+        "The Wizarding World", "Harry Potter", "Lord of the Rings", "The Hobbit",
+        "The Chronicles of Narnia", "Transformers", "RoboCop", "Unbreakable",
+        "The Electric State",
+
+        # Action/Adventure
+        "James Bond", "Fast and Furious", "Mission: Impossible", "Indiana Jones",
+        "John Wick", "Die Hard", "Bourne", "Ocean's", "Mad Max", "National Treasure",
+        "The Equalizer", "Taken", "Speed", "Top Gun", "Karate Kid", "The Old Guard",
+        "The Accountant",
+
+        # Horror/Thriller
+        "Alien", "Predator", "Halloween", "Friday the 13th", "Saw", "Resident Evil",
+        "The Conjuring Universe", "Nightmare on Elm Street", "Final Destination",
+        "The Evil Dead", "The Exorcist", "The Texas Chainsaw Massacre", "Scream",
+        "The Strangers", "M3GAN", "The Black Phone", "28 Days Later",
+
+        # Animation
+        "Toy Story", "Ice Age", "Shrek", "Cars", "The Incredibles", "The Lego Movie",
+        "How to Train Your Dragon", "The Secret Life of Pets", "Finding Nemo",
+        "Monsters Inc", "Hotel Transylvania", "SpongeBob SquarePants", "Trolls",
+        "Wallace & Gromit", "Wreck-It Ralph", "Frozen", "Encanto", "Zootopia",
+        "The Bad Guys", "Lilo & Stitch", "The Smurfs",
+
+        # Action/Comedy
+        "Pirates of the Caribbean", "Men in Black", "Ghostbusters", "Rush Hour",
+        "Police Academy", "Red", "Sonic the Hedgehog", "Teenage Mutant Ninja Turtles",
+        "Zombieland", "Zoolander", "Happy Gilmore", "A Simple Favor",
+
+        # Drama/Crime
+        "Rocky", "Rambo", "Planet of the Apes", "The Godfather", "Back to the Future",
+        "Blade Runner", "Sherlock Holmes", "Jumanji", "Paddington", "Pitch Perfect",
+        "Joker", "Five Nights at Freddy's", "Beetlejuice", "Freaky Friday",
+        "The Pink Panther", "The Addams Family", "Mortal Kombat", "Greenland",
+        "Wicked"
     ]
     
     # Search for each franchise
@@ -57,8 +89,8 @@ def get_popular_collections():
                 collection_details = get_collection_details(collection_id)
                 if collection_details:
                     collections[collection_id] = collection_details
-                    print(f"Found collection {len(collections)}/100: {collection_details['name']}")
-                    if len(collections) >= 100:
+                    print(f"Found collection {len(collections)}/200: {collection_details['name']}")
+                    if len(collections) >= 200:  # Increased limit to accommodate more collections
                         return collections
                     sleep(0.25)  # Rate limiting
     

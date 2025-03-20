@@ -19,6 +19,60 @@ const MIN_VOTES = 1000;
 // Average rating across all movies/shows (fallback)
 const AVG_RATING = 7.0;
 
+// Excluded title patterns (case-insensitive)
+const EXCLUDED_TITLE_PATTERNS = [
+    'behind the scenes',
+    'making of',
+    'special features',
+    'greatest hits',
+    'extended edition',
+    'extended cut',
+    'director\'s cut',
+    'recap',
+    'bloopers',
+    'gag reel',
+    'deleted scenes',
+    'bonus features',
+    'commentary',
+    'featurette',
+    'documentary',
+    'interviews',
+    'bts',
+    'extras',
+    'outtakes',
+    'promotional',
+    'promo',
+    'trailer',
+    'teaser',
+    'sneak peek',
+    'preview',
+    'anniversary edition',
+    'special edition',
+    'collector\'s edition',
+    'unrated',
+    'alternate ending',
+    'alternate version'
+];
+
+// Excluded character patterns (case-insensitive)
+const EXCLUDED_CHARACTER_PATTERNS = [
+    'uncredited',
+    'self',
+    'host',
+    'narrator',
+    'presenter',
+    'voice over',
+    'archive footage',
+    'archival footage',
+    'stock footage',
+    'cameo',
+    'special appearance',
+    'special guest',
+    'themselves',
+    'himself',
+    'herself'
+];
+
 // Scoring weights for different factors
 const SCORING_WEIGHTS = {
     userRating    : 4.0,   // Weighted user rating
@@ -43,6 +97,32 @@ const SCORING_WEIGHTS = {
 // ========================================
 
 /**
+ * Checks if a title contains any excluded patterns
+ * @param {string} title - The title to check
+ * @returns {boolean} - True if title should be excluded
+ */
+const containsExcludedTitlePattern = (title) => {
+    if (!title) return true;
+    const lowerTitle = title.toLowerCase();
+    return EXCLUDED_TITLE_PATTERNS.some(pattern => 
+        lowerTitle.includes(pattern.toLowerCase())
+    );
+};
+
+/**
+ * Checks if a character role should be excluded
+ * @param {string} character - The character role to check
+ * @returns {boolean} - True if character should be excluded
+ */
+const isExcludedCharacterRole = (character) => {
+    if (!character) return true;
+    const lowerCharacter = character.toLowerCase();
+    return EXCLUDED_CHARACTER_PATTERNS.some(pattern => 
+        lowerCharacter.includes(pattern.toLowerCase())
+    );
+};
+
+/**
  * Determines if a role is significant enough to be included
  * @param {Object} credit - The credit object containing role information
  * @returns {boolean} - Whether the role is significant
@@ -50,12 +130,13 @@ const SCORING_WEIGHTS = {
 const isSignificantRole = (credit) => {
     if (!credit || !credit.character) return false;
 
-    // Check for excluded roles
-    const lowerCharacter = credit.character.toLowerCase();
-    if (lowerCharacter.includes('uncredited') || 
-        lowerCharacter.includes('self') || 
-        //lowerCharacter === 'narrator' ||
-        lowerCharacter === 'host') {
+    // Check for excluded character roles
+    if (isExcludedCharacterRole(credit.character)) {
+        return false;
+    }
+
+    // Check for excluded title patterns
+    if (containsExcludedTitlePattern(credit.title || credit.name)) {
         return false;
     }
 
@@ -243,6 +324,7 @@ const processNotableWorks = (actorDetails, workFilter) => {
     if (workFilter === 'movies' || workFilter === 'both') {
         // First add all collections - these are already organized by localCollections.js
         const collections = (actorDetails.movie_credits?.collections || [])
+            .filter(collection => !containsExcludedTitlePattern(collection.name))
             .map(collection => {
                 console.log('Processing collection:', {
                     name: collection.name,
@@ -254,13 +336,21 @@ const processNotableWorks = (actorDetails, workFilter) => {
                     }))
                 });
 
+                // Filter out movies with excluded patterns or uncredited roles
+                collection.movies = collection.movies?.filter(movie => 
+                    !containsExcludedTitlePattern(movie.title) && 
+                    !isExcludedCharacterRole(movie.character)
+                );
+
+                // Only include collection if it still has movies after filtering
+                if (!collection.movies?.length) return null;
+
                 // Track all movies in this collection
                 collection.movies?.forEach(movie => processedIds.add(movie.id));
 
                 return {
                     ...collection,
                     media_type: 'collection',
-                    // Ensure collection metrics are calculated
                     revenue: collection.movies?.reduce((sum, m) => sum + (m.revenue || 0), 0) || 0,
                     vote_count: collection.movies?.reduce((sum, m) => sum + (m.vote_count || 0), 0) || 0,
                     vote_average: collection.movies?.reduce((sum, m) => sum + (m.vote_average || 0), 0) / 
@@ -268,30 +358,25 @@ const processNotableWorks = (actorDetails, workFilter) => {
                     popularity: Math.max(...(collection.movies?.map(m => m.popularity || 0) || [0])),
                     release_date: collection.movies?.[0]?.release_date
                 };
-            });
+            })
+            .filter(Boolean); // Remove null collections
 
         works.push(...collections);
 
         // Add remaining individual movies that aren't in collections
         const movies = actorDetails.movie_credits?.cast || [];
         const individualMovies = movies
-            .filter(movie => !processedIds.has(movie.id) && isSignificantRole({ ...movie, media_type: 'movie' }))
+            .filter(movie => 
+                !processedIds.has(movie.id) && 
+                !containsExcludedTitlePattern(movie.title) &&
+                isSignificantRole({ ...movie, media_type: 'movie' })
+            )
             .map(movie => ({
                 ...movie,
                 media_type: 'movie'
             }));
 
         works.push(...individualMovies);
-
-        console.log('Final works breakdown:', {
-            totalWorks: works.length,
-            collections: collections.map(c => ({
-                name: c.name,
-                movieCount: c.movies?.length,
-                movies: c.movies?.map(m => m.title)
-            })),
-            individualMovies: individualMovies.map(m => m.title)
-        });
     }
 
     // Add TV shows if requested
@@ -299,6 +384,7 @@ const processNotableWorks = (actorDetails, workFilter) => {
         const tvShows = (actorDetails.tv_credits?.cast || [])
             .filter(show => 
                 !processedIds.has(show.id) && 
+                !containsExcludedTitlePattern(show.name) &&
                 isSignificantRole({ ...show, media_type: 'tv' })
             )
             .map(show => ({

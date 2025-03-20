@@ -263,6 +263,12 @@
     display        : block;
     font-size      : 0.95rem;
     font-weight    : 800;
+    padding-left   : 1.8rem;
+    position       : relative;
+}
+.notableWorksSection .notableWorksList .notableWorkItem .notableWorkLink::before {
+    position: absolute;
+    left: 0;
 }
 .notableWorksSection .notableWorksList .notableWorkItem .notableWorkLink .movie-title-line {
     display    : flex;
@@ -273,47 +279,35 @@
     margin-right: 0.2rem;
 }
 .notableWorksSection .notableWorksList .notableWorkItem .notableWorkLink .year-text {
-    display: inline;
-    opacity: 0.8;
+    display    : inline;
+    font-size  : 0.85rem;
+    font-weight: 500;
+    opacity    : 0.8;
 }
 .notableWorksSection .notableWorksList .notableWorkItem .notableWorkLink .character-name {
     display    : block;
     font-size  : 0.75rem;
     color      : rgba(220, 220, 220, 0.7);
     margin-top : 0.1rem;
-    margin-left: 2.4rem;
+    margin-left: 1.0rem;
     font-style : italic;
 }
 
 /* ------------------------------
-   Notable Works List Icons
------------------------------- */
-.notableWorksSection .notableWorksList .notableWorkItem .notableWorkLink.collection::before {
-    content     : '🎬';
-    margin-right: 0.4rem;
-    font-size   : 0.9em;
-    opacity     : 1;
-}
-.notableWorksSection .notableWorksList .notableWorkItem .notableWorkLink.movie::before {
-    content     : '🎥';
-    margin-right: 0.4rem;
-    font-size   : 0.9em;
-    opacity     : 1;
-}
-.notableWorksSection .notableWorksList .notableWorkItem .notableWorkLink.tv::before {
-    content     : '📺';
-    margin-right: 0.4rem;
-    font-size   : 0.9em;
-    opacity     : 1;
-}
-
-/* ------------------------------
-   Notable Works List - Collections
+   Notable Works List - Collections Collection
 ------------------------------ */
 .notableWorksSection .notableWorksList .notableWorkItem .notableWorkLink.collection {
-    font-weight  : 800;
-    color        : #ffffff;
-    margin-bottom: 0.3rem;
+    font-weight    : 800;
+    color          : #ffffff;
+    margin-bottom  : 0.3rem;
+    background     : rgba(122, 184, 255, 0.1);
+    border-radius  : 4px;
+    padding        : 5px 1px 4px 1.8rem;
+    position       : relative;
+}
+.notableWorksSection .notableWorksList .notableWorkItem .notableWorkLink.collection::before {
+    position: absolute;
+    left: 0px;
 }
 .notableWorksSection .notableWorksList .notableWorkItem .notableWorkLink.collection:hover {
     color: #a0a0a0;
@@ -332,20 +326,20 @@
     }
 }
 
+/* ------------------------------
+   Notable Works List - Collections Individual Movies
+------------------------------ */
 .notableWorksSection .notableWorksList .notableWorkItem .notableWorkLinkCollection {
-    color          : #ffffff;
+    color          : rgba(255, 255, 255, 1);
     text-decoration: none;
     display        : block;
     font-size      : 0.95rem;
-    font-weight    : 800;
-}
-.notableWorksSection .notableWorksList .notableWorkItem .notableWorkLinkCollection .movie-title-line {
-    display    : flex;
-    align-items: center;
+    font-weight    : 500;
+    padding-left   : 2.8rem;
+    position       : relative;
 }
 .notableWorksSection .notableWorksList .notableWorkItem .notableWorkLinkCollection .title-text {
     display     : inline;
-    margin-left : 2.5rem;
     margin-right: 0.2rem;
 }
 .notableWorksSection .notableWorksList .notableWorkItem .notableWorkLinkCollection .year-text {
@@ -353,15 +347,17 @@
     font-size: 0.75rem;
     color    : rgba(220, 220, 220, 0.7);
 }
+
 .notableWorksSection .notableWorksList .notableWorkItem .notableWorkLinkCollection .character-name {
     display      : block;
     font-size    : 0.75rem;
     color        : rgba(220, 220, 220, 0.7);
     margin-top   : 0.1rem;
     margin-bottom: 0.4rem;
-    margin-left  : 3.5rem;
+    margin-left  : 1.0rem;
     font-style   : italic;
 }
+
 
 /* ------------------------------
    Show More Button
@@ -463,6 +459,28 @@
     .imageNavButton.right {
         right: 5px;
     }
+}
+
+/* ------------------------------
+   Notable Works List Icons
+------------------------------ */
+.notableWorksSection .notableWorksList .notableWorkItem .notableWorkLink.collection::before {
+    content     : '🎬';
+    margin-right: 0.4rem;
+    font-size   : 0.9em;
+    opacity     : 1;
+}
+.notableWorksSection .notableWorksList .notableWorkItem .notableWorkLink.movie::before {
+    content     : '🎥';
+    margin-right: 0.4rem;
+    font-size   : 0.9em;
+    opacity     : 1;
+}
+.notableWorksSection .notableWorksList .notableWorkItem .notableWorkLink.tv::before {
+    content     : '📺';
+    margin-right: 0.4rem;
+    font-size   : 0.9em;
+    opacity     : 1;
 }
 
 /* ------------------------------
