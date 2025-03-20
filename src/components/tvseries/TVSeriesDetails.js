@@ -422,9 +422,9 @@ const TVSeriesDetails = () => {
                                                 className="description-toggle"
                                                 onClick={() => setIsDescriptionExpanded(!isDescriptionExpanded)}
                                                 style={{
-                                                    cursor: 'pointer',
-                                                    color: '#4a9eff',
-                                                    display: 'block',
+                                                    cursor   : 'pointer',
+                                                    color    : '#4a9eff',
+                                                    display  : 'block',
                                                     marginTop: '4px'
                                                 }}
                                             >
@@ -535,9 +535,14 @@ const TVSeriesDetails = () => {
 
                     {/* Enhanced Mobile Toggle Button */}
                     <button
-                        className={`mobile-info-toggle ${isMobile ? 'is-visible' : ''} ${isTvShowInfoVisible ? 'is-active' : ''}`}
+                        className={`info-toggle ${isMobile ? 'is-visible' : ''} ${isTvShowInfoVisible ? 'is-active' : ''}`}
                         onClick={toggleTvShowInfo}
                         aria-label={isTvShowInfoVisible ? 'Hide TV Show Info' : 'Show TV Show Info'}
+                        style={{
+                            top: `calc(var(--navbar-height) + 50px)`,
+                            position: 'fixed',
+                            left: '10px'
+                        }}
                     >
                         {isTvShowInfoVisible ? '◀' : '▶'}
                     </button>

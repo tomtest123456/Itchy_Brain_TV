@@ -131,15 +131,16 @@
 
 /* Seasons Section Styles */
 .collection-series-link {
-    display        : flex;
-    align-items    : center;
+    display: flex;
+    align-items: center;
     justify-content: space-between;
-    color          : rgba(255, 255, 255, 0.9);
-    font-weight    : 400;
+    color: rgba(255, 255, 255, 0.9);
+    font-weight: 400;
     text-decoration: none;
-    padding        : 8px 12px;
-    border-radius  : 4px;
-    transition     : background-color 0.2s ease;
+    padding: 4px 12px;
+    border-radius: 4px;
+    transition: background-color 0.2s ease;
+    gap: 1rem;
 }
 
 .collection-series-link:hover {
@@ -372,4 +373,91 @@
         margin-top: 0.5rem;
         font-size: 2rem;
     }
+
+    .info-row {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 0.25rem;
+        padding: 4px 0;
+    }
+
+    .info-label {
+        margin-bottom: 2px;
+    }
+
+    .info-row > span:not(.info-label) {
+        padding-left: 4px;
+    }
+}
+
+/* Info Row Alignment */
+.info-row {
+    display: flex;
+    align-items: baseline;
+    justify-content: flex-start;
+    gap: 0.5rem;
+}
+
+.info-label {
+    color: #ffffff;
+    font-weight: 600;
+    min-width: 85px;
+    margin-right: 0.25rem;
+    font-size: 1rem;
+    flex-shrink: 0;
+}
+
+/* Seasons Section Styles */
+.collection-series-link {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    color: rgba(255, 255, 255, 0.9);
+    font-weight: 400;
+    text-decoration: none;
+    padding: 4px 20px;
+    border-radius: 4px;
+    transition: background-color 0.2s ease;
+    gap: 1rem;
+}
+
+.collection-series-link:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+}
+
+.season-rating {
+    font-weight: 600;
+    font-size: 1.1rem;
+}
+
+/* Description Toggle Fix */
+.info-description {
+    color: #FFFFFF;
+    font-weight: 100;
+    margin-top: 0.5rem;
+    line-height: 1.5;
+    transition: max-height 0.3s ease;
+    font-size: 1rem;
+    position: relative;
+}
+
+.info-description:not(.expanded) {
+    max-height: 100px;
+    overflow: hidden;
+}
+
+.info-description.expanded {
+    max-height: none;
+}
+
+.description-toggle {
+    color: rgb(72, 95, 199);
+    cursor: pointer;
+    display: block;
+    margin-top: 0.5rem;
+    font-size: 0.9rem;
+}
+
+.description-toggle:hover {
+    text-decoration: underline;
 } 
