@@ -1,5 +1,5 @@
 import React from 'react';
-import SearchBar from '../components/search/SearchBar';
+import SearchBar from '../components/search/NEWSearchBar';
 import './Home.css';
 
 const Home = () => {

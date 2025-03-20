@@ -405,15 +405,23 @@ const MovieDetails = () => {
 
                                     <div className="info-item">
                                         <span className="info-label">Description:</span>
-                                        <div className={`info-description ${isDescriptionExpanded ? 'expanded' : ''}`}>
+                                        <div 
+                                            className={`info-description ${isDescriptionExpanded ? 'expanded' : ''}`}
+                                            style={{ 
+                                                position: 'relative',
+                                                marginBottom: '8px'
+                                            }}
+                                        >
                                             {movie.overview}
                                         </div>
-                                        <span
-                                            className="description-toggle"
-                                            onClick={() => setIsDescriptionExpanded(!isDescriptionExpanded)}
-                                        >
-                                            {isDescriptionExpanded ? 'Show less' : 'Show more...'}
-                                        </span>
+                                        {movie.overview.length > 200 && (
+                                            <span
+                                                className="description-toggle"
+                                                onClick={() => setIsDescriptionExpanded(!isDescriptionExpanded)}
+                                            >
+                                                {isDescriptionExpanded ? 'Show less' : 'Show more...'}
+                                            </span>
+                                        )}
                                     </div>
 
                                     {trailer && (

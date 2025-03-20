@@ -190,7 +190,8 @@ export const searchMovies = async (query) => {
 };
 
 export const searchTvShows = async (query) => {
-	return fetchFromAPI(`/search/tv`, `&query=${encodeURIComponent(query)}`);
+	const response = await fetchFromAPI(`/search/tv`, `&query=${encodeURIComponent(query)}`);
+	return response?.results || [];
 };
 
 export const searchPeople = async (query) => {

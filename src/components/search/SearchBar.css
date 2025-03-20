@@ -1,14 +1,14 @@
 .search-container {
     position: relative;
     width: 100%;
-    max-width: 350px;
-    margin: 0 auto;
+    max-width: 800px;
+    margin: 20px auto;
 }
 
 .search-input-wrapper {
     position: relative;
     width: 100%;
-    height: 35px;
+    height: 45px;
 }
 
 .search-input {
@@ -58,6 +58,7 @@
     overflow-y: auto;
     z-index: 1000;
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+    text-align: left;
 }
 
 /* Individual search result */
@@ -91,24 +92,35 @@
 /* Movie info in search results */
 .search-result-info {
     display: flex;
-    flex-direction: column;
-    justify-content: center;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
     flex: 1;
+    min-width: 0;
 }
 
 .search-result-title {
+    display: flex;
+    align-items: center;
     font-weight: 600;
     color: #FFFFFF;
     line-height: 1.2;
-    word-wrap: break-word;
-    overflow-wrap: break-word;
+    min-width: 0;
+    flex: 1;
+}
+
+.search-result-metadata {
+    display: flex;
+    align-items: center;
+    margin-left: 16px;
+    white-space: nowrap;
 }
 
 .search-result-year {
     color: rgba(255, 255, 255, 0.7);
     margin-left: 0.25rem;
     font-weight: normal;
-    display: inline;
+    white-space: nowrap;
 }
 
 /* Remove the overview section */
@@ -177,4 +189,40 @@
     .search-result-overview {
         -webkit-line-clamp: 1;
     }
+}
+
+.search-result-type {
+    font-size: 0.75rem;
+    color: rgba(255, 255, 255, 0.6);
+    background-color: rgba(72, 95, 199, 0.2);
+    padding: 2px 6px;
+    border-radius: 4px;
+    font-weight: normal;
+    white-space: nowrap;
+    margin-left: auto;
+}
+
+.search-result.collection-item {
+    padding-left: 2rem;
+    background-color: rgba(72, 95, 199, 0.1);
+}
+
+.search-result.collection-header {
+    background-color: rgba(72, 95, 199, 0.15);
+    font-weight: bold;
+}
+
+.search-result.collection-item:hover,
+.search-result.collection-header:hover,
+.search-result.collection-item.is-selected,
+.search-result.collection-header.is-selected {
+    background-color: rgba(72, 95, 199, 0.3);
+}
+
+.search-result-rating {
+    color: rgba(255, 255, 255, 0.7);
+    margin-left: 0.5rem;
+    margin-right: 0.5rem;
+    font-weight: normal;
+    white-space: nowrap;
 } 

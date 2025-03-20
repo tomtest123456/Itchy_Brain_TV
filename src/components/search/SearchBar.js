@@ -6,9 +6,9 @@
 
 import React, { useState, useEffect, useRef, useCallback } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { searchMovies } from '../../services/tmdb';
+import { searchMovies, searchTvShows } from '../../services/tmdb';
 import { debounce } from '../../utils/helpers';
-import './SearchBar.css';
+import '../../components/search/SearchBar.css';
 
 /**
  * SearchBar Component
@@ -33,54 +33,46 @@ const SearchBar = ({ isLarge = false }) => {
 	const navigate = useNavigate();
 
 	// ========================================
-	// Search Result Sorting
+	// Search Result Scoring
 	// ========================================
 
-	const calculateMovieScore = (movie) => {
+	const calculateSearchScore = (result) => {
 		const currentYear = new Date().getFullYear();
-		const movieYear = movie.release_date ? new Date(movie.release_date).getFullYear() : currentYear;
+		const releaseDate = result.release_date || result.first_air_date;
+		const releaseYear = releaseDate ? new Date(releaseDate).getFullYear() : currentYear;
 
-		// Base score from TMDB's natural search ranking (reverse index order)
-		const relevanceScore = 1 / (movie.index + 1);
+		// Weighted user rating (from NotableWorksManager logic)
+		const MIN_VOTES = 1000;
+		const AVG_RATING = 7.0;
+		const voteWeight = Math.min(result.vote_count / MIN_VOTES, 1);
+		const weightedRating = (voteWeight * result.vote_average + (1 - voteWeight) * AVG_RATING) * 
+							(1 + Math.log10(Math.max(result.vote_count / MIN_VOTES, 1)));
 
-		// Popularity score (normalized)
-		const popularityScore = movie.popularity ? movie.popularity / 100 : 0;
+		// Popularity score
+		const popularityScore = Math.min(Math.log10(result.popularity + 1) / 3, 1);
 
-		// Rating score (normalized to 0-1)
-		const ratingScore = movie.vote_average ? movie.vote_average / 10 : 0;
+		// Vote count score
+		const voteCountScore = Math.min(Math.log10(Math.max(result.vote_count, 1)) / 7, 1);
 
-		// Vote count score (logarithmic scale to prevent extreme numbers from dominating)
-		const voteCountScore = movie.vote_count ? Math.log10(movie.vote_count) / 6 : 0;
+		// Recency score
+		const years = (currentYear - releaseYear);
+		const recencyScore = Math.max(0, 1 - (years / 50));
 
-		// Recency score (exponential decay)
-		const yearsOld = currentYear - movieYear;
-		const recencyScore = Math.exp(-yearsOld / 10); // Decay factor of 10 years
-
-		// Classic movie bonus (for movies over 25 years old with high ratings)
-		const isClassic = yearsOld > 25 && movie.vote_average >= 7.5;
-		const classicBonus = isClassic ? 0.5 : 0;
-
-		// Weight factors (adjust these to change importance of each factor)
+		// Weights (simplified from NotableWorksManager)
 		const weights = {
-			relevance: 1.5,   // High weight for TMDB's own ranking
-			popularity: 1.2,  // Strong factor but not dominant
-			rating: 1.0,     // Important but not as much as popularity
-			voteCount: 0.8,  // Meaningful but not dominant
-			recency: 0.7,    // Moderate importance
-			classic: 0.5     // Small bonus for classics
+			userRating: 4.0,
+			popularity: 2.0,
+			voteCount: 2.0,
+			recency: 0
 		};
 
 		// Calculate final score
-		const score = (
-			relevanceScore * weights.relevance +
+		return (
+			weightedRating * weights.userRating +
 			popularityScore * weights.popularity +
-			ratingScore * weights.rating +
 			voteCountScore * weights.voteCount +
-			recencyScore * weights.recency +
-			classicBonus * weights.classic
+			recencyScore * weights.recency
 		);
-
-		return score;
 	};
 
 	// ========================================
@@ -106,17 +98,61 @@ const SearchBar = ({ isLarge = false }) => {
 					return;
 				}
 
-				const searchResults = await searchMovies(searchQuery);
+				// Search both movies and TV shows
+				const [movieResults, tvResults] = await Promise.all([
+					searchMovies(searchQuery),
+					searchTvShows(searchQuery)
+				]);
 
-				// Add index for relevance scoring and calculate scores
-				const resultsWithScores = searchResults.map((movie, index) => ({
-					...movie,
-					index,
-					score: calculateMovieScore({ ...movie, index })
+				// Process and combine results
+				const combinedResults = [
+					...movieResults.map(movie => ({ ...movie, media_type: 'movie' })),
+					...tvResults.map(show => ({ 
+						...show, 
+						media_type: 'tv',
+						title: show.name,
+						release_date: show.first_air_date 
+					}))
+				];
+
+				// Group items by collection if they belong to one
+				const collections = new Map();
+				const nonCollectionItems = [];
+
+				combinedResults.forEach(item => {
+					if (item.belongs_to_collection) {
+						const collection = collections.get(item.belongs_to_collection.id) || {
+							id: item.belongs_to_collection.id,
+							name: item.belongs_to_collection.name,
+							items: []
+						};
+						collection.items.push(item);
+						collections.set(item.belongs_to_collection.id, collection);
+					} else {
+						nonCollectionItems.push(item);
+					}
+				});
+
+				// Sort collection items chronologically
+				collections.forEach(collection => {
+					collection.items.sort((a, b) => {
+						const dateA = new Date(a.release_date || a.first_air_date);
+						const dateB = new Date(b.release_date || b.first_air_date);
+						return dateA - dateB;
+					});
+				});
+
+				// Calculate scores and prepare final results
+				const scoredResults = [
+					...nonCollectionItems,
+					...Array.from(collections.values()).flatMap(collection => collection.items)
+				].map(item => ({
+					...item,
+					score: calculateSearchScore(item)
 				}));
 
 				// Sort by score
-				const sortedResults = resultsWithScores.sort((a, b) => b.score - a.score);
+				const sortedResults = scoredResults.sort((a, b) => b.score - a.score);
 
 				// Cache the sorted results
 				cache.current.set(searchQuery, sortedResults);
@@ -160,9 +196,9 @@ const SearchBar = ({ isLarge = false }) => {
 			case 'Enter':
 				e.preventDefault();
 				if (selectedIndex >= 0 && results[selectedIndex]) {
-					handleResultClick(results[selectedIndex].id);
+					handleResultClick(results[selectedIndex]);
 				} else if (query.trim() && results.length > 0) {
-					handleResultClick(results[0].id);
+					handleResultClick(results[0]);
 				}
 				break;
 			case 'Escape':
@@ -192,8 +228,8 @@ const SearchBar = ({ isLarge = false }) => {
 		}
 	};
 
-	const handleResultClick = (movieId) => {
-		navigate(`/movie/${movieId}`);
+	const handleResultClick = (result) => {
+		navigate(`/${result.media_type}/${result.id}`);
 		handleClear();
 	};
 
@@ -223,13 +259,13 @@ const SearchBar = ({ isLarge = false }) => {
 					ref={searchRef}
 					className={`search-input ${isLoading ? 'is-loading' : ''}`}
 					type="text"
-					placeholder="Search movies..."
+					placeholder="Search movies & TV shows..."
 					value={query}
 					onChange={handleInputChange}
 					onKeyDown={handleKeyDown}
 					onFocus={() => setIsFocused(true)}
 					onBlur={() => setTimeout(() => setIsFocused(false), 200)}
-					aria-label="Search movies"
+					aria-label="Search movies and TV shows"
 					aria-controls="search-results"
 					aria-activedescendant={selectedIndex >= 0 ? `result-${selectedIndex}` : undefined}
 				/>
@@ -263,31 +299,34 @@ const SearchBar = ({ isLarge = false }) => {
 					id="search-results"
 					role="listbox"
 				>
-					{results.map((movie, index) => (
+					{results.map((result, index) => (
 						<div
-							key={movie.id}
+							key={result.id}
 							className={`search-result ${index === selectedIndex ? 'is-selected' : ''}`}
-							onClick={() => handleResultClick(movie.id)}
+							onClick={() => handleResultClick(result)}
 							role="option"
 							id={`result-${index}`}
 							aria-selected={index === selectedIndex}
 						>
-							{movie.poster_path && (
+							{result.poster_path && (
 								<img
-									src={`https://image.tmdb.org/t/p/w92${movie.poster_path}`}
-									alt={movie.title}
+									src={`https://image.tmdb.org/t/p/w92${result.poster_path}`}
+									alt={result.title}
 									className="search-result-poster"
 									loading="lazy"
 								/>
 							)}
 							<div className="search-result-info">
 								<div className="search-result-title">
-									{movie.title}
-									{movie.release_date && (
+									{result.title}
+									{(result.release_date || result.first_air_date) && (
 										<span className="search-result-year">
-											({new Date(movie.release_date).getFullYear()})
+											({new Date(result.release_date || result.first_air_date).getFullYear()})
 										</span>
 									)}
+									<span className="search-result-type">
+										{result.media_type === 'tv' ? 'TV Show' : 'Movie'}
+									</span>
 								</div>
 							</div>
 						</div>
