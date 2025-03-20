@@ -379,10 +379,10 @@ const ActorCard = ({ actor, movieReleaseDate, currentMovieId, preloadedDetails }
                                                     .sort((a, b) => new Date(a.release_date) - new Date(b.release_date))
                                                     .map(movie => {
                                                         console.log('Collection movie data:', {
-                                                            title: movie.title,
+                                                            title    : movie.title,
                                                             character: movie.character,
-                                                            cast: movie.cast,
-                                                            rawMovie: movie
+                                                            cast     : movie.cast,
+                                                            rawMovie : movie
                                                         });
                                                         return (
                                                             <li key={movie.id} className="collectionMovieItem">
@@ -400,9 +400,9 @@ const ActorCard = ({ actor, movieReleaseDate, currentMovieId, preloadedDetails }
                                                                         <span className="character-name">
                                                                             {movie.character} {(() => {
                                                                                 console.log('Collection movie age calculation:', {
-                                                                                    movieTitle: movie.title,
+                                                                                    movieTitle : movie.title,
                                                                                     releaseDate: movie.release_date,
-                                                                                    character: movie.character
+                                                                                    character  : movie.character
                                                                                 });
                                                                                 const age = calculateAgeAtFilming(movie.release_date);
                                                                                 return age ? `[${age}]` : '';
@@ -423,11 +423,11 @@ const ActorCard = ({ actor, movieReleaseDate, currentMovieId, preloadedDetails }
                                         ref={el => {
                                             if (el) {
                                                 console.log('Link element metrics:', {
-                                                    workId: work.id,
-                                                    title: NotableWorksManager.formatWorkDisplay(work).title,
+                                                    workId        : work.id,
+                                                    title         : NotableWorksManager.formatWorkDisplay(work).title,
                                                     containerWidth: el.offsetWidth,
-                                                    contentWidth: el.scrollWidth,
-                                                    isOverflowing: el.scrollWidth > el.offsetWidth
+                                                    contentWidth  : el.scrollWidth,
+                                                    isOverflowing : el.scrollWidth > el.offsetWidth
                                                 });
                                             }
                                         }}

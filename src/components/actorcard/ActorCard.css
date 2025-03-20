@@ -85,8 +85,19 @@
     font-size       : 18px;
 }
 
-.profileImageContainer:hover .imageNavButton {
-    opacity: 1;
+@media screen and (min-width: 769px) {
+    .profileImageContainer:hover .imageNavButton {
+        opacity: 1;
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .imageNavButton {
+        opacity: 1;
+        width: 45px;
+        height: 45px;
+        background-color: rgba(0, 0, 0, 0.8);
+    }
 }
 
 .imageNavButton:hover {
@@ -352,7 +363,6 @@
     font-style   : italic;
 }
 
-
 /* ------------------------------
    Show More Button
 ------------------------------ */
@@ -452,5 +462,27 @@
     }
     .imageNavButton.right {
         right: 5px;
+    }
+}
+
+/* ------------------------------
+   Notable Works List - Collections
+------------------------------ */
+.expandIcon {
+    color: #4a9eff;
+    margin-left: 8px;
+    font-size: 0.8em;
+    transition: transform 0.2s ease;
+}
+
+@media screen and (max-width: 768px) {
+    .expandIcon {
+        color: #4a9eff;
+        font-size: 1.3rem;
+        margin-left: 10px;
+    }
+    
+    .notableWorksSection .notableWorksList .notableWorkItem .notableWorkLink.collection .expandIcon {
+        color: #4a9eff;
     }
 }
