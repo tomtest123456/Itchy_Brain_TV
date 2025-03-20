@@ -1,11 +1,14 @@
-  /* ========================================
+/* ========================================
  * ActorCard.css
  * Styling for the ActorCard component that displays actor information
  * including profile picture, nationality flag, name, age, character name,
  * and notable works.
  * ======================================== */
 
- .card {
+/* ------------------------------
+   Card Container
+------------------------------ */
+.card {
     background-color: #2a2d38;
     border-radius   : 8px;
     overflow        : hidden;
@@ -16,29 +19,28 @@
     border          : 1px solid #3900bd;
     transition      : all 0.2s ease-in-out;
     box-shadow      : 0 4px 8px rgba(0, 0, 0, 0.3);
-  }
-  
-  .profileImageContainer {
+}
+
+/* ------------------------------
+   Profile Image Styles
+------------------------------ */
+.profileImageContainer {
     position   : relative;
     width      : 100%;
     padding-top: 150%;
     overflow   : hidden;
     margin     : 0;
     line-height: 0;
-  }
-  
-  .profileImageContainer:hover .imageNavButton {
-    opacity: 1;
-  }
-  
-  .profileImageContainer a {
+}
+
+.profileImageContainer a {
     display    : block;
     line-height: 0;
     margin     : 0;
     padding    : 0;
-  }
-  
-  .profileImage {
+}
+
+.profileImage {
     position   : absolute;
     top        : 0;
     left       : 0;
@@ -47,9 +49,9 @@
     margin     : 0;
     padding    : 0;
     line-height: 0;
-  }
-  
-  .profileImageElement {
+}
+
+.profileImageElement {
     width          : 100%;
     height         : 100%;
     object-fit     : cover;
@@ -58,41 +60,51 @@
     margin         : 0;
     padding        : 0;
     line-height    : 0;
-  }
-  
-  .imageNavButton {
-    position: absolute;
-    top: 50%;
-    transform: translateY(-50%);
+}
+
+/* ------------------------------
+   Image Navigation Buttons
+------------------------------ */
+.imageNavButton {
+    position        : absolute;
+    top             : 50%;
+    transform       : translateY(-50%);
     background-color: rgba(0, 0, 0, 0.6);
-    color: #ffffff;
-    border: none;
-    border-radius: 50%;
-    width: 35px;
-    height: 35px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    cursor: pointer;
-    opacity: 0;
-    transition: opacity 0.2s ease-in-out, background-color 0.2s ease-in-out;
-    z-index: 10;
-    font-size: 18px;
-  }
-  
-  .imageNavButton:hover {
+    color           : #ffffff;
+    border          : none;
+    border-radius   : 50%;
+    width           : 35px;
+    height          : 35px;
+    display         : flex;
+    align-items     : center;
+    justify-content : center;
+    cursor          : pointer;
+    opacity         : 0;
+    transition      : opacity 0.2s ease-in-out, background-color 0.2s ease-in-out;
+    z-index         : 10;
+    font-size       : 18px;
+}
+
+.profileImageContainer:hover .imageNavButton {
+    opacity: 1;
+}
+
+.imageNavButton:hover {
     background-color: rgba(0, 0, 0, 0.8);
-  }
-  
-  .imageNavButton.left {
+}
+
+.imageNavButton.left {
     left: 10px;
-  }
-  
-  .imageNavButton.right {
+}
+
+.imageNavButton.right {
     right: 10px;
-  }
-  
-  .flagContainer {
+}
+
+/* ------------------------------
+   Flag Styles
+------------------------------ */
+.flagContainer {
     position     : absolute;
     bottom       : 10px;
     right        : 10px;
@@ -102,346 +114,329 @@
     border-radius: 4px;
     overflow     : hidden;
     z-index      : 5;
-  }
-  
-  .flag {
+}
+
+.flag {
     width     : 100%;
     height    : 100%;
     object-fit: cover;
-  }
-  
-  .cardContent {
+}
+
+/* ------------------------------
+   Card Content Styles
+------------------------------ */
+.cardContent {
     padding       : 15px;
     flex-grow     : 1;
     display       : flex;
     flex-direction: column;
-  }
-  
-  .nameLink {
     text-decoration: none;
-    color          : #ffffff;
-  }
-  
-  .actorName {
-    font-size     : 1.1rem;
+}
+
+
+/* ------------------------------
+   Actor Details (Name, Age, Character)
+------------------------------ */
+.actorName {
+    color         : #FFFFFF;
+    font-size     : 1.3rem;
     font-weight   : 600;
     margin-bottom : 0.25rem;
-    letter-spacing: 0.02em;
-  }
-  
-  .nameText {
-    color: #FFFFFF;
-  }
-  
-  .ageDisplay {
-    font-weight: normal;
-    font-size  : 0.9rem;
-    color      : #dcdcdc;
-  }
-  
-  .characterName {
-    font-size    : 1rem;
-    margin-bottom: 10px;
-    color        : #dcdcdc;
-    white-space  : nowrap;
-    overflow     : hidden;
-    text-overflow: ellipsis;
-  }
-  
-  .characterText {
+    letter-spacing: 0.03em;
+    text-decoration: none;
+}
+
+.ageDisplay {
+    color         : #dcdcdc;
+    font-size     : 0.9rem;
+    font-weight   : 500;
+    letter-spacing: 0.03em;
+    text-decoration: none;
+}
+
+.characterName {
+    color          : #dcdcdc;
+    font-size      : 1rem;
+    font-weight    : 500;
+    letter-spacing : 0.0em;
+    text-decoration: none;
+    margin-bottom  : 0.3rem;
+    white-space    : nowrap;
+    overflow       : hidden;
+    text-overflow  : ellipsis;
+}
+
+.ageAtFilming {
+    color          : #dcdcdc;
+    font-size      : 0.8rem;
+    font-weight    : 500;
+    letter-spacing : 0.0em;
+    text-decoration: none;
+}
+
+.characterText {
     display       : inline-block;
     max-width     : calc(100% - 60px);
     white-space   : nowrap;
     overflow      : hidden;
     text-overflow : ellipsis;
     vertical-align: bottom;
-  }
-  
-  .ageAtFilming {
-    font-size  : 0.85rem;
-    font-weight: normal;
-    color      : #dcdcdc;
-    opacity    : 0.8;
-  }
-  
-  .notableWorksSection {
-    margin-top: 1rem;
-  }
-  
-  .notableWorksTitle {
-    font-size    : 0.9rem;
-    font-weight  : bold;
-    margin-bottom: 5px;
-    color        : #dcdcdc;
-  }
-  
-  .notableWorksList {
-    list-style-type: none;
-    padding        : 0;
-    margin         : 0;
-  }
-  
-  .notableWorkItem {
-    margin-bottom: 0.5rem;
-    transition   : all 0.2s ease-in-out;
-  }
-  
-  .collectionContainer {
+}
+
+
+/* ------------------------------
+   Movies vs. TV Button
+------------------------------ */
+.notableWorksSection {
+    min-height    : 140px;
+    margin-top    : 0.5rem;
+    padding-top   : 0.5rem;
+    border-top    : 1px solid rgba(255, 0, 0, 0.2);
     display       : flex;
     flex-direction: column;
-    gap           : 0.25rem;
-  }
-  
-  .collectionMoviesList {
-    list-style-type: none;
-    padding-left   : 1.5rem;
-    margin         : 0.25rem 0 0.5rem;
-    border-left    : 1px solid rgba(74, 158, 255, 0.3);
-  }
-  
-  .collectionMovieItem {
-    margin    : 0.25rem 0;
-    opacity   : 0.9;
-    transition: opacity 0.2s ease;
-  }
-  
-  .collectionMovieItem:hover {
-    opacity: 1;
-  }
-  
-  .expandIcon {
-    margin-left: 0.5rem;
-    font-size  : 0.8em;
-    opacity    : 0.7;
-    transition : opacity 0.2s ease;
-  }
-  
-  .notableWorkLink:hover .expandIcon {
-    opacity: 1;
-  }
-  
-  .notableWorkLink {
-    color          : #FFFFFF;
-    text-decoration: none;
+}
+.notableWorksSection .notableWorksHeader {
     display        : flex;
-    align-items    : center;
-    padding        : 2px 4px;
-    border-radius  : 4px;
-    transition     : background-color 0.2s ease;
-    white-space    : nowrap;
-    overflow       : hidden;
-    position       : relative;
-  }
-  
-  .notableWorkLink:hover {
-    background-color: rgba(255, 255, 255, 0.1);
-  }
-  
-  .notableWorkLink.collection {
-    font-weight     : 600;
-    color           : #4a9eff;
-    background-color: rgba(74, 158, 255, 0.1);
-  }
-  
-  .notableWorkLink.collection:hover {
-    background-color: rgba(74, 158, 255, 0.2);
-  }
-  
-  .notableWorkLink.movie {
-    color: #e6e6e6;
-  }
-  
-  .notableWorkLink.tv {
-    color: #b8e986;
-  }
-  
-  .notableWorkLink::before {
-    flex-shrink: 0;
-  }
-  
-  .title-text {
-    flex         : 1;
-    min-width    : 0;
-    white-space  : nowrap;
-    overflow     : hidden;
-    text-overflow: ellipsis;
-    margin-right : 0.25rem;
-  }
-  
-  .year-text {
-    flex-shrink: 0;
-    color      : rgba(255, 255, 255, 0.6);
-    font-size  : 0.9em;
-  }
-  
-  .notableWorkLink.collection .year-text {
-    color: rgba(74, 158, 255, 0.8);
-  }
-  
-    /* Icons for different types */
-  .notableWorkLink::before {
-    font-family : "Material Icons";
-    font-size   : 1.1em;
-    margin-right: 4px;
-  }
-  
-  .notableWorkLink.collection::before {
-    content: "movie";
-    color  : #4a9eff;
-  }
-  
-  .notableWorkLink.movie::before {
-    content: "local_movies";
-    color  : #e6e6e6;
-  }
-  
-  .notableWorkLink.tv::before {
-    content: "tv";
-    color  : #b8e986;
-  }
-  
-    /* Filter buttons */
-  .notableWorksHeader {
-    display        : flex;
-    align-items    : center;
     justify-content: space-between;
-    margin-bottom  : 0.75rem;
-  }
-  
-  .notableWorksTitle {
-    font-size  : 0.9rem;
-    font-weight: 600;
-    color      : #ffffff;
-    margin     : 0;
-  }
-  
-  .filterButtons {
+    align-items    : center;
+    margin-bottom  : 0.7rem;
+}
+.notableWorksSection .notableWorksHeader .notableWorksTitle {
+    font-weight: 900;
+    color      : #dcdcdc;
+    font-size  : 1rem;
+}
+.notableWorksSection .notableWorksHeader .filterButtons {
     display: flex;
-    gap    : 4px;
-  }
-  
-  .filterButton {
-    padding      : 2px 8px;
-    font-size    : 0.8rem;
+    gap    : 0.5rem;
+}
+.notableWorksSection .notableWorksHeader .filterButtons .filterButton {
     background   : transparent;
-    border       : 1px solid rgba(255, 255, 255, 0.2);
-    color        : rgba(255, 255, 255, 0.7);
-    border-radius: 4px;
+    border       : 1px solid rgba(220,220,220, 0.4);
+    color        : #dcdcdc;
+    padding      : 0.15rem 0.5rem;
+    font-size    : 0.8rem;
+    border-radius: 3px;
     cursor       : pointer;
     transition   : all 0.2s ease;
-  }
-  
-  .filterButton:hover {
-    border-color: rgba(255, 255, 255, 0.4);
-    color       : rgba(255, 255, 255, 0.9);
-  }
-  
-  .filterButton.active {
-    background  : rgba(74, 158, 255, 0.2);
+    min-width    : 60px;
+    height       : 22px;
+    line-height  : 1;
+}
+.notableWorksSection .notableWorksHeader .filterButtons .filterButton.active {
+    background  : rgba(0, 119, 255, 0.3);
     border-color: #4a9eff;
-    color       : #4a9eff;
-  }
-  
-    /* Hover effects */
-  .profileImage:hover .imageNavButton {
-    opacity: 1;
-  }
-  
-  .notableWorkLink:hover {
-    color: #ffffff;
-  }
-  
-  .showMoreButton {
+    color       : #dcdcdc;
+}
+.notableWorksSection .notableWorksHeader .filterButtons .filterButton:hover {
+    border-color: #4a9eff;
+    background  : rgba(74, 158, 255, 0.2);
+}
+
+
+/* ------------------------------
+   Notable Works List
+------------------------------ */
+.notableWorksSection .notableWorksList {
+    list-style: none;
+    padding   : 0;
+    margin    : 0;
+    flex-grow : 1;
+}
+.notableWorksSection .notableWorksList .notableWorkItem {
+    margin-bottom: 0.5rem;
+}
+.notableWorksSection .notableWorksList .notableWorkItem .notableWorkLink {
+    color          : #ffffff;
+    text-decoration: none;
+    display        : block;
+    font-size      : 0.95rem;
+    font-weight    : 800;
+}
+.notableWorksSection .notableWorksList .notableWorkItem .notableWorkLink .movie-title-line {
+    display    : flex;
+    align-items: center;
+}
+.notableWorksSection .notableWorksList .notableWorkItem .notableWorkLink .title-text {
+    display     : inline;
+    margin-right: 0.2rem;
+}
+.notableWorksSection .notableWorksList .notableWorkItem .notableWorkLink .year-text {
+    display: inline;
+    opacity: 0.8;
+}
+.notableWorksSection .notableWorksList .notableWorkItem .notableWorkLink .character-name {
+    display    : block;
+    font-size  : 0.75rem;
+    color      : rgba(220, 220, 220, 0.7);
+    margin-top : 0.1rem;
+    margin-left: 2.4rem;
+    font-style : italic;
+}
+
+/* ------------------------------
+   Notable Works List Icons
+------------------------------ */
+.notableWorksSection .notableWorksList .notableWorkItem .notableWorkLink.collection::before {
+    content     : '🎬';
+    margin-right: 0.4rem;
+    font-size   : 0.9em;
+    opacity     : 1;
+}
+.notableWorksSection .notableWorksList .notableWorkItem .notableWorkLink.movie::before {
+    content     : '🎥';
+    margin-right: 0.4rem;
+    font-size   : 0.9em;
+    opacity     : 1;
+}
+.notableWorksSection .notableWorksList .notableWorkItem .notableWorkLink.tv::before {
+    content     : '📺';
+    margin-right: 0.4rem;
+    font-size   : 0.9em;
+    opacity     : 1;
+}
+
+/* ------------------------------
+   Notable Works List - Collections
+------------------------------ */
+.notableWorksSection .notableWorksList .notableWorkItem .notableWorkLink.collection {
+    font-weight  : 800;
+    color        : #ffffff;
+    margin-bottom: 0.3rem;
+}
+.notableWorksSection .notableWorksList .notableWorkItem .notableWorkLink.collection:hover {
+    color: #a0a0a0;
+}
+.notableWorksSection .notableWorksList .notableWorkItem .notableWorkLink:hover {
+    color: #b0b0b0;
+}
+.notableWorksSection .notableWorksList .notableWorkItem .collectionMovieItem .notableWorkLink .character-name {
+    margin-left: 2.5rem;
+}
+@media screen and (max-width: 768px) {
+    .notableWorksSection .notableWorksList .notableWorkItem .character-name {
+        font-size  : 1.4rem;
+        margin-left: 3.2rem;
+        margin-top : 0.2rem;
+    }
+}
+
+.notableWorksSection .notableWorksList .notableWorkItem .notableWorkLinkCollection {
+    color          : #ffffff;
+    text-decoration: none;
+    display        : block;
+    font-size      : 0.95rem;
+    font-weight    : 800;
+}
+.notableWorksSection .notableWorksList .notableWorkItem .notableWorkLinkCollection .movie-title-line {
+    display    : flex;
+    align-items: center;
+}
+.notableWorksSection .notableWorksList .notableWorkItem .notableWorkLinkCollection .title-text {
+    display     : inline;
+    margin-left : 2.5rem;
+    margin-right: 0.2rem;
+}
+.notableWorksSection .notableWorksList .notableWorkItem .notableWorkLinkCollection .year-text {
+    display  : inline;
+    font-size: 0.75rem;
+    color    : rgba(220, 220, 220, 0.7);
+}
+.notableWorksSection .notableWorksList .notableWorkItem .notableWorkLinkCollection .character-name {
+    display      : block;
+    font-size    : 0.75rem;
+    color        : rgba(220, 220, 220, 0.7);
+    margin-top   : 0.1rem;
+    margin-bottom: 0.4rem;
+    margin-left  : 3.5rem;
+    font-style   : italic;
+}
+
+
+/* ------------------------------
+   Show More Button
+------------------------------ */
+.showMoreButton {
     width           : 100%;
     padding         : 12px 20px;
-    margin-top      : 1rem;
-    background-color: rgba(74, 158, 255, 0.15);
+    margin-top      : 0.5rem;
+    background-color: rgba(0, 119, 255, 0.15);
     border          : 1px solid rgba(74, 158, 255, 0.3);
     color           : #4a9eff;
     border-radius   : 8px;
     cursor          : pointer;
     transition      : all 0.2s ease;
     font-size       : 0.95rem;
-    font-weight     : 500;
+    font-weight     : 700;
     display         : flex;
     align-items     : center;
     justify-content : center;
     text-align      : center;
-  }
-  
-  .showMoreButton:hover {
+}
+
+.showMoreButton:hover {
     background-color: rgba(74, 158, 255, 0.25);
     border-color    : rgba(74, 158, 255, 0.5);
     transform       : translateY(-1px);
-  }
-  
-  .showMoreButton:active {
+}
+
+.showMoreButton:active {
     transform: translateY(0);
-  }
-  
-    /* Mobile Styles */
-  @media screen and (max-width: 768px) {
+}
+
+/* ------------------------------
+   Mobile Styles
+------------------------------ */
+@media screen and (max-width: 768px) {
     .actorName {
-        font-size  : 1.8rem;
+        font-size: 1.8rem;
         line-height: 1.3;
     }
-
     .ageDisplay {
         font-size: 1.6rem;
     }
-
     .characterName {
-        font-size    : 1.7rem;
+        font-size: 1.7rem;
         margin-bottom: 15px;
-        line-height  : 1.3;
+        line-height: 1.3;
     }
-
     .notableWorksTitle {
-        font-size    : 1.6rem;
+        font-size: 1.6rem;
         margin-bottom: 10px;
     }
-
     .notableWorkLink {
-        font-size    : 1.6rem;
-        padding      : 12px 16px;
+        font-size: 1.6rem;
+        padding: 12px 16px;
         margin-bottom: 8px;
     }
-
     .year-text {
         font-size: 1.4rem;
     }
-
     .collectionMoviesList {
         padding-left: 3rem;
-        margin      : 0.5rem 0 1rem;
+        margin: 0.5rem 0 1rem;
     }
-
     .collectionMovieItem {
         margin: 0.5rem 0;
     }
-
     .filterButton {
         font-size: 1.4rem;
-        padding  : 8px 20px;
-        margin   : 0 4px;
+        padding: 8px 20px;
+        margin: 0 4px;
     }
-
     .showMoreButton {
-        font-size    : 1.4rem;
-        padding      : 15px 25px;
-        margin-top   : 1.5rem;
+        font-size: 1.4rem;
+        padding: 15px 25px;
+        margin-top: 1.5rem;
         border-radius: 12px;
     }
-
     .cardContent {
         padding: 25px;
     }
-
     .expandIcon {
-        font-size  : 1.3rem;
+        font-size: 1.3rem;
         margin-left: 10px;
     }
-
     .imageNavButton {
         width: 45px;
         height: 45px;
@@ -449,28 +444,13 @@
         opacity: 1;
         background-color: rgba(0, 0, 0, 0.8);
     }
-
     .imageNavButton:hover {
         background-color: rgba(0, 0, 0, 0.9);
     }
-
     .imageNavButton.left {
         left: 5px;
     }
-
     .imageNavButton.right {
         right: 5px;
     }
-  }
-  
-  .character-name {
-    display: block;
-    font-size: 0.75rem;
-    color: rgba(220, 220, 220, 0.7);
-    margin-top: 0.1rem;
-    margin-left: 2rem;
-    font-style: italic;
-    white-space: normal;
-  }
-  
-  
+}

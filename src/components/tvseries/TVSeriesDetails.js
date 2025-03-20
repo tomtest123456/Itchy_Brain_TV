@@ -310,14 +310,14 @@ const TVSeriesDetails = () => {
     return (
         <>
             {/* Main Content Section */}
-            <section className="section tv-details-section" style={{ paddingTop: "var(--navbar-height)" }}>
+            <section className="section details-section" style={{ paddingTop: "var(--navbar-height)" }}>
                 <div className="container">
                     <div className={`columns is-variable is-0-mobile is-3-tablet is-8-desktop ${!isTvShowInfoVisible && isMobile ? 'mobile-info-hidden' : ''}`}>
 
                         {/* Left Column - TV Show Info */}
-                        <div className={`column is-one-quarter tv-info-column ${!isTvShowInfoVisible && isMobile ? 'is-hidden' : ''}`} style={{ position: 'relative' }}>
+                        <div className={`column is-one-quarter info-column ${!isTvShowInfoVisible && isMobile ? 'is-hidden' : ''}`} style={{ position: 'relative' }}>
                             <div
-                                className="tv-info-scroll-trigger"
+                                className="info-scroll-trigger"
                                 style={{
                                     position: 'absolute',
                                     top: 0,
@@ -327,16 +327,16 @@ const TVSeriesDetails = () => {
                                     zIndex: 1
                                 }}
                                 onWheel={(e) => {
-                                    const container = document.querySelector('.tv-info-container');
+                                    const container = document.querySelector('.info-container');
                                     if (container) {
                                         container.scrollTop += e.deltaY;
                                         e.preventDefault();
                                     }
                                 }}
                             />
-                            <div className="tv-info-container" ref={tvInfoContainerRef}>
+                            <div className="info-container" ref={tvInfoContainerRef}>
                                 {/* TV Show Poster */}
-                                <div className="tv-poster">
+                                <div className="poster">
                                     <img
                                         src={`https://image.tmdb.org/t/p/w500${tvShow.poster_path}`}
                                         alt={tvShow.name}
@@ -347,51 +347,51 @@ const TVSeriesDetails = () => {
                                 <Ratings imdbId={tvShow.imdb_id} />
 
                                 {/* TV Show Info Section */}
-                                <div className="tv-info-section">
+                                <div className="info-section">
                                     <h2 className="title is-5">TV Show Info</h2>
 
-                                    <div className="tv-info-item">
-                                        <div className="tv-info-row">
-                                            <span className="tv-info-label">Runtime:</span>
+                                    <div className="info-item">
+                                        <div className="info-row">
+                                            <span className="info-label">Runtime:</span>
                                             {formatRuntime(episodeRuntime)}
                                         </div>
                                     </div>
 
-                                    <div className="tv-info-item">
-                                        <div className="tv-info-row">
-                                            <span className="tv-info-label">Genre:</span>
+                                    <div className="info-item">
+                                        <div className="info-row">
+                                            <span className="info-label">Genre:</span>
                                             {tvShow.genres.slice(0, 3).map(genre => genre.name).join(", ")}
                                         </div>
                                     </div>
 
                                     {director && (
-                                        <div className="tv-info-item">
-                                            <div className="tv-info-row">
-                                                <span className="tv-info-label">Creator:</span>
-                                                <Link to={`/person/${director.id}`} className="tv-info-link">
+                                        <div className="info-item">
+                                            <div className="info-row">
+                                                <span className="info-label">Creator:</span>
+                                                <Link to={`/person/${director.id}`} className="info-link">
                                                     {director.name}
                                                 </Link>
                                             </div>
                                         </div>
                                     )}
 
-                                    <div className="tv-info-item">
-                                        <div className="tv-info-row">
-                                            <span className="tv-info-label">Seasons:</span>
+                                    <div className="info-item">
+                                        <div className="info-row">
+                                            <span className="info-label">Seasons:</span>
                                             {tvShow.number_of_seasons}
                                         </div>
                                     </div>
 
-                                    <div className="tv-info-item">
-                                        <div className="tv-info-row">
-                                            <span className="tv-info-label">Episodes:</span>
+                                    <div className="info-item">
+                                        <div className="info-row">
+                                            <span className="info-label">Episodes:</span>
                                             {tvShow.number_of_episodes}
                                         </div>
                                     </div>
 
-                                    <div className="tv-info-item">
-                                        <span className="tv-info-label">Description:</span>
-                                        <div className={`tv-info-description ${isDescriptionExpanded ? 'expanded' : ''}`}>
+                                    <div className="info-item">
+                                        <span className="info-label">Description:</span>
+                                        <div className={`info-description ${isDescriptionExpanded ? 'expanded' : ''}`}>
                                             {tvShow.overview}
                                         </div>
                                         <span
@@ -403,7 +403,7 @@ const TVSeriesDetails = () => {
                                     </div>
 
                                     {trailer && (
-                                        <div className="tv-info-item">
+                                        <div className="info-item">
                                             <a
                                                 href={`https://www.youtube.com/watch?v=${trailer.key}`}
                                                 target="_blank"

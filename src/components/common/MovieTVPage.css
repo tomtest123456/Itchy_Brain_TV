@@ -1,49 +1,49 @@
 
   /* ========================================
- * Movie Poster
+ * Poster Image
  * ======================================== */
-.movie-poster {
-    margin-top: 3.2rem;
-    width: 100%;
+.poster {
+    margin-top   : 3.2rem;
+    width        : 100%;
     border-radius: 8px;
-    overflow: hidden;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    overflow     : hidden;
+    box-shadow   : 0 4px 8px rgba(0, 0, 0, 0);
 }
 
-.movie-poster img {
-    width: 100%;
-    height: auto;
-    object-fit: cover;
+.poster img {
+    width        : 100%;
+    height       : auto;
+    object-fit   : cover;
     border-radius: 12px;
 } 
 
 
   /* ========================================
- * Movie Info Container and Scroll Behavior
+ * Movie/TV Info Container and Content
  * ======================================== */
- /* Movie Info Container */
-.movie-info-section {
+ /* Movie/TV Info Container */
+.info-section {
     padding         : 0.5rem;
     background-color: rgba(0, 0, 0, 0);
     border-radius   : 8px;
     margin-top      : 1rem;
 }
 
-/* Movie Info Title */
-.movie-info-section .title.is-5 {
+/* Movie/TV Info Title */
+.info-section .title.is-5 {
     color        : #FFFFFF;
     margin-bottom: 1rem;
 }
-.movie-info-item {
+.info-item {
     margin-bottom: 0.75rem;
 }
-.movie-info-row {
+.info-row {
     display    : flex;
     align-items: baseline;
 }
 
 /* Runtime, Genre, Description, etc. */
-.movie-info-label {
+.info-label {
     color       : #ffffff;
     font-weight : 600;
     min-width   : 85px;
@@ -51,8 +51,8 @@
     font-size   : 1rem;
 }
 
-/* Movie Description */
-.movie-info-description {
+/* Movie/TV Description */
+.info-description {
     color      : #FFFFFF;
     font-weight: 100;
     margin-top : 0.5rem;
@@ -62,10 +62,8 @@
     transition : max-height 0.3s ease;
     font-size  : 1rem;
 }
-.movie-info-description.expanded {
-    max-height: none;
-}
 
+/* Description Show more/Less button */
 .description-toggle {
     color     : rgb(72, 95, 199);
     cursor    : pointer;
@@ -73,11 +71,11 @@
     margin-top: 0.5rem;
     font-size : 0.9rem;
 }
-
 .description-toggle:hover {
     text-decoration: underline;
 }
 
+/* Trailer Button */
 .trailer-button {
     display         : inline-block;
     padding         : 0.5rem 1.5rem;
@@ -88,12 +86,15 @@
     margin-top      : 1rem;
     transition      : background-color 0.2s ease;
 }
-
 .trailer-button:hover {
     background-color: rgb(82, 105, 209);
     color           : #FFFFFF;
 }
 
+
+  /* ========================================
+ * Movie Info - Movies in Collection
+ * ======================================== */
   /* Collection Movies List */
 .collection-section {
     margin-top: 1.5rem;
@@ -105,18 +106,19 @@
 }
 
 .collection-movie-item {
-    margin-bottom: 0.5rem;
+    margin-bottom: 1rem;
 }
 
 .collection-movie-link {
-    color          : #FFFFFF;
+    color          : rgba(255, 255, 255, 0.7);
+    font-weight    : 400;
     text-decoration: none;
     display        : flex;
     align-items    : center;
 }
 
 .collection-movie-link.current {
-    color      : rgb(72, 95, 199);
+    color      : rgb(255, 255, 255);
     font-weight: 900;
 }
 
@@ -124,26 +126,22 @@
     margin-right: 0.5rem;
 }
 
-.title.is-3 {
-    letter-spacing: 0.05em;
-}
 
-.title.is-3 span {
-    letter-spacing: normal;  /* Reset letter-spacing for the year */
-}
-
+  /* ========================================
+ * Mobile Scaling
+ * ======================================== */
   /* Base styles - remove mobile scale factor */
 :root {
     --actor-card-scale: 1.4;
 }
 
   /* Revert movie info font sizes to original */
-.movie-info-container {
+.info-container {
     overflow-x   : hidden;
     padding-right: 10px;
 }
 
-.movie-info-column {
+.info-column {
     position: relative;
 }
 
@@ -197,26 +195,26 @@
     }
 
       /* Movie Info section improvements */
-    .movie-info-section {
+    .info-section {
         padding      : 20px;
         margin       : 15px 0;
         border-radius: 12px;
     }
 
-    .movie-info-label {
+    .info-label {
         font-size    : calc(1.4rem * var(--mobile-scale-factor));
         min-width    : 100px;
         margin-right : 0.5rem;
         margin-bottom: 0.2rem;
     }
 
-    .movie-info-row {
+    .info-row {
         font-size: calc(1.4rem * var(--mobile-scale-factor));
         padding  : 8px 0;
         flex-wrap: wrap;
     }
 
-    .movie-info-description {
+    .info-description {
         font-size  : calc(1.4rem * var(--mobile-scale-factor));
         line-height: 1.4;
         margin-top : 0.5rem;
@@ -282,14 +280,14 @@
 }
 
   /* Force visibility for mobile toggle */
-.movie-details-section .mobile-info-toggle.is-visible {
+.details-section .mobile-info-toggle.is-visible {
     display   : block !important;
     opacity   : 1 !important;
     visibility: visible !important;
 }
 
   /* Ensure smooth transitions */
-.movie-info-column,
+.info-column,
 .column.is-full {
     transition: all 0.3s ease-in-out;
 }
@@ -303,7 +301,7 @@
 }
 
   /* Smooth transitions for mobile info toggle */
-.movie-info-column {
+.info-column {
     transition: all 0.3s ease;
 }
 

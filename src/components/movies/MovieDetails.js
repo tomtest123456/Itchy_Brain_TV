@@ -324,12 +324,12 @@ const MovieDetails = () => {
     return (
         <>
             {/* Main Content Section */}
-            <section className="section movie-details-section" style={{ paddingTop: "var(--navbar-height)" }}>
+            <section className="section details-section" style={{ paddingTop: "var(--navbar-height)" }}>
                 <div className="container">
                     <div className={`columns is-variable is-0-mobile is-3-tablet is-8-desktop ${!isMovieInfoVisible && isMobile ? 'mobile-info-hidden' : ''}`}>
 
                         {/* Left Column - Movie Info */}
-                        <div className={`column is-one-quarter movie-info-column ${!isMovieInfoVisible && isMobile ? 'is-hidden' : ''}`} style={{ position: 'relative' }}>
+                        <div className={`column is-one-quarter info-column ${!isMovieInfoVisible && isMobile ? 'is-hidden' : ''}`} style={{ position: 'relative' }}>
                             <div
                                 className="movie-info-scroll-trigger"
                                 style={{
@@ -341,7 +341,7 @@ const MovieDetails = () => {
                                     zIndex: 1
                                 }}
                                 onWheel={(e) => {
-                                    const container = document.querySelector('.movie-info-container');
+                                    const container = document.querySelector('.info-container');
                                     if (container) {
                                         container.scrollTop += e.deltaY;
                                         e.preventDefault();
@@ -350,7 +350,7 @@ const MovieDetails = () => {
                             />
                             <div className="movie-info-container" ref={movieInfoContainerRef}>
                                 {/* Movie Poster */}
-                                <div className="movie-poster">
+                                <div className="poster">
                                     <img
                                         src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`}
                                         alt={movie.title}
@@ -361,27 +361,27 @@ const MovieDetails = () => {
                                 <Ratings imdbId={movie.imdb_id} />
 
                                 {/* Movie Info Section */}
-                                <div className="movie-info-section">
+                                <div className="info-section">
                                     <h2 className="title is-5">Movie Info</h2>
 
-                                    <div className="movie-info-item">
-                                        <div className="movie-info-row">
-                                            <span className="movie-info-label">Runtime:</span>
+                                    <div className="info-item">
+                                        <div className="info-row">
+                                            <span className="info-label">Runtime:</span>
                                             {formatRuntime(movie.runtime)}
                                         </div>
                                     </div>
 
-                                    <div className="movie-info-item">
-                                        <div className="movie-info-row">
-                                            <span className="movie-info-label">Genre:</span>
+                                    <div className="info-item">
+                                        <div className="info-row">
+                                            <span className="info-label">Genre:</span>
                                             {movie.genres.slice(0, 3).map(genre => genre.name).join(", ")}
                                         </div>
                                     </div>
 
                                     {director && (
-                                        <div className="movie-info-item">
-                                            <div className="movie-info-row">
-                                                <span className="movie-info-label">Director:</span>
+                                        <div className="info-item">
+                                            <div className="info-row">
+                                                <span className="info-label">Director:</span>
                                                 <Link to={`/person/${director.id}`} className="movie-info-link">
                                                     {director.name}
                                                 </Link>
@@ -389,23 +389,23 @@ const MovieDetails = () => {
                                         </div>
                                     )}
 
-                                    <div className="movie-info-item">
-                                        <div className="movie-info-row">
-                                            <span className="movie-info-label">Budget:</span>
+                                    <div className="info-item">
+                                        <div className="info-row">
+                                            <span className="info-label">Budget:</span>
                                             {formatCurrency(movie.budget)}
                                         </div>
                                     </div>
 
-                                    <div className="movie-info-item">
-                                        <div className="movie-info-row">
-                                            <span className="movie-info-label">Revenue:</span>
+                                    <div className="info-item">
+                                        <div className="info-row">
+                                            <span className="info-label">Revenue:</span>
                                             {formatCurrency(movie.revenue)}
                                         </div>
                                     </div>
 
-                                    <div className="movie-info-item">
-                                        <span className="movie-info-label">Description:</span>
-                                        <div className={`movie-info-description ${isDescriptionExpanded ? 'expanded' : ''}`}>
+                                    <div className="info-item">
+                                        <span className="info-label">Description:</span>
+                                        <div className={`info-description ${isDescriptionExpanded ? 'expanded' : ''}`}>
                                             {movie.overview}
                                         </div>
                                         <span
@@ -417,7 +417,7 @@ const MovieDetails = () => {
                                     </div>
 
                                     {trailer && (
-                                        <div className="movie-info-item">
+                                        <div className="info-item">
                                             <a
                                                 href={`https://www.youtube.com/watch?v=${trailer.key}`}
                                                 target="_blank"
@@ -494,7 +494,7 @@ const MovieDetails = () => {
 
                     {/* Enhanced Mobile Toggle Button */}
                     <button
-                        className={`mobile-info-toggle ${isMobile ? 'is-visible' : ''} ${isMovieInfoVisible ? 'is-active' : ''}`}
+                        className={`info-toggle ${isMobile ? 'is-visible' : ''} ${isMovieInfoVisible ? 'is-active' : ''}`}
                         onClick={toggleMovieInfo}
                         aria-label={isMovieInfoVisible ? 'Hide Movie Info' : 'Show Movie Info'}
                     >

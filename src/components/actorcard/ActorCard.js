@@ -325,7 +325,7 @@ const ActorCard = ({ actor, movieReleaseDate, currentMovieId, preloadedDetails }
             <div className="cardContent">
                 <Link to={`/actor/${actor.id}`} className="nameLink">
                     <h3 className="actorName">
-                        <span className="nameText">{truncateWithYear(actor.name, 20)}</span>
+                        <span className="actorName">{truncateWithYear(actor.name, 20)}</span>
                         {actorDetails?.birthday && <span className="ageDisplay"> [{calculateAge(actorDetails.birthday)}]</span>}
                     </h3>
                 </Link>
@@ -388,7 +388,7 @@ const ActorCard = ({ actor, movieReleaseDate, currentMovieId, preloadedDetails }
                                                             <li key={movie.id} className="collectionMovieItem">
                                                                 <Link
                                                                     to={`/movie/${movie.id}`}
-                                                                    className="notableWorkLink movie"
+                                                                    className="notableWorkLinkCollection movie"
                                                                 >
                                                                     <span className="title-text">
                                                                         {movie.title}
