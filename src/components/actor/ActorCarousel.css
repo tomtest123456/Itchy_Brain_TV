@@ -3,45 +3,57 @@
    Styles for the actor's notable movies carousel with responsive design
    ======================================== */
 
-.carousel-container {
-    position: relative;
-    width: 100%;
-    max-width: 100%;
-    padding: 0 2.5rem;
-    margin: 0.5rem 0;
-    overflow: hidden;
-    background: var(--background-color, #1a1d24);
+   .carousel-container {
+    position  : relative;
+    width     : 100%;
+    max-width : 70%;
+    padding   : 0 2.5rem;
+    margin    : 0.5rem 0;
+    overflow  : hidden;
+    background: var(--background-color, #ffffff0b);
     box-sizing: border-box;
 }
 
 .carousel {
-    position: relative;
-    width: 100%;
-    overflow-x: auto;
-    overflow-y: hidden;
-    scrollbar-width: none;
-    -ms-overflow-style: none;
-    scroll-behavior: smooth;
-    box-sizing: border-box;
+    position          : relative;
+    width             : 100%;
+    overflow-x        : auto;
+    overflow-y        : hidden;
+    scroll-behavior   : smooth;
+    box-sizing        : border-box;
+    /* Custom scrollbar styling for Firefox */
+    scrollbar-width   : thin;
+    scrollbar-color   : rgba(57, 0, 189, 0.5) transparent;
 }
 
+/* Custom scrollbar styling for Webkit browsers */
 .carousel::-webkit-scrollbar {
-    display: none;
+    height: 4px;
+    background: transparent;
+}
+
+.carousel::-webkit-scrollbar-thumb {
+    background-color: rgba(57, 0, 189, 0.5);
+    border-radius: 4px;
+}
+
+.carousel::-webkit-scrollbar-track {
+    background: transparent;
 }
 
 .carousel-track {
-    display: flex;
-    gap: 1rem;
-    padding: 0.5rem 0;
-    transition: transform 0.3s ease;
-    cursor: grab;
-    -webkit-user-select: none;
-    -moz-user-select: none;
-    -ms-user-select: none;
-    user-select: none;
+    display                   : flex;
+    gap                       : 1rem;
+    padding                   : 0.5rem 0;
+    transition                : transform 0.3s ease;
+    cursor                    : grab;
+    -webkit-user-select       : none;
+    -moz-user-select          : none;
+    -ms-user-select           : none;
+    user-select               : none;
     -webkit-overflow-scrolling: touch;
-    width: max-content;
-    max-width: none;
+    width                     : max-content;
+    max-width                 : none;
 }
 
 .carousel-track:active {
@@ -49,20 +61,20 @@
 }
 
 .carousel-item {
-    flex: 0 0 auto;
-    width: calc((100vw - 6rem) / 5); /* Account for container padding and gaps */
-    min-width: 160px;
-    max-width: 200px;
+    flex      : 0 0 auto;
+    width     : calc((100% - 6rem) / 5);  /* Changed from 100vw to 100% */
+    min-width : 160px;
+    max-width : 200px;
     transition: transform 0.3s ease;
 }
 
 .carousel-card {
-    background: var(--card-background, #ffffff);
+    background   : var(--card-background, #ffffff);
     border-radius: 8px;
-    overflow: hidden;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-    height: 100%;
-    transition: transform 0.3s ease;
+    overflow     : hidden;
+    box-shadow   : 0 2px 8px rgba(0, 0, 0, 0.1);
+    height       : 100%;
+    transition   : transform 0.3s ease;
 }
 
 .carousel-card:hover {
@@ -70,11 +82,11 @@
 }
 
 .carousel-card img {
-    width: 100%;
-    aspect-ratio: 2/3;
-    object-fit: cover;
+    width            : 100%;
+    aspect-ratio     : 2/3;
+    object-fit       : cover;
     -webkit-user-drag: none;
-    user-select: none;
+    user-select      : none;
 }
 
 .carousel-card-content {
@@ -82,42 +94,42 @@
 }
 
 .carousel-card-content h3 {
-    margin: 0;
-    font-size: 1rem;
-    font-weight: 600;
-    color: var(--text-primary, #333);
-    white-space: nowrap;
-    overflow: hidden;
+    margin       : 0;
+    font-size    : 1rem;
+    font-weight  : 600;
+    color        : var(--text-primary, #333);
+    white-space  : nowrap;
+    overflow     : hidden;
     text-overflow: ellipsis;
 }
 
 .carousel-card-content p {
-    margin: 0.5rem 0 0;
-    font-size: 0.875rem;
-    color: var(--text-secondary, #666);
-    white-space: nowrap;
-    overflow: hidden;
+    margin       : 0.5rem 0 0;
+    font-size    : 0.875rem;
+    color        : var(--text-secondary, #666);
+    white-space  : nowrap;
+    overflow     : hidden;
     text-overflow: ellipsis;
 }
 
 .carousel-button {
-    position: absolute;
-    top: 50%;
-    transform: translateY(-50%);
-    width: 2.5rem;
-    height: 2.5rem;
-    border-radius: 50%;
-    background: rgba(57, 0, 189, 0.5);
-    color: #ffffff;
-    border: 1px solid rgba(57, 0, 189, 0.7);
-    cursor: pointer;
-    display: flex;
-    align-items: center;
+    position       : absolute;
+    top            : 50%;
+    transform      : translateY(-50%);
+    width          : 2.5rem;
+    height         : 2.5rem;
+    border-radius  : 50%;
+    background     : rgba(57, 0, 189, 0.5);
+    color          : #ffffff;
+    border         : 1px solid rgba(57, 0, 189, 0.7);
+    cursor         : pointer;
+    display        : flex;
+    align-items    : center;
     justify-content: center;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
-    z-index: 10; /* Increased z-index */
-    transition: all 0.3s ease;
-    opacity: 0.9;
+    box-shadow     : 0 2px 4px rgba(0, 0, 0, 0.2);
+    z-index        : 10;                               /* Increased z-index */
+    transition     : all 0.3s ease;
+    opacity        : 0.9;
 }
 
 .carousel-button:hover {
@@ -140,13 +152,13 @@
 /* Responsive Design */
 @media screen and (max-width: 1200px) {
     .carousel-item {
-        width: calc((100vw - 6rem) / 4);
+        width: calc((100% - 6rem) / 4); /* Changed from 100vw to 100% */
     }
 }
 
 @media screen and (max-width: 992px) {
     .carousel-item {
-        width: calc((100vw - 6rem) / 3);
+        width: calc((100% - 6rem) / 3); /* Changed from 100vw to 100% */
     }
 }
 
@@ -156,12 +168,12 @@
     }
 
     .carousel-item {
-        width: calc((100vw - 5rem) / 2);
+        width: calc((100% - 5rem) / 2); /* Changed from 100vw to 100% */
     }
 
     .carousel-button {
-        width: 2rem;
-        height: 2rem;
+        width    : 2rem;
+        height   : 2rem;
         font-size: 0.875rem;
     }
 }
@@ -172,7 +184,7 @@
     }
 
     .carousel-item {
-        width: calc(100vw - 4rem);
+        width    : calc(100% - 4rem);  /* Changed from 100vw to 100% */
         min-width: auto;
     }
 }

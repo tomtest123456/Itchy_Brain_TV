@@ -1,7 +1,7 @@
 // ========================================
 // ActorCarousel.js
 // This component displays a horizontal scrollable carousel of an actor's
-// notable movies with responsive design and smooth scrolling
+// notable movies with responsive design and smooth scrolling.
 // ========================================
 
 import React, { useState, useRef, useEffect } from 'react';
@@ -13,47 +13,51 @@ const ActorCarousel = ({ actorDetails }) => {
     const carouselRef = useRef(null);
     const [isDragging, setIsDragging] = useState(false);
     const [startPosition, setStartPosition] = useState(0);
-    const [currentScroll, setCurrentScroll] = useState(0);
     const [containerWidth, setContainerWidth] = useState(0);
 
     // Log actor details on mount and updates
     useEffect(() => {
         console.log('ActorCarousel - Actor Details:', {
-            hasData: !!actorDetails,
-            id: actorDetails?.id,
-            name: actorDetails?.name,
+            hasData     : !!actorDetails,
+            id          : actorDetails?.id,
+            name        : actorDetails?.name,
             movieCredits: actorDetails?.movie_credits?.cast?.length,
-            birthday: actorDetails?.birthday
+            birthday    : actorDetails?.birthday
         });
     }, [actorDetails]);
 
-    // Get notable movies using NotableWorksManager
-    const notableMovies = actorDetails ? 
-        NotableWorksManager.processNotableWorks(actorDetails, 'movies')
-            .filter(movie => {
-                // Skip if movie or title is undefined/null
-                if (!movie || !movie.title) return false;
-                // Only filter out items that are collections themselves
-                return !(movie.title.toLowerCase().includes('collection') && 
-                       movie.media_type === 'collection');
-            }) : [];
+    // Process notable works and expand collections into individual movies
+    const processedWorks = actorDetails ? NotableWorksManager.processNotableWorks(actorDetails, 'movies') : [];
+    let notableMovies = [];
+    processedWorks.forEach(work => {
+        if (work.media_type === 'collection' && work.movies) {
+            // Expand collection into individual movies
+            work.movies.forEach(movie => {
+                const movieScore = NotableWorksManager.calculateOverallScore(movie);
+                notableMovies.push({ ...movie, media_type: 'movie', score: movieScore });
+            });
+        } else if (work && work.title) {
+            notableMovies.push(work);
+        }
+    });
+    // Sort the movies by score descending
+    notableMovies.sort((a, b) => (b.score || 0) - (a.score || 0));
 
     // Log processed movies with detailed info
     useEffect(() => {
         console.log('ActorCarousel - Notable Movies:', {
-            count: notableMovies.length,
+            count : notableMovies.length,
             movies: notableMovies.map(movie => ({
-                id: movie.id,
-                title: movie.title,
-                type: movie.media_type,
-                isCollection: movie.title.toLowerCase().includes('collection'),
-                character: movie.character,
+                id         : movie.id,
+                title      : movie.title,
+                type       : movie.media_type,
+                character  : movie.character,
                 releaseDate: movie.release_date
             }))
         });
     }, [notableMovies]);
 
-    // Calculate actor's age for each movie
+    // Calculate actor's age at filming for each movie
     const calculateAgeAtFilming = (releaseDate) => {
         if (!actorDetails?.birthday || !releaseDate) return null;
         const birthDate = new Date(actorDetails.birthday);
@@ -83,70 +87,45 @@ const ActorCarousel = ({ actorDetails }) => {
         return () => window.removeEventListener('resize', updateWidth);
     }, []);
 
-    // Simple drag handlers
+    // Drag Handlers - Updated for smoother dragging
     const handleDragStart = (e) => {
         setIsDragging(true);
         const position = e.type.includes('mouse') ? e.pageX : e.touches[0].pageX;
         setStartPosition(position);
-        setCurrentScroll(carouselRef.current.scrollLeft);
-        
         // Disable smooth scrolling during drag
         if (carouselRef.current) {
             carouselRef.current.style.scrollBehavior = 'auto';
         }
-        
-        console.log('Drag Start:', { 
-            position, 
-            currentScroll: carouselRef.current.scrollLeft,
-            type: e.type
-        });
+        console.log('Drag Start:', { position, type: e.type });
     };
 
     const handleDragMove = (e) => {
         if (!isDragging || !carouselRef.current) return;
-        
         e.preventDefault();
-        const position = e.type.includes('mouse') ? e.pageX : e.touches[0].pageX;
-        const delta = startPosition - position;
-        const sensitivity = 1.2;
-        
-        // Apply scroll position with bounds checking
-        const maxScroll = carouselRef.current.scrollWidth - carouselRef.current.clientWidth;
-        const newScrollPosition = Math.max(0, Math.min(currentScroll + delta, maxScroll));
-        carouselRef.current.scrollLeft = newScrollPosition;
-        
-        console.log('Drag Move:', { 
-            delta,
-            newScrollPosition,
-            maxScroll,
-            actualScroll: carouselRef.current.scrollLeft,
-            type: e.type
-        });
+        const currentPosition = e.type.includes('mouse') ? e.pageX : e.touches[0].pageX;
+        const delta = startPosition - currentPosition;
+        carouselRef.current.scrollLeft += delta;
+        setStartPosition(currentPosition);
+        console.log('Drag Move:', { delta, newScrollPosition: carouselRef.current.scrollLeft, type: e.type });
     };
 
     const handleDragEnd = (e) => {
         if (!isDragging) return;
-        
         setIsDragging(false);
-        
         // Re-enable smooth scrolling after drag
         if (carouselRef.current) {
             carouselRef.current.style.scrollBehavior = 'smooth';
-            console.log('Drag End:', { 
-                finalScroll: carouselRef.current.scrollLeft,
-                type: e.type
-            });
+            console.log('Drag End:', { finalScroll: carouselRef.current.scrollLeft, type: e.type });
         }
     };
 
-    // Add event listeners for mouse leaving window
+    // Add event listener for mouse up outside the carousel
     useEffect(() => {
         const handleMouseUp = () => {
             if (isDragging) {
                 handleDragEnd();
             }
         };
-
         window.addEventListener('mouseup', handleMouseUp);
         return () => window.removeEventListener('mouseup', handleMouseUp);
     }, [isDragging]);
@@ -154,18 +133,12 @@ const ActorCarousel = ({ actorDetails }) => {
     // Handle button scroll
     const handleScroll = (direction) => {
         if (!carouselRef.current) return;
-        
         const scrollWidth = containerWidth * 0.8;
         carouselRef.current.scrollBy({
-            left: direction * scrollWidth,
+            left    : direction * scrollWidth,
             behavior: 'smooth'
         });
-        
-        console.log('Button Scroll:', { 
-            direction, 
-            scrollWidth,
-            currentScroll: carouselRef.current.scrollLeft 
-        });
+        console.log('Button Scroll:', { direction, scrollWidth, currentScroll: carouselRef.current.scrollLeft });
     };
 
     // Don't render if no movies
@@ -178,31 +151,31 @@ const ActorCarousel = ({ actorDetails }) => {
         <div className="carousel-container">
             {notableMovies.length > 1 && (
                 <button 
-                    className="carousel-button prev"
-                    onClick={() => handleScroll(-1)}
-                    aria-label="Previous items"
+                    className  = "carousel-button prev"
+                    onClick    = {() => handleScroll(-1)}
+                    aria-label = "Previous items"
                 >
                     ◀
                 </button>
             )}
 
             <div 
-                className="carousel"
-                ref={carouselRef}
-                onMouseDown={handleDragStart}
-                onMouseMove={isDragging ? handleDragMove : null}
-                onMouseUp={handleDragEnd}
-                onMouseLeave={handleDragEnd}
-                onTouchStart={handleDragStart}
-                onTouchMove={isDragging ? handleDragMove : null}
-                onTouchEnd={handleDragEnd}
+                className    = "carousel"
+                ref          = {carouselRef}
+                onMouseDown  = {handleDragStart}
+                onMouseMove  = {isDragging ? handleDragMove : null}
+                onMouseUp    = {handleDragEnd}
+                onMouseLeave = {handleDragEnd}
+                onTouchStart = {handleDragStart}
+                onTouchMove  = {isDragging ? handleDragMove : null}
+                onTouchEnd   = {handleDragEnd}
             >
                 <div className="carousel-track">
                     {notableMovies.map((movie, index) => (
                         <div key={movie.id || index} className="carousel-item">
                             <ActorCarouselCard 
-                                movie={movie} 
-                                actorAge={calculateAgeAtFilming(movie.release_date)}
+                                movie    = {movie}
+                                actorAge = {calculateAgeAtFilming(movie.release_date)}
                             />
                         </div>
                     ))}
@@ -211,9 +184,9 @@ const ActorCarousel = ({ actorDetails }) => {
 
             {notableMovies.length > 1 && (
                 <button 
-                    className="carousel-button next"
-                    onClick={() => handleScroll(1)}
-                    aria-label="Next items"
+                    className  = "carousel-button next"
+                    onClick    = {() => handleScroll(1)}
+                    aria-label = "Next items"
                 >
                     ▶
                 </button>

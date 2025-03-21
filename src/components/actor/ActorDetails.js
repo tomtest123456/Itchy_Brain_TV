@@ -155,8 +155,8 @@ const ActorDetails = () => {
                             <h2 className="title is-4 has-text-weight-bold mb-3">Notable Movies</h2>
                             {actor && (
                                 <ActorCarousel 
-                                    actorDetails={actor}
-                                    key={actor.id}
+                                    actorDetails = {actor}
+                                    key          = {actor.id}
                                 />
                             )}
                         </div>
