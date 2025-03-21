@@ -1,0 +1,167 @@
+/* ========================================
+ * ActorDetailsInfo.css
+ * Styling for the ActorDetailsInfo component that displays
+ * comprehensive information about an actor's career
+ * ======================================== */
+
+/* ------------------------------
+   Base Layout
+------------------------------ */
+.info-section {
+    margin-top: 1.5rem;
+    color: #FFFFFF;
+    overflow-y: auto;
+    scrollbar-width: none; /* Firefox */
+    -ms-overflow-style: none; /* IE and Edge */
+}
+
+.info-section::-webkit-scrollbar {
+    display: none; /* Chrome, Safari, Opera */
+}
+
+.info-subsection {
+    padding: 1.5rem;
+    margin-bottom: 1rem;
+    background-color: rgba(255, 255, 255, 0.05);
+    border-radius: 8px;
+}
+
+.info-subsection:last-child {
+    margin-bottom: 0;
+}
+
+/* ------------------------------
+   Section Headers
+------------------------------ */
+.info-subsection .title.is-5 {
+    color: #FFFFFF;
+    font-size: 1.25rem;
+    margin-bottom: 1.25rem;
+    font-weight: 600;
+    letter-spacing: 0.02em;
+    text-transform: uppercase;
+}
+
+/* ------------------------------
+   Info Items
+------------------------------ */
+.info-item {
+    margin-bottom: 0.75rem;
+    line-height: 1.4;
+}
+
+.info-item:last-child {
+    margin-bottom: 0;
+}
+
+.info-row {
+    display: grid;
+    grid-template-columns: 110px 1fr;
+    gap: 1rem;
+    font-size: 0.95rem;
+    padding: 0.3rem 0;
+    align-items: baseline;
+}
+
+.info-label {
+    color: rgba(255, 255, 255, 0.7);
+    font-weight: 500;
+}
+
+.info-content {
+    color: #FFFFFF;
+}
+
+/* ------------------------------
+   Special Elements
+------------------------------ */
+.age-bracket {
+    color: rgba(255, 255, 255, 0.5);
+    font-size: 0.9em;
+    margin-left: 0.25rem;
+}
+
+.genre-list {
+    color: #FFFFFF;
+}
+
+.genre-tag {
+    color: rgba(255, 255, 255, 0.9);
+    background-color: rgba(255, 255, 255, 0.1);
+    padding: 0.2rem 0.6rem;
+    border-radius: 4px;
+    font-size: 0.9em;
+    display: inline-block;
+    margin: 0.1rem 0;
+}
+
+.show-link {
+    color: rgb(72, 95, 199);
+    text-decoration: none;
+    transition: color 0.2s ease;
+}
+
+.show-link:hover {
+    color: rgb(92, 115, 219);
+    text-decoration: underline;
+}
+
+.episode-count {
+    color: rgba(255, 255, 255, 0.5);
+    font-size: 0.9em;
+    margin-left: 0.25rem;
+}
+
+/* ------------------------------
+   Mobile Styles
+------------------------------ */
+@media screen and (max-width: 768px) {
+    .info-section {
+        margin-top: 1rem;
+    }
+
+    .info-subsection {
+        padding: 1.25rem;
+        margin-bottom: 0.75rem;
+    }
+
+    .info-row {
+        font-size: 0.9rem;
+        grid-template-columns: 100px 1fr;
+        gap: 0.75rem;
+    }
+
+    .info-subsection .title.is-5 {
+        font-size: 1.1rem;
+        margin-bottom: 1rem;
+    }
+}
+
+/* ------------------------------
+   Small Device Adjustments
+------------------------------ */
+@media screen and (max-width: 380px) {
+    .info-subsection {
+        padding: 1rem;
+    }
+
+    .info-row {
+        font-size: 0.85rem;
+        grid-template-columns: 90px 1fr;
+        gap: 0.5rem;
+    }
+}
+
+/* ------------------------------
+   Landscape Mode Adjustments
+------------------------------ */
+@media screen and (orientation: landscape) and (max-height: 600px) {
+    .info-section {
+        margin-top: 1rem;
+    }
+
+    .info-subsection {
+        padding: 1rem;
+        margin-bottom: 0.5rem;
+    }
+}

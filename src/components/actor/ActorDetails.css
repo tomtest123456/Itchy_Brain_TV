@@ -18,6 +18,25 @@
     background-color: rgba(0, 0, 0, 0);
     border-radius: 8px;
     overflow: hidden;
+    position: sticky;
+    top: calc(var(--navbar-height) + 1.5rem);
+    max-height: calc(100vh - var(--navbar-height) - 3rem);
+    overflow-y: auto;
+    scrollbar-width: thin;
+    scrollbar-color: rgba(255, 255, 255, 0.2) transparent;
+}
+
+.actor-info-container::-webkit-scrollbar {
+    width: 6px;
+}
+
+.actor-info-container::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+.actor-info-container::-webkit-scrollbar-thumb {
+    background-color: rgba(255, 255, 255, 0.2);
+    border-radius: 3px;
 }
 
 /* ------------------------------
@@ -117,6 +136,14 @@
     .imageNavButton.right {
         right: 5px;
     }
+
+    .actor-info-container {
+        position: relative;
+        top: 0;
+        max-height: none;
+        overflow-y: visible;
+        padding-bottom: 2rem;
+    }
 }
 
 /* Show navigation buttons on hover for desktop */
@@ -149,5 +176,10 @@
 @media screen and (orientation: landscape) and (max-height: 600px) {
     .details-section {
         padding-top: calc(var(--navbar-height) * 0.8);
+    }
+
+    .actor-info-container {
+        top: calc(var(--navbar-height) * 0.8 + 1rem);
+        max-height: calc(100vh - var(--navbar-height) * 0.8 - 2rem);
     }
 }

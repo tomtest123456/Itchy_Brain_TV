@@ -4,10 +4,11 @@
 // profile picture, name, and other metadata using Bulma's styling system.
 // ========================================
 
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { useParams } from "react-router-dom";
 import { fetchPersonDetails } from "../../services/tmdb";
 import ActorRatingScore from "./ActorRatingScore";
+import ActorDetailsInfo from "./ActorDetailsInfo";
 import './ActorDetails.css';
 
 /**
@@ -23,6 +24,7 @@ const ActorDetails = () => {
     const [actor, setActor] = useState(null);
     const [currentImageIndex, setCurrentImageIndex] = useState(0);
     const [loadedImages, setLoadedImages] = useState(new Set());
+    const infoContainerRef = useRef(null);
 
     // ========================================
     // Data Fetching
@@ -42,6 +44,13 @@ const ActorDetails = () => {
             loadActorData();
         }
     }, [id]);
+
+    // Reset scroll position when actor changes
+    useEffect(() => {
+        if (infoContainerRef.current) {
+            infoContainerRef.current.scrollTop = 0;
+        }
+    }, [actor?.id]);
 
     // ========================================
     // Helper Functions
@@ -95,7 +104,7 @@ const ActorDetails = () => {
                 <div className="columns is-variable is-0-mobile is-3-tablet is-8-desktop">
                     {/* Left Column - Actor Info */}
                     <div className="column is-one-quarter info-column">
-                        <div className="actor-info-container">
+                        <div className="actor-info-container" ref={infoContainerRef}>
                             {/* Actor Profile Picture */}
                             <div className="profileImageContainer">
                                 <div className="profileImage">
@@ -128,10 +137,13 @@ const ActorDetails = () => {
 
                             {/* Actor Rating Score */}
                             <ActorRatingScore actorDetails={actor} />
+
+                            {/* Actor Details Info */}
+                            <ActorDetailsInfo actorDetails={actor} />
                         </div>
                     </div>
 
-                    {/* Right Column - Name and Future Content */}
+                    {/* Right Column - Name */}
                     <div className="column">
                         <h1 className="title is-3 has-text-weight-bold mb-4 mobile-title">
                             {actor.name}
