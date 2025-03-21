@@ -1,0 +1,51 @@
+/* ========================================
+ * ActorRatingScore.css
+ * Styling for the actor rating scores display
+ * Matches the styling from RatingCircle.css
+ * ======================================== */
+
+/* ========================================
+ * Rating Container Styles
+ * Layout for the ratings section
+ * ======================================== */
+.ratings-container {
+    display: flex;
+    justify-content: center;
+    gap: clamp(0.5rem, 1.5vw, 1.5rem);
+    padding: 1rem 0;
+    border-bottom: 1px solid rgba(220, 220, 220, 0.2);
+    margin: 0;
+    width: 100%;
+}
+
+.rating-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.5rem;
+    width: 28%;
+    min-width: 50px;
+    max-width: 80px;
+}
+
+.rating-label {
+    font-family: 'Inter', sans-serif;
+    font-size: clamp(0.7rem, 1.2vw, 0.85rem);
+    color: #DCDCDC;
+    opacity: 0.9;
+    text-align: center;
+    white-space: nowrap;
+}
+
+/* ========================================
+ * Loading and Error States
+ * ======================================== */
+.ratings-loading,
+.ratings-error {
+    padding: 0.5rem 0;
+    color: #DCDCDC;
+    font-family: 'Inter', sans-serif;
+    font-size: 0.9rem;
+    text-align: center;
+    opacity: 0.8;
+}

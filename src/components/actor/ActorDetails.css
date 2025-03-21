@@ -1,0 +1,153 @@
+/* ========================================
+ * ActorDetails.css
+ * Styling for the ActorDetails component that displays actor information
+ * including profile picture, name, and other metadata.
+ * ======================================== */
+
+/* ------------------------------
+   Base Layout
+------------------------------ */
+.details-section {
+    padding-top: var(--navbar-height);
+}
+
+/* ------------------------------
+   Actor Info Container
+------------------------------ */
+.actor-info-container {
+    background-color: rgba(0, 0, 0, 0);
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+/* ------------------------------
+   Profile Image Container
+------------------------------ */
+.profileImageContainer {
+    position: relative;
+    width: 100%;
+    padding-top: 150%;
+    overflow: hidden;
+    margin: 0;
+    line-height: 0;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+}
+
+.profileImage {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    margin: 0;
+    padding: 0;
+    line-height: 0;
+}
+
+.profileImageElement {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: top;
+    display: block;
+    margin: 0;
+    padding: 0;
+    line-height: 0;
+}
+
+/* ------------------------------
+   Image Navigation Buttons
+------------------------------ */
+.imageNavButton {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background-color: rgba(0, 0, 0, 0.6);
+    color: #ffffff;
+    border: none;
+    border-radius: 50%;
+    width: 35px;
+    height: 35px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    opacity: 0;
+    transition: opacity 0.2s ease-in-out, background-color 0.2s ease-in-out;
+    z-index: 10;
+    font-size: 18px;
+}
+
+.imageNavButton:hover {
+    background-color: rgba(0, 0, 0, 0.8);
+}
+
+.imageNavButton.left {
+    left: 10px;
+}
+
+.imageNavButton.right {
+    right: 10px;
+}
+
+/* ------------------------------
+   Mobile Styles
+------------------------------ */
+@media screen and (max-width: 768px) {
+    .mobile-title {
+        font-size: 2.5rem !important;
+        line-height: 1.3;
+        margin-bottom: 2rem;
+        padding: 0 10px;
+    }
+
+    .imageNavButton {
+        opacity: 1;
+        width: 45px;
+        height: 45px;
+        font-size: 1.4rem;
+        background-color: rgba(0, 0, 0, 0.8);
+    }
+
+    .imageNavButton.left {
+        left: 5px;
+    }
+
+    .imageNavButton.right {
+        right: 5px;
+    }
+}
+
+/* Show navigation buttons on hover for desktop */
+@media screen and (min-width: 769px) {
+    .profileImageContainer:hover .imageNavButton {
+        opacity: 1;
+    }
+}
+
+/* ------------------------------
+   Responsive Layout
+------------------------------ */
+@media screen and (max-width: 1024px) {
+    .title.is-3 {
+        font-size: calc(2rem * var(--mobile-scale-factor));
+        line-height: 1.2;
+        margin-bottom: 1.2rem;
+    }
+}
+
+/* Additional mobile optimizations */
+@media screen and (max-width: 380px) {
+    .mobile-title {
+        font-size: 2rem !important;
+        padding: 0 5px;
+    }
+}
+
+/* Landscape mode adjustments */
+@media screen and (orientation: landscape) and (max-height: 600px) {
+    .details-section {
+        padding-top: calc(var(--navbar-height) * 0.8);
+    }
+}
