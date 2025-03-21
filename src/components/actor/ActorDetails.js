@@ -9,6 +9,7 @@ import { useParams } from "react-router-dom";
 import { fetchPersonDetails } from "../../services/tmdb";
 import ActorRatingScore from "./ActorRatingScore";
 import ActorDetailsInfo from "./ActorDetailsInfo";
+import ActorCarousel from "./ActorCarousel";
 import './ActorDetails.css';
 
 /**
@@ -148,6 +149,17 @@ const ActorDetails = () => {
                         <h1 className="title is-3 has-text-weight-bold mb-4 mobile-title">
                             {actor.name}
                         </h1>
+                        
+                        {/* Notable Movies Section */}
+                        <div className="notable-movies-section">
+                            <h2 className="title is-4 has-text-weight-bold mb-3">Notable Movies</h2>
+                            {actor && (
+                                <ActorCarousel 
+                                    actorDetails={actor}
+                                    key={actor.id}
+                                />
+                            )}
+                        </div>
                     </div>
                 </div>
             </div>
